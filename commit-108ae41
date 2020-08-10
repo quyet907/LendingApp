@@ -1,0 +1,210 @@
+From 108ae41cdb88fee36e171315efb4e2f46c8da9e3 Mon Sep 17 00:00:00 2001
+From: quyet08 <quyetf4@gmail.com>
+Date: Mon, 10 Aug 2020 18:51:45 +0700
+Subject: Change color tabnavigator
+
+
+diff --git a/App.tsx b/App.tsx
+index 3e74b3c..9daefc4 100644
+--- a/App.tsx
++++ b/App.tsx
+@@ -9,26 +9,45 @@ import Home from './screens/Home';
+ import Icon from 'react-native-vector-icons/FontAwesome';
+ const Tab = createBottomTabNavigator();
+ 
+-
++const tabProps = {
++  ACTIVE: '#F0B90B',
++  INACTIVE: '#616161',
++  ICONSIZE: 25,
++  BackgroundColor: '#000'
++}
+ 
+ 
+ export default class App extends React.Component<Props, {}>{
+   constructor(props: any) {
+     super(props)
+   }
++
+   render() {
+     return (
+       <NavigationContainer>
+-        <Tab.Navigator>
++        <Tab.Navigator
++          tabBarOptions={
++            {
++              activeTintColor: tabProps.ACTIVE,
++              inactiveTintColor: tabProps.INACTIVE,
++              style: {
++                backgroundColor: tabProps.BackgroundColor
++              }
++            }
++          }
++          
++
++        >
+           <Tab.Screen
+             name="Dashboard"
+             component={Home}
+             options={
+               {
++
+                 tabBarLabel: 'Dashboard',
+                 tabBarIcon: ({ focused }) => <Icon name="home"
+-                  size={30}
+-                  color={focused ? '#147efb' : '#red'} />
++                  size={tabProps.ICONSIZE}
++                  color={focused ? tabProps.ACTIVE : tabProps.INACTIVE} />
+               }
+ 
+             }
+@@ -37,29 +56,35 @@ export default class App extends React.Component<Props, {}>{
+           <Tab.Screen
+             name="Lending"
+             component={LendingSrceen}
+-            options={{ tabBarLabel: 'Lending' , 
+-            tabBarIcon: ({ focused }) => <Icon name="dollar"
+-            size={30}
+-            color={focused ? '#147efb' : '#red'} />}
+-          
+-          }
++            options={{
++              tabBarLabel: 'Lending',
++              tabBarIcon: ({ focused }) => <Icon name="dollar"
++                size={tabProps.ICONSIZE}
++                color={focused ? tabProps.ACTIVE : tabProps.INACTIVE} />
++            }
++
++            }
+           />
+           <Tab.Screen
+             name="Referral"
+             component={ReferralScreen}
+-            options={{ tabBarLabel: 'Referral' ,
+-            tabBarIcon: ({ focused }) => <Icon name="users"
+-            size={30}
+-            color={focused ? '#147efb' : '#red'} />}}
++            options={{
++              tabBarLabel: 'Referral',
++              tabBarIcon: ({ focused }) => <Icon name="users"
++                size={tabProps.ICONSIZE}
++                color={focused ? tabProps.ACTIVE : tabProps.INACTIVE} />
++            }}
+           />
+ 
+           <Tab.Screen
+             name="Profile"
+             component={ReferralScreen}
+-            options={{ tabBarLabel: 'Profile' ,
+-            tabBarIcon: ({ focused }) => <Icon name="user"
+-            size={30}
+-            color={focused ? '#147efb' : '#red'} />}}
++            options={{
++              tabBarLabel: 'Profile',
++              tabBarIcon: ({ focused }) => <Icon name="user"
++                size={tabProps.ICONSIZE}
++                color={focused ? tabProps.ACTIVE : tabProps.INACTIVE}/>
++            }}
+           />
+         </Tab.Navigator>
+       </NavigationContainer>
+diff --git a/app.json b/app.json
+index 4ae81ef..21faddc 100644
+--- a/app.json
++++ b/app.json
+@@ -4,9 +4,9 @@
+     "slug": "App",
+     "version": "1.0.0",
+     "orientation": "portrait",
+-    "icon": "./assets/icon.png",
++    
+     "splash": {
+-      "image": "./assets/splash.png",
++     
+       "resizeMode": "contain",
+       "backgroundColor": "#ffffff"
+     },
+@@ -19,9 +19,7 @@
+     "ios": {
+       "supportsTablet": true
+     },
+-    "web": {
+-      "favicon": "./assets/favicon.png"
+-    },
++    
+     "description": ""
+   }
+ }
+diff --git a/package-lock.json b/package-lock.json
+index e366509..8e840cc 100644
+--- a/package-lock.json
++++ b/package-lock.json
+@@ -1113,6 +1113,14 @@
+         "minimist": "^1.2.0"
+       }
+     },
++    "@egjs/hammerjs": {
++      "version": "2.0.17",
++      "resolved": "https://registry.npmjs.org/@egjs/hammerjs/-/hammerjs-2.0.17.tgz",
++      "integrity": "sha512-XQsZgjm2EcVUiZQf11UBJQfmZeEmOW8DpI1gsFeln6w0ae0ii4dMQEQ0kjl6DspdWX1aGY1/loyXnP0JS06e/A==",
++      "requires": {
++        "@types/hammerjs": "^2.0.36"
++      }
++    },
+     "@expo/configure-splash-screen": {
+       "version": "0.1.13",
+       "resolved": "https://registry.npmjs.org/@expo/configure-splash-screen/-/configure-splash-screen-0.1.13.tgz",
+@@ -1695,6 +1703,11 @@
+       "resolved": "https://registry.npmjs.org/@types/color-name/-/color-name-1.1.1.tgz",
+       "integrity": "sha512-rr+OQyAjxze7GgWrSaJwydHStIhHq2lvY3BOC2Mj7KnzI7XK0Uw1TOOdI9lDoajEbSWLiYgoo4f1R51erQfhPQ=="
+     },
++    "@types/hammerjs": {
++      "version": "2.0.36",
++      "resolved": "https://registry.npmjs.org/@types/hammerjs/-/hammerjs-2.0.36.tgz",
++      "integrity": "sha512-7TUK/k2/QGpEAv/BCwSHlYu3NXZhQ9ZwBYpzr9tjlPIL2C5BeGhH3DmVavRx3ZNyELX5TLC91JTz/cen6AAtIQ=="
++    },
+     "@types/istanbul-lib-coverage": {
+       "version": "2.0.3",
+       "resolved": "https://registry.npmjs.org/@types/istanbul-lib-coverage/-/istanbul-lib-coverage-2.0.3.tgz",
+@@ -3707,6 +3720,11 @@
+       "resolved": "https://registry.npmjs.org/hermes-engine/-/hermes-engine-0.0.0.tgz",
+       "integrity": "sha512-q5DP4aUe6LnfMaLsxFP1cCY5qA0Ca5Qm2JQ/OgKi3sTfPpXth79AQ7vViXh/RRML53EpokDewMLJmI31RioBAA=="
+     },
++    "hoist-non-react-statics": {
++      "version": "2.5.5",
++      "resolved": "https://registry.npmjs.org/hoist-non-react-statics/-/hoist-non-react-statics-2.5.5.tgz",
++      "integrity": "sha512-rqcy4pJo55FTTLWt+bU8ukscqHeE/e9KWvsOW2b/a3afxQZhwkQdT1rPPCJ0rYXdj4vNcasY8zHTH+jF/qStxw=="
++    },
+     "http-errors": {
+       "version": "1.7.3",
+       "resolved": "https://registry.npmjs.org/http-errors/-/http-errors-1.7.3.tgz",
+@@ -6072,6 +6090,17 @@
+         "react-native-webview": "^2.0.0"
+       }
+     },
++    "react-native-gesture-handler": {
++      "version": "1.7.0",
++      "resolved": "https://registry.npmjs.org/react-native-gesture-handler/-/react-native-gesture-handler-1.7.0.tgz",
++      "integrity": "sha512-1CrjJf8Z6Iz2XWzfZknYtsm2sud5Lu/pLhhokkgBIKttxqGDtetDEVFDJOTJWJyKCrUPk0X5tnWi/diSF4q++w==",
++      "requires": {
++        "@egjs/hammerjs": "^2.0.17",
++        "hoist-non-react-statics": "^2.3.1",
++        "invariant": "^2.2.4",
++        "prop-types": "^15.7.2"
++      }
++    },
+     "react-native-iphone-x-helper": {
+       "version": "1.2.1",
+       "resolved": "https://registry.npmjs.org/react-native-iphone-x-helper/-/react-native-iphone-x-helper-1.2.1.tgz",
+diff --git a/package.json b/package.json
+index 3c8d450..c8a37f4 100644
+--- a/package.json
++++ b/package.json
+@@ -22,6 +22,7 @@
+     "react-native": "https://github.com/expo/react-native/archive/sdk-38.0.2.tar.gz",
+     "react-native-chart-kit": "^6.4.1",
+     "react-native-chartjs": "^1.0.3",
++    "react-native-gesture-handler": "^1.7.0",
+     "react-native-screens": "^2.10.1",
+     "react-native-svg": "^12.1.0",
+     "react-native-vector-icons": "^7.0.0",
