@@ -5,6 +5,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import LendingSrceen from './screens/LendingScreen';
 import ReferralScreen from './screens/ReferralScreen';
+import Home from './screens/Home';
 import Icon from 'react-native-vector-icons/FontAwesome';
 const Tab = createBottomTabNavigator();
 
@@ -21,7 +22,7 @@ export default class App extends React.Component<Props, {}>{
         <Tab.Navigator>
           <Tab.Screen
             name="Dashboard"
-            component={ReferralScreen}
+            component={Home}
             options={
               {
                 tabBarLabel: 'Dashboard',
