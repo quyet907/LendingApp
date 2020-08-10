@@ -110,7 +110,8 @@ export default StyleSheet.create({
     },
     colorWhite : {
         color : "#ffffff"
-    }
+    },
+    
 
     
 
