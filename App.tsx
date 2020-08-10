@@ -9,26 +9,45 @@ import Home from './screens/Home';
 import Icon from 'react-native-vector-icons/FontAwesome';
 const Tab = createBottomTabNavigator();
 
-
+const tabProps = {
+  ACTIVE: '#F0B90B',
+  INACTIVE: '#616161',
+  ICONSIZE: 25,
+  BackgroundColor: '#000'
+}
 
 
 export default class App extends React.Component<Props, {}>{
   constructor(props: any) {
     super(props)
   }
+
   render() {
     return (
       <NavigationContainer>
-        <Tab.Navigator>
+        <Tab.Navigator
+          tabBarOptions={
+            {
+              activeTintColor: tabProps.ACTIVE,
+              inactiveTintColor: tabProps.INACTIVE,
+              style: {
+                backgroundColor: tabProps.BackgroundColor
+              }
+            }
+          }
+          
+
+        >
           <Tab.Screen
             name="Dashboard"
             component={Home}
             options={
               {
+
                 tabBarLabel: 'Dashboard',
                 tabBarIcon: ({ focused }) => <Icon name="home"
-                  size={30}
-                  color={focused ? '#147efb' : '#red'} />
+                  size={tabProps.ICONSIZE}
+                  color={focused ? tabProps.ACTIVE : tabProps.INACTIVE} />
               }
 
             }
@@ -37,29 +56,35 @@ export default class App extends React.Component<Props, {}>{
           <Tab.Screen
             name="Lending"
             component={LendingSrceen}
-            options={{ tabBarLabel: 'Lending' , 
-            tabBarIcon: ({ focused }) => <Icon name="dollar"
-            size={30}
-            color={focused ? '#147efb' : '#red'} />}
-          
-          }
+            options={{
+              tabBarLabel: 'Lending',
+              tabBarIcon: ({ focused }) => <Icon name="dollar"
+                size={tabProps.ICONSIZE}
+                color={focused ? tabProps.ACTIVE : tabProps.INACTIVE} />
+            }
+
+            }
           />
           <Tab.Screen
             name="Referral"
             component={ReferralScreen}
-            options={{ tabBarLabel: 'Referral' ,
-            tabBarIcon: ({ focused }) => <Icon name="users"
-            size={30}
-            color={focused ? '#147efb' : '#red'} />}}
+            options={{
+              tabBarLabel: 'Referral',
+              tabBarIcon: ({ focused }) => <Icon name="users"
+                size={tabProps.ICONSIZE}
+                color={focused ? tabProps.ACTIVE : tabProps.INACTIVE} />
+            }}
           />
 
           <Tab.Screen
             name="Profile"
             component={ReferralScreen}
-            options={{ tabBarLabel: 'Profile' ,
-            tabBarIcon: ({ focused }) => <Icon name="user"
-            size={30}
-            color={focused ? '#147efb' : '#red'} />}}
+            options={{
+              tabBarLabel: 'Profile',
+              tabBarIcon: ({ focused }) => <Icon name="user"
+                size={tabProps.ICONSIZE}
+                color={focused ? tabProps.ACTIVE : tabProps.INACTIVE}/>
+            }}
           />
         </Tab.Navigator>
       </NavigationContainer>
