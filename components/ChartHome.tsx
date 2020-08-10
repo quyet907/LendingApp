@@ -13,24 +13,24 @@ export default class ChartHome extends Component<props, state> {
                     {
                         label : "hàng 1",
                         data : [1, 4, 2, 8],
-                        fill : false,
-                        backgroundColor :"rgba(1,92,192,1)",
-                        borderColor : "rgba(1,92,192,1)"
+                        fill : true,
+                        backgroundColor :"rgba(207, 6, 13,0.1)",
+                        borderColor : "rgba(207, 6, 13,1)"
 
                     },
                     {
                         label : "hàng 2",
                         data : [2, 6, 5, 9],
-                        fill : false,
-                        backgroundColor :"rgba(75,192,192,1)",
-                        borderColor : "rgba(75,192,192,1)"
+                        fill : true,
+                        backgroundColor :"rgba(97, 5, 230,0.1)",
+                        borderColor : "rgba(97, 5, 230,1)"
 
                     },
                     {
                         label : "hàng 3",
                         data : [3, 4, 8, 7],
-                        fill : false,
-                        backgroundColor :"rgba(90,192,92,1)",
+                        fill : true,
+                        backgroundColor :"rgba(90,192,92,0.1)",
                         borderColor : "rgba(90,192,92,1)"
 
                     }

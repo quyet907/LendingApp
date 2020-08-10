@@ -19,6 +19,7 @@ export default class App extends React.Component<Props, {}>{
   render() {
     return (
       <NavigationContainer>
+          
         <Tab.Navigator>
           <Tab.Screen
             name="Dashboard"
