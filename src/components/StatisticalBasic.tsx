@@ -20,11 +20,11 @@ export default class StatisticalBasic extends Component <props, state>{
                     />
                 </View>
                 <View style={[]}>
-                    <View style={[myStyle.flex3, myStyle.contentStatisticalBasic]}>
-                        <Text style={[myStyle.colorWhite]}>{this.props.content}</Text>
+                    <View style={[,myStyle.flex3, myStyle.contentStatisticalBasic]}>
+                        <Text style={[{color : "#5E5F61", fontSize : 10}]}>{this.props.content}</Text>
                     </View>
                     <View style={[myStyle.flex3, myStyle.contentStatisticalBasic]}>
-                        <Text style={[myStyle.colorWhite]}>{this.props.money}</Text>
+                        <Text style={[myStyle.colorWhite]}>{this.props.money} COIN</Text>
                     </View>
 
                 </View>
