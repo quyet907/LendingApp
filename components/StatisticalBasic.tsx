@@ -13,13 +13,13 @@ export default class StatisticalBasic extends Component <props, state>{
         console.log(img);
         return (
             <View style={[myStyle.statisticalBasic, myStyle.row]}>
-                <View style={[myStyle.flex3, myStyle.frImgStatisticalBasic]}>
+                <View style={[, myStyle.frImgStatisticalBasic]}>
                     <Image
                         source={require("../assets/icons8_average_2_75px.png")}
                         style={[myStyle.imgStatisticalBasic]}
                     />
                 </View>
-                <View style={[myStyle.flex3]}>
+                <View style={[]}>
                     <View style={[myStyle.flex3, myStyle.contentStatisticalBasic]}>
                         <Text style={[myStyle.colorWhite]}>{this.props.content}</Text>
                     </View>

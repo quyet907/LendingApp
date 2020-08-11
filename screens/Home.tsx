@@ -16,7 +16,7 @@ export default class Home extends Component<props , state> {
         return (
             <ScrollView style = {[myStyle.container]}>
                 <View style = {[myStyle.container]}>
-                    <View style = {[]}>
+                    <View style = {[myStyle.charHome]}>
                         <ChartHome
                             data = {[20, 15,1,29,29,22,42,12]}
                         ></ChartHome>
