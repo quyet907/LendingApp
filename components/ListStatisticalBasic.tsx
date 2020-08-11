@@ -8,9 +8,9 @@ export default class ListStatisticalBasic extends Component {
         
         return (
 
-            <View style = {[myStyle.container]}>
+            <View style = {[myStyle.listStatisticalBasic]}>
 
-                <View style = {[myStyle.flex3,myStyle.row]}>
+                <View style = {[myStyle.row]}>
                     <StatisticalBasic
                         img  = {"../assets/icons8_average_2_75px.png"}
                         content = {"Tổng Tiền"}
@@ -27,7 +27,7 @@ export default class ListStatisticalBasic extends Component {
 
 
 
-                <View style={[myStyle.flex3,myStyle.row, myStyle.bg1]}>
+                <View style={[myStyle.row]}>
                     <StatisticalBasic
                         img  = {"../assets/icons8_rating_70px.png"}
                         content = {"Giới thiệu"}
