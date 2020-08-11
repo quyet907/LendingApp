@@ -47,7 +47,12 @@ export default StyleSheet.create({
     bg4 :{
         backgroundColor : "green"
     },   
-
+    charHome : {
+        width : "100%",
+        backgroundColor  : "#1F1F1D",
+        borderRadius : 10,
+        marginTop  : 20,
+    },
 
     frLogo: {
         flex : 1,
@@ -104,6 +109,7 @@ export default StyleSheet.create({
     statisticalBasic : {
         width : "50%",
         justifyContent : "center",
+        alignItems : "center"
         
     },
     frImgStatisticalBasic : {
@@ -123,7 +129,7 @@ export default StyleSheet.create({
         color : "#ffffff"
     },
     listHistoryInterest : {
-        minHeight  : 400,
+        minHeight  : 100,
         backgroundColor : "#1F1F1D",
         flex : 1,
         flexShrink : 30,
@@ -132,7 +138,7 @@ export default StyleSheet.create({
         borderRadius :10
     },
     HistoryInterest : {
-        height : 80,
+        height : 60,
         width : "100%",
         backgroundColor : "#292927",
         borderRadius : 10,
@@ -159,6 +165,12 @@ export default StyleSheet.create({
         flex : 1,
         justifyContent : 'center',
         alignItems : 'center'
+    },
+
+    contentHistoryInterest : {
+        fontWeight : "bold",
+         fontSize: 18,
+          textTransform : "uppercase"
     }
     
 

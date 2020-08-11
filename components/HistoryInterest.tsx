@@ -8,7 +8,7 @@ export default class HistoryInterest extends Component {
                 <View style = {[myStyle.row]}>
                     <View style={[myStyle.leftHistoryInterest]}>
                         <View> 
-                            <Text style = {[{color:"#575959"}]}>
+                            <Text style = {[{color:"#575959",fontSize:10}]}>
                                 11/01/2020
                             </Text>
                         </View>
@@ -18,19 +18,19 @@ export default class HistoryInterest extends Component {
                                 style = {[myStyle.iconHistoryInterest]}
                                 source={require("../assets/icons8_up_26px.png")}
                             />
-                            <Text style = {[{color : "#34FF08", fontWeight : "bold", fontSize : 20}]}>30</Text>
+                            <Text style = {[{color : "#34FF08"},myStyle.contentHistoryInterest]}>30</Text>
                         </View>
                     </View>
 
                     <View style = {[myStyle.row , myStyle.centerHistoryInterest]}>
-                        <Text style = {[{color : "#66686A", fontWeight : "bold", fontSize: 20, textTransform : "uppercase"}]}>
+                        <Text style = {[{color : "#66686A"}, myStyle.contentHistoryInterest]}>
                             3000
                         </Text>
                         <Image
                             style = {[myStyle.iconHistoryInterest, {margin : 10}]}
                             source={require("../assets/icons8_right_26px.png")}
                         />
-                        <Text style = {[{color : "#C5710C", fontWeight : "bold", fontSize: 20, textTransform : "uppercase"}]}>3200</Text>
+                        <Text style = {[{color : "#C5710C", }, myStyle.contentHistoryInterest]}>3200</Text>
                     </View>
 
                     <View style = {[myStyle.rightHistoryInterest]}> 
