@@ -119,11 +119,12 @@ export default StyleSheet.create({
     imgStatisticalBasic : {
         height : 50,
         width : 50,
-        resizeMode : "contain"
+        resizeMode : "contain",
+        margin: 10
     },
     contentStatisticalBasic : {
         justifyContent : 'center',
-        alignItems : 'flex-start'
+        alignItems : 'flex-start',
     },
     colorWhite : {
         color : "#ffffff"

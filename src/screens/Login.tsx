@@ -21,19 +21,13 @@ export default class Login extends Component {
                 </View>
 
                 <View style={[myStyle.flex3, myStyle.buttonLogin]}>
+
+                    
                     <View style={[myStyle.loginWithFacebook]}>
-                        <Button
-                            color = {"#454794"}
-                            title = {"Login with Facebook"}
-                            onPress = {()=>{}}
-                        />
+                        
                     </View>
                     <View style={[myStyle.loginWithGoogle]}>
-                        <Button
-                            color = {"#FF0001"}
-                            title = {"Login with Google"}
-                            onPress = {()=>{}}
-                        />
+                        
                     </View>
 
                 </View>
