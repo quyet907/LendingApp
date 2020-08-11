@@ -12,7 +12,7 @@ export default class StatisticalBasic extends Component <props, state>{
         var img:any = this.props.img;
         console.log(img);
         return (
-            <View style={[myStyle.flex3, myStyle.row]}>
+            <View style={[myStyle.statisticalBasic, myStyle.row]}>
                 <View style={[myStyle.flex3, myStyle.frImgStatisticalBasic]}>
                     <Image
                         source={require("../assets/icons8_average_2_75px.png")}

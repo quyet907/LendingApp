@@ -1,16 +1,15 @@
 import {StyleSheet} from "react-native";
 
-const background = "#1F1F1D";
+const background = "#292927";
 
 export default StyleSheet.create({
     container : {
         flex : 1,
-        backgroundColor : "#1F1F1D"
+        backgroundColor : "#292927"
         
     },
     row:{
         flexDirection : "row",
-        backgroundColor : "#1F1F1D"
     },
     flex6 : {
         flex : 60
@@ -93,6 +92,20 @@ export default StyleSheet.create({
         width : "80%",
         borderRadius : 10
     },
+    listStatisticalBasic : { 
+        minHeight : 100,
+        width : "100%",
+        backgroundColor : "#1F1F1D",
+        padding : 10,
+        marginTop : 10,
+        borderRadius : 10
+
+    },
+    statisticalBasic : {
+        width : "50%",
+        justifyContent : "center",
+        
+    },
     frImgStatisticalBasic : {
         justifyContent : 'center',
         alignItems : "center",
@@ -104,13 +117,49 @@ export default StyleSheet.create({
     },
     contentStatisticalBasic : {
         justifyContent : 'center',
-        alignItems : 'center'
-        
-        
+        alignItems : 'flex-start'
     },
     colorWhite : {
         color : "#ffffff"
     },
+    listHistoryInterest : {
+        minHeight  : 400,
+        backgroundColor : "#1F1F1D",
+        flex : 1,
+        flexShrink : 30,
+        padding : 10  ,
+        marginTop    : 10,
+        borderRadius :10
+    },
+    HistoryInterest : {
+        height : 80,
+        width : "100%",
+        backgroundColor : "#292927",
+        borderRadius : 10,
+        justifyContent : "center",
+        padding : 10  ,
+        marginTop : 10
+
+    }
+    , 
+    iconHistoryInterest  : {
+        height : 25,
+        width   : 25, 
+        resizeMode : "contain"
+    },
+    leftHistoryInterest : {
+        width : 100,
+    },
+    rightHistoryInterest : {
+        width : 100,
+        alignItems : "center",
+        justifyContent : "center"
+    },
+    centerHistoryInterest : {
+        flex : 1,
+        justifyContent : 'center',
+        alignItems : 'center'
+    }
     
 
     
