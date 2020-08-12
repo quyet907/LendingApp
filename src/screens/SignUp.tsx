@@ -1,12 +1,19 @@
 import React, { Component } from 'react'
-import { View, Image, Text, Button, TextInput , KeyboardAvoidingView} from 'react-native'
+import { View, Image, Text, Button, TextInput , KeyboardAvoidingView, CheckBox} from 'react-native'
 import myStyle from "../style"
 
 
 
 
 
-export default class Login extends Component {
+
+export default class Login extends Component<props , state> {
+    constructor(props : any ){
+        super(props)
+        this.state = {
+            checkbox : false
+        }
+    }
     render() {
         return (
             <KeyboardAvoidingView style={[myStyle.container, {alignItems : "center"}]}>
@@ -23,16 +30,21 @@ export default class Login extends Component {
                     </View>
                 </View>
 
-                <View style={[myStyle.flex4, myStyle.login]}>
+                <View style={[myStyle.flex5, myStyle.login]}>
 
                     
                     <View style={[]}>
                         <TextInput
                             style = {[myStyle.inputLogin]}
                             selectionColor='red'
-                            placeholder = {"Number Phone"}
-                            
+                            placeholder = {"Your Name"}
+                        />
+                    </View>
 
+                    <View >
+                        <TextInput
+                             style = {[myStyle.inputLogin]}
+                             placeholder = {"Number Phone"}
                         />
                     </View>
 
@@ -44,13 +56,16 @@ export default class Login extends Component {
                         />
                     </View>
 
-                    <View style = {[myStyle.frFotgotPassword]}>
-                            <Text style = {[myStyle.forgotPassWord]}
-                                onPress = {()=>{console.log("óc dog")}}
-                            >Quên mật khẩu</Text>
+                    <View style = {[myStyle.row, { marginTop : 10}]}>
+                        <CheckBox
+                            value = {this.state.checkbox}
+                            onChange = {()=>{this.setState({checkbox : !this.state.checkbox})}}
+                        />
+                        <Text style = {[myStyle.colorWhite,{marginLeft : 10, fontSize : 12, color : "gray"}]} 
+                            onPress = {()=>{this.setState({checkbox : !this.state.checkbox})}}
+                        >I agree with điều khoản của their :D</Text>
 
                     </View>
-
                     <View  style = {[myStyle.frbuttonLogin]}>
                         <View style = {[myStyle.buttonLogin]}>
                             <Button
@@ -65,7 +80,7 @@ export default class Login extends Component {
                     
                     <View>
                         <Button
-                            title="Đăng kí tài khoản"
+                            title="I have account"
                             color = "none"
                             
                             onPress = {()=>{}}
@@ -77,4 +92,13 @@ export default class Login extends Component {
             </KeyboardAvoidingView>
         )
     }
+}
+
+
+type props = {
+
+}
+
+type state = {
+    checkbox : boolean
 }

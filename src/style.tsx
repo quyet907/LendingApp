@@ -5,7 +5,8 @@ const background = "#292927";
 export default StyleSheet.create({
     container : {
         flex : 1,
-        backgroundColor : "#292927"
+        backgroundColor : "#292927",
+        fontFamily  : "Tahoma",
         
     },
     row:{
@@ -158,9 +159,8 @@ export default StyleSheet.create({
         borderBottomColor : "#F6C400",
         borderBottomWidth : 2,
         height : 50,
-        width : 250,
-        margin : 20,
-        alignSelf : "center",
+        width : "100%",
+        marginTop : 20,   
         outlineWidth : 0,
         color : "#FFFFFF",
         fontSize : 18,
@@ -169,10 +169,10 @@ export default StyleSheet.create({
 
     },
     frbuttonLogin : {
-        marginTop : 10,
-        backgroundColor : "#F6C400",
+        marginTop : 20,
+        backgroundColor : "rgb(246, 196, 0)",
         justifyContent : "center",
-        width : 250,
+        width : "100%",
         height : 50,
         borderRadius : 10,
         alignItems : "center",
@@ -182,7 +182,7 @@ export default StyleSheet.create({
     buttonLogin : {
         fontSize : 18,
         fontWeight : "bold",
-        backgroundColor : "#F6C400",
+        backgroundColor : "rgb(246, 196, 0)",
         justifyContent : "center",
         height :"99%",
         width : "96%",
@@ -190,8 +190,20 @@ export default StyleSheet.create({
 
     },
     login : {
-        // justifyContent : "center",
-        alignItems : "center",
+        width : "80%",
+
+    },
+    forgotPassWord : {
+        color : "white",
+        textAlign : "right",
+
+    },
+    frFotgotPassword : {
+       width : "100%",
+       height : 30,
+
+       alignItems : "flex-end",
+       marginTop  : 10
     }
     
 

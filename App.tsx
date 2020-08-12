@@ -7,6 +7,8 @@ import LendingSrceen from './src/screens/LendingScreen';
 import ReferralScreen from './src/screens/ReferralScreen';
 import Home from './src/screens/Home';
 import Login from './src/screens/Login';
+import SignUp from './src/screens/SignUp';
+import EnterYourPhone from './src/screens/EnterYourPhone';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 const Tab = createBottomTabNavigator();
@@ -42,7 +44,7 @@ export default class App extends React.Component<Props, {}>{
         >
           <Tab.Screen
             name="Dashboard"
-            component={Login}
+            component={EnterYourPhone}
             options={
               {
 

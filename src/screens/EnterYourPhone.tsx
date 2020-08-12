@@ -13,12 +13,9 @@ export default class Login extends Component {
                 <View style={[myStyle.flex2]}>
                     <View style={[ myStyle.frLogo]}>
                         <View
-                            style={[myStyle.logo]}
+                            style={[myStyle.logo,]}
                         >
-                            <Image
-                                style = {[myStyle.logoImg]}
-                                source={require("../assets/log.png")}
-                            />
+                            <Text style = {{color : "white", fontWeight : "bold" }}>Enter your phone</Text>
                         </View>
                     </View>
                 </View>
@@ -36,20 +33,9 @@ export default class Login extends Component {
                         />
                     </View>
 
-                    <View >
-                        <TextInput
-                             style = {[myStyle.inputLogin]}
-                             placeholder = {"Pass Word"}
-                             secureTextEntry={true}
-                        />
-                    </View>
 
-                    <View style = {[myStyle.frFotgotPassword]}>
-                            <Text style = {[myStyle.forgotPassWord]}
-                                onPress = {()=>{console.log("óc dog")}}
-                            >Quên mật khẩu</Text>
 
-                    </View>
+
 
                     <View  style = {[myStyle.frbuttonLogin]}>
                         <View style = {[myStyle.buttonLogin]}>
@@ -63,14 +49,7 @@ export default class Login extends Component {
                         </View>
                     </View>
                     
-                    <View>
-                        <Button
-                            title="Đăng kí tài khoản"
-                            color = "none"
-                            
-                            onPress = {()=>{}}
-                        />
-                    </View>
+
 
                 </View>
                 
