@@ -6,7 +6,9 @@ import { createStackNavigator } from '@react-navigation/stack';
 import LendingSrceen from './src/screens/LendingScreen';
 import ReferralScreen from './src/screens/ReferralScreen';
 import Home from './src/screens/Home';
+import Login from './src/screens/Login';
 import Icon from 'react-native-vector-icons/FontAwesome';
+
 const Tab = createBottomTabNavigator();
 
 const tabProps = {
@@ -40,11 +42,26 @@ export default class App extends React.Component<Props, {}>{
         >
           <Tab.Screen
             name="Dashboard"
-            component={Home}
+            component={Login}
             options={
               {
 
                 tabBarLabel: 'Dashboard',
+                tabBarIcon: ({ focused }) => <Icon name="home"
+                  size={tabProps.ICONSIZE}
+                  color={focused ? tabProps.ACTIVE : tabProps.INACTIVE} />
+              }
+
+            }
+
+          />
+           <Tab.Screen
+            name="login"
+            component={Home}
+            options={
+              {
+
+                tabBarLabel: 'login',
                 tabBarIcon: ({ focused }) => <Icon name="home"
                   size={tabProps.ICONSIZE}
                   color={focused ? tabProps.ACTIVE : tabProps.INACTIVE} />

@@ -14,7 +14,7 @@ export default class Home extends Component<props , state> {
     }
     render() {
         return (
-            <ScrollView style = {[myStyle.container]}>
+            <ScrollView style = {[myStyle.container]} showsVerticalScrollIndicator = {false}>
                 <View style = {[myStyle.container]}>
                     <View style = {[myStyle.charHome]}>
                         <ChartHome

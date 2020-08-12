@@ -75,28 +75,9 @@ export default StyleSheet.create({
     },
 
 
-    buttonLogin : {
-        justifyContent  : "flex-start",
-        alignItems : "center",
-    },
 
-    loginWithFacebook :{
-        backgroundColor : "#454794",
-        justifyContent : "center",
-        height : 50,
-        margin : 20,
-        width : "80%",
-        borderRadius : 10
 
-    },
-    loginWithGoogle :{
-        backgroundColor : "#FF0001",
-        height  : 50,
-        margin : 20,
-        justifyContent : "center",
-        width : "80%",
-        borderRadius : 10
-    },
+
     listStatisticalBasic : { 
         minHeight : 100,
         width : "100%",
@@ -172,6 +153,45 @@ export default StyleSheet.create({
         fontWeight : "bold",
          fontSize: 18,
           textTransform : "uppercase"
+    },
+    inputLogin : {
+        borderBottomColor : "#F6C400",
+        borderBottomWidth : 2,
+        height : 50,
+        width : 250,
+        margin : 20,
+        alignSelf : "center",
+        outlineWidth : 0,
+        color : "#FFFFFF",
+        fontSize : 18,
+        
+
+
+    },
+    frbuttonLogin : {
+        marginTop : 10,
+        backgroundColor : "#F6C400",
+        justifyContent : "center",
+        width : 250,
+        height : 50,
+        borderRadius : 10,
+        alignItems : "center",
+
+    },
+    
+    buttonLogin : {
+        fontSize : 18,
+        fontWeight : "bold",
+        backgroundColor : "#F6C400",
+        justifyContent : "center",
+        height :"99%",
+        width : "96%",
+        borderRadius : 10,
+
+    },
+    login : {
+        // justifyContent : "center",
+        alignItems : "center",
     }
     
 
