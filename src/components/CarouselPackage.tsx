@@ -16,7 +16,7 @@ const DATA = [
 ];
 
 
-export default class Profile extends Component<Props, {}> {
+export default class CarouselPackage extends Component<Props, {}> {
     carousel: Carousel<any> | null;
     constructor(props: any) {
         super(props);

@@ -12,6 +12,7 @@
     "@react-navigation/bottom-tabs": "^5.8.0",
     "@react-navigation/native": "^5.7.3",
     "@react-navigation/stack": "^5.9.0",
+    "@types/react-native-snap-carousel": "^3.8.2",
     "@types/react-native-vector-icons": "^6.4.5",
     "chart.js": "^2.9.3",
     "expo": "~38.0.8",
@@ -22,8 +23,10 @@
     "react-native": "https://github.com/expo/react-native/archive/sdk-38.0.2.tar.gz",
     "react-native-chart-kit": "^6.4.1",
     "react-native-chartjs": "^1.0.3",
+    "react-native-flash-message": "^0.1.16",
     "react-native-gesture-handler": "^1.7.0",
     "react-native-screens": "^2.10.1",
+    "react-native-snap-carousel": "^4.0.0-beta.5",
     "react-native-svg": "^12.1.0",
     "react-native-vector-icons": "^7.0.0",
     "react-native-web": "~0.11.7"

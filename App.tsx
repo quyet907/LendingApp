@@ -7,6 +7,7 @@ import LendingSrceen from './src/screens/LendingScreen';
 import ReferralScreen from './src/screens/ReferralScreen';
 import Home from './src/screens/Home';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import Profile from './src/components/Profile';
 const Tab = createBottomTabNavigator();
 
 const tabProps = {
@@ -35,9 +36,8 @@ export default class App extends React.Component<Props, {}>{
               }
             }
           }
-          
-
         >
+
           <Tab.Screen
             name="Dashboard"
             component={Home}
@@ -78,12 +78,12 @@ export default class App extends React.Component<Props, {}>{
 
           <Tab.Screen
             name="Profile"
-            component={ReferralScreen}
+            component={Profile}
             options={{
               tabBarLabel: 'Profile',
               tabBarIcon: ({ focused }) => <Icon name="user"
                 size={tabProps.ICONSIZE}
-                color={focused ? tabProps.ACTIVE : tabProps.INACTIVE}/>
+                color={focused ? tabProps.ACTIVE : tabProps.INACTIVE} />
             }}
           />
         </Tab.Navigator>
