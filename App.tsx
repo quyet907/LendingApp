@@ -11,11 +11,10 @@ import SignUp from './src/screens/SignUp';
 import ConfirmOTP from './src/screens/ConfirmOTP';
 import EnterYourPhone from './src/screens/EnterYourPhone';
 import Icon from 'react-native-vector-icons/FontAwesome';
-<<<<<<< HEAD
 import Profile from './src/components/Profile';
-=======
 
->>>>>>> c1473aac55ed8081162d6c0d9bc8d8b26a39d94b
+
+
 const Tab = createBottomTabNavigator();
 
 const tabProps = {
