@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
-import { View, Image, Text, Button, TextInput , KeyboardAvoidingView} from 'react-native'
+import { View, Image, Text, Button, TextInput, KeyboardAvoidingView, TouchableOpacity } from 'react-native'
 import myStyle from "../style"
+import LogoLogin from '../components/LogoLogin'
+
 
 
 
@@ -9,71 +11,61 @@ import myStyle from "../style"
 export default class Login extends Component {
     render() {
         return (
-            <KeyboardAvoidingView style={[myStyle.container, {alignItems : "center"}]}>
+            <KeyboardAvoidingView style={[myStyle.container, { alignItems: "center" }]}>
                 <View style={[myStyle.flex2]}>
-                    <View style={[ myStyle.frLogo]}>
-                        <View
-                            style={[myStyle.logo]}
-                        >
-                            <Image
-                                style = {[myStyle.logoImg]}
-                                source={require("../assets/log.png")}
-                            />
-                        </View>
-                    </View>
+                    <LogoLogin></LogoLogin>
                 </View>
 
                 <View style={[myStyle.flex4, myStyle.login]}>
 
-                    
+
                     <View style={[]}>
                         <TextInput
-                            style = {[myStyle.inputLogin]}
+                            style={[myStyle.inputLogin]}
                             selectionColor='red'
-                            placeholder = {"Number Phone"}
-                            
+                            placeholder={"Number Phone"}
+                            maxLength = {15}
 
                         />
                     </View>
 
                     <View >
                         <TextInput
-                             style = {[myStyle.inputLogin]}
-                             placeholder = {"Pass Word"}
-                             secureTextEntry={true}
+                            style={[myStyle.inputLogin]}
+                            placeholder={"Pass Word"}
+                            secureTextEntry={true}
+                            maxLength = {60}
                         />
                     </View>
 
-                    <View style = {[myStyle.frFotgotPassword]}>
-                            <Text style = {[myStyle.forgotPassWord]}
-                                onPress = {()=>{console.log("óc dog")}}
+                    <View style={[myStyle.frFotgotPassword]}>
+                        <TouchableOpacity>
+                            <Text style={[myStyle.forgotPassWord]}
                             >Quên mật khẩu</Text>
+                        </TouchableOpacity>
 
                     </View>
 
-                    <View  style = {[myStyle.frbuttonLogin]}>
-                        <View style = {[myStyle.buttonLogin]}>
-                            <Button
-                                
-                                title = {"Login"}
-                                onPress = {()=> {}}
-                                color = "rgb(246, 196, 0)"
-                                
-                            />
-                        </View>
+                    <View style={[myStyle.frbuttonLogin]}>
+                        <TouchableOpacity style={[myStyle.buttonLogin]}
+                            activeOpacity={0.7}
+                        >
+                            <Text style  ={[myStyle.textButton]}>
+                                Login
+                            </Text>
+                        </TouchableOpacity>
+
                     </View>
-                    
-                    <View>
-                        <Button
-                            title="Đăng kí tài khoản"
-                            color = "none"
-                            
-                            onPress = {()=>{}}
-                        />
+
+                    <View style = {[myStyle.row,{marginTop : 10, justifyContent : "center"} ] }>
+                        <Text style = {[{marginRight: 10, color : "gray"}]}>You haven't acount</Text>
+                        <TouchableOpacity>
+                            <Text style = {[myStyle.colorWhite]}>Create new account</Text>
+                        </TouchableOpacity>
                     </View>
 
                 </View>
-                
+
             </KeyboardAvoidingView>
         )
     }

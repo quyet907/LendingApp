@@ -187,7 +187,15 @@ export default StyleSheet.create({
         height :"99%",
         width : "96%",
         borderRadius : 10,
+        
 
+    },
+    textButton : {
+        textAlign : "center",
+        color : "black",
+        fontWeight : "bold",
+        textTransform : "uppercase",
+        fontSize : 18,
     },
     login : {
         width : "80%",

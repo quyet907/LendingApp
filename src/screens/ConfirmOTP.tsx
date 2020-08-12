@@ -17,7 +17,7 @@ export default class Login extends Component {
                                 justifyContent : "flex-end",
                                 alignItems : "flex-end",}]}
                         >
-                            <Text style = {{color : "white", fontWeight : "bold", fontSize : 30 }}>Enter your phone</Text>
+                            <Text style = {{color : "white", fontWeight : "bold", fontSize : 30 }}>Enter OTP code</Text>
                         </View>
                     </View>
                 </View>
@@ -40,10 +40,17 @@ export default class Login extends Component {
                             activeOpacity={0.7}
                         >
                             <Text style  ={[myStyle.textButton]}>
-                                Login
+                                Confirm
                             </Text>
                         </TouchableOpacity>
 
+                    </View>
+
+                    <View style = {[myStyle.row,{marginTop : 10, justifyContent : "center"} ] }>
+                        <Text style = {[{marginRight: 10, color : "gray"}]}>I do not receive any</Text>
+                        <TouchableOpacity>
+                            <Text style = {[myStyle.colorWhite]}>Enter my phone again</Text>
+                        </TouchableOpacity>
                     </View>
                     
 

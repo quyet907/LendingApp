@@ -8,6 +8,7 @@ import ReferralScreen from './src/screens/ReferralScreen';
 import Home from './src/screens/Home';
 import Login from './src/screens/Login';
 import SignUp from './src/screens/SignUp';
+import ConfirmOTP from './src/screens/ConfirmOTP';
 import EnterYourPhone from './src/screens/EnterYourPhone';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
@@ -44,10 +45,9 @@ export default class App extends React.Component<Props, {}>{
         >
           <Tab.Screen
             name="Dashboard"
-            component={EnterYourPhone}
+            component={ConfirmOTP}
             options={
               {
-
                 tabBarLabel: 'Dashboard',
                 tabBarIcon: ({ focused }) => <Icon name="home"
                   size={tabProps.ICONSIZE}
