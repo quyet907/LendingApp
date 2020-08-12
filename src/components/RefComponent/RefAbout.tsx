@@ -6,11 +6,12 @@ export default class RefAbout extends React.Component<Props, {}>{
     constructor(props: any) {
         super(props)
     }
+
     render() {
         return (
             <View style={{ flexDirection: 'row' }}>
                 <View>
-                    <Image style={styles.logo} source={{ uri: this.props.urlIcon }} />
+                    <Image style={styles.logo} source={require('../../assets/icons8_user_groups_80px_1.png')} />
                 </View>
                 <View style={styles.subContainer}>
                     <Text style={{ color: '#868685', fontSize: 12 }}>{this.props.label}</Text>
@@ -19,6 +20,9 @@ export default class RefAbout extends React.Component<Props, {}>{
             </View>
         )
     }
+
+    url = () => this.props.urlIcon == 'sum' ? '../../assets/icons8_user_groups_80px_1.png' : '../../assets/icons8_user_groups_80px_1.png'
+    
 }
 
 type Props = {
@@ -36,7 +40,7 @@ const styles = StyleSheet.create({
     logo: {
         width: 50,
         height: 50,
-        resizeMode: 'cover',
+        resizeMode: 'contain',
         marginRight: 10
     },
     amount: {

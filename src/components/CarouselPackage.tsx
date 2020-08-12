@@ -9,11 +9,7 @@ const SLIDER_WIDTH = Dimensions.get('window').width -40;
 const ITEM_WIDTH = Math.round(SLIDER_WIDTH * 0.4);
 const ITEM_HEIGHT = Math.round(ITEM_WIDTH * 0.9);
 
-const DATA = [
-    { name: 'SILVER', min: 1000, profits: 10, days: 45 },
-    { name: 'GOLD', min: 2000, profits: 15, days: 55 },
-    { name: 'PREMIUM', min: 5000, profits: 30, days: 255 }
-];
+
 
 
 export default class CarouselPackage extends Component<Props, {}> {
@@ -55,11 +51,11 @@ export default class CarouselPackage extends Component<Props, {}> {
                     sliderWidth={SLIDER_WIDTH}
                     itemWidth={ITEM_WIDTH}
                     containerCustomStyle={styles.carouselContainer}
-                    inactiveSlideShift={0}
-                    onSnapToItem={(index) => this.setState({ index })}
-                    scrollInterpolator={scrollInterpolator}
-                    slideInterpolatedStyle={animatedStyles}
-                    useScrollView={true}
+                    //inactiveSlideShift={0}
+                    //onSnapToItem={(index) => this.setState({ index })}
+                    //scrollInterpolator={scrollInterpolator}
+                    //slideInterpolatedStyle={animatedStyles}
+                    //useScrollView={true}
                     firstItem={1}
 
                 />

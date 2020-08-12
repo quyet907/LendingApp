@@ -5,7 +5,7 @@ import { TouchableOpacity, ScrollView, FlatList, State } from 'react-native-gest
 import RefAbout from './RefComponent/RefAbout';
 import HistoryDetail from './RefComponent/HistoryDetail';
 import FlashMessage, { showMessage, hideMessage } from "react-native-flash-message";
-import CarouselPackage from './CarouselPackage'
+import Package from './Package'
 
 
 const user = {
@@ -17,17 +17,18 @@ const user = {
         { id: '71287482734892', time: '2020-08-15 15:12' },
         { id: '43675434534535', time: '2020-08-15 15:12' },
         { id: '86746325345645', time: '2020-08-15 15:12' },
-        { id: '71287482734892', time: '2020-08-15 15:12' },
-        { id: '43675434534535', time: '2020-08-15 15:12' },
-        { id: '86746325345645', time: '2020-08-15 15:12' },
-        { id: '71287482734892', time: '2020-08-15 15:12' },
-        { id: '43675434534535', time: '2020-08-15 15:12' },
-        { id: '86746325345645', time: '2020-08-15 15:12' }
+        { id: '71287482734892', time: '2020-08-15 15:12' }
     ],
     invest: [
-        {name: 'SILVER' , coin: 1500}
+        { name: 'SILVER', coin: 1500 }
     ]
 };
+
+const DATA = [
+    { name: 'SILVER', min: 1000, profits: 10, days: 45 },
+    { name: 'GOLD', min: 2000, profits: 15, days: 55 },
+    { name: 'PREMIUM', min: 5000, profits: 30, days: 255 }
+];
 
 
 export default class Lending extends React.Component<Props, State>{
@@ -48,8 +49,9 @@ export default class Lending extends React.Component<Props, State>{
                     <View style={{ flexDirection: 'row', justifyContent: 'center', marginTop: 10 }}>
                         <Text style={styles.textLabel}>CHOOSE ONE PACKAGE</Text>
                     </View>
-                    <View>
-                        <CarouselPackage />
+                    <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+                        {DATA.map((item) => <Package package={item} />
+                        )}
                     </View>
 
                     <View style={{ flexDirection: 'row', justifyContent: 'center', marginTop: 30 }}>
@@ -60,7 +62,7 @@ export default class Lending extends React.Component<Props, State>{
 
                         flexDirection: 'row',
                         height: 35,
-                       
+
 
                     }}>
                         <View style={{
@@ -88,7 +90,7 @@ export default class Lending extends React.Component<Props, State>{
                                 justifyContent: 'center'
                             }}
                             onPress={() => this.allCoin()}
-                            >
+                        >
                             <Text style={styles.copyText}>&lt;ALL</Text>
                         </TouchableOpacity >
                     </View>

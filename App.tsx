@@ -50,6 +50,7 @@ export default class App extends React.Component<Props, {}>{
             component={ConfirmOTP}
             options={
               {
+                
                 tabBarLabel: 'Dashboard',
                 tabBarIcon: ({ focused }) => <Icon name="home"
                   size={tabProps.ICONSIZE}

@@ -13,7 +13,7 @@ export default class HistoryDetail extends React.Component<Props, {}>{
             <View style={styles.container}>
             <View style={{ flexDirection: 'row', alignItems: 'center', flex: 1 , paddingVertical: 10}}>
                 <View>
-                    <Image style={styles.logo} source={{ uri: 'https://via.placeholder.com/150' }} />
+                    <Image style={styles.logo} source={require('../../assets/icons8_male_user_32px_1.png')} />
                 </View>
                 <View style={{flexDirection: 'column', justifyContent: 'space-between', height: 42  }}>
                     <Text style={styles.title}>{this.props.title}</Text>
@@ -50,10 +50,11 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between'
     },
     logo: {
-        width: 40,
-        height: 40,
-        resizeMode: 'cover',
-        marginRight: 10
+        width: 35,
+        height: 35,
+        resizeMode: 'contain',
+        marginRight: 10,
+       
     },
     amount: {
         fontSize: 28,

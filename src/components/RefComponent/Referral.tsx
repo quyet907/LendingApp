@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { View, Text, TextInput, Image, StyleSheet, Button, Clipboard } from 'react-native';
-import Separator from './Separator'
+import Separator from '../Separator'
 import { TouchableOpacity, ScrollView, FlatList } from 'react-native-gesture-handler';
-import RefAbout from './RefComponent/RefAbout';
-import HistoryDetail from './RefComponent/HistoryDetail';
+import RefAbout from './RefAbout';
+import HistoryDetail from './HistoryDetail';
 import FlashMessage, { showMessage, hideMessage } from "react-native-flash-message";
 
 
@@ -47,7 +47,7 @@ export default class Referral extends React.Component {
                         <TouchableOpacity
                             style={styles.copy}
                             onPress={() => this.copyToClipboard()}
-                            underlayColor='#fff'>
+                           >
                             <Text style={styles.copyText}>Copy</Text>
                         </TouchableOpacity >
                     </View>
@@ -58,12 +58,12 @@ export default class Referral extends React.Component {
                         <RefAbout
                             label='Tổng cộng'
                             amount={user.amountRef}
-                            urlIcon='https://via.placeholder.com/150'
+                            urlIcon='../../assets/icons8_user_groups_80px_1.png'
                         ></RefAbout>
                         <RefAbout
                             label='Tiền thưởng'
                             amount={user.profits}
-                            urlIcon='https://via.placeholder.com/150'
+                            urlIcon='../../assets/icons8_user_groups_80px_1.png'
                         ></RefAbout>
 
                     </View>
