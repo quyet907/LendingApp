@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { View, StyleSheet, Navigator } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
