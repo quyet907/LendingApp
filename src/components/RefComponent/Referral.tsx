@@ -29,10 +29,11 @@ const user = {
 export default class Referral extends React.Component {
     render() {
         return (
-            <ScrollView style={{backgroundColor: '#333333'}}>
+            <ScrollView style={{ backgroundColor: '#151A1D' }}>
                 <FlashMessage position="center" />
                 <View style={styles.container}>
-                    <Text style={{ textAlign: 'justify' , color: '#fff'}}>The Lending game referral program is a great way to read the word of this great service and to earn even more money with your friend! Refer friends and receive 1000 COIN of their earnings for life!</Text>
+                    <Text style={styles.textLabel}>REFERRAL</Text>
+                    <Text style={{ textAlign: 'justify', color: '#fff' }}>The Lending game referral program is a great way to read the word of this great service and to earn even more money with your friend! Refer friends and receive 1000 COIN of their earnings for life!</Text>
                     <View style={{
                         flexDirection: 'row',
                         padding: 20,
@@ -47,7 +48,7 @@ export default class Referral extends React.Component {
                         <TouchableOpacity
                             style={styles.copy}
                             onPress={() => this.copyToClipboard()}
-                           >
+                        >
                             <Text style={styles.copyText}>Copy</Text>
                         </TouchableOpacity >
                     </View>
@@ -71,7 +72,7 @@ export default class Referral extends React.Component {
 
                 </View>
                 <View style={styles.container2}>
-                    <Text style={{ paddingBottom: 15 , color: '#fff', fontSize: 17, fontWeight: 500}}>My Referrals</Text>
+                    <Text style={{ paddingBottom: 15, color: '#fff', fontSize: 17, fontWeight: 500 }}>My Referrals</Text>
                     <Separator />
                     <FlatList data={user.ref}
                         renderItem={({ item }) => <HistoryDetail title={item.id} time={item.time} coin={1000} />}
@@ -104,7 +105,7 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: '#868685',
         paddingBottom: 5,
-        backgroundColor: '#1F1F1D'
+        backgroundColor: '#191F28'
     },
     container2: {
         marginTop: 20,
@@ -113,7 +114,7 @@ const styles = StyleSheet.create({
         borderColor: '#868685',
         paddingBottom: 5,
         paddingTop: 10,
-        backgroundColor: '#1F1F1D'
+        backgroundColor: '#191F28'
     },
     logo: {
         width: 50,
@@ -157,6 +158,12 @@ const styles = StyleSheet.create({
         justifyContent: 'space-around',
         paddingVertical: 20
 
+    },
+    textLabel: {
+        paddingBottom: 15,
+        color: '#fff',
+        fontSize: 17,
+        fontWeight: 500
     }
 
 })
