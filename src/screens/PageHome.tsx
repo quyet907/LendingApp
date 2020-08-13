@@ -1,48 +1,19 @@
 import * as React from 'react';
-import { View, StyleSheet, Navigator } from 'react-native';
-
+import { View, StyleSheet } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-
-
-import Login from './src/screens/Login';
-import SignUp from './src/screens/SignUp';
-import ConfirmOTP from './src/screens/ConfirmOTP';
-import EnterYourPhone from './src/screens/EnterYourPhone';
-import SetPassWord from './src/screens/SetPassWord';
-
+import { createStackNavigator } from '@react-navigation/stack';
+import Home from "../screens/Home"
+import ConfirmOTP from "../screens/ConfirmOTP"
+import EnterYourPhone from "../screens/EnterYourPhone"
+import LendingScreen from "../screens/LendingScreen"
+import Login from "../screens/Login"
+import ReferralScreen from "../screens/ReferralScreen"
+import setPassWord from "../screens/SetPassWord"
+import SignUp from "../screens/SignUp"
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-import PageHome from './src/screens/PageHome';
-import {Actions, Scene, Router} from 'react-native-router-flux';
-import { NavigationContainer } from '@react-navigation/native';
-import Profile from './src/components/Profile'
-import ReferralScreen from './src/screens/ReferralScreen';
-import LendingScreen from './src/screens/LendingScreen';
-import Home from './src/screens/Home';
-
-const MyTransitionSpec = ({
-    duration: 1000,
-    // easing: Easing.bezier(0.2833, 0.99, 0.31833, 0.99),
-    // timing: Animated.timing,
-});
-
-
-    
-
-
-
-const scenes = Actions.create(
-    <Scene    key="root">
-      <Scene  key="login" component={Login} hideNavBar={true} />
-      <Scene  key="enterPhone" component={EnterYourPhone} hideNavBar={true} />
-      <Scene  key="signUp" component={EnterYourPhone} hideNavBar={true} />
-      <Scene  key="confirmOtp" component={ConfirmOTP} hideNavBar={true} />
-      <Scene  key="password" component={SetPassWord} hideNavBar={true} />
-      <Scene  key="home" component={PageHome} hideNavBar={true} />
-    </Scene>
-  );
-{/* <Router scenes={scenes}/> */}
-
+import { Actions } from 'react-native-router-flux';
 
 const Tab = createBottomTabNavigator();
 
@@ -53,24 +24,24 @@ const tabProps = {
   BackgroundColor: '#000'
 }
 
-const nav = <PageHome></PageHome>
 
-
-export default class App extends React.Component<Props, {}>{
+export default class PageHome extends React.Component<Props, {}>{
   constructor(props: any) {
     super(props)
   }
 
   render() {
     return (
-      <NavigationContainer>
+
+          <NavigationContainer >
         <Tab.Navigator
           tabBarOptions={
             {
               activeTintColor: tabProps.ACTIVE,
               inactiveTintColor: tabProps.INACTIVE,
               style: {
-                backgroundColor: tabProps.BackgroundColor
+                backgroundColor: tabProps.BackgroundColor,
+
               }
             }
           }
@@ -78,10 +49,9 @@ export default class App extends React.Component<Props, {}>{
 
           <Tab.Screen
             name="Dashboard"
-            component={ConfirmOTP}
+            component={Home}
             options={
               {
-                
                 tabBarLabel: 'Dashboard',
                 tabBarIcon: ({ focused }) => <Icon name="home"
                   size={tabProps.ICONSIZE}
@@ -91,21 +61,8 @@ export default class App extends React.Component<Props, {}>{
             }
 
           />
-           <Tab.Screen
-            name="login"
-            component={Home}
-            options={
-              {
+           
 
-                tabBarLabel: 'login',
-                tabBarIcon: ({ focused }) => <Icon name="home"
-                  size={tabProps.ICONSIZE}
-                  color={focused ? tabProps.ACTIVE : tabProps.INACTIVE} />
-              }
-
-            }
-
-          />
           <Tab.Screen
             name="Lending"
             component={LendingScreen}
@@ -131,7 +88,7 @@ export default class App extends React.Component<Props, {}>{
 
           <Tab.Screen
             name="Profile"
-            component={Profile}
+            component={Login}
             options={{
               tabBarLabel: 'Profile',
               tabBarIcon: ({ focused }) => <Icon name="user"
@@ -141,6 +98,7 @@ export default class App extends React.Component<Props, {}>{
           />
         </Tab.Navigator>
       </NavigationContainer>
+
     );
   }
 

@@ -25,9 +25,9 @@ const user = {
 };
 
 const DATA = [
-    { name: 'SILVER', min: 1000, profits: 10, days: 45 },
-    { name: 'GOLD', min: 2000, profits: 15, days: 55 },
-    { name: 'PREMIUM', min: 5000, profits: 30, days: 255 }
+    { id: 1, name: 'SILVER', min: 1000, profits: 10, days: 45 },
+    { id: 2, name: 'GOLD', min: 2000, profits: 15, days: 55 },
+    { id: 3, name: 'PREMIUM', min: 5000, profits: 30, days: 255 }
 ];
 
 
@@ -37,7 +37,9 @@ export default class Lending extends React.Component<Props, State>{
         this.state = {
             initialValue: 0,
             isSelected: false,
-            setSelection: false
+            packageSelected: true,
+            packageID: 2,
+
         }
     }
 
@@ -49,8 +51,22 @@ export default class Lending extends React.Component<Props, State>{
                     <View style={{ flexDirection: 'row', justifyContent: 'center', marginTop: 10 }}>
                         <Text style={styles.textLabel}>CHOOSE ONE PACKAGE</Text>
                     </View>
-                    <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-                        {DATA.map((item) => <Package package={item} />
+                    <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+                        {DATA.map((item) => item.id == this.state.packageID ?
+                            <Package
+                                package={item}
+                                setSelection={this.state.packageSelected}
+                                isSelected={() => {
+                                    this.setState({ packageSelected: this.state.packageSelected })
+                                }}
+                            /> :
+                            <Package
+                                package={item}
+                                setSelection={!this.state.packageSelected}
+                                isSelected={() => {
+                                    this.setState({ packageID: item.id })
+                                }}
+                            />
                         )}
                     </View>
 
@@ -165,7 +181,8 @@ export default class Lending extends React.Component<Props, State>{
 type State = {
     initialValue: any,
     isSelected: boolean,
-    setSelection: boolean
+    packageSelected: any,
+    packageID: any
 }
 
 const styles = StyleSheet.create({

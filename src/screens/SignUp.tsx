@@ -3,7 +3,7 @@ import { View, Image, Text, Button, TextInput , KeyboardAvoidingView, TouchableO
 import myStyle from "../style"
 import LogoLogin from '../components/LogoLogin'
 
-
+import {Actions} from 'react-native-router-flux';
 
 
 
@@ -62,8 +62,9 @@ export default class Login extends Component<props , state> {
                     <View style={[myStyle.frbuttonLogin]}>
                         <TouchableOpacity style={[myStyle.buttonLogin]}
                             activeOpacity={0.7}>
+                                onPress ={Actions.confirmOtp}
                             <Text style = {[myStyle.textButton]}>
-                                Login
+                                Sign Up
                             </Text>
                         </TouchableOpacity>
 
@@ -71,7 +72,9 @@ export default class Login extends Component<props , state> {
                     
                     <View style = {[myStyle.row,{marginTop : 10, justifyContent : "center"} ] }>
                         <Text style = {[{marginRight: 10, color : "gray"}]}>You have account?</Text>
-                        <TouchableOpacity>
+                        <TouchableOpacity
+                            onPress ={Actions.login}
+                        >
                             <Text style = {[myStyle.colorWhite]}>Go to login</Text>
                         </TouchableOpacity>
                     </View>

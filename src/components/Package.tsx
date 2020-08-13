@@ -5,17 +5,22 @@ import style from '../style';
 
 
 
-export default class Package extends Component<Props, {}> {
+export default class Package extends Component<Props, State> {
     constructor(props: any) {
         super(props);
+        // this.state = {
+        //     isSelected: false
+
+        // }
     }
     render() {
         return (
-            <TouchableOpacity style={styles.itemContainer} onPress={(e)=>{
-                {e.target.add}
+            <TouchableOpacity style={this.props.setSelection == true ? styles.itemContainerSe : styles.itemContainer} onPress={() => {
+                this.props.isSelected();
+
             }}>
-                <View style={{ backgroundColor: '#FAC801', alignItems: 'center', justifyContent: 'center', paddingVertical: 3 }}>
-                    <Text style={styles.itemLabel}>
+                <View style={this.props.setSelection == true ? styles.pakageSelected : styles.pakage}>
+                    <Text style={this.props.setSelection == true ? styles.itemLabelSe : styles.itemLabel}>
                         {this.props.package.name}
                     </Text>
                 </View>
@@ -30,20 +35,45 @@ export default class Package extends Component<Props, {}> {
 }
 
 type Props = {
-    isSelected: any,
+    setSelection: any
     package: any
+    isSelected: any
+}
+type State = {
+    isSelected: any,
+
 }
 
 const styles = StyleSheet.create({
 
     itemContainer: {
         flex: 1,
-      
-        paddingHorizontal: 6,
+        opacity: 0.5,
+        marginHorizontal: 6,
     
+     
 
     },
+    itemContainerSe: {
+        flex: 1,
+        marginHorizontal: 6,
+        borderWidth: 1,
+        borderColor: '#ddd',
+        opacity: 1
+    },
+    pakageSelected: {
+        backgroundColor: '#FAC801', alignItems: 'center', justifyContent: 'center', paddingVertical: 3
+    },
+    pakage: {
+        backgroundColor: '#FA801', alignItems: 'center', justifyContent: 'center', paddingVertical: 3
+    },
     itemLabel: {
+        color: '#fff',
+        fontSize: 17,
+        fontWeight: '600'
+
+    },
+    itemLabelSe: {
         color: '#000',
         fontSize: 17,
         fontWeight: '700'
@@ -58,7 +88,7 @@ const styles = StyleSheet.create({
     text: {
         color: '#fff',
         fontWeight: 600,
-       fontSize: 12
+        fontSize: 12
 
     }
 });

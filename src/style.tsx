@@ -6,7 +6,7 @@ export default StyleSheet.create({
     container : {
         flex : 1,
         backgroundColor : "#292927",
-        fontFamily  : "Tahoma",
+        fontFamily  : '"BinancePlex","Arial","PingFangSC-Regular","Microsoft YaHei","sans-serif"'
         
     },
     row:{
@@ -193,9 +193,9 @@ export default StyleSheet.create({
     textButton : {
         textAlign : "center",
         color : "black",
-        fontWeight : "bold",
+        // fontWeight : "bold",
         textTransform : "uppercase",
-        fontSize : 18,
+        fontSize : 13,
     },
     login : {
         width : "80%",
