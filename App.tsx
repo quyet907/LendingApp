@@ -47,10 +47,10 @@ const scenes = Actions.create(
 const Tab = createBottomTabNavigator();
 
 const tabProps = {
-  ACTIVE: '#F0B90B',
+  ACTIVE: '#202833',
   INACTIVE: '#616161',
   ICONSIZE: 25,
-  BackgroundColor: '#000'
+  BackgroundColor: '#202833'
 }
 
 const nav = <PageHome></PageHome>
@@ -74,7 +74,7 @@ type Props = {}
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#202833',
     alignItems: 'center',
     justifyContent: 'center',
   },
