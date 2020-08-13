@@ -18,10 +18,10 @@ import { Actions } from 'react-native-router-flux';
 const Tab = createBottomTabNavigator();
 
 const tabProps = {
-  ACTIVE: '#F0B90B',
-  INACTIVE: '#616161',
+  ACTIVE: '#f0bb0d',
+  INACTIVE: '#b7bfca',
   ICONSIZE: 25,
-  BackgroundColor: '#000'
+  BackgroundColor: '#202833'
 }
 
 

@@ -5,7 +5,7 @@ const background = "#292927";
 export default StyleSheet.create({
     container : {
         flex : 1,
-        backgroundColor : "#292927",
+        backgroundColor : "#12151c",
         fontFamily  : '"BinancePlex","Arial","PingFangSC-Regular","Microsoft YaHei","sans-serif"'
         
     },
@@ -50,7 +50,7 @@ export default StyleSheet.create({
     },   
     charHome : {
         width : "100%",
-        backgroundColor  : "#1F1F1D",
+        backgroundColor  : "#1e2126",
         borderRadius : 10,
         marginTop  : 20,
     },
@@ -82,7 +82,7 @@ export default StyleSheet.create({
     listStatisticalBasic : { 
         minHeight : 100,
         width : "100%",
-        backgroundColor : "#1F1F1D",
+        backgroundColor : "#1e2126",
         padding : 10,
         marginTop : 10,
         borderRadius : 10
@@ -113,7 +113,7 @@ export default StyleSheet.create({
     },
     listHistoryInterest : {
         minHeight  : 100,
-        backgroundColor : "#1F1F1D",
+        backgroundColor : "#1e2126",
         flex : 1,
         flexShrink : 30,
         padding : 10  ,
@@ -123,7 +123,7 @@ export default StyleSheet.create({
     HistoryInterest : {
         height : 60,
         width : "100%",
-        backgroundColor : "#292927",
+        backgroundColor : "#12151c",
         borderRadius : 10,
         justifyContent : "center",
         padding : 10  ,
