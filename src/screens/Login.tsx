@@ -4,7 +4,7 @@ import myStyle from "../style"
 import LogoLogin from '../components/LogoLogin'
 
 
-
+import { Actions } from 'react-native-router-flux';
 
 
 
@@ -40,8 +40,9 @@ export default class Login extends Component {
 
                     <View style={[myStyle.frFotgotPassword]}>
                         <TouchableOpacity>
-                            <Text style={[myStyle.forgotPassWord]}
-                            >Quên mật khẩu</Text>
+                            <Text style={[{color : "#F8C400"}]}
+                                onPress = {Actions.enterPhone}
+                            >Forgot password</Text>
                         </TouchableOpacity>
 
                     </View>
@@ -49,18 +50,20 @@ export default class Login extends Component {
                     <View style={[myStyle.frbuttonLogin]}>
                         <TouchableOpacity style={[myStyle.buttonLogin]}
                             activeOpacity={0.7}
+                            onPress ={Actions.home}
                         >
                             <Text style  ={[myStyle.textButton]}>
                                 Login
                             </Text>
                         </TouchableOpacity>
-
                     </View>
 
                     <View style = {[myStyle.row,{marginTop : 10, justifyContent : "center"} ] }>
-                        <Text style = {[{marginRight: 10, color : "gray"}]}>You haven't acount</Text>
-                        <TouchableOpacity>
-                            <Text style = {[myStyle.colorWhite]}>Create new account</Text>
+                        <Text style = {[{marginRight: 10, color : "white"}]}>You haven't acount</Text>
+                        <TouchableOpacity
+                            onPress ={Actions.signUp}
+                        >
+                            <Text style = {[{color : "#F8C400"}]}  onPress = {Actions.signUp}>Create new account</Text>
                         </TouchableOpacity>
                     </View>
 

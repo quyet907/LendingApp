@@ -3,7 +3,7 @@ import { View, Image, Text, Button, TextInput , KeyboardAvoidingView, TouchableO
 import myStyle from "../style"
 
 
-
+import { Actions } from 'react-native-router-flux';
 
 
 export default class Login extends Component {
@@ -17,7 +17,7 @@ export default class Login extends Component {
                                 justifyContent : "flex-end",
                                 alignItems : "flex-end",}]}
                         >
-                            <Text style = {{color : "white", fontWeight : "bold", fontSize : 30 }}>Enter your phone</Text>
+                            <Text style = {{color : "white", fontWeight : "bold", fontSize : 30 }}>enter your phone</Text>
                         </View>
                     </View>
                 </View>
@@ -25,22 +25,23 @@ export default class Login extends Component {
                 <View style={[myStyle.flex4, myStyle.login]}>
 
                     
-                    <View style={[]}>
+                    <View style={[{marginTop : 30}]}>
                         <TextInput
                             style = {[myStyle.inputLogin]}
                             selectionColor='red'
-                            placeholder = {"Submit"}
+                            placeholder = {"Enter You Phone"}
                             
 
                         />
                     </View>
 
-                    <View style={[myStyle.frbuttonLogin]}>
+                    <View style={[myStyle.frbuttonLogin, {marginTop : 30}]}>
                         <TouchableOpacity style={[myStyle.buttonLogin]}
                             activeOpacity={0.7}
+                            onPress = {Actions.confirmOtp}
                         >
                             <Text style  ={[myStyle.textButton]}>
-                                Login
+                                submit
                             </Text>
                         </TouchableOpacity>
 

@@ -47,7 +47,7 @@ export default class Referral extends React.Component {
                         <TouchableOpacity
                             style={styles.copy}
                             onPress={() => this.copyToClipboard()}
-                            underlayColor='#fff'>
+>
                             <Text style={styles.copyText}>Copy</Text>
                         </TouchableOpacity >
                     </View>
