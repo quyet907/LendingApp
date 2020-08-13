@@ -15,6 +15,7 @@ export default class HistoryDetail extends React.Component<Props, {}>{
                 <View>
                     <Image style={styles.logo} source={require('../../assets/icons8_male_user_32px_1.png')} />
                 </View>
+
                 <View style={{flexDirection: 'column', justifyContent: 'space-between', height: 42  }}>
                     <Text style={styles.title}>{this.props.title}</Text>
                     <View style={{ flexDirection: 'row', alignItems: 'center', flex: 1 }}>
