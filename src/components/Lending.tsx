@@ -45,7 +45,7 @@ export default class Lending extends React.Component<Props, State>{
 
     render() {
         return (
-            <ScrollView style={{ backgroundColor: '#333333' }}>
+            <ScrollView style={{ backgroundColor: '#151A1D' }}>
                 <View style={styles.container}>
                     <Text style={styles.textLabel}>INVEST</Text>
                     <View style={{ flexDirection: 'row', justifyContent: 'center', marginTop: 10 }}>
@@ -135,7 +135,7 @@ export default class Lending extends React.Component<Props, State>{
                                 alignItems: 'center',
                                 justifyContent: 'center'
                             }}
-                            onPress={() => this.allCoin()}
+                            onPress={() => this.invest()}
                         >
                             <Text style={{
                                 paddingHorizontal: 10, paddingVertical: 6, fontSize: 16,
@@ -164,6 +164,11 @@ export default class Lending extends React.Component<Props, State>{
             </ScrollView>
         )
     }
+
+    invest = () => {
+        
+    }
+
     allCoin = () => {
         this.setState({
             initialValue: user.coinBalance
@@ -192,7 +197,7 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: '#868685',
         paddingBottom: 5,
-        backgroundColor: '#1F1F1D'
+        backgroundColor: '#191F28'
     },
     container2: {
         marginTop: 20,
@@ -201,7 +206,7 @@ const styles = StyleSheet.create({
         borderColor: '#868685',
         paddingBottom: 5,
         paddingTop: 10,
-        backgroundColor: '#1F1F1D'
+        backgroundColor: '#191F28'
     },
     logo: {
         width: 50,
