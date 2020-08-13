@@ -151,9 +151,11 @@ export default StyleSheet.create({
     },
 
     contentHistoryInterest : {
-        fontWeight : "bold",
+        // fontWeight : "bold",
          fontSize: 18,
-          textTransform : "uppercase"
+          textTransform : "uppercase",
+        alignItems : "center",
+        justifyContent : "center"
     },
     inputLogin : {
         borderBottomColor : "#F6C400",

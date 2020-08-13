@@ -1,13 +1,22 @@
 import React, { Component } from 'react'
 import { View, Text, Image } from "react-native"
 import myStyle from "../style";
+import FontAwesome, {
+    SolidIcons,
+    RegularIcons,
+    BrandIcons,
+    parseIconFromClassName,
+  } from 'react-native-fontawesome';
+  import Icon from 'react-native-vector-icons/MaterialIcons';
+
 export default class HistoryInterest extends Component {
     render() {
         return (
             <View style={myStyle.HistoryInterest}>
                 <View style = {[myStyle.row]}>
                     <View style={[myStyle.leftHistoryInterest]}>
-                        <View> 
+                        <View style = {[myStyle.row]}> 
+                            <Icon name="access-time" size={11} color='#575959'  />
                             <Text style = {[{color:"#575959",fontSize:10}]}>
                                 11/01/2020
                             </Text>
@@ -18,7 +27,7 @@ export default class HistoryInterest extends Component {
                                 style = {[myStyle.iconHistoryInterest]}
                                 source={require("../assets/icons8_up_26px.png")}
                             />
-                            <Text style = {[{color : "#34FF08"},myStyle.contentHistoryInterest]}>30</Text>
+                            <Text style = {[myStyle.contentHistoryInterest,{color : "#34FF08", alignSelf : "center", justifyContent : "center"},]}>30</Text>
                         </View>
                     </View>
 
@@ -34,8 +43,8 @@ export default class HistoryInterest extends Component {
                     </View>
 
                     <View style = {[myStyle.rightHistoryInterest]}> 
-                        <Text style = {[{color : "#E63034", fontSize : 20, fontWeight : "bold"}]}>
-                            25day
+                        <Text style = {[{color : "#E63034", fontSize : 20, }]}>
+                            25days
                         </Text>
                     </View>
                 </View>                                     

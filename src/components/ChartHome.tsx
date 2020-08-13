@@ -24,6 +24,7 @@ export default class ChartHome extends Component<props, state> {
                         fill : true,
                         backgroundColor :"rgba(97, 5, 230,0.1)",
                         borderColor : "rgba(97, 5, 230,1)"
+                        
 
                     },
                     {
@@ -62,12 +63,6 @@ export default class ChartHome extends Component<props, state> {
                         }
                     }
                 />
-
-
-
-               
-
-
 
             </View>
         )

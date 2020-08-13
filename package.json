@@ -26,6 +26,7 @@
     "react-native-chart-kit": "^6.4.1",
     "react-native-chartjs": "^1.0.3",
     "react-native-flash-message": "^0.1.16",
+    "react-native-fontawesome": "^7.0.0",
     "react-native-gesture-handler": "^1.7.0",
     "react-native-paper": "^4.0.1",
     "react-native-reanimated": "^1.13.0",

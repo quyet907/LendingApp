@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { View, StyleSheet, Navigator } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
@@ -32,7 +32,7 @@ const MyTransitionSpec = ({
 
 
 const scenes = Actions.create(
-    <Scene    key="root">
+    <Scene    key="root" duration={4}>
       <Scene  key="login" component={Login} hideNavBar={true} />
       <Scene  key="enterPhone" component={EnterYourPhone} hideNavBar={true} />
       <Scene  key="signUp" component={EnterYourPhone} hideNavBar={true} />
@@ -63,84 +63,7 @@ export default class App extends React.Component<Props, {}>{
 
   render() {
     return (
-      <NavigationContainer>
-        <Tab.Navigator
-          tabBarOptions={
-            {
-              activeTintColor: tabProps.ACTIVE,
-              inactiveTintColor: tabProps.INACTIVE,
-              style: {
-                backgroundColor: tabProps.BackgroundColor
-              }
-            }
-          }
-        >
-
-          <Tab.Screen
-            name="Dashboard"
-            component={ConfirmOTP}
-            options={
-              {
-                
-                tabBarLabel: 'Dashboard',
-                tabBarIcon: ({ focused }) => <Icon name="home"
-                  size={tabProps.ICONSIZE}
-                  color={focused ? tabProps.ACTIVE : tabProps.INACTIVE} />
-              }
-
-            }
-
-          />
-           <Tab.Screen
-            name="login"
-            component={Home}
-            options={
-              {
-
-                tabBarLabel: 'login',
-                tabBarIcon: ({ focused }) => <Icon name="home"
-                  size={tabProps.ICONSIZE}
-                  color={focused ? tabProps.ACTIVE : tabProps.INACTIVE} />
-              }
-
-            }
-
-          />
-          <Tab.Screen
-            name="Lending"
-            component={LendingScreen}
-            options={{
-              tabBarLabel: 'Lending',
-              tabBarIcon: ({ focused }) => <Icon name="dollar"
-                size={tabProps.ICONSIZE}
-                color={focused ? tabProps.ACTIVE : tabProps.INACTIVE} />
-            }
-
-            }
-          />
-          <Tab.Screen
-            name="Referral"
-            component={ReferralScreen}
-            options={{
-              tabBarLabel: 'Referral',
-              tabBarIcon: ({ focused }) => <Icon name="users"
-                size={tabProps.ICONSIZE}
-                color={focused ? tabProps.ACTIVE : tabProps.INACTIVE} />
-            }}
-          />
-
-          <Tab.Screen
-            name="Profile"
-            component={Profile}
-            options={{
-              tabBarLabel: 'Profile',
-              tabBarIcon: ({ focused }) => <Icon name="user"
-                size={tabProps.ICONSIZE}
-                color={focused ? tabProps.ACTIVE : tabProps.INACTIVE} />
-            }}
-          />
-        </Tab.Navigator>
-      </NavigationContainer>
+        <Router scenes={scenes}/>
     );
   }
 
