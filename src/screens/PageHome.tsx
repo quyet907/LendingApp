@@ -6,9 +6,9 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Home from "../screens/Home"
 import ConfirmOTP from "../screens/ConfirmOTP"
 import EnterYourPhone from "../screens/EnterYourPhone"
-import LendingScreen from "../screens/LendingScreen"
+import LendingScreen from "../components/Lending"
 import Login from "../screens/Login"
-import ReferralScreen from "../screens/ReferralScreen"
+import ReferralScreen from "../components/RefComponent/Referral"
 import setPassWord from "../screens/SetPassWord"
 import SignUp from "../screens/SignUp"
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -18,10 +18,10 @@ import { Actions } from 'react-native-router-flux';
 const Tab = createBottomTabNavigator();
 
 const tabProps = {
-  ACTIVE: '#F0B90B',
-  INACTIVE: '#616161',
+  ACTIVE: '#f0bb0d',
+  INACTIVE: '#b7bfca',
   ICONSIZE: 25,
-  BackgroundColor: '#000'
+  BackgroundColor: '#202833'
 }
 
 

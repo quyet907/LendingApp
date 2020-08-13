@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 import { View, Text, Image } from "react-native"
 import myStyle from "../style";
-import FontAwesome, {
-    SolidIcons,
-    RegularIcons,
-    BrandIcons,
-    parseIconFromClassName,
-  } from 'react-native-fontawesome';
+// import FontAwesome, {
+//     SolidIcons,
+//     RegularIcons,
+//     BrandIcons,
+//     parseIconFromClassName,
+//   } from 'react-native-fontawesome';
   import Icon from 'react-native-vector-icons/MaterialIcons';
 
 export default class HistoryInterest extends Component {
@@ -27,23 +27,26 @@ export default class HistoryInterest extends Component {
                                 style = {[myStyle.iconHistoryInterest]}
                                 source={require("../assets/icons8_up_26px.png")}
                             />
+
                             <Text style = {[myStyle.contentHistoryInterest,{color : "#34FF08", alignSelf : "center", justifyContent : "center", marginLeft : 10},]}>30</Text>
+
+
                         </View>
                     </View>
 
                     <View style = {[myStyle.row , myStyle.centerHistoryInterest]}>
-                        <Text style = {[{color : "#66686A"}, myStyle.contentHistoryInterest]}>
+                        <Text style = {[{color : "#646b75"}, myStyle.contentHistoryInterest]}>
                             3000
                         </Text>
                         <Image
                             style = {[myStyle.iconHistoryInterest, {margin : 10}]}
                             source={require("../assets/icons8_right_26px.png")}
                         />
-                        <Text style = {[{color : "#C5710C", }, myStyle.contentHistoryInterest]}>3200</Text>
+                        <Text style = {[{color : "#ecb510", }, myStyle.contentHistoryInterest]}>3200</Text>
                     </View>
 
                     <View style = {[myStyle.rightHistoryInterest]}> 
-                        <Text style = {[{color : "#E63034", fontSize : 20, }]}>
+                        <Text style = {[{color : "#e5026e", fontSize : 20, }]}>
                             25days
                         </Text>
                     </View>
