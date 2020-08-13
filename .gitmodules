@@ -1,0 +1,6 @@
+[submodule "src/share/base-stock-afi"]
+	path = src/share/base-stock-afi
+	url = git@github.com:hieuflynotes/base-stock-afi.git
+[submodule "src/share/base-ale"]
+	path = src/share/base-ale
+	url = git@github.com:hieuflynotes/base-ale.git
