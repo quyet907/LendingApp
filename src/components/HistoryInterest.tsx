@@ -22,12 +22,12 @@ export default class HistoryInterest extends Component {
                             </Text>
                         </View>
 
-                        <View style = {[myStyle.row]}>
+                        <View style = {[myStyle.row, {marginTop : 10}]}>
                             <Image
                                 style = {[myStyle.iconHistoryInterest]}
                                 source={require("../assets/icons8_up_26px.png")}
                             />
-                            <Text style = {[myStyle.contentHistoryInterest,{color : "#34FF08", alignSelf : "center", justifyContent : "center"},]}>30</Text>
+                            <Text style = {[myStyle.contentHistoryInterest,{color : "#34FF08", alignSelf : "center", justifyContent : "center", marginLeft : 10},]}>30</Text>
                         </View>
                     </View>
 
