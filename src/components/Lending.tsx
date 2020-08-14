@@ -2,8 +2,8 @@ import * as React from 'react';
 import { View, Text, TextInput, Image, StyleSheet, Button, Clipboard, CheckBox } from 'react-native';
 import Separator from './Separator'
 import { TouchableOpacity, ScrollView, FlatList, State } from 'react-native-gesture-handler';
-import RefAbout from './RefComponent/RefAbout';
-import HistoryDetail from './RefComponent/HistoryDetail';
+import RefAbout from './ref-components/RefAbout';
+import HistoryDetail from './ref-components/HistoryDetail';
 import FlashMessage, { showMessage, hideMessage } from "react-native-flash-message";
 import Package from './Package'
 

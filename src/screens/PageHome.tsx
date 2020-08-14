@@ -8,7 +8,7 @@ import ConfirmOTP from "../screens/ConfirmOTP"
 import EnterYourPhone from "../screens/EnterYourPhone"
 import LendingScreen from "../components/Lending"
 import Login from "../screens/Login"
-import ReferralScreen from "../components/RefComponent/Referral"
+import ReferralScreen from "../components/ref-components/Referral"
 import setPassWord from "../screens/SetPassWord"
 import SignUp from "../screens/SignUp"
 import Icon from 'react-native-vector-icons/FontAwesome';
