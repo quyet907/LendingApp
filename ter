@@ -1,0 +1,204 @@
+[33mcommit 0a6ec5a2b04584963d89f037a08dd43007352654[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: lgnv <lgnvpr@gmail.com>
+Date:   Sat Aug 15 18:53:34 2020 +0700
+
+    update service
+
+[33mcommit adac01a6442a4e4723a9bf6195d59f678b0d7c1e[m
+Author: lgnv <lgnvpr@gmail.com>
+Date:   Sat Aug 15 17:58:31 2020 +0700
+
+    service
+
+[33mcommit c8f8c734d6a27a5afcffbbd868d716cc6edeb326[m
+Author: lgnv <lgnvpr@gmail.com>
+Date:   Sat Aug 15 17:16:26 2020 +0700
+
+    update 15 8
+
+[33mcommit 2687ab08a9a225c0e79637f9e52ba5bfd310276f[m
+Author: quyet907 <quyetf4@gmail.com>
+Date:   Sat Aug 15 17:11:29 2020 +0700
+
+    Fix border tag input Referral
+
+[33mcommit 087f671534a9141e9cf651519cfe22da21ca3ce0[m
+Author: quyet907 <quyetf4@gmail.com>
+Date:   Fri Aug 14 11:16:54 2020 +0700
+
+    Fix link import
+
+[33mcommit 2018d9e41282d58386d47ab55b847e32afe4a711[m
+Author: quyet907 <quyetf4@gmail.com>
+Date:   Thu Aug 13 20:45:11 2020 +0700
+
+    quyet rename folder 20:44
+
+[33mcommit 0e57d378e40cd7c9a9f2b6f06fbdfec0114105cc[m
+Merge: b956712 94da7c8
+Author: lgnv <lgnvpr@gmail.com>
+Date:   Thu Aug 13 16:53:27 2020 +0700
+
+    ahih
+
+[33mcommit b95671266b245845c736819d5a7333777a9a60a8[m
+Author: lgnv <lgnvpr@gmail.com>
+Date:   Thu Aug 13 16:51:02 2020 +0700
+
+    ahih
+
+[33mcommit 94da7c858672bf0880080c20be0e38884d850fa9[m
+Author: hieuflynotes <hieu@flynotes.co.uk>
+Date:   Thu Aug 13 09:45:43 2020 +0100
+
+    add submodule
+
+[33mcommit c7c2dc2a2cd846fe18eef590d8bf2092c30c3146[m
+Author: lgnv <lgnvpr@gmail.com>
+Date:   Thu Aug 13 13:54:39 2020 +0700
+
+    update 13:54
+
+[33mcommit a23576f98d556007942970d8eab4e456b3a8f493[m
+Merge: 9d48a07 f1e0289
+Author: quyet08 <quyetf4@gmail.com>
+Date:   Thu Aug 13 12:50:04 2020 +0700
+
+    quyet update 12:49
+
+[33mcommit f1e028955ea168b29088ade4d0d565973264120a[m
+Merge: cce9da2 c5ed83f
+Author: lgnv <lgnvpr@gmail.com>
+Date:   Thu Aug 13 10:31:33 2020 +0700
+
+    fix router
+
+[33mcommit cce9da2c4cd30c74ed8e626130664535fc2c34d6[m
+Author: lgnv <lgnvpr@gmail.com>
+Date:   Thu Aug 13 10:28:09 2020 +0700
+
+    fix roter
+
+[33mcommit 0aec0dc56e5d77e51df1316de8c2a03ee3f13528[m
+Merge: 828de53 1de53f6
+Author: Lương lgnvpr <lgnvpr@gmail.com>
+Date:   Thu Aug 13 07:40:33 2020 +0700
+
+    Merge branch 'master' of https://github.com/quyet907/LendingApp
+
+[33mcommit 1de53f63f4d03e7c074df1eb09ddf50021888e41[m
+Merge: cfe9354 215aaf1
+Author: quyet08 <quyetf4@gmail.com>
+Date:   Thu Aug 13 14:40:10 2020 +0700
+
+    Merge branch 'master' of https://github.com/quyet907/LendingApp into master
+
+[33mcommit cfe93540c674d199df2a82c13c08ba29bc6049ad[m
+Author: quyet08 <quyetf4@gmail.com>
+Date:   Thu Aug 13 14:38:42 2020 +0700
+
+    quyet update 14:38
+
+[33mcommit 828de5339ea864a198758bce3a02f27bde6dd8d4[m
+Author: Lương lgnvpr <lgnvpr@gmail.com>
+Date:   Thu Aug 13 07:40:25 2020 +0700
+
+    fix color
+
+[33mcommit 215aaf1e40d926cb7c7f0272bdb26375d776b86e[m
+Author: Lương lgnvpr <lgnvpr@gmail.com>
+Date:   Thu Aug 13 07:34:00 2020 +0700
+
+    fix color
+
+[33mcommit 5033826ea7a0a219bb24f3c41281de371a064075[m
+Merge: 019d59f c7c2dc2
+Author: Lương lgnvpr <lgnvpr@gmail.com>
+Date:   Thu Aug 13 07:03:50 2020 +0700
+
+    Merge branch 'master' of https://github.com/quyet907/LendingApp
+
+[33mcommit 019d59fb42ea37babcfc83ad8b9e82ff7a3e7a1f[m
+Author: Lương lgnvpr <lgnvpr@gmail.com>
+Date:   Thu Aug 13 07:03:39 2020 +0700
+
+    vanluong
+
+[33mcommit 9d48a072263943e20201bd4628415404c3755708[m[33m ([m[1;31morigin/quyet2[m[33m)[m
+Author: quyet08 <quyetf4@gmail.com>
+Date:   Thu Aug 13 00:13:09 2020 +0700
+
+    update
+
+[33mcommit c5ed83fcfdaf795207bda1a486a346dc5488bdbd[m
+Author: quyet08 <quyetf4@gmail.com>
+Date:   Wed Aug 12 15:01:49 2020 +0700
+
+    update
+
+[33mcommit dd4e2b36ebeba4faeb35454948b8be7c0f3ceb4e[m
+Merge: 94e9edc c1473aa
+Author: quyet08 <quyetf4@gmail.com>
+Date:   Wed Aug 12 14:49:40 2020 +0700
+
+    up
+
+[33mcommit c1473aac55ed8081162d6c0d9bc8d8b26a39d94b[m
+Author: lgnv <lgnvpr@gmail.com>
+Date:   Wed Aug 12 14:39:53 2020 +0700
+
+    fix giao dien
+
+[33mcommit 94e9edc07b68a6a3fcb1f75f1225bcf14b9a3c99[m
+Author: quyet08 <quyetf4@gmail.com>
+Date:   Wed Aug 12 14:38:58 2020 +0700
+
+    Lending + Ref
+
+[33mcommit 1383a39b081941b275d42555220216e31db90c53[m
+Author: lgnv <lgnvpr@gmail.com>
+Date:   Wed Aug 12 13:04:02 2020 +0700
+
+    update 12/8
+
+[33mcommit 176bcab2a8bbd46b39a0563fc2b4d8febdcc8036[m
+Author: lgnv <lgnvpr@gmail.com>
+Date:   Wed Aug 12 07:09:26 2020 +0700
+
+    update 12/8
+
+[33mcommit 15283abaa6b358a9845f71ba1c5a62892191e62c[m
+Author: Lương lgnvpr <lgnvpr@gmail.com>
+Date:   Tue Aug 11 14:17:00 2020 +0700
+
+    update 5
+
+[33mcommit 8cc9085372c063d5504771c3c2948e06b8b0b9c6[m
+Author: Lương lgnvpr <lgnvpr@gmail.com>
+Date:   Tue Aug 11 14:14:55 2020 +0700
+
+    update 4
+
+[33mcommit 085a87434563519e94c533c4ed793519d5b9684a[m
+Merge: 4d8b56f 8f67a90
+Author: lgnvpr <67831816+lgnvpr@users.noreply.github.com>
+Date:   Tue Aug 11 14:11:15 2020 +0700
+
+    Merge pull request #7 from quyet907/lgnv
+    
+    update
+
+[33mcommit 8f67a9042f0d726df5167349a2e86d66fa317bd7[m[33m ([m[1;31morigin/lgnv[m[33m)[m
+Author: Lương lgnvpr <lgnvpr@gmail.com>
+Date:   Tue Aug 11 14:08:39 2020 +0700
+
+    update
+
+[33mcommit 4d8b56fa9577a420a2cbd094fc7e621f4b5938d1[m
+Merge: 469c8fd 50fd62f
+Author: quyet907 <33663264+quyet907@users.noreply.github.com>
+Date:   Tue Aug 11 14:05:50 2020 +0700
+
+    Merge pull request #6 from quyet907/quyet
+    
+    test
