@@ -1,0 +1,19 @@
+{
+    "compilerOptions": {
+        "baseUrl": "./",
+        "paths": {
+            "@Core/*": [
+                "src/share/base-ale/*"
+            ],
+            "@StockAfiCore/*": [
+                "src/share/base-stock-afi/*"
+            ],
+            "@BaseModel/*": [
+                "src/share/base-ale/model/*"
+            ],
+            "@StockAfiModel/*": [
+                "src/share/base-stock-afi/model/*"
+            ],
+        }
+    }
+}
