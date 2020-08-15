@@ -8,8 +8,20 @@ import myStyle from "../style";
 //     parseIconFromClassName,
 //   } from 'react-native-fontawesome';
   import Icon from 'react-native-vector-icons/MaterialIcons';
+  import axios from "axios";
 
-export default class HistoryInterest extends Component {
+
+
+export default class HistoryInterest extends Component<props ,state> {
+    constructor(props : any ){
+        super(props);
+        this.state= {
+
+        }
+    }
+
+    
+
     render() {
         return (
             <View style={myStyle.HistoryInterest}>
@@ -46,12 +58,20 @@ export default class HistoryInterest extends Component {
                     </View>
 
                     <View style = {[myStyle.rightHistoryInterest]}> 
-                        <Text style = {[{color : "#e5026e", fontSize : 20, }]}>
-                            25days
+                        <Text style = {[{color : "#e5026e", fontSize : 16, }]}>
+                            25 days
                         </Text>
                     </View>
                 </View>                                     
             </View>
         )
     }
+}
+
+type props = {
+   
+    
+}
+type state = {
+
 }

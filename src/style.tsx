@@ -152,7 +152,7 @@ export default StyleSheet.create({
 
     contentHistoryInterest : {
         // fontWeight : "bold",
-         fontSize: 18,
+         fontSize: 16,
           textTransform : "uppercase",
         alignItems : "center",
         justifyContent : "center"
@@ -214,6 +214,11 @@ export default StyleSheet.create({
 
        alignItems : "flex-end",
        marginTop  : 10
+    },
+    headerSignUp : {
+        color : "white",
+         fontWeight : "bold", 
+         fontSize : 24 
     }
     
 

@@ -17,7 +17,7 @@ export default class Login extends Component {
                                 justifyContent : "flex-end",
                                 alignItems : "flex-end",}]}
                         >
-                            <Text style = {{color : "white", fontWeight : "bold", fontSize : 30 }}>enter your phone</Text>
+                            <Text style = {[myStyle.headerSignUp ]}>Enter your phone</Text>
                         </View>
                     </View>
                 </View>
@@ -29,7 +29,7 @@ export default class Login extends Component {
                         <TextInput
                             style = {[myStyle.inputLogin]}
                             selectionColor='red'
-                            placeholder = {"Enter You Phone"}
+                            placeholder = {"enter your phone"}
                             
 
                         />

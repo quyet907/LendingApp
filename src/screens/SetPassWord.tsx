@@ -12,7 +12,7 @@ export default class Login extends Component <props, state>{
     constructor(props:any ){
         super(props)
         this.state = {
-            checkbox : true,
+            checkbox : false,
             getPass : "",
             getAgainPass : ""
         }
@@ -33,7 +33,7 @@ export default class Login extends Component <props, state>{
                                 justifyContent : "flex-end",
                                 alignItems : "flex-end",}]}
                         >
-                            <Text style = {{color : "white", fontWeight : "bold", fontSize : 30 }}>enter your password</Text>
+                            <Text style = {[myStyle.headerSignUp ]}>Enter your password</Text>
                         </View>
                     </View>
                 </View>
@@ -46,7 +46,7 @@ export default class Login extends Component <props, state>{
                             ref = {"pass"}
                             style={[myStyle.inputLogin]}
                             selectionColor='red'
-                            placeholder={"Enter PassWord"}
+                            placeholder={"password"}
                             maxLength = {60}
                             secureTextEntry={!this.state.checkbox}
                             onChange = {this.checkPassword}
@@ -57,7 +57,7 @@ export default class Login extends Component <props, state>{
                         <TextInput
                             ref = {"passAgain"}
                             style={[myStyle.inputLogin]}
-                            placeholder={"Enter Again PassWord"}
+                            placeholder={"again password"}
                             secureTextEntry={!this.state.checkbox}
                             maxLength = {60}
                             onChange = {this.checkPassword}
@@ -71,7 +71,7 @@ export default class Login extends Component <props, state>{
                         />
                         <Text style = {[myStyle.colorWhite,{marginLeft : 10, fontSize : 12}]} 
                             onPress = {()=>{this.setState({checkbox : !this.state.checkbox})}}
-                        >show pass Word</Text>
+                        >Show pass Word</Text>
 
                     </View>
 

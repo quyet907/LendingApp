@@ -23,7 +23,7 @@ export default class Login extends Component {
                         <TextInput
                             style={[myStyle.inputLogin]}
                             selectionColor='red'
-                            placeholder={"Number Phone"}
+                            placeholder={"number phone"}
                             maxLength = {15}
 
                         />
@@ -32,7 +32,7 @@ export default class Login extends Component {
                     <View >
                         <TextInput
                             style={[myStyle.inputLogin]}
-                            placeholder={"Pass Word"}
+                            placeholder={"pass word"}
                             secureTextEntry={true}
                             maxLength = {60}
                         />

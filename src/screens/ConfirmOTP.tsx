@@ -17,7 +17,7 @@ export default class Login extends Component {
                                 justifyContent : "flex-end",
                                 alignItems : "flex-end",}]}
                         >
-                            <Text style = {{color : "white", fontWeight : "bold", fontSize : 30 }}>enter OTP code</Text>
+                            <Text style ={[myStyle.headerSignUp ]}>Enter OTP code</Text>
                         </View>
                     </View>
                 </View>
@@ -29,7 +29,7 @@ export default class Login extends Component {
                         <TextInput
                             style = {[myStyle.inputLogin, {marginTop : 30}]}
                             selectionColor='red'
-                            placeholder = {"Submit"}
+                            placeholder = {"enter otp"}
                             keyboardType={'numeric'}
 
                         />
@@ -48,11 +48,11 @@ export default class Login extends Component {
                     </View>
 
                     <View style = {[myStyle.row,{marginTop : 10, justifyContent : "center"} ] }>
-                        <Text style = {[{marginRight: 5,color  : "white" }]}>do you have OTP?</Text>
+                        <Text style = {[{marginRight: 5,color  : "white" }]}>Do you have OTP?</Text>
                         <TouchableOpacity
                             onPress  = {Actions.enterPhone}
                         >
-                            <Text style = {[myStyle.colorWhite,, {color : "#F8C400"}]}>enter my phone again</Text>
+                            <Text style = {[myStyle.colorWhite,, {color : "#F8C400"}]}>Enter my phone again</Text>
                         </TouchableOpacity>
                     </View>
                     
