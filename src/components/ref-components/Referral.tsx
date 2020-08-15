@@ -17,11 +17,7 @@ const user = {
         { id: '43675434534535', time: '2020-08-15 15:12' },
         { id: '86746325345645', time: '2020-08-15 15:12' },
         { id: '71287482734892', time: '2020-08-15 15:12' },
-        { id: '43675434534535', time: '2020-08-15 15:12' },
-        { id: '86746325345645', time: '2020-08-15 15:12' },
-        { id: '71287482734892', time: '2020-08-15 15:12' },
-        { id: '43675434534535', time: '2020-08-15 15:12' },
-        { id: '86746325345645', time: '2020-08-15 15:12' }
+        
     ]
 };
 
@@ -29,7 +25,7 @@ const user = {
 export default class Referral extends React.Component {
     render() {
         return (
-            <ScrollView style={{ backgroundColor: '#151A1D' }}>
+            <ScrollView style={{ backgroundColor: '#181f29' }}>
                 <FlashMessage position="center" />
                 <View style={styles.container}>
                     <Text style={styles.textLabel}>REFERRAL</Text>
@@ -105,7 +101,7 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: '#868685',
         paddingBottom: 5,
-        backgroundColor: '#191F28'
+        backgroundColor: '#1e2126'
     },
     container2: {
         marginTop: 20,
@@ -114,7 +110,7 @@ const styles = StyleSheet.create({
         borderColor: '#868685',
         paddingBottom: 5,
         paddingTop: 10,
-        backgroundColor: '#191F28'
+        backgroundColor: '#1e2126'
     },
     logo: {
         width: 50,

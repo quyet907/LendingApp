@@ -21,7 +21,6 @@ export default class RefAbout extends React.Component<Props, {}>{
         )
     }
 
-    url = () => this.props.urlIcon == 'sum' ? '../../assets/icons8_user_groups_80px_1.png' : '../../assets/icons8_user_groups_80px_1.png'
     
 }
 

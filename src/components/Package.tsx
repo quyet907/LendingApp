@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
         opacity: 1
     },
     pakageSelected: {
-        backgroundColor: '#FAC801', alignItems: 'center', justifyContent: 'center', paddingVertical: 3
+        backgroundColor: '#f2c73a', alignItems: 'center', justifyContent: 'center', paddingVertical: 3
     },
     pakage: {
         backgroundColor: '#FA801', alignItems: 'center', justifyContent: 'center', paddingVertical: 3

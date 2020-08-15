@@ -2,9 +2,7 @@ import * as React from 'react';
 import { View, Text, TextInput, Image, StyleSheet, Button, Clipboard, CheckBox } from 'react-native';
 import Separator from './Separator'
 import { TouchableOpacity, ScrollView, FlatList, State } from 'react-native-gesture-handler';
-import RefAbout from './ref-components/RefAbout';
 import HistoryDetail from './ref-components/HistoryDetail';
-import FlashMessage, { showMessage, hideMessage } from "react-native-flash-message";
 import Package from './Package'
 
 
@@ -45,7 +43,7 @@ export default class Lending extends React.Component<Props, State>{
 
     render() {
         return (
-            <ScrollView style={{ backgroundColor: '#151A1D' }}>
+            <ScrollView style={{ backgroundColor: '#181f29' }}>
                 <View style={styles.container}>
                     <Text style={styles.textLabel}>INVEST</Text>
                     <View style={{ flexDirection: 'row', justifyContent: 'center', marginTop: 10 }}>
@@ -75,14 +73,15 @@ export default class Lending extends React.Component<Props, State>{
                     </View>
 
                     <View style={{
-
+                   
                         flexDirection: 'row',
                         height: 35,
 
 
                     }}>
                         <View style={{
-                            backgroundColor: '#FAC801',
+                                flexGrow: 1,   
+                            backgroundColor: '#f2c73a',
                             paddingHorizontal: 10,
                             height: '100%',
                             alignItems: 'center',
@@ -98,9 +97,10 @@ export default class Lending extends React.Component<Props, State>{
                         />
                         <TouchableOpacity
                             style={{
-                                backgroundColor: '#FAC801',
+                                flex: 1,
+                                flexGrow: 1,   
+                                backgroundColor: '#f2c73a',
                                 paddingHorizontal: 10,
-
                                 height: '100%',
                                 alignItems: 'center',
                                 justifyContent: 'center'
@@ -128,7 +128,7 @@ export default class Lending extends React.Component<Props, State>{
                     <View style={{ flexDirection: 'row', justifyContent: 'center', marginTop: 20, marginBottom: 20, alignItems: 'center' }}>
                         <TouchableOpacity
                             style={{
-                                backgroundColor: '#FAC801',
+                                backgroundColor: '#f2c73a',
                                 paddingHorizontal: 10,
                                 borderRadius: 2,
                                 height: '100%',
@@ -197,7 +197,7 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: '#868685',
         paddingBottom: 5,
-        backgroundColor: '#191F28'
+        backgroundColor: '#1e2126'
     },
     container2: {
         marginTop: 20,
@@ -206,7 +206,7 @@ const styles = StyleSheet.create({
         borderColor: '#868685',
         paddingBottom: 5,
         paddingTop: 10,
-        backgroundColor: '#191F28'
+        backgroundColor: '#1e2126'
     },
     logo: {
         width: 50,
@@ -215,8 +215,8 @@ const styles = StyleSheet.create({
         marginRight: 10
     },
     inputCoin: {
-        flex: 1,
-        flexGrow: 1,
+       width: '100%',
+      
         backgroundColor: '#fff',
         outline: 'none',
         border: 'none',
