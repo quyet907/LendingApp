@@ -5,11 +5,33 @@ import LogoLogin from '../components/LogoLogin'
 
 
 import { Actions } from 'react-native-router-flux';
+import { UserService } from '../services/UserService';
+import { IncomeService } from '../services/IncomeService';
 
 
 
-export default class Login extends Component {
+
+export default class Login extends Component<props, state> {
+    constructor(props : any){
+        super(props);
+        this.state= {
+            user : "",
+            password : ""
+        }
+        
+
+        
+    }
+
+    checkLogin =()=>{
+        var user = this.state.user;
+        var password = this.state.password;
+        console.log(user + " " + password);
+        UserService.login(user, password);
+    }
+
     render() {
+        
         return (
             <KeyboardAvoidingView style={[myStyle.container, { alignItems: "center" }]}>
                 <View style={[myStyle.flex2]}>
@@ -21,20 +43,31 @@ export default class Login extends Component {
 
                     <View style={[]}>
                         <TextInput
+                            value = {this.state.user}
                             style={[myStyle.inputLogin]}
                             selectionColor='red'
                             placeholder={"number phone"}
                             maxLength = {15}
+                            onChange = {(event)=>{
+                                this.setState({user : event.target.value})
+                            }}
 
                         />
                     </View>
 
                     <View >
                         <TextInput
+                            value = {this.state.password}
                             style={[myStyle.inputLogin]}
                             placeholder={"pass word"}
                             secureTextEntry={true}
                             maxLength = {60}
+                            onChange = {(event)=>{
+
+                                this.setState({
+                                    password:event.target.value 
+                                })
+                            }}
                         />
                     </View>
 
@@ -50,7 +83,7 @@ export default class Login extends Component {
                     <View style={[myStyle.frbuttonLogin]}>
                         <TouchableOpacity style={[myStyle.buttonLogin]}
                             activeOpacity={0.7}
-                            onPress ={Actions.home}
+                            onPress ={this.checkLogin}
                         >
                             <Text style  ={[myStyle.textButton]}>
                                 Login
@@ -61,7 +94,9 @@ export default class Login extends Component {
                     <View style = {[myStyle.row,{marginTop : 10, justifyContent : "center"} ] }>
                         <Text style = {[{marginRight: 10, color : "white"}]}>You haven't acount</Text>
                         <TouchableOpacity
-                            onPress ={Actions.signUp}
+                            onPress ={
+                                Actions.signUp
+                            }
                         >
                             <Text style = {[{color : "#F8C400"}]}  onPress = {Actions.signUp}>Create new account</Text>
                         </TouchableOpacity>
@@ -72,4 +107,13 @@ export default class Login extends Component {
             </KeyboardAvoidingView>
         )
     }
+}
+
+type  props = {
+
+}
+
+type state = {
+    user : any,
+    password: any
 }

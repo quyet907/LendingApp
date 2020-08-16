@@ -11,4 +11,9 @@ export class IncomeService{
         throw new Error("this function is not implement");
     }
 
+    public static test=()=>{
+        console.log("on test");
+    }
+    
+
 }
