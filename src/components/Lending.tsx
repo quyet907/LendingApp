@@ -4,6 +4,9 @@ import Separator from './Separator'
 import { TouchableOpacity, ScrollView, FlatList, State } from 'react-native-gesture-handler';
 import HistoryDetail from './ref-components/HistoryDetail';
 import Package from './Package'
+import { LendingPackageService } from '../services/LendingPackageService';
+import { LendingPackage } from '@StockAfiCore/model/lending/LendingPackage';
+
 
 
 const user = {
@@ -29,6 +32,7 @@ const DATA = [
 ];
 
 
+
 export default class Lending extends React.Component<Props, State>{
     constructor(props: any) {
         super(props)
@@ -37,20 +41,41 @@ export default class Lending extends React.Component<Props, State>{
             isSelected: false,
             packageSelected: true,
             packageID: 2,
-
+            packages: []
         }
+
+        LendingPackageService.getLendingPackage().then(pagingLendingPackages => {
+            console.log(pagingLendingPackages.rows)
+            // this.setState({
+            //     packages: pagingLendingPackages.rows
+            // })
+        })
+        
+        
     }
+
+    // componentDidMount(){
+    //    this.setState({
+    //        dataPackage: LendingPackageService.getLendingPackage()
+           
+    //    })
+    //    console.log(this.state.dataPackage)
+        
+     
+    // }
 
     render() {
         return (
-            <ScrollView style={{ backgroundColor: '#181f29' }}>
+            
+            <ScrollView style={{ backgroundColor: '#181f29' }}>           
                 <View style={styles.container}>
                     <Text style={styles.textLabel}>INVEST</Text>
                     <View style={{ flexDirection: 'row', justifyContent: 'center', marginTop: 10 }}>
                         <Text style={styles.textLabel}>CHOOSE ONE PACKAGE</Text>
                     </View>
+                    
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                        {DATA.map((item) => item.id == this.state.packageID ?
+                        {/* {this.state.dataPackage.map((item:any) => item.id == this.state.packageID ?
                             <Package
                                 package={item}
                                 setSelection={this.state.packageSelected}
@@ -65,7 +90,7 @@ export default class Lending extends React.Component<Props, State>{
                                     this.setState({ packageID: item.id })
                                 }}
                             />
-                        )}
+                        )} */}
                     </View>
 
                     <View style={{ flexDirection: 'row', justifyContent: 'center', marginTop: 30 }}>
@@ -183,12 +208,9 @@ export default class Lending extends React.Component<Props, State>{
     }
 }
 
-type State = {
-    initialValue: any,
-    isSelected: boolean,
-    packageSelected: any,
-    packageID: any
-}
+
+
+
 
 const styles = StyleSheet.create({
     container: {
@@ -252,8 +274,22 @@ const styles = StyleSheet.create({
         paddingBottom: 15,
         color: '#fff',
         fontSize: 17,
-        fontWeight: 500
+        fontWeight: "500"
     },
 
 
 })
+
+
+
+type Props = {
+    
+}
+
+type State = {
+    initialValue: any,
+    isSelected: boolean,
+    packageSelected: any,
+    packageID: any,
+    packages: LendingPackage[]
+}
