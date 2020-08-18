@@ -9,8 +9,8 @@ export default class StatisticalBasic extends Component <props, state>{
         }
     }
     render() {
-        var img:any = this.props.img;
-        console.log(img);
+
+
         return (
             <View style={[myStyle.statisticalBasic, myStyle.row]}>
                 <View style={[, myStyle.frImgStatisticalBasic]}>
@@ -34,9 +34,9 @@ export default class StatisticalBasic extends Component <props, state>{
 }
 
 type props = {
-    img : any,
-    money : String,
-    content : String
+    img : string
+    money : string,
+    content : string
 }
 type state = {
     

@@ -27,7 +27,21 @@ export default class Login extends Component<props, state> {
         var user = this.state.user;
         var password = this.state.password;
         console.log(user + " " + password);
-        UserService.login(user, password);
+        let getJwtToken = UserService.login(user, password).then(infoLogin =>{
+            if(infoLogin.jwt ===  undefined){
+                console.log("thoong baos sai")
+            }
+            else { 
+                let type = "OTPLogin"
+                Actions.confirmOTP({
+                    data : infoLogin,
+                    typeAction : "login"
+                });         
+            }
+        })
+
+        
+
     }
 
     render() {
@@ -74,7 +88,13 @@ export default class Login extends Component<props, state> {
                     <View style={[myStyle.frFotgotPassword]}>
                         <TouchableOpacity>
                             <Text style={[{color : "#F8C400"}]}
-                                onPress = {Actions.enterPhone}
+                                onPress = {(event)=>{
+                                    
+                                    Actions.enterPhone({
+                                        data : "",
+                                        typeAction : "forgotPassword"
+                                    })
+                                }}
                             >Forgot password</Text>
                         </TouchableOpacity>
 
@@ -94,11 +114,16 @@ export default class Login extends Component<props, state> {
                     <View style = {[myStyle.row,{marginTop : 10, justifyContent : "center"} ] }>
                         <Text style = {[{marginRight: 10, color : "white"}]}>You haven't acount</Text>
                         <TouchableOpacity
-                            onPress ={
-                                Actions.signUp
+                            onPress ={(event)=>{
+                                    Actions.signUp({
+                                        data : "",
+                                        typeAction : "signUp"
+                                    })
+                                }
+   
                             }
                         >
-                            <Text style = {[{color : "#F8C400"}]}  onPress = {Actions.signUp}>Create new account</Text>
+                            <Text style = {[{color : "#F8C400"}]} >Create new account</Text>
                         </TouchableOpacity>
                     </View>
 

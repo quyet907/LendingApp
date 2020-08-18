@@ -3,17 +3,50 @@ import { View, Image, Text, Button, TextInput , KeyboardAvoidingView, TouchableO
 import myStyle from "../style"
 
 
-import { Actions } from 'react-native-router-flux';
+import { Actions, Actions } from 'react-native-router-flux';
+import { UserService } from '../services/UserService';
+import { BaseUserWithJwt } from '@Core/model/user/BaseUser';
 
 
-export default class Login extends Component {
+export default class Login extends Component<props, state> {
+    constructor(props: any){
+        super(props)
+        this.state = {
+            typeAction : "",
+            numberPhone : ""
+        }
+    }
+
+    componentDidMount(){
+        console.log(this.props)
+        this.setState({
+            typeAction : (this.props.typeAction == "singUp") ? "singUp" : "forgotPassword"
+        })
+        
+    }
+    checkPhone(){
+        Actions.ConfirmOTP
+        UserService.sendOTP(this.state.numberPhone).then((res)=>{
+            // xiu nua se thay the dieu dien cua kiem tra so dien thoai
+            if(true){
+                let userBase: BaseUserWithJwt = {};
+                userBase.mobile = this.state.numberPhone;
+                Actions.ConfirmOTP({
+                    typeAction : this.state.typeAction,
+                    data : userBase
+                })
+
+            }
+        })
+    }
     render() {
+        console.log(this.state.typeAction);
         return (
             <KeyboardAvoidingView style={[myStyle.container, {alignItems : "center"}]}>
                 <View style={[myStyle.flex2]}>
                     <View style={[ myStyle.frLogo]}>
                         <View
-                            style={[{flex : 1,
+                            style={[{flex   : 1,
                                 justifyContent : "flex-end",
                                 alignItems : "flex-end",}]}
                         >
@@ -30,7 +63,12 @@ export default class Login extends Component {
                             style = {[myStyle.inputLogin]}
                             selectionColor='red'
                             placeholder = {"enter your phone"}
-                            
+                            value = {this.state.numberPhone}
+                            onChange = {(event)=>{
+                                this.setState({
+                                    numberPhone : event.target.value
+                                })
+                            }}
 
                         />
                     </View>
@@ -38,7 +76,9 @@ export default class Login extends Component {
                     <View style={[myStyle.frbuttonLogin, {marginTop : 30}]}>
                         <TouchableOpacity style={[myStyle.buttonLogin]}
                             activeOpacity={0.7}
-                            onPress = {Actions.confirmOtp}
+                            onPress = {(event)=>{
+                                this.checkPhone
+                            }}
                         >
                             <Text style  ={[myStyle.textButton]}>
                                 submit
@@ -54,4 +94,12 @@ export default class Login extends Component {
             </KeyboardAvoidingView>
         )
     }
+}
+
+type props = {
+
+}
+type state = {
+    numberPhone : string,
+    typeAction : string,
 }

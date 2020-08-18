@@ -1,5 +1,14 @@
 import { BaseOrganizationModel } from "../share/base-ale/model/BaseOrganizationModel";
 import { BaseModel } from "../share/base-ale/model/BaseModel";
+<<<<<<< HEAD
+import Lending from "../components/Lending";
+import axios from 'axios'
+
+export class LendingService {
+    public static createLending(userId: string, lendingPackageId: string, loanAmount: number, startAt: Date, endAt: Date): Promise<Lending> {
+        
+        throw new Error("this function is not implement");
+=======
 import { Lending } from "@StockAfiCore/model/lending/Lending";
 import axios from 'axios'
 
@@ -18,5 +27,6 @@ export class LendingService {
                 return res.data;
             })
             .catch((err) => console.log(err));
+>>>>>>> master
     }
 }

@@ -6,7 +6,6 @@ import HistoryDetail from './ref-components/HistoryDetail';
 import Package from './Package'
 import { LendingPackageService } from '../services/LendingPackageService';
 import { LendingPackage } from '@StockAfiCore/model/lending/LendingPackage';
-import AlertPro from "react-native-alert-pro";
 import { LendingService } from 'src/services/LendingService';
 
 
@@ -31,6 +30,7 @@ const user = {
 //     { id: 2, name: 'GOLD', minInvestment: 1000, maxInvestment: 5000, profitPerDay: 10, cappitalBackIn: 45 },
 //     { id: 3, name: 'PRE', minInvestment: 1000, maxInvestment: 5000, profitPerDay: 10, cappitalBackIn: 45 }
 // ];
+
 
 
 
@@ -71,6 +71,16 @@ export default class Lending extends React.Component<Props, State>{
     componentDidMount() {
     }
 
+    // componentDidMount(){
+    //    this.setState({
+    //        dataPackage: LendingPackageService.getLendingPackage()
+           
+    //    })
+    //    console.log(this.state.dataPackage)
+        
+     
+    // }
+
     render() {
         return (
 
@@ -100,7 +110,7 @@ export default class Lending extends React.Component<Props, State>{
                                     this.setState({ packageID: item._id })
                                 }}
                             />
-                        )}
+                        )} */}
                     </View>
 
                     <View style={{ flexDirection: 'row', justifyContent: 'center', marginTop: 30 }}>
@@ -344,6 +354,5 @@ type State = {
     packages: LendingPackage[],
     minInvestment: number,
     maxInvestment: number,
-
     buttonInvest: boolean,
 }
