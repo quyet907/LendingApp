@@ -38,9 +38,9 @@ export class UserService{
 
 
     public static sendOTP(phone : string ) : Promise<string>{
-        return axios.post("http://localhost:4000/public/user/sendOTP", {"phonenumber":phone})
+        return axios.post("http://localhost:4000/public/user/sendOTP", {"mobile":phone})
         .then(res =>{
-            return res.data.message
+            return res.data.code
         })
         .catch(err =>{
             console.log(err);
@@ -48,8 +48,12 @@ export class UserService{
 
     }
 
-    public static verifyOTP(OTP : string ) : Promise<boolean> {
-        return axios.post("http://localhost:4000/public/user/verifyOTP")
+    public static verifyOTP(OTP : string, phoneNumber : string ) : Promise<boolean> {
+        return axios.post("http://localhost:4000/public/user/verifyOTP", 
+        {
+            "code": OTP,
+	        "phonenumber":phoneNumber
+        })
         .then(res =>{
             if(res.data.success){
                 return true;
