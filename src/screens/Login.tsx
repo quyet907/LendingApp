@@ -27,7 +27,19 @@ export default class Login extends Component<props, state> {
         var user = this.state.user;
         var password = this.state.password;
         console.log(user + " " + password);
-        UserService.login(user, password);
+        let getJwtToken = UserService.login(user, password).then(infoLogin =>{
+            if(infoLogin.jwt ===  undefined){
+                console.log("thoong baos sai")
+            }
+            else { 
+
+                Actions.confirmOTP(infoLogin);         
+            }
+            
+        })
+
+        
+
     }
 
     render() {

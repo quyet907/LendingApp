@@ -2,33 +2,90 @@ import { BaseUser, BaseUserWithJwt } from "../share/base-ale/model/user/BaseUser
 import axios from "axios";
 export class UserService{
 
-    public static login (user:string , pass : string  ) :Promise <BaseUserWithJwt>|null {
+    public static login (user:string , pass : string  ) :Promise <BaseUserWithJwt> {
+
+        console.log(user + "--" + pass);
+        let getJWT : any = UserService.getJWT();
+        let typeLogin : "phonenumber";
         
-        axios.get(`http://localhost:4001/lending_package`)
+        let getDataLogin:any ;
+        user  = "0989320982";
+        pass = "1111";
+        
+        return axios.post("http://localhost:4000/public/user/login",
+        {
+            'loginType' : 'phonenumber',
+            "username": user,
+	        "password": pass
+        },{
+            headers: {
+                'Authorization': `${getJWT}`
+            }
+        })
         .then(res => {
 
-          console.log(res.data)
+          return res.data;
         })
-        .catch(error => console.log(error));
-
-        return null;
+        .catch(error => {
+            return BaseUserWithJwt
+        });
     }
 
-    public static test=()=>{
-        console.log("on test");
+    public static getJWT():string{     
+        return 'Bearer ' +'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJsb2dpblR5cGUiOiJwaG9uZW51bWJlciIsInBob25lbnVtYmVyIjoiMDk4OTMyMDk1NSIsInVzZXJuYW1lIjoiMDk4OTMyMDk1NSIsIl9pZCI6IjU3NzMxZmI4LWExM2EtNDc2Yi1iMjIzLTlkNDlmZDJkN2YyYyIsImlhdCI6MTU5NzIwMTEzM30.yyGtAPG-Hp_nt-HTtb9tGRFuATwVymCMsbwK7u_2rl8';
     }
 
-    public static sendPhone(phone : string ) : Promise<any>{
-        throw new Error("this function is not implement");
+
+
+    public static sendOTP(phone : string ) : Promise<string>{
+        return axios.post("http://localhost:4000/public/user/sendOTP", {"phonenumber":phone})
+        .then(res =>{
+            return res.data.message
+        })
+        .catch(err =>{
+            console.log(err);
+        })
+
     }
 
-    public static sendOTP(OTP : string ) : Promise<boolean> {
-        throw new Error("this function is not implement");
-
+    public static verifyOTP(OTP : string ) : Promise<boolean> {
+        return axios.post("http://localhost:4000/public/user/verifyOTP")
+        .then(res =>{
+            if(res.data.success){
+                return true;
+            }
+            else {
+                return false;
+            }
+        })
     }
 
-    public static createPass(pass : string , againpass : string ) : Promise<boolean>{
-        throw new Error("this function is not implement");
+
+    public static setPassword(pass : string , againpass : string ):Promise<boolean>{
+
+
+        return axios.post("http://localhost:4000/public/user/setPassword",
+        {
+            "username":"0989320963",
+            "password":"1111",
+            "otpCode":"1234"
+        },
+        {
+             headers: {
+                 "Authorization": `Bearer ${"dsdsds"}`
+             }
+         }
+         
+         ).then(res =>{
+             if(pass != againpass) return false;
+             if(res.data.message){
+                 return true
+             }
+             else { 
+                 return false;
+             }
+         })
+         
     }
 
 

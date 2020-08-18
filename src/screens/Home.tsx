@@ -5,6 +5,7 @@ import ChartHome from '../components/ChartHome';
 import ListStatisticalBasic from '../components/ListStatisticalBasic';
 import ListHistoryInterest from '../components/ListHistoryInterest';
 
+
 export default class Home extends Component<props , state> {
     constructor(props : any ){
         super(props );
@@ -12,6 +13,7 @@ export default class Home extends Component<props , state> {
             data : [20, 15,1,29,29,22,42,12]
         }
     }
+    
     render() {
         return (
             <ScrollView style = {[myStyle.container]} showsVerticalScrollIndicator = {false}>

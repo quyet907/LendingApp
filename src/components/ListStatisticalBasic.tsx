@@ -2,8 +2,29 @@ import React, { Component } from 'react'
 import {View, Image, Text} from "react-native";
 import myStyle from "../style"
 import StatisticalBasic from './StatisticalBasic';
+import { Income } from '@StockAfiCore/model/lending/Income';
+import { IncomeService } from '../services/IncomeService';
 
-export default class ListStatisticalBasic extends Component {
+export default class ListStatisticalBasic extends Component<props, state> {
+    constructor(props:any){
+        super(props)
+        this.state = {
+            dataIncomLeding : {},
+            dataIncomReferal : {},
+            dataIncomSurplus : {},
+            dataIncomTotal : {}
+        }
+
+    }
+
+    componentDidMount(){
+        IncomeService.getListCharIncome().then(res =>{
+            this.setState({
+
+            })
+        })
+    }
+
     render() {
         
         return (
@@ -43,4 +64,15 @@ export default class ListStatisticalBasic extends Component {
             </View>
         )
     }
+}
+
+type props ={
+
+}
+
+type state = {
+    dataIncomTotal : Income
+    dataIncomLeding : Income
+    dataIncomReferal : Income
+    dataIncomSurplus : Income
 }

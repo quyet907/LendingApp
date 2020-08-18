@@ -6,7 +6,27 @@ import { Actions } from 'react-native-router-flux';
 
 
 
-export default class Login extends Component {
+export default class Login extends Component <props, state> {
+    constructor(props : any ){
+        super(props)
+        this.state = {
+            codeOTP : ""
+        }
+    }
+
+    componentDidMount(){
+        if(this.props.username !=null){
+            console.log(this.props.username)
+            if(this.props.jwt){
+                console.log("co jwt")
+            }
+        }
+    }
+
+    confrimOTP(){
+
+    }
+
     render() {
         return (
             <KeyboardAvoidingView style={[myStyle.container, {alignItems : "center"}]}>
@@ -30,8 +50,13 @@ export default class Login extends Component {
                             style = {[myStyle.inputLogin, {marginTop : 30}]}
                             selectionColor='red'
                             placeholder = {"enter otp"}
-                            keyboardType={'numeric'}
-
+                            // keyboardType={'numeric'}
+                            value = {this.state.codeOTP}
+                            onChange={(event )=>{
+                                this.setState({
+                                    codeOTP: event.target.value
+                                })
+                            } }
                         />
                     </View>
 
@@ -63,4 +88,11 @@ export default class Login extends Component {
             </KeyboardAvoidingView>
         )
     }
+}
+type props = {
+
+}
+
+type state = {
+    codeOTP : string;
 }
