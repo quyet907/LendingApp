@@ -26,6 +26,7 @@ export default class Package extends Component<Props, State> {
                 </View>
                 <View style={{ backgroundColor: '#2E2D2A', alignItems: 'center', justifyContent: 'space-around', paddingVertical: 10 }}>
                     <Text style={styles.text}>Min {this.props.package.min}</Text>
+                    <Text style={styles.text}>Max {this.props.package.min}</Text>
                     <Text style={styles.text}>Profits {this.props.package.profits}%</Text>
                     <Text style={styles.text}>Days {this.props.package.days}</Text>
                 </View>
