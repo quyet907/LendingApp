@@ -33,7 +33,7 @@ const MyTransitionSpec = ({
 
 const scenes = Actions.create(
     <Scene    key="root" duration={4}>
-       <Scene  key="home" component={PageHome} hideNavBar={true} />
+     <Scene  key="home" component={PageHome} hideNavBar={true} />
       <Scene  key="login" component={Login} hideNavBar={true} />
       <Scene  key="home" component={PageHome} hideNavBar={true} />
       
@@ -41,10 +41,7 @@ const scenes = Actions.create(
       <Scene  key="signUp" component={EnterYourPhone} hideNavBar={true} />
       <Scene  key="confirmOTP" component={ConfirmOTP} hideNavBar={true} typeAction = "" />
       <Scene  key="password" component={SetPassWord} hideNavBar={true} />
-<<<<<<< HEAD
-=======
-     
->>>>>>> master
+
     </Scene>
   );
 {/* <Router scenes={scenes}/> */}
