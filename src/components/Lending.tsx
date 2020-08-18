@@ -1,12 +1,13 @@
 import * as React from 'react';
-import { View, Text, TextInput, Image, StyleSheet, Button, Clipboard, CheckBox } from 'react-native';
+import { View, Text, TextInput, Image, StyleSheet, Button, Clipboard, CheckBox, Alert } from 'react-native';
 import Separator from './Separator'
-import { TouchableOpacity, ScrollView, FlatList, State } from 'react-native-gesture-handler';
+import { TouchableOpacity, ScrollView, FlatList } from 'react-native-gesture-handler';
 import HistoryDetail from './ref-components/HistoryDetail';
 import Package from './Package'
 import { LendingPackageService } from '../services/LendingPackageService';
 import { LendingPackage } from '@StockAfiCore/model/lending/LendingPackage';
-
+import AlertPro from "react-native-alert-pro";
+import { LendingService } from 'src/services/LendingService';
 
 
 const user = {
@@ -25,72 +26,81 @@ const user = {
     ]
 };
 
-const DATA = [
-    { id: 1, name: 'SILVER', min: 1000, profits: 10, days: 45 },
-    { id: 2, name: 'GOLD', min: 2000, profits: 15, days: 55 },
-    { id: 3, name: 'PREMIUM', min: 5000, profits: 30, days: 255 }
-];
+// const DATA = [
+//     { id: 1, name: 'SILVER', minInvestment: 1000, maxInvestment: 5000, profitPerDay: 10, cappitalBackIn: 45 },
+//     { id: 2, name: 'GOLD', minInvestment: 1000, maxInvestment: 5000, profitPerDay: 10, cappitalBackIn: 45 },
+//     { id: 3, name: 'PRE', minInvestment: 1000, maxInvestment: 5000, profitPerDay: 10, cappitalBackIn: 45 }
+// ];
 
 
 
 export default class Lending extends React.Component<Props, State>{
+    AlertPro: AlertPro | null | undefined;
     constructor(props: any) {
         super(props)
         this.state = {
             initialValue: 0,
             isSelected: false,
+
             packageSelected: true,
-            packageID: 2,
-            packages: []
+            packageID: "",
+            packages: [],
+
+            minInvestment: 1,
+            maxInvestment: 1000,
+
+            buttonInvest: false
+
+
         }
 
         LendingPackageService.getLendingPackage().then(pagingLendingPackages => {
             console.log(pagingLendingPackages.rows)
-            // this.setState({
-            //     packages: pagingLendingPackages.rows
-            // })
+            this.setState({
+                packages: pagingLendingPackages.rows,
+                packageID: pagingLendingPackages.rows[0]._id,
+                minInvestment: typeof pagingLendingPackages.rows[0].minInvestment == 'number' ? pagingLendingPackages.rows[0].minInvestment : 0,
+                maxInvestment: typeof pagingLendingPackages.rows[0].maxInvestment == 'number' ? pagingLendingPackages.rows[0].maxInvestment : 0,
+            })
+            console.log(this.state);
         })
-        
-        
+
+
     }
 
-    // componentDidMount(){
-    //    this.setState({
-    //        dataPackage: LendingPackageService.getLendingPackage()
-           
-    //    })
-    //    console.log(this.state.dataPackage)
-        
-     
-    // }
+    componentDidMount() {
+    }
 
     render() {
         return (
-            
-            <ScrollView style={{ backgroundColor: '#181f29' }}>           
+
+            <ScrollView style={{ backgroundColor: '#181f29' }}>
                 <View style={styles.container}>
                     <Text style={styles.textLabel}>INVEST</Text>
                     <View style={{ flexDirection: 'row', justifyContent: 'center', marginTop: 10 }}>
                         <Text style={styles.textLabel}>CHOOSE ONE PACKAGE</Text>
                     </View>
-                    
+
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                        {/* {this.state.dataPackage.map((item:any) => item.id == this.state.packageID ?
+                        {this.state.packages.map((item: any) => item._id == this.state.packageID ?
                             <Package
                                 package={item}
                                 setSelection={this.state.packageSelected}
                                 isSelected={() => {
-                                    this.setState({ packageSelected: this.state.packageSelected })
+                                    this.setState({
+                                        packageSelected: this.state.packageSelected,
+                                        minInvestment: item.minInvestment
+                                    })
                                 }}
                             /> :
                             <Package
                                 package={item}
                                 setSelection={!this.state.packageSelected}
                                 isSelected={() => {
-                                    this.setState({ packageID: item.id })
+                                    this.setState({ packageID: item._id })
                                 }}
                             />
-                        )} */}
+                        )}
                     </View>
 
                     <View style={{ flexDirection: 'row', justifyContent: 'center', marginTop: 30 }}>
@@ -98,14 +108,14 @@ export default class Lending extends React.Component<Props, State>{
                     </View>
 
                     <View style={{
-                   
+
                         flexDirection: 'row',
                         height: 35,
 
 
                     }}>
                         <View style={{
-                                flexGrow: 1,   
+                            flexGrow: 1,
                             backgroundColor: '#f2c73a',
                             paddingHorizontal: 10,
                             height: '100%',
@@ -116,14 +126,27 @@ export default class Lending extends React.Component<Props, State>{
                         </View>
                         <TextInput
                             value={this.state.initialValue}
-                            keyboardType={'numeric'}
+                            keyboardType={'number-pad'}
                             style={styles.inputCoin}
-                            onChangeText={text => this.onChangeText(text)}
+                            onChangeText={text => {
+                                this.setState({
+                                    initialValue: parseInt(text),
+                                }, () => {
+                                    console.log(this.state);
+                                    console.log(this.state.initialValue >= this.state.minInvestment);
+                                    this.setState({
+                                        buttonInvest: (this.state.initialValue >= this.state.minInvestment) && (this.state.initialValue <= this.state.maxInvestment)
+                                    })
+                                })
+
+                            }
+                            }
+
                         />
                         <TouchableOpacity
                             style={{
                                 flex: 1,
-                                flexGrow: 1,   
+                                flexGrow: 1,
                                 backgroundColor: '#f2c73a',
                                 paddingHorizontal: 10,
                                 height: '100%',
@@ -149,17 +172,11 @@ export default class Lending extends React.Component<Props, State>{
                         />
                         <Text style={{ color: '#fff', paddingLeft: 10 }}>I have read and understood your terms of use</Text>
                     </View>
-
+                   
                     <View style={{ flexDirection: 'row', justifyContent: 'center', marginTop: 20, marginBottom: 20, alignItems: 'center' }}>
                         <TouchableOpacity
-                            style={{
-                                backgroundColor: '#f2c73a',
-                                paddingHorizontal: 10,
-                                borderRadius: 2,
-                                height: '100%',
-                                alignItems: 'center',
-                                justifyContent: 'center'
-                            }}
+                            style={this.state.buttonInvest ? styles.buttonActive : styles.buttonInactive}
+                            disabled={!this.state.buttonInvest}
                             onPress={() => this.invest()}
                         >
                             <Text style={{
@@ -167,6 +184,16 @@ export default class Lending extends React.Component<Props, State>{
                                 fontWeight: "700"
                             }}>INVEST</Text>
                         </TouchableOpacity >
+                        {/* <Button
+                            onPress={() => Alert.alert('Cannot press this one')}
+                            title="INVEST"
+                            color="#f2c73a"
+                            accessibilityLabel="Learn more about this purple button"
+                            
+                        /> */}
+
+                        
+
                     </View>
 
 
@@ -191,7 +218,11 @@ export default class Lending extends React.Component<Props, State>{
     }
 
     invest = () => {
-        
+       const cf = confirm('Xac nhan');
+       if (cf) {
+           //LendingService.createLending()
+       }
+
     }
 
     allCoin = () => {
@@ -199,12 +230,14 @@ export default class Lending extends React.Component<Props, State>{
             initialValue: user.coinBalance
         })
 
+
     };
 
     onChangeText = (text: any) => {
-        this.setState({
-            initialValue: text
-        })
+
+
+
+
     }
 }
 
@@ -237,8 +270,8 @@ const styles = StyleSheet.create({
         marginRight: 10
     },
     inputCoin: {
-       width: '100%',
-      
+        width: '100%',
+
         backgroundColor: '#fff',
         outline: 'none',
         border: 'none',
@@ -276,6 +309,22 @@ const styles = StyleSheet.create({
         fontSize: 17,
         fontWeight: "500"
     },
+    buttonActive: {
+        backgroundColor: '#f2c73a',
+        paddingHorizontal: 10,
+        borderRadius: 2,
+        height: '100%',
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+    buttonInactive: {
+        backgroundColor: '#ddd',
+        paddingHorizontal: 10,
+        borderRadius: 2,
+        height: '100%',
+        alignItems: 'center',
+        justifyContent: 'center'
+    }
 
 
 })
@@ -283,13 +332,18 @@ const styles = StyleSheet.create({
 
 
 type Props = {
-    
+
 }
 
 type State = {
     initialValue: any,
     isSelected: boolean,
+
     packageSelected: any,
     packageID: any,
-    packages: LendingPackage[]
+    packages: LendingPackage[],
+    minInvestment: number,
+    maxInvestment: number,
+
+    buttonInvest: boolean,
 }
