@@ -2,21 +2,38 @@ import { BaseOrganizationModel } from "../share/base-ale/model/BaseOrganizationM
 import { BaseModel } from "../share/base-ale/model/BaseModel";
 import { Lending } from "@StockAfiCore/model/lending/Lending";
 import axios from 'axios'
+import { Paging } from "@Core/controller/Paging";
+import { ProfitHistory } from "../share/base-stock-afi/model/lending/LendingProfitHistory";
+
+const access_token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjNiNDNiOTU3YzRlZGEwZGQzNmQzMzkiLCJsb2dpblR5cGUiOiJwaG9uZW51bWJlciIsInVzZXJuYW1lIjoiMDk4OTMyMDk2MCIsInBhc3N3b3JkIjoiYjU5YzY3YmYxOTZhNDc1ODE5MWU0MmY3NjY3MGNlYmEiLCJyZWZlcmFsRnJvbVVzZXJJZCI6IjVmM2IzY2VjZGI4NTZmZjQzYmY5YWZkMiIsIm90cENvZGUiOiIxMjM0IiwiY3JlYXRlZEF0IjoiMjAyMC0wOC0xOFQwMjo1ODowMS41NTZaIiwidXBkYXRlZEF0IjoiMjAyMC0wOC0xOFQwMjo1ODowMS41NTZaIiwiY3JlYXRlZEJ5IjpudWxsLCJ1cGRhdGVkQnkiOm51bGwsInN0YXR1cyI6ImFjdGl2ZWQiLCJpYXQiOjE1OTc3MTk0OTR9.nbgApeGoXHaP2eT07GXCxfn3api5wlgW-foXsfQlJaw'
 
 
 export class LendingService {
-    public static createLending(lending: Lending) {
-        const access_token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJsb2dpblR5cGUiOiJwaG9uZW51bWJlciIsInBob25lbnVtYmVyIjoiMDk4OTMyMDk1NSIsInVzZXJuYW1lIjoiMDk4OTMyMDk1NSIsIl9pZCI6IjU3NzMxZmI4LWExM2EtNDc2Yi1iMjIzLTlkNDlmZDJkN2YyYyIsImlhdCI6MTU5NzIwMTEzM30.yyGtAPG-Hp_nt-HTtb9tGRFuATwVymCMsbwK7u_2rl8'
 
-        return axios.get('http://localhost:4001/lending', {
+    public static createLending(lending: Lending): Promise<any> {
+
+        return axios({
+            method: 'POST',
+            url: 'http://localhost:4001/lending',
             data: lending,
             headers: {
                 'Authorization': `Bearer ${access_token}`
             }
         })
-            .then((res) => {
-                return res.data;
-            })
+            .then((res) => { console.log(res.data) })
             .catch((err) => console.log(err));
+
+    }
+
+    public static getMyInvest(): Promise<Paging<any>> {
+        return axios({
+            method: 'GET',
+            url: 'http://localhost:4001/lending',
+            headers: {
+                'Authorization': `Bearer ${access_token}`
+            }
+        })
+            .then((res) => { return res.data })
+            .catch((err) => console.log(err))
     }
 }

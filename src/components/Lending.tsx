@@ -1,13 +1,15 @@
 import * as React from 'react';
 import { View, Text, TextInput, Image, StyleSheet, Button, Clipboard, CheckBox, Alert } from 'react-native';
 import Separator from './Separator'
-import { TouchableOpacity, ScrollView, FlatList } from 'react-native-gesture-handler';
+import { TouchableOpacity, ScrollView, FlatList, TouchableHighlight } from 'react-native-gesture-handler';
 import HistoryDetail from './ref-components/HistoryDetail';
 import Package from './Package'
 import { LendingPackageService } from '../services/LendingPackageService';
 import { LendingPackage } from '@StockAfiCore/model/lending/LendingPackage';
-import AlertPro from "react-native-alert-pro";
-import { LendingService } from 'src/services/LendingService';
+import { LendingService } from '../services/LendingService';
+import { Lending as LendingModel } from "@StockAfiCore/model/lending/Lending";
+import { ProfitHistory } from '@StockAfiCore/model/lending/LendingProfitHistory';
+import PopupConfirm from './PopupConfirm';
 
 
 const user = {
@@ -35,7 +37,6 @@ const user = {
 
 
 export default class Lending extends React.Component<Props, State>{
-    AlertPro: AlertPro | null | undefined;
     constructor(props: any) {
         super(props)
         this.state = {
@@ -49,10 +50,15 @@ export default class Lending extends React.Component<Props, State>{
             minInvestment: 1,
             maxInvestment: 1000,
 
-            buttonInvest: false
+            buttonInvest: false,
+            confirmModal: false,
 
+            myInvest: []
 
         }
+        LendingService.getMyInvest().then(res => {
+            this.setState({ myInvest: res.rows })
+        })
 
         LendingPackageService.getLendingPackage().then(pagingLendingPackages => {
             console.log(pagingLendingPackages.rows)
@@ -172,18 +178,20 @@ export default class Lending extends React.Component<Props, State>{
                         />
                         <Text style={{ color: '#fff', paddingLeft: 10 }}>I have read and understood your terms of use</Text>
                     </View>
-                   
+
                     <View style={{ flexDirection: 'row', justifyContent: 'center', marginTop: 20, marginBottom: 20, alignItems: 'center' }}>
                         <TouchableOpacity
                             style={this.state.buttonInvest ? styles.buttonActive : styles.buttonInactive}
                             disabled={!this.state.buttonInvest}
-                            onPress={() => this.invest()}
+                            onPress={() => this.setState({ confirmModal: true })}
                         >
                             <Text style={{
                                 paddingHorizontal: 10, paddingVertical: 6, fontSize: 16,
                                 fontWeight: "700"
                             }}>INVEST</Text>
                         </TouchableOpacity >
+
+
                         {/* <Button
                             onPress={() => Alert.alert('Cannot press this one')}
                             title="INVEST"
@@ -192,7 +200,7 @@ export default class Lending extends React.Component<Props, State>{
                             
                         /> */}
 
-                        
+
 
                     </View>
 
@@ -204,26 +212,60 @@ export default class Lending extends React.Component<Props, State>{
                 <View style={styles.container2}>
                     <Text style={styles.textLabel}>My Investsment</Text>
                     <Separator />
-                    <FlatList data={user.ref}
-                        renderItem={({ item }) => <HistoryDetail title={item.id} time={item.time} coin={1000} />}
-                        keyExtractor={item => item.id} />
+                    <FlatList data={this.state.myInvest}
+                        renderItem={({ item }) => <HistoryDetail title={item.lendingPackage?.name + " | " + item.loanAmount + " COIN"}
+                            time={this.getTime(item.createdAt) + "   |   " + this.getDaysLeft(item.createdAt)} coin={1000} />}
+                        keyExtractor={item => item._id != undefined ? item._id : 'null'} />
 
 
 
 
                 </View>
-
+                <PopupConfirm
+                    confirmModal={this.state.confirmModal}
+                    buttonOK={() => {console.log('button ok')}}
+                    buttonCancel={ () => {
+                        this.setState({confirmModal: false})
+                        //console.log('cancel');
+                        
+                    }}
+                    title='Confirm'
+                    message='Are you sure want to invest?'
+                />
             </ScrollView>
         )
     }
 
+    getTime = (date: Date | undefined): String => {
+        if (date !== undefined) return date.toString().substring(0, 10)
+        else return 'null'
+    }
+
+    getDaysLeft = (dateStart: Date | undefined): String => {
+        const currentDate: Date = new Date();
+
+        if (dateStart !== undefined) {
+            const daysLeft = Math.floor((Date.parse(currentDate.toString()) - Date.parse(dateStart.toString())) / (1000 * 60 * 60 * 24)
+            )
+            return `${daysLeft + 1}/30 days`
+        }
+        return 'null'
+    }
+
+    profits = (createAt: Date | undefined): Number => {
+
+        return 1000;
+    }
+
     invest = () => {
-       const cf = confirm('Xac nhan');
-       if (cf) {
-           //LendingService.createLending()
-       }
+        const lending: LendingModel = {
+            lendingPackageId: this.state.packageID,
+            loanAmount: this.state.initialValue,
+        }
+        LendingService.createLending(lending)
 
     }
+
 
     allCoin = () => {
         this.setState({
@@ -324,6 +366,14 @@ const styles = StyleSheet.create({
         height: '100%',
         alignItems: 'center',
         justifyContent: 'center'
+    },
+    confirmModalActive: {
+        width: '100%', height: '100%', backgroundColor: '#181f29', position: 'absolute', zIndex: 3, justifyContent: 'center', alignItems: 'center'
+
+    },
+    confirmModalInactive: {
+        display: 'none'
+
     }
 
 
@@ -346,4 +396,7 @@ type State = {
     maxInvestment: number,
 
     buttonInvest: boolean,
+    confirmModal: boolean,
+
+    myInvest: Array<ProfitHistory>
 }
