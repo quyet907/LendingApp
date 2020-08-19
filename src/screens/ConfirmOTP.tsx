@@ -7,6 +7,7 @@ import { BaseUserWithJwt } from '@Core/model/user/BaseUser';
 import { UserService } from '../services/UserService';
 import { connect } from "react-redux";
 import * as action from "../Action/ActionLogin"
+import PopupConfirm from '../components/PopupConfirm';
 
 
 class ConfirmOTP extends Component<props, state> {
@@ -14,7 +15,9 @@ class ConfirmOTP extends Component<props, state> {
         super(props)
         this.state = {
             getCodeOTP: "",
-            baseUser: {}
+            baseUser: {},
+            showPopup: false,
+            contentPopup : ""
         }
     }
 
@@ -26,9 +29,14 @@ class ConfirmOTP extends Component<props, state> {
     checkOTP() {
 
         UserService.verifyOTP(this.state.getCodeOTP, this.props.NumeberPhone).then((res) => {
-            (res) 
-            ? (this.props.typeAction == "login") ? Actions.home() : Actions.password()
-            : console.log("sai roi")
+            if(res) (this.props.typeAction == "login") ? Actions.home() : Actions.password()
+            else{
+                this.setState({
+                    contentPopup : "OTP is incorrect",
+                    showPopup : true
+                    
+                })
+            }
         })
 
     }
@@ -38,6 +46,13 @@ class ConfirmOTP extends Component<props, state> {
     render() {
         return (
             <KeyboardAvoidingView style={[myStyle.container, { alignItems: "center" }]}>
+                <PopupConfirm
+                    confirmModal={this.state.showPopup}
+                    buttonOK={() => this.setState({ showPopup: false })}
+                    buttonCancel={() => this.setState({ showPopup: false })}
+                    title='Confirm'
+                    message= {this.state.contentPopup}
+                />
                 <View style={[myStyle.flex2]}>
                     <View style={[myStyle.frLogo]}>
                         <View
@@ -111,6 +126,8 @@ type props = {
 type state = {
     getCodeOTP: string;
     baseUser: BaseUserWithJwt;
+    showPopup: boolean;
+    contentPopup : string;
 }
 
 function mapStateToProps(state: any) {

@@ -1,40 +1,86 @@
 import React, { Component } from 'react'
-import { View, Image, Text, Button, TextInput, KeyboardAvoidingView, TouchableOpacity , CheckBox} from 'react-native'
+import { View, Image, Text, Button, TextInput, KeyboardAvoidingView, TouchableOpacity, CheckBox } from 'react-native'
 import myStyle from "../style"
 import LogoLogin from '../components/LogoLogin'
 
 import { Actions } from 'react-native-router-flux';
 
 import * as action from "../Action/ActionLogin";
-import {connect }  from "react-redux"
+import { connect } from "react-redux"
+import { UserService } from '../services/UserService';
+import PopupConfirm from '../components/PopupConfirm';
 
 
-class setPassword extends Component <props, state>{
-    constructor(props:any ){
+class setPassword extends Component<props, state>{
+    constructor(props: any) {
         super(props)
         this.state = {
-            checkbox : false,
-            getPass : "",
-            getAgainPass : ""
+            checkbox: false,
+            getPass: "",
+            getAgainPass: "",
+            showPopup: false,
+            contentPopup : ""
         }
     }
 
-    checkPassword =()=>{
-        var  getPass = this.refs.password;
-        var getAgainPass = this.refs.againPassword;
-        
+    checkSetPassword = () => {
+        var getPass: any = this.state.getPass;
+        var getAgainPass: any = this.state.getAgainPass;
+        var error = UserService.checkValidate(getPass, getAgainPass);
+
+        if (error!= null) {
+            this.setState({
+                contentPopup : error,
+                showPopup : true
+                
+            })
+        }
+        else {
+            if (this.props.typeAction == "signUp") {
+                UserService.register(this.props.phoneNumber, getPass, this.props.codeOTP).then(res => {
+                    if(!res){
+                        this.setState({
+                            contentPopup : "Fail",
+                            showPopup : true
+                            
+                        })
+                    }
+                })
+            }
+            else {
+                UserService.setPassword(this.props.phoneNumber, getPass, this.props.codeOTP).then(res => {
+                    if(!res){
+                        this.setState({
+                            contentPopup : "Fail",
+                            showPopup : true
+                            
+                        })
+                    }
+                })
+            }
+        }
     }
+
     render() {
         return (
             <KeyboardAvoidingView style={[myStyle.container, { alignItems: "center" }]}>
+                <PopupConfirm
+                    confirmModal={this.state.showPopup}
+                    buttonOK={() => this.setState({ showPopup: false })}
+                    buttonCancel={() => this.setState({ showPopup: false })}
+                    title='Confirm'
+                    message= {this.state.contentPopup}
+                />
                 <View style={[myStyle.flex2]}>
-                <View style={[ myStyle.frLogo]}>
+                    <View style={[myStyle.frLogo]}>
                         <View
-                            style={[{flex : 1,
-                                justifyContent : "flex-end",
-                                alignItems : "flex-end",}]}
+                            style={[{
+                                flex: 1,
+                                justifyContent: "flex-end",
+                                alignItems: "flex-end",
+                            }]}
                         >
-                            <Text style = {[myStyle.headerSignUp ]}>Enter your password</Text>
+                            <Text style={[myStyle.headerSignUp]}>Enter your password</Text>
                         </View>
                     </View>
                 </View>
@@ -44,16 +90,16 @@ class setPassword extends Component <props, state>{
 
                     <View style={[]}>
                         <TextInput
-                            ref = {"pass"}
+                            ref={"pass"}
                             style={[myStyle.inputLogin]}
                             selectionColor='red'
                             placeholder={"password"}
-                            maxLength = {60}
+                            maxLength={60}
                             secureTextEntry={!this.state.checkbox}
-                            value = {this.state.getPass}
-                            onChange = {(event)=>{
+                            value={this.state.getPass}
+                            onChange={(event) => {
                                 this.setState({
-                                    getPass : event.target.value
+                                    getPass: event.target.value
                                 })
                             }}
                         />
@@ -61,22 +107,26 @@ class setPassword extends Component <props, state>{
 
                     <View >
                         <TextInput
-                            ref = {"passAgain"}
+                            ref={"passAgain"}
                             style={[myStyle.inputLogin]}
                             placeholder={"again password"}
                             secureTextEntry={!this.state.checkbox}
-                            maxLength = {60}
-                            onChange = {this.checkPassword}
+                            maxLength={60}
+                            onChange={(event) => {
+                                this.setState({
+                                    getAgainPass: event.target.value
+                                })
+                            }}
                         />
                     </View>
 
-                    <View style = {[myStyle.row, { marginTop : 10}]}>
+                    <View style={[myStyle.row, { marginTop: 10 }]}>
                         <CheckBox
-                            value = {this.state.checkbox}
-                            onChange = {()=>{this.setState({checkbox : !this.state.checkbox})}}
+                            value={this.state.checkbox}
+                            onChange={() => { this.setState({ checkbox: !this.state.checkbox }) }}
                         />
-                        <Text style = {[myStyle.colorWhite,{marginLeft : 10, fontSize : 12}]} 
-                            onPress = {()=>{this.setState({checkbox : !this.state.checkbox})}}
+                        <Text style={[myStyle.colorWhite, { marginLeft: 10, fontSize: 12 }]}
+                            onPress={() => { this.setState({ checkbox: !this.state.checkbox }) }}
                         >Show pass Word</Text>
 
                     </View>
@@ -84,9 +134,11 @@ class setPassword extends Component <props, state>{
                     <View style={[myStyle.frbuttonLogin]}>
                         <TouchableOpacity style={[myStyle.buttonLogin]}
                             activeOpacity={0.7}
-                            onPress = {Actions.login}
+                            onPress={(event) => {
+                                this.checkSetPassword()
+                            }}
                         >
-                            <Text style  ={[myStyle.textButton]}>
+                            <Text style={[myStyle.textButton]}>
                                 confirm
                             </Text>
                         </TouchableOpacity>
@@ -102,27 +154,29 @@ class setPassword extends Component <props, state>{
 }
 
 type props = {
-    typeAction : string,
-    phoneNumber : string,
-    codeOTP : string,
+    typeAction: string,
+    phoneNumber: string,
+    codeOTP: string,
 }
 
 type state = {
-    checkbox : boolean
-    getPass : string ,
-    getAgainPass : string
+    checkbox: boolean
+    getPass: string,
+    getAgainPass: string,
+    showPopup: boolean,
+    contentPopup : string
 }
 
-function mapStateToProps(state : any ) {
+function mapStateToProps(state: any) {
     return {
-        typeAction : state.LoginReducer.actionType,
-        phonenumber  : state.LoginReducer.numberPhone,
-        codeOTP : state.LoginReducer.codeOTP
+        typeAction: state.LoginReducer.actionType,
+        phonenumber: state.LoginReducer.numberPhone,
+        codeOTP: state.LoginReducer.codeOTP
     }
 }
 
-function mapDispatchToProps(dispatch: any, props : any){
+function mapDispatchToProps(dispatch: any, props: any) {
     return null
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(setPassword)
+export default connect(mapStateToProps, mapDispatchToProps)(setPassword)

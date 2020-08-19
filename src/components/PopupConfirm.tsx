@@ -11,7 +11,7 @@ export default class PopupConfirm extends React.Component<Props, {}>{
             <View style={this.props.confirmModal ? styles.confirmModalActive : { display: 'none' }}>
                 <View style={{ position: 'absolute', zIndex: 5, backgroundColor: '#fff', width: '80%', height: '20%', flexDirection: 'column', padding: 15 }}>
                     <View style={{ flexDirection: 'row', flex: 1 }}>
-        <Text> {this.props.title}</Text>
+                        <Text> {this.props.title}</Text>
                     </View>
                     <View style={{ flexDirection: 'row', flex: 1 }}>
                         <Text>{this.props.message}</Text>
@@ -30,12 +30,12 @@ export default class PopupConfirm extends React.Component<Props, {}>{
             </View>
         )
     }
-    buttonOK = () =>{
+    buttonOK = () => {
 
     }
 
-    buttonCancel = () =>{
-        
+    buttonCancel = () => {
+
     }
 
 }
