@@ -1,9 +1,9 @@
 const initLogin = {
-    actionType : "login",
-    jwt : "aaa",
-    numberPhone : "a",
-    codeOTP : "a"
-
+    actionType : "",
+    jwt : "",
+    numberPhone : "",
+    codeOTP : ""
+    
 }
 const Login = (state: any = initLogin, action : any )=>{
     console.log(action)
@@ -34,7 +34,6 @@ const Login = (state: any = initLogin, action : any )=>{
         }
 
         default : {
-
             return {...state}
         }
 

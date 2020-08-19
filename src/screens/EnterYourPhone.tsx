@@ -6,22 +6,20 @@ import myStyle from "../style"
 import {  Actions } from 'react-native-router-flux';
 import { UserService } from '../services/UserService';
 import { BaseUserWithJwt } from '@Core/model/user/BaseUser';
+import {connect} from "react-redux";
+import * as action from "../Action/ActionLogin"
 
-
-export default class Login extends Component<props, state> {
+class EnterYourPhone extends Component<props, state> {
     constructor(props: any){
         super(props)
         this.state = {
-            typeAction : "",
             numberPhone : ""
         }
     }
 
     componentDidMount(){
-        console.log(this.props)
-        this.setState({
-            typeAction : (this.props.typeAction == "singUp") ? "singUp" : "forgotPassword"
-        })
+        console.log(this.props.typeAction)
+        
         
     }
     checkPhone(){
@@ -29,18 +27,13 @@ export default class Login extends Component<props, state> {
         UserService.sendOTP(this.state.numberPhone).then((res)=>{
             // xiu nua se thay the dieu dien cua kiem tra so dien thoai
             if(true){
-                let userBase: BaseUserWithJwt = {};
-                userBase.mobile = this.state.numberPhone;
-                Actions.ConfirmOTP({
-                    typeAction : this.state.typeAction,
-                    data : userBase
-                })
-
+                this.props.onPhone(this.state.numberPhone);
+                Actions.confirmOTP()
             }
         })
     }
     render() {
-        console.log(this.state.typeAction);
+
         return (
             <KeyboardAvoidingView style={[myStyle.container, {alignItems : "center"}]}>
                 <View style={[myStyle.flex2]}>
@@ -77,7 +70,7 @@ export default class Login extends Component<props, state> {
                         <TouchableOpacity style={[myStyle.buttonLogin]}
                             activeOpacity={0.7}
                             onPress = {(event)=>{
-                                this.checkPhone
+                                this.checkPhone()
                             }}
                         >
                             <Text style  ={[myStyle.textButton]}>
@@ -97,9 +90,24 @@ export default class Login extends Component<props, state> {
 }
 
 type props = {
-
+    onPhone(numberPhone : string) : void,
+    typeAction : any
 }
 type state = {
     numberPhone : string,
-    typeAction : string,
 }
+function mapDispatchToProps(dispatch : any , props : any ){
+    return {
+        onPhone(numnerPhone : string){
+            dispatch(action.setNumberPhone(numnerPhone))
+        }
+    }
+}
+
+function mapStateToProps(state : any ){
+    return {
+        typeAction : state.LoginReducer.actionType
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(EnterYourPhone)

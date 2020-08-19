@@ -5,10 +5,11 @@ import LogoLogin from '../components/LogoLogin'
 
 import { Actions } from 'react-native-router-flux';
 
+import * as action from "../Action/ActionLogin";
+import {connect }  from "react-redux"
 
 
-
-export default class Login extends Component <props, state>{
+class setPassword extends Component <props, state>{
     constructor(props:any ){
         super(props)
         this.state = {
@@ -21,7 +22,7 @@ export default class Login extends Component <props, state>{
     checkPassword =()=>{
         var  getPass = this.refs.password;
         var getAgainPass = this.refs.againPassword;
-        console.log(getPass+"--"+ getAgainPass)
+        
     }
     render() {
         return (
@@ -49,7 +50,12 @@ export default class Login extends Component <props, state>{
                             placeholder={"password"}
                             maxLength = {60}
                             secureTextEntry={!this.state.checkbox}
-                            onChange = {this.checkPassword}
+                            value = {this.state.getPass}
+                            onChange = {(event)=>{
+                                this.setState({
+                                    getPass : event.target.value
+                                })
+                            }}
                         />
                     </View>
 
@@ -96,7 +102,9 @@ export default class Login extends Component <props, state>{
 }
 
 type props = {
-
+    typeAction : string,
+    phoneNumber : string,
+    codeOTP : string,
 }
 
 type state = {
@@ -104,3 +112,17 @@ type state = {
     getPass : string ,
     getAgainPass : string
 }
+
+function mapStateToProps(state : any ) {
+    return {
+        typeAction : state.LoginReducer.actionType,
+        phonenumber  : state.LoginReducer.numberPhone,
+        codeOTP : state.LoginReducer.codeOTP
+    }
+}
+
+function mapDispatchToProps(dispatch: any, props : any){
+    return null
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(setPassword)

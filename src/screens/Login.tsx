@@ -35,10 +35,7 @@ class Login extends Component<props, state> {
             else { 
                 let type = "OTPLogin"
                 this.props.onTypeActon("login")
-                Actions.confirmOTP({
-                    data : infoLogin,
-                    typeAction : "login"
-                });         
+                Actions.confirmOTP();         
             }
         })
 
@@ -92,10 +89,7 @@ class Login extends Component<props, state> {
                             <Text style={[{color : "#F8C400"}]}
                                 onPress = {(event)=>{
                                     this.props.onTypeActon("forgotPassword")
-                                    Actions.enterPhone({
-                                        data : "",
-                                        typeAction : "forgotPassword"
-                                    })
+                                    Actions.enterPhone()
                                 }}
                             >Forgot password</Text>
                         </TouchableOpacity>
@@ -118,10 +112,7 @@ class Login extends Component<props, state> {
                         <TouchableOpacity
                             onPress ={(event)=>{
                                     this.props.onTypeActon("signUp")
-                                    Actions.signUp({
-                                        data : "",
-                                        typeAction : "signUp"
-                                    })
+                                    Actions.signUp()
                                 }
    
                             }
@@ -138,7 +129,8 @@ class Login extends Component<props, state> {
 }
 
 type  props = {
-    onTypeActon(typeAction : string):void
+    onTypeActon(typeAction : string):void,
+    onJWT(JWT :string ) : void
 }
 
 type state = {
@@ -150,6 +142,9 @@ function mapDispatchProps(dispatch: any, props : any ){
     return {
         onTypeActon(typeAction : string){
             dispatch(action.setTypeAction(typeAction))
+        },
+        onJWT(JWT : string) {
+            dispatch(action.setJWT(JWT))
         }
     }
 }
