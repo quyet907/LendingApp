@@ -8,10 +8,11 @@ import { Actions } from 'react-native-router-flux';
 import { UserService } from '../services/UserService';
 import { IncomeService } from '../services/IncomeService';
 
+import {connect} from "react-redux"
+import * as action from "../Action/ActionLogin"
 
 
-
-export default class Login extends Component<props, state> {
+class Login extends Component<props, state> {
     constructor(props : any){
         super(props);
         this.state= {
@@ -33,6 +34,7 @@ export default class Login extends Component<props, state> {
             }
             else { 
                 let type = "OTPLogin"
+                this.props.onTypeActon("login")
                 Actions.confirmOTP({
                     data : infoLogin,
                     typeAction : "login"
@@ -89,7 +91,7 @@ export default class Login extends Component<props, state> {
                         <TouchableOpacity>
                             <Text style={[{color : "#F8C400"}]}
                                 onPress = {(event)=>{
-                                    
+                                    this.props.onTypeActon("forgotPassword")
                                     Actions.enterPhone({
                                         data : "",
                                         typeAction : "forgotPassword"
@@ -115,6 +117,7 @@ export default class Login extends Component<props, state> {
                         <Text style = {[{marginRight: 10, color : "white"}]}>You haven't acount</Text>
                         <TouchableOpacity
                             onPress ={(event)=>{
+                                    this.props.onTypeActon("signUp")
                                     Actions.signUp({
                                         data : "",
                                         typeAction : "signUp"
@@ -135,10 +138,20 @@ export default class Login extends Component<props, state> {
 }
 
 type  props = {
-
+    onTypeActon(typeAction : string):void
 }
 
 type state = {
     user : any,
     password: any
 }
+
+function mapDispatchProps(dispatch: any, props : any ){
+    return {
+        onTypeActon(typeAction : string){
+            dispatch(action.setTypeAction(typeAction))
+        }
+    }
+}
+
+export default  connect(null, mapDispatchProps)(Login) 

@@ -1,20 +1,41 @@
 const initLogin = {
-    actionType : "",
-    jwt : "",
-    numberPhone : "",
-    codeOTP : ""
+    actionType : "login",
+    jwt : "aaa",
+    numberPhone : "a",
+    codeOTP : "a"
 
 }
 const Login = (state: any = initLogin, action : any )=>{
+    console.log(action)
+    console.log(state)
     switch(action.type){
-        case "setAction" : {
-            ;
+        case "SET_ACTION" : {
             return {...state,
-            actionType : action.payload.actionType,
-            jwt : action.payload.jwt,
-            numberphone : action.payload.numberPhone,
-            codeOTP : action.payload.codeOTP
+            actionType : action.payload,
             }
+        }
+
+        case "SET_JWT" : {
+            return {...state,
+            jwt : action.payload,
+            }
+        }
+
+        case "SET_NUMBER_PHONE" : {
+            return {...state,
+            numberPhone : action.payload,
+            }
+        }
+
+        case "SET_CODE_OTP" : {
+            return {...state,
+            codeOTP : action.payload,
+            }
+        }
+
+        default : {
+
+            return {...state}
         }
 
     }
