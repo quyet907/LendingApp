@@ -5,6 +5,8 @@ import { TouchableOpacity, ScrollView, FlatList } from 'react-native-gesture-han
 import RefAbout from './RefAbout';
 import HistoryDetail from './HistoryDetail';
 import FlashMessage, { showMessage, hideMessage } from "react-native-flash-message";
+import { Referal } from '@Core/model/user/Referal';
+import { ReferralService } from '../../services/ReferralService';
 
 
 
@@ -17,12 +19,22 @@ const user = {
         { id: '43675434534535', time: '2020-08-15 15:12' },
         { id: '86746325345645', time: '2020-08-15 15:12' },
         { id: '71287482734892', time: '2020-08-15 15:12' },
-        
+
     ]
 };
 
 
-export default class Referral extends React.Component {
+export default class Referral extends React.Component<Props, State> {
+    constructor(props: any) {
+        super(props)
+        this.state = {
+            myReferral: []
+        }
+        ReferralService.getReferral().then(res => {
+            this.setState({ myReferral: res.rows })
+        })
+    }
+
     render() {
         return (
             <ScrollView style={{ backgroundColor: '#181f29' }}>
@@ -53,13 +65,13 @@ export default class Referral extends React.Component {
 
                     <View style={styles.refAbout}>
                         <RefAbout
-                            label='Tổng cộng'
-                            amount={user.amountRef}
+                            label='Total'
+                            amount={this.state.myReferral.length}
                             urlIcon='../../assets/icons8_user_groups_80px_1.png'
                         ></RefAbout>
                         <RefAbout
-                            label='Tiền thưởng'
-                            amount={user.profits}
+                            label='Reward'
+                            amount={this.state.myReferral.length * 1000}
                             urlIcon='../../assets/icons8_user_groups_80px_1.png'
                         ></RefAbout>
 
@@ -68,11 +80,16 @@ export default class Referral extends React.Component {
 
                 </View>
                 <View style={styles.container2}>
-                    <Text style={{ paddingBottom: 15, color: '#fff', fontSize: 17, fontWeight: 500 }}>My Referrals</Text>
+                    <Text style={{ paddingBottom: 15, color: '#fff', fontSize: 17, fontWeight: "500" }}>My Referrals</Text>
                     <Separator />
-                    <FlatList data={user.ref}
-                        renderItem={({ item }) => <HistoryDetail title={item.id} time={item.time} coin={1000} />}
-                        keyExtractor={item => item.id} />
+                    <FlatList data={this.state.myReferral}
+                        renderItem={({ item }) =>
+                            <HistoryDetail
+                                title={item.toUser?.username}
+                                time={item.createdAt}
+                                coin={1000}
+                            />}
+                        keyExtractor={item => item._id ? item._id : 'null ID'} />
 
 
 
@@ -92,6 +109,12 @@ export default class Referral extends React.Component {
             color: "#fff",
             duration: 500
         });
+    }
+
+
+    getTime = (date: Date | undefined): String => {
+        if (date !== undefined) return date.toString().substring(0, 10)
+        else return 'null'
     }
 }
 
@@ -159,7 +182,15 @@ const styles = StyleSheet.create({
         paddingBottom: 15,
         color: '#fff',
         fontSize: 17,
-        fontWeight: 500
+        fontWeight: "500"
     }
 
 })
+
+type Props = {
+
+}
+
+type State = {
+    myReferral: Array<Referal>
+}
