@@ -34,12 +34,11 @@ const MyTransitionSpec = ({
 
 const scenes = Actions.create(
     <Scene    key="root" duration={4}>
-      <Scene  key="login" component={Login} hideNavBar={true} />
-        <Scene  key="home" component={PageHome} hideNavBar={true} />
       
+      <Scene  key="login" component={Login} hideNavBar={true} />
      <Scene  key="home" component={PageHome} hideNavBar={true} />
       
-    
+      <Scene  key="home" component={PageHome} hideNavBar={true} />
       
       <Scene  key="enterPhone" component={EnterYourPhone} hideNavBar={true}  typeAction = ""/>
       <Scene  key="signUp" component={EnterYourPhone} hideNavBar={true} />

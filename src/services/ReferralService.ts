@@ -21,4 +21,20 @@ export class ReferralService  {
 
     }
 
+    public static getMe(): Promise<BaseModel> {
+        
+        return Axios({
+            method: 'GET',
+            url: 'http://localhost:4000/user/me',
+            headers: {
+                'Authorization': `Bearer ${access_token}`
+            }
+        }).then((res) => { return res.data; })
+            .catch((err) => console.log(err));
+        //throw new Error("this function is not implement");
+
+    }
+
+
+
 }

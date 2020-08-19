@@ -28,10 +28,14 @@ export default class Referral extends React.Component<Props, State> {
     constructor(props: any) {
         super(props)
         this.state = {
-            myReferral: []
+            myReferral: [],
+            myID: "ID is null"
         }
         ReferralService.getReferral().then(res => {
             this.setState({ myReferral: res.rows })
+        })
+        ReferralService.getMe().then(res => {
+            this.setState({myID: res._id != undefined ? res._id : "null"})
         })
     }
 
@@ -48,7 +52,7 @@ export default class Referral extends React.Component<Props, State> {
                         marginVertical: 10
                     }}>
                         <TextInput
-                            defaultValue={user.urlRef}
+                            value={this.getLinkRef()}
                             style={styles.urlRef}
                             editable={false}
                             textContentType={'URL'}
@@ -86,7 +90,7 @@ export default class Referral extends React.Component<Props, State> {
                         renderItem={({ item }) =>
                             <HistoryDetail
                                 title={item.toUser?.username}
-                                time={item.createdAt}
+                                time={this.getTime( item.createdAt)}
                                 coin={1000}
                             />}
                         keyExtractor={item => item._id ? item._id : 'null ID'} />
@@ -100,7 +104,7 @@ export default class Referral extends React.Component<Props, State> {
         )
     }
     copyToClipboard = () => {
-        Clipboard.setString(user.urlRef)
+        Clipboard.setString(this.getLinkRef())
         showMessage({
             message: "Copied!",
             type: "success",
@@ -115,6 +119,12 @@ export default class Referral extends React.Component<Props, State> {
     getTime = (date: Date | undefined): String => {
         if (date !== undefined) return date.toString().substring(0, 10)
         else return 'null'
+    }
+
+    getLinkRef = () => {
+        console.log(this.state.myID);
+        
+        return 'https://lendinggame.com/ref=?' + this.state.myID
     }
 }
 
@@ -192,5 +202,6 @@ type Props = {
 }
 
 type State = {
-    myReferral: Array<Referal>
+    myReferral: Array<Referal>,
+    myID: String
 }

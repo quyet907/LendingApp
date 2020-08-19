@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
         flex: 1,
         opacity: 0.5,
         marginHorizontal: 6,
-    
+        width: 115
      
 
     },
@@ -63,13 +63,14 @@ const styles = StyleSheet.create({
         marginHorizontal: 6,
         borderWidth: 1,
         borderColor: '#ddd',
-        opacity: 1
+        opacity: 1,
+        width: 115
     },
     pakageSelected: {
-        backgroundColor: '#f2c73a', alignItems: 'center', justifyContent: 'center', paddingVertical: 3
+        backgroundColor: '#f2c73a', alignItems: 'center', justifyContent: 'center', paddingVertical: 3, 
     },
     pakage: {
-        backgroundColor: '#FA801', alignItems: 'center', justifyContent: 'center', paddingVertical: 3
+        backgroundColor: '#FA801', alignItems: 'center', justifyContent: 'center', paddingVertical: 3, 
     },
     itemLabel: {
         color: '#fff',

@@ -85,120 +85,120 @@ export default class Lending extends React.Component<Props, State>{
 
     render() {
         return (
-
-            <ScrollView style={{ backgroundColor: '#181f29' }}>
-                <View style={styles.container}>
-                    <Text style={styles.textLabel}>INVEST</Text>
-                    <View style={{ flexDirection: 'row', justifyContent: 'center', marginTop: 10 }}>
-                        <Text style={styles.textLabel}>CHOOSE ONE PACKAGE</Text>
-                    </View>
-
-                    <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                        {this.state.packages.map((item: any) => item._id == this.state.packageID ?
-                            <Package
-                                package={item}
-                                setSelection={this.state.packageSelected}
-                                isSelected={() => {
-                                    this.setState({
-                                        packageSelected: this.state.packageSelected,
-                                        minInvestment: item.minInvestment
-                                    })
-                                }}
-                            /> :
-                            <Package
-                                package={item}
-                                setSelection={!this.state.packageSelected}
-                                isSelected={() => {
-                                    this.setState({ packageID: item._id })
-                                }}
-                            />
-                        )}
-                    </View>
-
-                    <View style={{ flexDirection: 'row', justifyContent: 'center', marginTop: 30 }}>
-                        <Text style={styles.textLabel}>Wallet Balance: {user.coinBalance} COIN</Text>
-                    </View>
-
-                    <View style={{
-
-                        flexDirection: 'row',
-                        height: 35,
-
-
-                    }}>
-                        <View style={{
-                            flexGrow: 1,
-                            backgroundColor: '#f2c73a',
-                            paddingHorizontal: 10,
-                            height: '100%',
-                            alignItems: 'center',
-                            justifyContent: 'center'
-                        }}>
-                            <Text style={styles.copyText}>COIN</Text>
+            <View style={{ flex: 1 }}>
+                <ScrollView style={{ backgroundColor: '#181f29' }}>
+                    <View style={styles.container}>
+                        <Text style={styles.textLabel}>INVEST</Text>
+                        <View style={{ flexDirection: 'row', justifyContent: 'center', marginTop: 10 }}>
+                            <Text style={styles.textLabel}>CHOOSE ONE PACKAGE</Text>
                         </View>
-                        <TextInput
-                            value={this.state.initialValue}
-                            keyboardType={'number-pad'}
-                            style={styles.inputCoin}
-                            onChangeText={text => {
-                                this.setState({
-                                    initialValue: parseInt(text),
-                                }, () => {
-                                    console.log(this.state);
-                                    console.log(this.state.initialValue >= this.state.minInvestment);
-                                    this.setState({
-                                        buttonInvest: (this.state.initialValue >= this.state.minInvestment) && (this.state.initialValue <= this.state.maxInvestment)
-                                    })
-                                })
 
-                            }
-                            }
+                        <ScrollView horizontal contentContainerStyle={{ flexGrow: 1, justifyContent: 'center' }}>
+                            {this.state.packages.map((item: any) => item._id == this.state.packageID ?
+                                <Package
+                                    package={item}
+                                    setSelection={this.state.packageSelected}
+                                    isSelected={() => {
+                                        this.setState({
+                                            packageSelected: this.state.packageSelected,
+                                            minInvestment: item.minInvestment
+                                        })
+                                    }}
+                                /> :
+                                <Package
+                                    package={item}
+                                    setSelection={!this.state.packageSelected}
+                                    isSelected={() => {
+                                        this.setState({ packageID: item._id })
+                                    }}
+                                />
+                            )}
+                        </ScrollView>
 
-                        />
-                        <TouchableOpacity
-                            style={{
-                                flex: 1,
+                        <View style={{ flexDirection: 'row', justifyContent: 'center', marginTop: 30 }}>
+                            <Text style={styles.textLabel}>Wallet Balance: {user.coinBalance} COIN</Text>
+                        </View>
+
+                        <View style={{
+
+                            flexDirection: 'row',
+                            height: 35,
+
+
+                        }}>
+                            <View style={{
                                 flexGrow: 1,
                                 backgroundColor: '#f2c73a',
                                 paddingHorizontal: 10,
                                 height: '100%',
                                 alignItems: 'center',
                                 justifyContent: 'center'
-                            }}
-                            onPress={() => this.allCoin()}
-                        >
-                            <Text style={styles.copyText}>&lt;ALL</Text>
-                        </TouchableOpacity >
-                    </View>
+                            }}>
+                                <Text style={styles.copyText}>COIN</Text>
+                            </View>
+                            <TextInput
+                                value={this.state.initialValue}
+                                keyboardType={'number-pad'}
+                                style={styles.inputCoin}
+                                onChangeText={text => {
+                                    this.setState({
+                                        initialValue: parseInt(text),
+                                    }, () => {
+                                        console.log(this.state);
+                                        console.log(this.state.initialValue >= this.state.minInvestment);
+                                        this.setState({
+                                            buttonInvest: (this.state.initialValue >= this.state.minInvestment) && (this.state.initialValue <= this.state.maxInvestment)
+                                        })
+                                    })
+
+                                }
+                                }
+
+                            />
+                            <TouchableOpacity
+                                style={{
+                                    flex: 1,
+                                    flexGrow: 1,
+                                    backgroundColor: '#f2c73a',
+                                    paddingHorizontal: 10,
+                                    height: '100%',
+                                    alignItems: 'center',
+                                    justifyContent: 'center'
+                                }}
+                                onPress={() => this.allCoin()}
+                            >
+                                <Text style={styles.copyText}>&lt;ALL</Text>
+                            </TouchableOpacity >
+                        </View>
 
 
-                    <View style={{ flexDirection: 'row', justifyContent: 'center', marginTop: 10, alignItems: 'center' }}>
-                        <CheckBox
-                            value={this.state.isSelected}
-                            onValueChange={() => {
-                                this.setState({
-                                    isSelected: !this.state.isSelected
-                                })
-                            }}
-                        //style={styles.checkbox}
-                        />
-                        <Text style={{ color: '#fff', paddingLeft: 10 }}>I have read and understood your terms of use</Text>
-                    </View>
+                        <View style={{ flexDirection: 'row', justifyContent: 'center', marginTop: 10, alignItems: 'center' }}>
+                            <CheckBox
+                                value={this.state.isSelected}
+                                onValueChange={() => {
+                                    this.setState({
+                                        isSelected: !this.state.isSelected
+                                    })
+                                }}
+                            //style={styles.checkbox}
+                            />
+                            <Text style={{ color: '#fff', paddingLeft: 10 }}>I have read and understood your terms of use</Text>
+                        </View>
 
-                    <View style={{ flexDirection: 'row', justifyContent: 'center', marginTop: 20, marginBottom: 20, alignItems: 'center' }}>
-                        <TouchableOpacity
-                            style={this.state.buttonInvest ? styles.buttonActive : styles.buttonInactive}
-                            disabled={!this.state.buttonInvest}
-                            onPress={() => this.setState({ confirmModal: true })}
-                        >
-                            <Text style={{
-                                paddingHorizontal: 10, paddingVertical: 6, fontSize: 16,
-                                fontWeight: "700"
-                            }}>INVEST</Text>
-                        </TouchableOpacity >
+                        <View style={{ flexDirection: 'row', justifyContent: 'center', marginTop: 20, marginBottom: 20, alignItems: 'center' }}>
+                            <TouchableOpacity
+                                style={this.state.buttonInvest ? styles.buttonActive : styles.buttonInactive}
+                                disabled={!this.state.buttonInvest}
+                                onPress={() => this.setState({ confirmModal: true })}
+                            >
+                                <Text style={{
+                                    paddingHorizontal: 10, paddingVertical: 6, fontSize: 16,
+                                    fontWeight: "700"
+                                }}>INVEST</Text>
+                            </TouchableOpacity >
 
 
-                        {/* <Button
+                            {/* <Button
                             onPress={() => Alert.alert('Cannot press this one')}
                             title="INVEST"
                             color="#f2c73a"
@@ -208,36 +208,39 @@ export default class Lending extends React.Component<Props, State>{
 
 
 
+                        </View>
+
+
+
+
+
+
+
+
+                    </View>
+                    <View style={styles.container2}>
+                        <Text style={styles.textLabel}>My Investsment</Text>
+                        <Separator />
+                        <FlatList data={this.state.myInvest}
+                            renderItem={({ item }) =>
+                                <HistoryDetail
+                                    title={item.lendingPackage?.name + " | " + item.loanAmount + " COIN"}
+                                    time={this.getTime(item.createdAt) + "   |   " + this.getDaysLeft(item.createdAt) + "/30 days"}
+                                    coin={this.profits(item.loanAmount ? item.loanAmount : 0, this.getDaysLeft(item.createdAt), item.lendingPackage?.profitPerDay)}
+                                />
+                            }
+                            keyExtractor={item => item._id != undefined ? item._id : 'null'} />
+
+
+
+
                     </View>
 
 
-
-                   
-
-
-
-
-                </View>
-                <View style={styles.container2}>
-                    <Text style={styles.textLabel}>My Investsment</Text>
-                    <Separator />
-                    <FlatList data={this.state.myInvest}
-                        renderItem={({ item }) =>
-                            <HistoryDetail
-                                title={item.lendingPackage?.name + " | " + item.loanAmount + " COIN"}
-                                time={this.getTime(item.createdAt) + "   |   " + this.getDaysLeft(item.createdAt) + "/30 days"}
-                                coin={this.profits(item.loanAmount ? item.loanAmount : 0, this.getDaysLeft(item.createdAt), item.lendingPackage?.profitPerDay)}
-                            />
-                        }
-                        keyExtractor={item => item._id != undefined ? item._id : 'null'} />
-
-
-
-
-                </View>
+                </ScrollView>
                 <PopupConfirm
                     confirmModal={this.state.confirmModal}
-                    hideBtnCancel={true}
+                    hideBtnCancel={false}
                     buttonOK={() => {
                         console.log('button ok')
                         this.invest()
@@ -251,8 +254,7 @@ export default class Lending extends React.Component<Props, State>{
                     title='Confirm'
                     message='Are you sure want to invest?'
                 />
-                
-            </ScrollView>
+            </View>
         )
     }
 
@@ -273,7 +275,7 @@ export default class Lending extends React.Component<Props, State>{
     }
 
     profits = (amount: number, getDaysLeft: number, profitsPerDay: number): number => {
-        let profit: number = (amount * (1 + profitsPerDay/100)*getDaysLeft) - amount;
+        let profit: number = (amount * (1 + profitsPerDay / 100) * getDaysLeft) - amount;
         return Math.ceil(profit);
     }
 

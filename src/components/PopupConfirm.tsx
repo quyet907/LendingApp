@@ -9,14 +9,14 @@ export default class PopupConfirm extends React.Component<Props, {}>{
     render() {
         return (
             <View style={this.props.confirmModal ? styles.confirmModalActive : { display: 'none' }}>
-                <View style={{ position: 'absolute', zIndex: 5, backgroundColor: '#fff', width: '80%', height: '20%', flexDirection: 'column', padding: 15 }}>
+                <View style={{ position: 'absolute', zIndex: 5, backgroundColor: '#fff', width: '80%', height: 155, flexDirection: 'column', padding: 15 }}>
                     <View style={{ flexDirection: 'row', flex: 1 }}>
         <Text> {this.props.title}</Text>
                     </View>
                     <View style={{ flexDirection: 'row', flex: 1 }}>
                         <Text>{this.props.message}</Text>
                     </View>
-                    <View style={{ flexDirection: 'row', justifyContent: 'flex-end', flex: 1 , alignItems: 'center'}}>
+                    <View style={{ flexDirection: 'row', justifyContent: 'center', flex: 1 , alignItems: 'center'}}>
                         {this.props.hideBtnCancel ? null : <Button title='Cancel' onPress={() => this.props.buttonCancel()}></Button>}
                         
                         <Text style={{ marginHorizontal: 5 }}></Text>
