@@ -72,7 +72,6 @@ type Props = {
     buttonOK: any,
     buttonCancel: any,
     hideBtnCancel: boolean,
-
     title: String,
     message: String
 

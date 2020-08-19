@@ -19,7 +19,8 @@ class setPassword extends Component<props, state>{
             getPass: "",
             getAgainPass: "",
             showPopup: false,
-            contentPopup : ""
+            contentPopup : "",
+            
         }
     }
 
@@ -27,7 +28,9 @@ class setPassword extends Component<props, state>{
         var getPass: any = this.state.getPass;
         var getAgainPass: any = this.state.getAgainPass;
         var error = UserService.checkValidate(getPass, getAgainPass);
+        console.log(this.props.phoneNumber + "--" + this.props.codeOTP + "--" + this.props.typeAction)
 
+  
         if (error!= null) {
             this.setState({
                 contentPopup : error,
@@ -35,16 +38,15 @@ class setPassword extends Component<props, state>{
                 
             })
         }
+        
         else {
             if (this.props.typeAction == "signUp") {
                 UserService.register(this.props.phoneNumber, getPass, this.props.codeOTP).then(res => {
-                    if(!res){
                         this.setState({
-                            contentPopup : "Fail",
+                            contentPopup : res,
                             showPopup : true
                             
                         })
-                    }
                 })
             }
             else {
@@ -53,7 +55,6 @@ class setPassword extends Component<props, state>{
                         this.setState({
                             contentPopup : "Fail",
                             showPopup : true
-                            
                         })
                     }
                 })
@@ -65,8 +66,13 @@ class setPassword extends Component<props, state>{
         return (
             <KeyboardAvoidingView style={[myStyle.container, { alignItems: "center" }]}>
                 <PopupConfirm
+                    hideBtnCancel = {false}
                     confirmModal={this.state.showPopup}
-                    buttonOK={() => this.setState({ showPopup: false })}
+                    buttonOK={() => {
+                        
+                        this.setState({ showPopup: false })}
+                        
+                    }
                     buttonCancel={() => this.setState({ showPopup: false })}
                     title='Confirm'
                     message= {this.state.contentPopup}
@@ -170,7 +176,7 @@ type state = {
 function mapStateToProps(state: any) {
     return {
         typeAction: state.LoginReducer.actionType,
-        phonenumber: state.LoginReducer.numberPhone,
+        phoneNumber: state.LoginReducer.numberPhone,
         codeOTP: state.LoginReducer.codeOTP
     }
 }

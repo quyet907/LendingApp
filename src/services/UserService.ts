@@ -9,8 +9,7 @@ export class UserService {
         let typeLogin: "phonenumber";
 
         let getDataLogin: any;
-        user = "0989320982";
-        pass = "1111";
+
 
         return axios.post("http://localhost:4000/public/user/login",
             {
@@ -41,8 +40,8 @@ export class UserService {
                 "otpCode": codeOTP
             })
             .then(res => {
-                if (res.data.name = "Error") {
-                    return res.data.message
+                if (res.data.name == "Error") {
+                    return "error"
                 }
                 else {
                     return "success"
@@ -71,7 +70,7 @@ export class UserService {
 
     }
 
-    public static verifyOTP(OTP: string, phoneNumber: string): Promise<boolean> {
+    public static verifyOTP(OTP: string, phoneNumber: string): Promise<string|null> {
         return axios.post("http://localhost:4000/public/user/verifyOTP",
             {
                 "code": OTP,
@@ -79,11 +78,14 @@ export class UserService {
             })
             .then(res => {
                 if (res.data.success) {
-                    return true;
+                    return null;
                 }
                 else {
-                    return false;
+                    return "insuccess";
                 }
+            })
+            .catch(err =>{
+                return "error with server"
             })
     }
 
@@ -116,6 +118,12 @@ export class UserService {
         return null;
     }
 
+    public static checkValidatePhone=(phone : string) : string|null =>{
+        if(phone.length ==0){
+            return "number phone is not null";
+        }
+        return null;
+    }
 
 
 }

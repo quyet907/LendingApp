@@ -10,7 +10,7 @@ export default class Home extends Component<props , state> {
     constructor(props : any ){
         super(props );
         this.state = {
-            data : [20, 15,1,29,29,22,42,12]
+            
         }
     }
     
@@ -19,9 +19,7 @@ export default class Home extends Component<props , state> {
             <ScrollView style = {[myStyle.container]} showsVerticalScrollIndicator = {false}>
                 <View style = {[myStyle.container]}>
                     <View style = {[myStyle.charHome]}>
-                        <ChartHome
-                            data = {[20, 15,1,29,29,22,42,12]}
-                        ></ChartHome>
+                        <ChartHome ></ChartHome>
                     </View>
                     <View style = {[]}>
                         <ListStatisticalBasic></ListStatisticalBasic>

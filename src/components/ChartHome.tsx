@@ -93,7 +93,7 @@ export default class ChartHome extends Component<props, state> {
 }
 
 type props ={
-    data : any
+    
 }
 
 type state = {

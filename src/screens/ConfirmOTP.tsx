@@ -17,7 +17,8 @@ class ConfirmOTP extends Component<props, state> {
             getCodeOTP: "",
             baseUser: {},
             showPopup: false,
-            contentPopup : ""
+            contentPopup : "",
+
         }
     }
 
@@ -29,12 +30,19 @@ class ConfirmOTP extends Component<props, state> {
     checkOTP() {
 
         UserService.verifyOTP(this.state.getCodeOTP, this.props.NumeberPhone).then((res) => {
-            if(res) (this.props.typeAction == "login") ? Actions.home() : Actions.password()
+            if(res == null) {
+                if(this.props.typeAction == "login"){
+                    Actions.home()
+                }
+                else {
+                    this.props.onCodeOTP(this.state.getCodeOTP)
+                    Actions.password();
+                }
+            }
             else{
                 this.setState({
-                    contentPopup : "OTP is incorrect",
+                    contentPopup : res,
                     showPopup : true
-                    
                 })
             }
         })
@@ -47,6 +55,7 @@ class ConfirmOTP extends Component<props, state> {
         return (
             <KeyboardAvoidingView style={[myStyle.container, { alignItems: "center" }]}>
                 <PopupConfirm
+                    hideBtnCancel = {false}
                     confirmModal={this.state.showPopup}
                     buttonOK={() => this.setState({ showPopup: false })}
                     buttonCancel={() => this.setState({ showPopup: false })}
