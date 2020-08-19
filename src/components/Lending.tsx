@@ -36,6 +36,7 @@ const user = {
 
 
 
+
 export default class Lending extends React.Component<Props, State>{
     constructor(props: any) {
         super(props)
@@ -77,6 +78,16 @@ export default class Lending extends React.Component<Props, State>{
     componentDidMount() {
     }
 
+    // componentDidMount(){
+    //    this.setState({
+    //        dataPackage: LendingPackageService.getLendingPackage()
+           
+    //    })
+    //    console.log(this.state.dataPackage)
+        
+     
+    // }
+
     render() {
         return (
 
@@ -106,7 +117,7 @@ export default class Lending extends React.Component<Props, State>{
                                     this.setState({ packageID: item._id })
                                 }}
                             />
-                        )}
+                        )} 
                     </View>
 
                     <View style={{ flexDirection: 'row', justifyContent: 'center', marginTop: 30 }}>
@@ -394,7 +405,6 @@ type State = {
     packages: LendingPackage[],
     minInvestment: number,
     maxInvestment: number,
-
     buttonInvest: boolean,
     confirmModal: boolean,
 

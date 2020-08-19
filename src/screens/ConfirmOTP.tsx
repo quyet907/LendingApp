@@ -3,10 +3,36 @@ import { View, Image, Text, Button, TextInput , KeyboardAvoidingView, TouchableO
 import myStyle from "../style"
 
 import { Actions } from 'react-native-router-flux';
+import { BaseUserWithJwt } from '@Core/model/user/BaseUser';
+import { UserService } from '../services/UserService';
 
 
 
-export default class Login extends Component {
+export default class Login extends Component <props, state> {
+    constructor(props : any ){
+        super(props)
+        this.state = {
+            getCodeOTP : "",
+            baseUser : {}
+        }
+    }
+
+    componentDidMount(){
+
+        console.log(this.props);
+        // let getDataProps : BaseUserWithJwt = this.props.infoLogin;
+
+        // if(getDataProps){
+        //     this.setState({
+        //         baseUser : getDataProps
+        //     })
+         
+        // }
+        
+    }
+
+    
+
     render() {
         return (
             <KeyboardAvoidingView style={[myStyle.container, {alignItems : "center"}]}>
@@ -30,15 +56,35 @@ export default class Login extends Component {
                             style = {[myStyle.inputLogin, {marginTop : 30}]}
                             selectionColor='red'
                             placeholder = {"enter otp"}
-                            keyboardType={'numeric'}
-
+                            // keyboardType={'numeric'}
+                            value = {this.state.getCodeOTP}
+                            onChange={(event )=>{
+                                this.setState({
+                                    getCodeOTP: event.target.value
+                                })
+                                
+                            } }
                         />
                     </View>
 
                     <View style={[myStyle.frbuttonLogin, {marginTop : 30}]}>
                         <TouchableOpacity style={[myStyle.buttonLogin]}
                             activeOpacity={0.7}
-                            onPress = {Actions.password}
+                            onPress = {(event)=>{
+                                let getOTPForm = this.state.getCodeOTP;
+                                let getPhone = this.state.baseUser.username;
+                                if(getPhone!=undefined){
+                                    UserService.verifyOTP(getOTPForm, getPhone).then((res)=>{
+                                        if(res){
+
+                                            if(this.state.baseUser.jwt!=""){
+                                                console.log("on jwt ");
+                                                Actions.enterPhone 
+                                            }
+                                        }
+                                    })
+                                }
+                            }}
                         >
                             <Text style  ={[myStyle.textButton]}>
                                 confirm
@@ -63,4 +109,12 @@ export default class Login extends Component {
             </KeyboardAvoidingView>
         )
     }
+}
+type props = {
+
+}
+
+type state = {
+    getCodeOTP : string;
+    baseUser : BaseUserWithJwt;
 }

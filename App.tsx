@@ -19,7 +19,8 @@ import Profile from './src/components/Profile'
 import ReferralScreen from './src/screens/ReferralScreen';
 import LendingScreen from './src/screens/LendingScreen';
 import Home from './src/screens/Home';
-
+import store from "./src/reducer/store"
+import {Provider} from "react-redux"
 const MyTransitionSpec = ({
     duration: 1000,
     // easing: Easing.bezier(0.2833, 0.99, 0.31833, 0.99),
@@ -33,13 +34,16 @@ const MyTransitionSpec = ({
 
 const scenes = Actions.create(
     <Scene    key="root" duration={4}>
-     <Scene  key="home" component={PageHome} hideNavBar={true} />
       <Scene  key="login" component={Login} hideNavBar={true} />
-      <Scene  key="enterPhone" component={EnterYourPhone} hideNavBar={true} />
+     <Scene  key="home" component={PageHome} hideNavBar={true} />
+      
+      <Scene  key="home" component={PageHome} hideNavBar={true} />
+      
+      <Scene  key="enterPhone" component={EnterYourPhone} hideNavBar={true}  typeAction = ""/>
       <Scene  key="signUp" component={EnterYourPhone} hideNavBar={true} />
-      <Scene  key="confirmOtp" component={ConfirmOTP} hideNavBar={true} />
+      <Scene  key="confirmOTP" component={ConfirmOTP} hideNavBar={true} typeAction = "" />
       <Scene  key="password" component={SetPassWord} hideNavBar={true} />
-       
+
     </Scene>
   );
 {/* <Router scenes={scenes}/> */}
@@ -54,7 +58,7 @@ const tabProps = {
   BackgroundColor: '#202833'
 }
 
-const nav = <PageHome></PageHome>
+
 
 
 export default class App extends React.Component<Props, {}>{
@@ -64,7 +68,9 @@ export default class App extends React.Component<Props, {}>{
 
   render() {
     return (
-        <Router scenes={scenes}/>
+        <Provider store = {store}>
+          <Router scenes={scenes}/>
+        </Provider>
     );
   }
 
