@@ -224,9 +224,11 @@ export default class Lending extends React.Component<Props, State>{
                         <FlatList data={this.state.myInvest}
                             renderItem={({ item }) =>
                                 <HistoryDetail
-                                    title={item.lendingPackage?.name + " | " + item.loanAmount + " COIN"}
+                                    title={item.lendingPackage?.name || "undefined"}
+                                    type={true}
+                                    typeLabel="AMOUNT"
                                     time={this.getTime(item.createdAt) + "   |   " + this.getDaysLeft(item.createdAt) + "/30 days"}
-                                    coin={this.profits(item.loanAmount ? item.loanAmount : 0, this.getDaysLeft(item.createdAt), item.lendingPackage?.profitPerDay)}
+                                    coin={item.loanAmount || 0}
                                 />
                             }
                             keyExtractor={item => item._id != undefined ? item._id : 'null'} />
@@ -263,13 +265,13 @@ export default class Lending extends React.Component<Props, State>{
         else return 'null'
     }
 
-    getDaysLeft = (dateStart: Date | undefined): number => {
+    getDaysLeft = (startDate: Date | undefined): number => {
         const currentDate: Date = new Date();
-
-        if (dateStart !== undefined) {
-            const daysLeft = Math.floor((Date.parse(currentDate.toString()) - Date.parse(dateStart.toString())) / (1000 * 60 * 60 * 24)
+        
+        if (startDate) {
+            const daysLeft = Math.floor((Date.parse(currentDate.toJSON().substr(0,10)) - Date.parse(startDate.toString().substr(0,10))) / (1000 * 60 * 60 * 24)
             )
-            return daysLeft == 29 ? 29 : daysLeft + 1
+            return daysLeft > 30 ? 30 : daysLeft 
         }
         return 0
     }
