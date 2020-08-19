@@ -3,7 +3,7 @@ import { View, StyleSheet, Text, Image } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import Separator from '../Separator'
 
-const timeIcon = <Icon name="access-time" size={13} color='#868685' solid />;
+const timeIcon = <Icon name="access-time" size={13} color='#868685' />;
 export default class HistoryDetail extends React.Component<Props, {}>{
     constructor(props: any) {
         super(props)
@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
     title: {
         color: '#fff',
         fontSize: 15,
-        fontWeight: 600,
+        fontWeight: "600",
      
     }, 
     time: {
@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
     coin: {
         fontSize: 15,
         color: '#00FE00',
-        fontWeight: 650
+        fontWeight: "600"
     }
 
 
