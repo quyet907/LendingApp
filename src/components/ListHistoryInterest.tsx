@@ -17,13 +17,7 @@ export default class ListHistoryInterest extends Component<props , state> {
     render() {
         return (
             <View style = {myStyle.listHistoryInterest}>
-                <HistoryInterest ></HistoryInterest>
-                <HistoryInterest ></HistoryInterest>
-                <HistoryInterest ></HistoryInterest>
-                <HistoryInterest ></HistoryInterest>
-                <HistoryInterest ></HistoryInterest>
-                <HistoryInterest ></HistoryInterest>
-                <HistoryInterest ></HistoryInterest>
+               
                 <HistoryInterest ></HistoryInterest>
                 <HistoryInterest ></HistoryInterest>
             </View>

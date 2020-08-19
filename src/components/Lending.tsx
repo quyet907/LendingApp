@@ -28,11 +28,6 @@ const user = {
     ]
 };
 
-// const DATA = [
-//     { id: 1, name: 'SILVER', minInvestment: 1000, maxInvestment: 5000, profitPerDay: 10, cappitalBackIn: 45 },
-//     { id: 2, name: 'GOLD', minInvestment: 1000, maxInvestment: 5000, profitPerDay: 10, cappitalBackIn: 45 },
-//     { id: 3, name: 'PRE', minInvestment: 1000, maxInvestment: 5000, profitPerDay: 10, cappitalBackIn: 45 }
-// ];
 
 
 
@@ -81,11 +76,11 @@ export default class Lending extends React.Component<Props, State>{
     // componentDidMount(){
     //    this.setState({
     //        dataPackage: LendingPackageService.getLendingPackage()
-           
+
     //    })
     //    console.log(this.state.dataPackage)
-        
-     
+
+
     // }
 
     render() {
@@ -117,7 +112,7 @@ export default class Lending extends React.Component<Props, State>{
                                     this.setState({ packageID: item._id })
                                 }}
                             />
-                        )} 
+                        )}
                     </View>
 
                     <View style={{ flexDirection: 'row', justifyContent: 'center', marginTop: 30 }}>
@@ -217,6 +212,9 @@ export default class Lending extends React.Component<Props, State>{
 
 
 
+                   
+
+
 
 
                 </View>
@@ -224,8 +222,13 @@ export default class Lending extends React.Component<Props, State>{
                     <Text style={styles.textLabel}>My Investsment</Text>
                     <Separator />
                     <FlatList data={this.state.myInvest}
-                        renderItem={({ item }) => <HistoryDetail title={item.lendingPackage?.name + " | " + item.loanAmount + " COIN"}
-                            time={this.getTime(item.createdAt) + "   |   " + this.getDaysLeft(item.createdAt)} coin={1000} />}
+                        renderItem={({ item }) =>
+                            <HistoryDetail
+                                title={item.lendingPackage?.name + " | " + item.loanAmount + " COIN"}
+                                time={this.getTime(item.createdAt) + "   |   " + this.getDaysLeft(item.createdAt) + "/30 days"}
+                                coin={this.profits(item.loanAmount ? item.loanAmount : 0, this.getDaysLeft(item.createdAt), item.lendingPackage?.profitPerDay)}
+                            />
+                        }
                         keyExtractor={item => item._id != undefined ? item._id : 'null'} />
 
 
@@ -234,15 +237,21 @@ export default class Lending extends React.Component<Props, State>{
                 </View>
                 <PopupConfirm
                     confirmModal={this.state.confirmModal}
-                    buttonOK={() => {console.log('button ok')}}
-                    buttonCancel={ () => {
-                        this.setState({confirmModal: false})
+                    hideBtnCancel={true}
+                    buttonOK={() => {
+                        console.log('button ok')
+                        this.invest()
+                        this.setState({ confirmModal: false })
+                    }}
+                    buttonCancel={() => {
+                        this.setState({ confirmModal: false })
                         //console.log('cancel');
-                        
+
                     }}
                     title='Confirm'
                     message='Are you sure want to invest?'
                 />
+                
             </ScrollView>
         )
     }
@@ -252,20 +261,20 @@ export default class Lending extends React.Component<Props, State>{
         else return 'null'
     }
 
-    getDaysLeft = (dateStart: Date | undefined): String => {
+    getDaysLeft = (dateStart: Date | undefined): number => {
         const currentDate: Date = new Date();
 
         if (dateStart !== undefined) {
             const daysLeft = Math.floor((Date.parse(currentDate.toString()) - Date.parse(dateStart.toString())) / (1000 * 60 * 60 * 24)
             )
-            return `${daysLeft + 1}/30 days`
+            return daysLeft == 29 ? 29 : daysLeft + 1
         }
-        return 'null'
+        return 0
     }
 
-    profits = (createAt: Date | undefined): Number => {
-
-        return 1000;
+    profits = (amount: number, getDaysLeft: number, profitsPerDay: number): number => {
+        let profit: number = (amount * (1 + profitsPerDay/100)*getDaysLeft) - amount;
+        return Math.ceil(profit);
     }
 
     invest = () => {

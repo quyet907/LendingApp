@@ -16,10 +16,11 @@ export default class PopupConfirm extends React.Component<Props, {}>{
                     <View style={{ flexDirection: 'row', flex: 1 }}>
                         <Text>{this.props.message}</Text>
                     </View>
-                    <View style={{ flexDirection: 'row', justifyContent: 'flex-end', flex: 1 }}>
-                        <Button title='Cancel' onPress={() => this.props.buttonCancel()}></Button>
+                    <View style={{ flexDirection: 'row', justifyContent: 'flex-end', flex: 1 , alignItems: 'center'}}>
+                        {this.props.hideBtnCancel ? null : <Button title='Cancel' onPress={() => this.props.buttonCancel()}></Button>}
+                        
                         <Text style={{ marginHorizontal: 5 }}></Text>
-                        <Button title='OK' onPress={() => {
+                        <Button title='OK'  onPress={() => {
                             this.props.buttonOK()
                         }
                         }></Button>
@@ -70,8 +71,11 @@ type Props = {
     confirmModal: boolean,
     buttonOK: any,
     buttonCancel: any,
+    hideBtnCancel: boolean,
+
     title: String,
     message: String
+
 }
 
 
