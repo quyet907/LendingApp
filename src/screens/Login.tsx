@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { View, Image, Text, Button, TextInput, KeyboardAvoidingView, TouchableOpacity } from 'react-native'
 import myStyle from "../style"
 import LogoLogin from '../components/LogoLogin'
-
+import PopupConfirm from '../components/PopupConfirm';
 
 import { Actions } from 'react-native-router-flux';
 import { UserService } from '../services/UserService';
@@ -17,7 +17,9 @@ class Login extends Component<props, state> {
         super(props);
         this.state= {
             user : "",
-            password : ""
+            password : "",
+            showPopup: false,
+            contentPopup : ""
         }
         
 
@@ -30,7 +32,10 @@ class Login extends Component<props, state> {
         console.log(user + " " + password);
         let getJwtToken = UserService.login(user, password).then(infoLogin =>{
             if(infoLogin.jwt ===  undefined){
-                console.log("thoong baos sai")
+                this.setState({
+                    showPopup : {true},
+                    contentPopup : "User or password is incorrect"
+                })
             }
             else { 
                 let type = "OTPLogin"
@@ -47,6 +52,14 @@ class Login extends Component<props, state> {
         
         return (
             <KeyboardAvoidingView style={[myStyle.container, { alignItems: "center" }]}>
+                <PopupConfirm
+                    hideBtnCancel = {false}
+                    confirmModal={this.state.showPopup}
+                    buttonOK={() => this.setState({ showPopup: false })}
+                    buttonCancel={() => this.setState({ showPopup: false })}
+                    title='Confirm'
+                    message= {this.state.contentPopup}
+                />
                 <View style={[myStyle.flex2]}>
                     <LogoLogin></LogoLogin>
                 </View>
@@ -135,7 +148,9 @@ type  props = {
 
 type state = {
     user : any,
-    password: any
+    password: any,
+    showPopup: boolean,
+    contentPopup : string
 }
 
 function mapDispatchProps(dispatch: any, props : any ){
