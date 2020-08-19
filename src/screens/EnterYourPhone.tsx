@@ -3,7 +3,7 @@ import { View, Image, Text, Button, TextInput , KeyboardAvoidingView, TouchableO
 import myStyle from "../style"
 
 
-import { Actions, Actions } from 'react-native-router-flux';
+import {  Actions } from 'react-native-router-flux';
 import { UserService } from '../services/UserService';
 import { BaseUserWithJwt } from '@Core/model/user/BaseUser';
 

@@ -46,7 +46,7 @@ export default class ChartHome extends Component<props, state> {
 
     componentDidMount(){
         IncomeService.getListCharIncome().then(res=>{
-            console.log(res.leding);
+            console.log(res);
 
             dataChart.datasets[0].data = IncomeService.createDataChart(res.all);
             dataChart.datasets[1].data = IncomeService.createDataChart(res.lending);
