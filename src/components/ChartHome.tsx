@@ -4,6 +4,7 @@ import {LineChart} from "react-native-chart-kit";
 import { Line } from "react-chartjs-2";
 import { IncomeService } from '../services/IncomeService';
 
+
 const dataChart:any = {
     labels : ["cột1", "cột 2", "cột 3", "cột4"],
     datasets : [
