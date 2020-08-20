@@ -89,6 +89,7 @@ export default class Referral extends React.Component<Props, State> {
                     <FlatList data={this.state.myReferral}
                         renderItem={({ item }) =>
                             <HistoryDetail
+                                
                                 title={item.toUser?.username}
                                 time={this.getTime( item.createdAt)}
                                 coin={1000}
