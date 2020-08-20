@@ -70,6 +70,9 @@ export default class Lending extends React.Component<Props, State>{
 
     }
 
+    com
+    
+
     componentDidMount() {
     }
 
@@ -144,10 +147,8 @@ export default class Lending extends React.Component<Props, State>{
                                     this.setState({
                                         initialValue: parseInt(text),
                                     }, () => {
-                                        console.log(this.state);
-                                        console.log(this.state.initialValue >= this.state.minInvestment);
                                         this.setState({
-                                            buttonInvest: (this.state.initialValue >= this.state.minInvestment) && (this.state.initialValue <= this.state.maxInvestment)
+                                            buttonInvest: (this.state.initialValue >= this.state.minInvestment) && (this.state.initialValue <= this.state.maxInvestment) && this.state.isSelected == true
                                         })
                                     })
 
@@ -178,6 +179,10 @@ export default class Lending extends React.Component<Props, State>{
                                 onValueChange={() => {
                                     this.setState({
                                         isSelected: !this.state.isSelected
+                                    }, () => {
+                                        this.setState({
+                                            buttonInvest: (this.state.initialValue >= this.state.minInvestment) && (this.state.initialValue <= this.state.maxInvestment) && this.state.isSelected == true
+                                        })
                                     })
                                 }}
                             //style={styles.checkbox}
@@ -259,6 +264,8 @@ export default class Lending extends React.Component<Props, State>{
             </View>
         )
     }
+
+   
 
     getTime = (date: Date | undefined): String => {
         if (date !== undefined) return date.toString().substring(0, 10)

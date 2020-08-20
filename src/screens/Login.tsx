@@ -29,17 +29,17 @@ class Login extends Component<props, state> {
     }
 
     componentDidMount() {
-        // UserService.getJWT().then(res=>{
-        //     if(res !== null){
-        //         console.log(res);
-        //         UserService.checkJWT(res).then(check=>{
-        //             console.log(check)
-        //             if(check){
-        //                 Actions.home()
-        //             }
-        //         })
-        //     }
-        // })
+        UserService.getJWT().then(res=>{
+            if(res !== null){
+                console.log(res);
+                UserService.checkJWT(res).then(check=>{
+                    console.log(check)
+                    if(check){
+                        Actions.home()
+                    }
+                })
+            }
+        })
 
     }
 
@@ -51,7 +51,7 @@ class Login extends Component<props, state> {
             if(infoLogin.jwt ===  undefined){
                 this.setState({
                     showPopup : true,
-                    contentPopup : "User or password is incorrect"
+                    contentPopup : "User or password is incorrect!"
                 })
             }
             else {               
@@ -90,7 +90,7 @@ class Login extends Component<props, state> {
                             value = {this.state.user}
                             style={[myStyle.inputLogin]}
                             selectionColor='red'
-                            placeholder={"number phone"}
+                            placeholder={"Number phone"}
                             maxLength = {15}
                             onChange = {(event)=>{
                                 this.setState({user : event.target.value})
@@ -103,7 +103,7 @@ class Login extends Component<props, state> {
                         <TextInput
                             value = {this.state.password}
                             style={[myStyle.inputLogin]}
-                            placeholder={"pass word"}
+                            placeholder={"Password"}
                             secureTextEntry={true}
                             maxLength = {60}
                             onChange = {(event)=>{
@@ -122,7 +122,7 @@ class Login extends Component<props, state> {
                                     this.props.onTypeActon("forgotPassword")
                                     Actions.enterPhone()
                                 }}
-                            >Forgot password</Text>
+                            >Forgot password?</Text>
                         </TouchableOpacity>
 
                     </View>
@@ -139,7 +139,7 @@ class Login extends Component<props, state> {
                     </View>
 
                     <View style = {[myStyle.row,{marginTop : 10, justifyContent : "center"} ] }>
-                        <Text style = {[{marginRight: 10, color : "white"}]}>You haven't acount</Text>
+                        <Text style = {[{marginRight: 10, color : "white"}]}>You haven't account?</Text>
                         <TouchableOpacity
                             onPress ={(event)=>{
                                     this.props.onTypeActon("signUp")

@@ -76,7 +76,7 @@ class EnterYourPhone extends Component<props, state> {
                         <TextInput
                             style={[myStyle.inputLogin]}
                             selectionColor='red'
-                            placeholder={"enter your phone"}
+                            placeholder={"Enter your phone"}
                             value={this.state.numberPhone}
                             onChange={(event) => {
                                 this.setState({
