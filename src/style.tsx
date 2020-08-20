@@ -163,7 +163,6 @@ export default StyleSheet.create({
         height : 50,
         width : "100%",
         marginTop : 20,   
-        outlineWidth : 0,
         color : "#FFFFFF",
         fontSize : 18,
         

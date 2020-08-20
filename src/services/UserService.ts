@@ -1,11 +1,13 @@
 import { BaseUser, BaseUserWithJwt } from "../share/base-ale/model/user/BaseUser";
 import axios from "axios";
+import { AsyncStorage } from "react-native";
+import { Actions } from 'react-native-router-flux';
 export class UserService {
 
     public static login(user: string, pass: string): Promise<BaseUserWithJwt> {
 
         console.log(user + "--" + pass);
-        let getJWT: any = UserService.getJWT();
+        // let getJWT: any = UserService.getJWT();
         let typeLogin: "phonenumber";
 
         let getDataLogin: any;
@@ -16,11 +18,7 @@ export class UserService {
                 'loginType': 'phonenumber',
                 "username": user,
                 "password": pass
-            }, {
-            headers: {
-                'Authorization': `${getJWT}`
-            }
-        })
+            })
             .then(res => {
 
                 return res.data;
@@ -30,6 +28,8 @@ export class UserService {
             });
     }
 
+
+    //futer sign up
     public static register(userName: string, password: string, codeOTP: string): Promise<string> {
         return axios.post("http://localhost:4000/public/user/register",
             {
@@ -53,12 +53,40 @@ export class UserService {
 
     }
 
-    public static getJWT(): string {
-        return 'Bearer ' + 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjNiNGZiZjE1NDNiYzRkY2Y2OWNlOTkiLCJsb2dpblR5cGUiOiJwaG9uZW51bWJlciIsInVzZXJuYW1lIjoiMDk4OTMyMDk2MCIsInBhc3N3b3JkIjoiYjU5YzY3YmYxOTZhNDc1ODE5MWU0MmY3NjY3MGNlYmEiLCJyZWZlcmFsRnJvbVVzZXJJZCI6IjVmM2IzY2VjZGI4NTZmZjQzYmY5YWZkMiIsIm90cENvZGUiOiIxMjM0IiwiY3JlYXRlZEF0IjoiMjAyMC0wOC0xOFQwMzo0OToxOS4wODNaIiwidXBkYXRlZEF0IjoiMjAyMC0wOC0xOFQwMzo0OToxOS4wODNaIiwiY3JlYXRlZEJ5IjpudWxsLCJ1cGRhdGVkQnkiOm51bGwsInN0YXR1cyI6ImFjdGl2ZWQiLCJpYXQiOjE1OTc3MjI1NzZ9.zctjaERsg72VsZKTfthSmYODQZ-m6Noqj8O0CHcRse4';
+    public static checkJWT = (jwt: string) :Promise<boolean | null> =>{
+        return axios.get("http://localhost:4000/user/me", {
+            headers: {
+                "Authorization": `Bearer ${jwt}`
+            }
+        })
+        .then(res =>{
+            if(res.message != null){
+                console.log(res.message)
+                return false;
+            }
+            else {
+                return true;
+            }
+        })
+        .catch(error =>{
+            console.log(error);
+            return false;
+        })
+    }
+
+
+    public static getJWT = (): Promise<string | null> => {
+        return AsyncStorage.getItem('jwt').then(jwt => {return jwt;});
+    }
+
+
+    public static setJWT = async (jwt: string):Promise<void> => {
+            return AsyncStorage.setItem('jwt', jwt);
     }
 
 
 
+    //send OTP to server
     public static sendOTP(phone: string): Promise<string> {
         return axios.post("http://localhost:4000/public/user/sendOTP", { "mobile": phone })
             .then(res => {
@@ -70,7 +98,9 @@ export class UserService {
 
     }
 
-    public static verifyOTP(OTP: string, phoneNumber: string): Promise<string|null> {
+
+    // function check OTP 
+    public static verifyOTP(OTP: string, phoneNumber: string): Promise<string | null> {
         return axios.post("http://localhost:4000/public/user/verifyOTP",
             {
                 "code": OTP,
@@ -84,43 +114,57 @@ export class UserService {
                     return "insuccess";
                 }
             })
-            .catch(err =>{
+            .catch(err => {
                 return "error with server"
             })
     }
 
 
-    public static setPassword(username: string, password: string, codeOTP : string): Promise<boolean> {
+
+    // backpup password when user forot password
+    public static setPassword(username: string, password: string, codeOTP: string): Promise<string> {
         return axios.post("http://localhost:4000/public/user/setPassword",
             {
                 "username": username,
                 "password": password,
-                "otpCode":  codeOTP
+                "otpCode": codeOTP
             }
         ).then(res => {
-            if (res.data.message) {
-                return true
+            if (res.data.message != null) {
+                return "fail"
             }
             else {
-                return false;
+                return "success";
             }
         })
 
     }
 
-    public static checkValidate=(pass:string, AgainPass:string):string|null =>{
-        if(pass != AgainPass){
+
+    //check validate of password
+    public static checkValidate = (pass: string, AgainPass: string): string | null => {
+        if (pass != AgainPass) {
             return "Those passwords didn't match"
         }
-        if(pass.length <6){
+        if (pass.length < 6) {
             return "Use 6 character or more for your password"
         }
         return null;
     }
 
-    public static checkValidatePhone=(phone : string) : string|null =>{
-        if(phone.length ==0){
+
+    //check validate phone
+    public static checkValidatePhone = (phone: string): string | null => {
+        phone.trim();
+        if (phone.length == 0) {
             return "number phone is not null";
+        }
+        if (phone.length < 10 || phone.length > 11) {
+            return "lenght number phone is 10-11"
+        }
+        var regex_Phone = /\d/
+        if (!regex_Phone.test(phone)) {
+            return "is not a valid phone number";
         }
         return null;
     }

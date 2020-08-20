@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Image, Text, Button, TextInput, KeyboardAvoidingView, TouchableOpacity } from 'react-native'
+import { View, Image, Text, Button, TextInput, KeyboardAvoidingView, TouchableOpacity, AsyncStorage } from 'react-native'
 import myStyle from "../style"
 import LogoLogin from '../components/LogoLogin'
 import PopupConfirm from '../components/PopupConfirm';
@@ -10,6 +10,8 @@ import { IncomeService } from '../services/IncomeService';
 
 import {connect} from "react-redux"
 import * as action from "../Action/ActionLogin"
+import { User } from '@StockAfiCore/model/user/User';
+
 
 
 class Login extends Component<props, state> {
@@ -26,6 +28,21 @@ class Login extends Component<props, state> {
         
     }
 
+    componentDidMount() {
+        UserService.getJWT().then(res=>{
+            if(res !== null){
+                console.log(res);
+                UserService.checkJWT(res).then(check=>{
+                    console.log(check)
+                    if(check){
+                        Actions.home()
+                    }
+                })
+            }
+        })
+
+    }
+
     checkLogin =()=>{
         var user = this.state.user;
         var password = this.state.password;
@@ -33,16 +50,23 @@ class Login extends Component<props, state> {
         let getJwtToken = UserService.login(user, password).then(infoLogin =>{
             if(infoLogin.jwt ===  undefined){
                 this.setState({
-                    showPopup : {true},
+                    showPopup : true,
                     contentPopup : "User or password is incorrect"
                 })
             }
             else { 
+                
                 let type = "OTPLogin"
-                this.props.onTypeActon("login")
+                
+                UserService.setJWT(infoLogin.jwt);
+
+                 
+                  this.props.onTypeActon("login")
                 Actions.confirmOTP();         
             }
         })
+
+
 
         
 

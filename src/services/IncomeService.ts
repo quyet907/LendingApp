@@ -4,17 +4,21 @@ import { UserService } from "./UserService";
 export class IncomeService{
 
     public static getListCharIncome() : Promise<Income[]> {
-        return axios.get("http://localhost:4000/user/income?page=1&pageSize=100",
-         {
-             headers: {
-                 "Authorization" : UserService.getJWT()
-             }
-         }
-         ).then(res =>{
-            return res.data
-         }).catch((res)=>{
-             console.log(res)
-         })
+        return UserService.getJWT().then(res=>{
+            return(
+                axios.get("http://localhost:4000/user/income?page=1&pageSize=100",
+                {
+                    headers: {
+                        "Authorization" : `Bearer ${res}`
+                    }
+                }
+                ).then(res =>{
+                    return res.data
+                }).catch((res)=>{
+                    console.log(res)
+                })
+            )
+        })
         
     }
 

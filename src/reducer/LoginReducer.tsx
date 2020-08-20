@@ -2,12 +2,12 @@ const initLogin = {
     actionType : "",
     jwt : "",
     numberPhone : "",
-    codeOTP : ""
+    codeOTP : "",
+    referalCode : "",
     
 }
 const Login = (state: any = initLogin, action : any )=>{
-    console.log(action)
-    console.log(state)
+
     switch(action.type){
         case "SET_ACTION" : {
             return {...state,
