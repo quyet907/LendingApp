@@ -12,8 +12,8 @@ const access_token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjNiNDNiO
 export class LendingService {
 
     public static createLending(lending: Lending): Promise<any> {
-
-        return axios({
+        return UserService.getJWT().then(jwt => {
+            return axios({
             method: 'POST',
             url: 'http://localhost:4001/lending',
             data: lending,
@@ -23,19 +23,24 @@ export class LendingService {
         })
             .then((res) => { console.log(res.data) })
             .catch((err) => console.log(err));
+        })
+        
 
     }
 
     public static getMyInvest(): Promise<Paging<Lending>> {
-        return axios({
-            method: 'GET',
-            url: 'http://localhost:4001/lending',
-            headers: {
-                'Authorization': `Bearer ${jwt}`
-            }
+        return UserService.getJWT().then(jwt => {
+            return axios({
+                method: 'GET',
+                url: 'http://localhost:4001/lending',
+                headers: {
+                    'Authorization': `Bearer ${jwt}`
+                }
+            })
+                .then((res) => { return res.data })
+                .catch((err) => console.log(err))
+
         })
-            .then((res) => { return res.data })
-            .catch((err) => console.log(err))
     }
 
     public static getListProfitHistory(): Promise<Paging<ProfitHistory>> {
@@ -44,11 +49,11 @@ export class LendingService {
                 "Authorization": `Bearer ${UserService.getJWT()}`
             }
         })
-        .then(res =>{
-            return res.data
-        })
-        .catch((err) => { 
-            console.log(err)
-        })
+            .then(res => {
+                return res.data
+            })
+            .catch((err) => {
+                console.log(err)
+            })
     }
 }

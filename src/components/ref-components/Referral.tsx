@@ -34,9 +34,9 @@ export default class Referral extends React.Component<Props, State> {
         ReferralService.getReferral().then(res => {
             this.setState({ myReferral: res.rows })
         })
-        // ReferralService.getMe().then(res => {
-        //     this.setState({ myID: res._id || "null" })
-        // })
+        ReferralService.getMe().then(res => {
+            this.setState({ myID: res._id || "null" })
+        })
     }
 
     render() {

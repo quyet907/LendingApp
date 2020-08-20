@@ -44,10 +44,6 @@ export default class ListStatisticalBasic extends Component<props, state> {
                     ></StatisticalBasic>
 
                 </View>
-
-
-
-
                 <View style={[myStyle.row]}>
                     <StatisticalBasic
                         img  = {"../assets/icons8_rating_70px.png"}
