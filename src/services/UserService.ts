@@ -149,6 +149,10 @@ export class UserService {
         if (pass.length < 6) {
             return "Use 6 character or more for your password"
         }
+        var regex_Phone = /[0-9]$/
+        if (!regex_Phone.test(pass)) {
+            return "pass only is number";
+        }
         return null;
     }
 
@@ -162,7 +166,7 @@ export class UserService {
         if (phone.length < 10 || phone.length > 11) {
             return "lenght number phone is 10-11"
         }
-        var regex_Phone = /\d/
+        var regex_Phone = /[0-9]$/
         if (!regex_Phone.test(phone)) {
             return "is not a valid phone number";
         }

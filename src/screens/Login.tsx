@@ -29,17 +29,17 @@ class Login extends Component<props, state> {
     }
 
     componentDidMount() {
-        UserService.getJWT().then(res=>{
-            if(res !== null){
-                console.log(res);
-                UserService.checkJWT(res).then(check=>{
-                    console.log(check)
-                    if(check){
-                        Actions.home()
-                    }
-                })
-            }
-        })
+        // UserService.getJWT().then(res=>{
+        //     if(res !== null){
+        //         console.log(res);
+        //         UserService.checkJWT(res).then(check=>{
+        //             console.log(check)
+        //             if(check){
+        //                 Actions.home()
+        //             }
+        //         })
+        //     }
+        // })
 
     }
 
@@ -54,15 +54,9 @@ class Login extends Component<props, state> {
                     contentPopup : "User or password is incorrect"
                 })
             }
-            else { 
-                
-                let type = "OTPLogin"
-                
+            else {               
                 UserService.setJWT(infoLogin.jwt);
-
-                 
-                  this.props.onTypeActon("login")
-                Actions.confirmOTP();         
+                Actions.home();         
             }
         })
 

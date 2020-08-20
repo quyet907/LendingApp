@@ -101,6 +101,14 @@ class EnterYourPhone extends Component<props, state> {
 
                     </View>
 
+                    <View style={[myStyle.row, { marginTop: 10, justifyContent: "center" }]}>
+                        <TouchableOpacity
+                            onPress={Actions.login}
+                        >
+                            <Text style={[myStyle.colorWhite, , { color: "#F8C400" }]}>Back to Login</Text>
+                        </TouchableOpacity>
+                    </View>
+
 
 
                 </View>

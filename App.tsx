@@ -21,6 +21,7 @@ import LendingScreen from './src/screens/LendingScreen';
 import Home from './src/screens/Home';
 import store from "./src/reducer/store"
 import {Provider} from "react-redux"
+import checkRegax from './src/screens/checkRegax';
 const MyTransitionSpec = ({
     duration: 1000,
     // easing: Easing.bezier(0.2833, 0.99, 0.31833, 0.99),
@@ -34,8 +35,8 @@ const MyTransitionSpec = ({
 
 const scenes = Actions.create(
     <Scene    key="root" duration={4}>
-      
-      <Scene  key="login" component={Login} hideNavBar={true} />
+      {/* <Scene  key="test" component={checkRegax} hideNavBar={true} /> */}
+    <Scene  key="login" component={Login} hideNavBar={true} />
      <Scene  key="home" component={PageHome} hideNavBar={true} />
       
       <Scene  key="home" component={PageHome} hideNavBar={true} />

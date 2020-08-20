@@ -44,18 +44,15 @@ class setPassword extends Component<props, state>{
                 UserService.register(this.props.phoneNumber, getPass, this.props.codeOTP).then(res => {
                         this.setState({
                             contentPopup : res,
-                            showPopup : true
-                            
+                            showPopup : true  
                         })
                 })
             }
             else {
                 UserService.setPassword(this.props.phoneNumber, getPass, this.props.codeOTP).then(res => {
-                    console.log("on set password")
                     this.setState({
                         contentPopup : res,
-                        showPopup : true
-                        
+                        showPopup : true 
                     })
                 })
             }
@@ -69,7 +66,9 @@ class setPassword extends Component<props, state>{
                     hideBtnCancel = {false}
                     confirmModal={this.state.showPopup}
                     buttonOK={() => {
-                        
+                        if(this.state.contentPopup == "success"){
+                            Actions.login()
+                        }
                         this.setState({ showPopup: false })}
                         
                     }
