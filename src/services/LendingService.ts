@@ -18,7 +18,7 @@ export class LendingService {
             url: 'http://localhost:4001/lending',
             data: lending,
             headers: {
-                'Authorization': `Bearer ${access_token}`
+                'Authorization': `Bearer ${jwt}`
             }
         })
             .then((res) => { console.log(res.data) })
@@ -26,12 +26,12 @@ export class LendingService {
 
     }
 
-    public static getMyInvest(): Promise<Paging<any>> {
+    public static getMyInvest(): Promise<Paging<Lending>> {
         return axios({
             method: 'GET',
             url: 'http://localhost:4001/lending',
             headers: {
-                'Authorization': `Bearer ${access_token}`
+                'Authorization': `Bearer ${jwt}`
             }
         })
             .then((res) => { return res.data })
