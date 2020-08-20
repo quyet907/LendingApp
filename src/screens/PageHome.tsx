@@ -14,6 +14,7 @@ import SignUp from "../screens/SignUp"
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 import { Actions } from 'react-native-router-flux';
+import Logout from './Logout';
 
 const Tab = createBottomTabNavigator();
 
@@ -88,7 +89,7 @@ export default class PageHome extends React.Component<Props, {}>{
 
           <Tab.Screen
             name="Profile"
-            component={Login}
+            component={Logout}
             options={{
               tabBarLabel: 'Profile',
               tabBarIcon: ({ focused }) => <Icon name="user"

@@ -51,12 +51,12 @@ class setPassword extends Component<props, state>{
             }
             else {
                 UserService.setPassword(this.props.phoneNumber, getPass, this.props.codeOTP).then(res => {
-                    if(!res){
-                        this.setState({
-                            contentPopup : "Fail",
-                            showPopup : true
-                        })
-                    }
+                    console.log("on set password")
+                    this.setState({
+                        contentPopup : res,
+                        showPopup : true
+                        
+                    })
                 })
             }
         }
