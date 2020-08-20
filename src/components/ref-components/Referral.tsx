@@ -34,9 +34,9 @@ export default class Referral extends React.Component<Props, State> {
         ReferralService.getReferral().then(res => {
             this.setState({ myReferral: res.rows })
         })
-        ReferralService.getMe().then(res => {
-            this.setState({myID: res._id != undefined ? res._id : "null"})
-        })
+        // ReferralService.getMe().then(res => {
+        //     this.setState({ myID: res._id || "null" })
+        // })
     }
 
     render() {
@@ -89,12 +89,13 @@ export default class Referral extends React.Component<Props, State> {
                     <FlatList data={this.state.myReferral}
                         renderItem={({ item }) =>
                             <HistoryDetail
-                                
+                                type={true}
+                                typeLabel='REF'
                                 title={item.toUser?.username}
-                                time={this.getTime( item.createdAt)}
+                                time={this.getTime(item.createdAt)}
                                 coin={1000}
                             />}
-                        keyExtractor={item => item._id ? item._id : 'null ID'} />
+                        keyExtractor={item => item._id || 'null ID'} />
 
 
 
@@ -124,7 +125,7 @@ export default class Referral extends React.Component<Props, State> {
 
     getLinkRef = () => {
         console.log(this.state.myID);
-        
+
         return 'https://lendinggame.com/ref=?' + this.state.myID
     }
 }

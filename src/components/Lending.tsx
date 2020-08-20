@@ -421,5 +421,5 @@ type State = {
     buttonInvest: boolean,
     confirmModal: boolean,
 
-    myInvest: Array<ProfitHistory>
+    myInvest: Array<LendingModel>
 }
