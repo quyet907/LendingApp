@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { View, Button } from 'react-native'
 import myStyle from "../style"
 import { UserService } from '../services/UserService'
+import {Actions} from "react-native-router-flux"
 
 export default class Logout extends Component {
     render() {
@@ -11,9 +12,7 @@ export default class Logout extends Component {
                     title = "logout"
                     onPress = {() =>{
                         UserService.setJWT("").then(res=>{
-                            UserService.getJWT().then(res=>{
-                                
-                            })
+                            Actions.login()
                         })
                     }}
                 ></Button>
