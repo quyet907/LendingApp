@@ -16,6 +16,8 @@ export default class Logout extends Component {
                         })
                     }}
                 ></Button>
+
+                
             </View>
         )
     }

@@ -32,12 +32,15 @@ class Login extends Component<props, state> {
         UserService.getJWT().then(res=>{
             if(res !== null){
                 console.log(res);
-                UserService.checkJWT(res).then(check=>{
-                    console.log(check)
-                    if(check){
-                        Actions.home()
-                    }
-                })
+                if(res != ""){
+                    UserService.checkJWT(res).then(check=>{
+                        console.log(check)
+                        if(check){
+                            Actions.home()
+                        }
+                    })
+                }
+                
             }
         })
 

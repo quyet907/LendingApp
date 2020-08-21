@@ -9,7 +9,7 @@ const initLogin = {
 const Login = (state: any = initLogin, action : any )=>{
 
     switch(action.type){
-        case "SET_ACTION" : {
+        case "SET_ACTION" : {       
             return {...state,
             actionType : action.payload,
             }
