@@ -29,6 +29,11 @@ class Login extends Component<props, state> {
     }
 
     componentDidMount() {
+        this.checkJwt()
+
+    }
+
+    checkJwt(){
         UserService.getJWT().then(res=>{
             if(res !== null){
                 console.log(res);
@@ -43,7 +48,6 @@ class Login extends Component<props, state> {
                 
             }
         })
-
     }
 
     checkLogin =()=>{
@@ -58,8 +62,10 @@ class Login extends Component<props, state> {
                 })
             }
             else {               
-                UserService.setJWT(infoLogin.jwt);
-                Actions.home();         
+                UserService.setJWT(infoLogin.jwt).then(res =>{
+                    this.checkJwt()
+                });
+                         
             }
         })
 

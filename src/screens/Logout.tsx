@@ -11,8 +11,8 @@ export default class Logout extends Component {
                 <Button
                     title = "logout"
                     onPress = {() =>{
-                        UserService.setJWT("").then(res=>{
-                            Actions.login()
+                        UserService.setJWT("jkjdklaJDKASL").then(res=>{
+                            Actions.home()
                         })
                     }}
                 ></Button>

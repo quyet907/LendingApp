@@ -1,5 +1,5 @@
 import { Income } from "../share/base-stock-afi/model/lending/Income";
-import axios from "./APIService"
+import axios, { getAxios } from "./APIService"
 import { UserService } from "./UserService";
 
 
@@ -7,15 +7,16 @@ import { UserService } from "./UserService";
 export class IncomeService {
 
     public static getListCharIncome(): Promise<Income[]> {
-        return axios.get("http://localhost:4000/user/income?page=1&pageSize=100",
+        return getAxios().then(axios => axios.get("http://localhost:4000/user/income?page=1&pageSize=100",
             ).then(res => {
                 console.log(res)
-                return res.data
+                if(res != null){
+                    return res.data
+                }
+                return null
             }).catch((err) => {
                 console.log(err)
-            })
-        
-
+            }))
     }
 
     public static getDayDataChar(listDay: Income[]): Array<string> {
