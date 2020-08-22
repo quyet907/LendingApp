@@ -16,8 +16,6 @@ UserService.getJWT().then(res=>{
 
 
 axios.interceptors.request.use(function (config) {
-    console.log(config);
-
     return config;
 },
     function (err) {
@@ -26,16 +24,10 @@ axios.interceptors.request.use(function (config) {
 );
 
 axios.interceptors.response.use(function (config) {
-    console.log(config)
-    console.log("la la las la la")
     return config;;
 }, function (err) {
-    console.log(err);
-    if (err.response) {
-        console.log(err.response.data);
-        console.log(err.response.status);
-        console.log(err.response.headers);
-      }
+    console.log("err");
+   
     // Actions.login()
     
 })

@@ -52,9 +52,7 @@ export default class Lending extends React.Component<Props, State>{
             myInvest: []
 
         }
-        LendingService.getMyInvest().then(res => {
-            this.setState({ myInvest: res.rows })
-        })
+      
 
         LendingPackageService.getLendingPackage().then(pagingLendingPackages => {
             console.log(pagingLendingPackages.rows)
@@ -70,11 +68,19 @@ export default class Lending extends React.Component<Props, State>{
 
     }
 
-    com
+   
     
 
-    componentDidMount() {
+    componentWillMount() {
+          LendingService.getMyInvest().then(res => {
+            this.setState({ myInvest: res.rows })
+        })
     }
+    // componentWillUpdate(){
+    //     LendingService.getMyInvest().then(res => {
+    //         this.setState({ myInvest: res.rows })
+    //     })
+    // }
 
     // componentDidMount(){
     //    this.setState({
@@ -210,18 +216,7 @@ export default class Lending extends React.Component<Props, State>{
                             accessibilityLabel="Learn more about this purple button"
                             
                         /> */}
-
-
-
                         </View>
-
-
-
-
-
-
-
-
                     </View>
                     <View style={styles.container2}>
                         <Text style={styles.textLabel}>My Investsment</Text>
@@ -247,7 +242,7 @@ export default class Lending extends React.Component<Props, State>{
                 </ScrollView>
                 <PopupConfirm
                     confirmModal={this.state.confirmModal}
-                    hideBtnCancel={false}
+                    hideBtnCancel={true}
                     buttonOK={() => {
                         console.log('button ok')
                         this.invest()
@@ -265,6 +260,12 @@ export default class Lending extends React.Component<Props, State>{
         )
     }
 
+    updateLending= () => {
+        LendingService.getMyInvest().then(res => {
+            console.log(res.rows)
+            this.setState({ myInvest: res.rows })
+        })
+    }
    
 
     getTime = (date: Date | undefined): String => {
@@ -293,7 +294,9 @@ export default class Lending extends React.Component<Props, State>{
             lendingPackageId: this.state.packageID,
             loanAmount: this.state.initialValue,
         }
-        LendingService.createLending(lending)
+        LendingService.createLending(lending).then(()=> {
+            this.updateLending()
+        })
 
     }
 

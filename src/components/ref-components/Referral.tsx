@@ -9,21 +9,6 @@ import { Referal } from '@Core/model/user/Referal';
 import { ReferralService } from '../../services/ReferralService';
 
 
-
-const user = {
-    urlRef: 'http://lendinggame.com/ref=?83587345435345',
-    amountRef: 19,
-    profits: 19000,
-    ref: [
-        { id: '71287482734892', time: '2020-08-15 15:12' },
-        { id: '43675434534535', time: '2020-08-15 15:12' },
-        { id: '86746325345645', time: '2020-08-15 15:12' },
-        { id: '71287482734892', time: '2020-08-15 15:12' },
-
-    ]
-};
-
-
 export default class Referral extends React.Component<Props, State> {
     constructor(props: any) {
         super(props)
@@ -90,7 +75,7 @@ export default class Referral extends React.Component<Props, State> {
                         renderItem={({ item }) =>
                             <HistoryDetail
                                 type={true}
-                                typeLabel='REF'
+                                typeLabel='EARNED'
                                 title={item.toUser?.username}
                                 time={this.getTime(item.createdAt)}
                                 coin={1000}
@@ -125,7 +110,6 @@ export default class Referral extends React.Component<Props, State> {
 
     getLinkRef = () => {
         console.log(this.state.myID);
-
         return 'https://lendinggame.com/ref=?' + this.state.myID
     }
 }

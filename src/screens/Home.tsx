@@ -8,7 +8,8 @@ import { FlatList } from 'react-native-gesture-handler';
 import HistoryInterest from '../components/HistoryInterest';
 import { LendingProfitHistoryService } from '../services/LendingProfitHistoryService';
 import { ProfitHistory } from '@StockAfiCore/model/lending/LendingProfitHistory';
-
+import axios from 'axios'
+import { UserService } from '../../src/services/UserService';
 
 export default class Home extends Component<props, state> {
     constructor(props: any) {
@@ -16,10 +17,12 @@ export default class Home extends Component<props, state> {
         this.state = {
             data: []
         }
+
+
         LendingProfitHistoryService.getLendingProfit().then(res => {
-            console.log(res.rows)
+           
             this.setState({
-                data: res.rows
+                data:  res != undefined ? res.rows : []
             })
         })
     }
@@ -31,7 +34,7 @@ export default class Home extends Component<props, state> {
                     <View style={[myStyle.charHome]}>
                         <ChartHome ></ChartHome>
                     </View>
-                    <View style={[]}>
+                    <View style={myStyle.listStatisticalBasic}>
                         <ListStatisticalBasic></ListStatisticalBasic>
                     </View>
 
@@ -42,7 +45,7 @@ export default class Home extends Component<props, state> {
                                     createAt={item.createdAt?.toString().substr(0,10) || 'null'}
                                     profits={item.profitAmount || 0}
                                     amount={item.loanAmount || 0}
-                                    daysLeft={this.getDaysLeft(item.lending?.endAt)}
+                                    daysLeft={this.getDaysLeft(item.lending?.createdAt)}
 
                                 />
                             }
@@ -57,9 +60,11 @@ export default class Home extends Component<props, state> {
 
     getDaysLeft = (endDate: Date | undefined): number => {
         const currentDate: Date = new Date();
+       
         
         if (endDate) {
-            const daysLeft = Math.ceil((Date.parse(endDate.toString().substr(0,10)) - Date.parse(currentDate.toJSON().substr(0,10))) / (1000 * 60 * 60 * 24)
+           
+            const daysLeft = Math.floor((-Date.parse(endDate.toString().substr(0,10)) + Date.parse(currentDate.toJSON().substr(0,10))) / (1000 * 60 * 60 * 24)
             )
             return daysLeft 
         }
