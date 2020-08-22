@@ -17,10 +17,10 @@ export default class Home extends Component<props, state> {
         this.state = {
             data: []
         }
+    }
 
-
+    componentDidMount(){
         LendingProfitHistoryService.getLendingProfit().then(res => {
-           
             this.setState({
                 data:  res != undefined ? res.rows : []
             })
@@ -45,7 +45,7 @@ export default class Home extends Component<props, state> {
                                     createAt={item.createdAt?.toString().substr(0, 10) || 'null'}
                                     profits={item.profitAmount || 0}
                                     amount={item.loanAmount || 0}
-                                    daysLeft={this.getDaysLeft(item.lending?.createdAt)}
+                                    daysLeft={this.getDaysLeft(item.lending?.createdAt)+30}
 
                                 />
                             }
@@ -64,7 +64,7 @@ export default class Home extends Component<props, state> {
         
         if (endDate) {
            
-            const daysLeft = Math.floor((-Date.parse(endDate.toString().substr(0,10)) + Date.parse(currentDate.toJSON().substr(0,10))) / (1000 * 60 * 60 * 24)
+            const daysLeft = Math.floor((Date.parse(endDate.toString().substr(0,10)) - Date.parse(currentDate.toJSON().substr(0,10))) / (1000 * 60 * 60 * 24)
             )
             return daysLeft
         }
@@ -76,5 +76,5 @@ type props = {
 
 }
 type state = {
-    data: Array<ProfitHistory>
+    data: ProfitHistory[]
 }

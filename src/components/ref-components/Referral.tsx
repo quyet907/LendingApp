@@ -123,7 +123,7 @@ export default class Referral extends React.Component<Props, State> {
 
     getLinkRef = () => {
         console.log(this.state.myID);
-        return 'https://lendinggame.com/ref=?' + this.state.myID
+        return 'https://lendinggame.com/?ref=' + this.state.myID
     }
 }
 
