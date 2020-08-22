@@ -30,7 +30,9 @@ export default class Referral extends React.Component<Props, State> {
                 <FlashMessage position="center" />
                 <View style={styles.container}>
                     <Text style={styles.textLabel}>REFERRAL</Text>
-                    <Text style={{ textAlign: 'justify', color: '#fff' }}>The Lending game referral program is a great way to read the word of this great service and to earn even more money with your friend! Refer friends and receive 1000 COIN of their earnings for life!</Text>
+                    <Text style={{ textAlign: 'justify', color: '#fff' }}>
+                        The Lending game referral program is a great way to read the word of this great service and to earn even more money with your friend! Refer friends and receive 1000 COIN of their earnings for life!
+                        </Text>
                     <View style={{
                         flexDirection: 'row',
                         padding: 20,
@@ -53,16 +55,27 @@ export default class Referral extends React.Component<Props, State> {
                     <Separator />
 
                     <View style={styles.refAbout}>
-                        <RefAbout
-                            label='Total'
-                            amount={this.state.myReferral.length}
-                            urlIcon='../../assets/icons8_user_groups_80px_1.png'
-                        ></RefAbout>
-                        <RefAbout
-                            label='Reward'
-                            amount={this.state.myReferral.length * 1000}
-                            urlIcon='../../assets/icons8_user_groups_80px_1.png'
-                        ></RefAbout>
+                        <View style={{ flexDirection: 'row' }}>
+                            <View>
+                                <Image style={styles.logoRef} source={require('../../assets/icons8_user_groups_80px_1.png')} />
+                            </View>
+                            <View style={styles.subContainer}>
+                                <Text style={{ color: '#868685', fontSize: 12 }}>Total</Text>
+                                <Text style={styles.amount}>{this.state.myReferral.length}</Text>
+                            </View>
+                        </View>
+
+                        <View style={{ flexDirection: 'row' }}>
+                            <View>
+                                <Image style={styles.logoRef} source={require('../../assets/icons8_coins_80px.png')} />
+                            </View>
+                            <View style={styles.subContainer}>
+                                <Text style={{ color: '#868685', fontSize: 12 }}>Reward</Text>
+                                <Text style={styles.amount}>{this.state.myReferral.length * 1000}</Text>
+                            </View>
+                        </View>
+                       
+                       
 
                     </View>
 
@@ -179,6 +192,22 @@ const styles = StyleSheet.create({
         color: '#fff',
         fontSize: 17,
         fontWeight: "500"
+    },
+    subContainer: {
+        height: 50,
+        flexDirection: 'column',
+        justifyContent: 'space-between'
+    },
+    logoRef: {
+        width: 50,
+        height: 50,
+        resizeMode: 'contain',
+        marginRight: 10
+    },
+    amount: {
+        fontSize: 26,
+        fontWeight: "600",
+        color: '#fff'
     }
 
 })

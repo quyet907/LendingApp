@@ -49,17 +49,19 @@ export default class ChartHome extends Component<props, state> {
         IncomeService.getListCharIncome().then(res=>{
             console.log(res);
 
-            // dataChart.datasets[0].data = IncomeService.createDataChart(res.all);
-            // dataChart.datasets[1].data = IncomeService.createDataChart(res.lending);
-            // dataChart.datasets[2].data = IncomeService.createDataChart(res.referal);
-            
-            // dataChart.labels =IncomeService.getDayDataChar(res.all);
-            // dataChart.datasets[0].label = "total amount";
-            // dataChart.datasets[1].label = "leding";
-            // dataChart.datasets[2].label = "referal";
-            // this.setState({
-            //     data: dataChart
-            // })
+            if(res!= undefined){
+                dataChart.datasets[0].data = IncomeService.createDataChart(res.all);
+                dataChart.datasets[1].data = IncomeService.createDataChart(res.lending);
+                dataChart.datasets[2].data = IncomeService.createDataChart(res.referal);
+                
+                dataChart.labels =IncomeService.getDayDataChar(res.all);
+                dataChart.datasets[0].label = "total amount";
+                dataChart.datasets[1].label = "leding";
+                dataChart.datasets[2].label = "referal";
+                this.setState({
+                    data: dataChart
+                })
+            }
             
         })
     }
