@@ -60,17 +60,11 @@ export default class Home extends Component<props, state> {
 
     getDaysLeft = (endDate: Date | undefined): number => {
         const currentDate: Date = new Date();
-<<<<<<< HEAD
-
-        if (endDate) {
-            const daysLeft = Math.ceil((Date.parse(endDate.toString().substr(0, 10)) - Date.parse(currentDate.toJSON().substr(0, 10))) / (1000 * 60 * 60 * 24)
-=======
        
         
         if (endDate) {
            
             const daysLeft = Math.floor((-Date.parse(endDate.toString().substr(0,10)) + Date.parse(currentDate.toJSON().substr(0,10))) / (1000 * 60 * 60 * 24)
->>>>>>> eb4246cc27797f9c1363172d3f4b16df68fb336f
             )
             return daysLeft
         }

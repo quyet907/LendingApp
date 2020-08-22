@@ -282,8 +282,8 @@ const styles = StyleSheet.create({
     inputCoin: {
         width: '100%',
         backgroundColor: '#fff',
-        outline: 'none',
-        border: 'none',
+        // outline: 'none',
+        // border: 'none',
         paddingHorizontal: 10,
         paddingVertical: 5,
         fontWeight: "500",
@@ -294,7 +294,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#FB8C00',
         borderColor: '#fff',
         borderWidth: 1.5,
-        outline: 'none',
+        // outline: 'none',
         borderTopRightRadius: 20,
         borderBottomRightRadius: 20,
         borderLeftWidth: 0

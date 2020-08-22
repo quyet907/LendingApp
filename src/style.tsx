@@ -6,7 +6,7 @@ export default StyleSheet.create({
     container : {
         flex : 1,
         backgroundColor : "#12151c",
-        fontFamily  : '"BinancePlex","Arial","PingFangSC-Regular","Microsoft YaHei","sans-serif"'
+        // fontFamily  : '"BinancePlex","Arial","PingFangSC-Regular","Microsoft YaHei","sans-serif"'
         
     },
     row:{
@@ -58,7 +58,7 @@ export default StyleSheet.create({
     frLogo: {
         flex : 1,
         alignItems : "center",
-        resizeMode  : "stretch"
+        // resizeMode  : "stretch"
     },
 
     logo : {
@@ -165,6 +165,7 @@ export default StyleSheet.create({
         marginTop : 20,   
         color : "#FFFFFF",
         fontSize : 18,
+        paddingLeft : 10,
         
 
 
@@ -181,8 +182,8 @@ export default StyleSheet.create({
     },
     
     buttonLogin : {
-        fontSize : 18,
-        fontWeight : "bold",
+        // fontSize : 18,
+        // fontWeight : "bold",
         backgroundColor : "rgb(246, 196, 0)",
         justifyContent : "center",
         height :"99%",

@@ -155,7 +155,7 @@ const styles = StyleSheet.create({
         flexGrow: 1,
         borderColor: '#fff',
         borderWidth: 1.5,
-        outline: 'none',
+        // outline: 'none',
         borderTopLeftRadius: 20,
         borderBottomLeftRadius: 20,
 
@@ -171,7 +171,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#FB8C00',
         borderColor: '#fff',
         borderWidth: 1.5,
-        outline: 'none',
+        // outline: 'none',
         borderTopRightRadius: 20,
         borderBottomRightRadius: 20,
         borderLeftWidth: 0

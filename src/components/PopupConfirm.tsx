@@ -77,7 +77,8 @@ const styles = StyleSheet.create({
         width: 100,
         margin : 10,
         justifyContent: "center",
-        alignItems: "center"
+        alignItems: "center",
+        borderRadius : 10,
     },
 
     buttonCancel: {
@@ -86,15 +87,16 @@ const styles = StyleSheet.create({
         width: 100,
         margin : 10,
         justifyContent: "center",
-        alignItems: "center"
+        alignItems: "center",
+        borderRadius : 10,
     },
 
     textContent: {
         flexDirection: 'row',
         flex: 1,
-        color: 'white',
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        marginBottom: 20
     },
 
 
@@ -121,9 +123,12 @@ const styles = StyleSheet.create({
         position: 'absolute',
         zIndex: 5,
         backgroundColor: '#181f29',
-        width: '80%', height: 155,
+        width: '80%',
+        // height: 155,
+        borderRadius : 10,
         flexDirection: 'column',
-        padding: 15
+        padding: 15,
+
     },
 
     confirmModalInactive: {
