@@ -4,15 +4,6 @@ import { Actions } from "react-native-router-flux"
 import { UserService } from "./UserService";
 
 
-
-
-UserService.getJWT().then(res=>{
-    axios.defaults.headers.common["Authorization"] =  `Bearer ${res}`
-    console.log(res);
-})
-
-
-
 axios.interceptors.request.use(
     res => res,
     err => err

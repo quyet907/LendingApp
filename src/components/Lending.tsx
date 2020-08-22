@@ -12,21 +12,6 @@ import { ProfitHistory } from '@StockAfiCore/model/lending/LendingProfitHistory'
 import PopupConfirm from './PopupConfirm';
 
 
-const user = {
-    coinBalance: 12000,
-    urlRef: 'http://lendinggame.com/ref=?83587345435345',
-    amountRef: 19,
-    profits: 19000,
-    ref: [
-        { id: '71287482734892', time: '2020-08-15 15:12' },
-        { id: '43675434534535', time: '2020-08-15 15:12' },
-        { id: '86746325345645', time: '2020-08-15 15:12' },
-        { id: '71287482734892', time: '2020-08-15 15:12' }
-    ],
-    invest: [
-        { name: 'SILVER', coin: 1500 }
-    ]
-};
 
 
 
@@ -52,39 +37,27 @@ export default class Lending extends React.Component<Props, State>{
             myInvest: []
 
         }
-        LendingService.getMyInvest().then(res => {
-            this.setState({ myInvest: res.rows })
-        })
 
+
+        
+
+
+    }
+    componentWillMount() {
         LendingPackageService.getLendingPackage().then(pagingLendingPackages => {
             console.log(pagingLendingPackages.rows)
             this.setState({
                 packages: pagingLendingPackages.rows,
                 packageID: pagingLendingPackages.rows[0]._id,
-                minInvestment: typeof pagingLendingPackages.rows[0].minInvestment == 'number' ? pagingLendingPackages.rows[0].minInvestment : 0,
-                maxInvestment: typeof pagingLendingPackages.rows[0].maxInvestment == 'number' ? pagingLendingPackages.rows[0].maxInvestment : 0,
+                minInvestment:  pagingLendingPackages.rows[0].minInvestment || 0,
+                maxInvestment: pagingLendingPackages.rows[0].maxInvestment || 0,
             })
-            console.log(this.state);
         })
-
-
+        LendingService.getMyInvest().then(res => {
+            this.setState({ myInvest: res.rows })
+        })
     }
 
-    com
-    
-
-    componentDidMount() {
-    }
-
-    // componentDidMount(){
-    //    this.setState({
-    //        dataPackage: LendingPackageService.getLendingPackage()
-
-    //    })
-    //    console.log(this.state.dataPackage)
-
-
-    // }
 
     render() {
         return (
@@ -119,7 +92,7 @@ export default class Lending extends React.Component<Props, State>{
                         </ScrollView>
 
                         <View style={{ flexDirection: 'row', justifyContent: 'center', marginTop: 30 }}>
-                            <Text style={styles.textLabel}>Wallet Balance: {user.coinBalance} COIN</Text>
+                            <Text style={styles.textLabel}>Wallet Balance: 1000 COIN</Text>
                         </View>
 
                         <View style={{
@@ -129,14 +102,7 @@ export default class Lending extends React.Component<Props, State>{
 
 
                         }}>
-                            <View style={{
-                                flexGrow: 1,
-                                backgroundColor: '#f2c73a',
-                                paddingHorizontal: 10,
-                                height: '100%',
-                                alignItems: 'center',
-                                justifyContent: 'center'
-                            }}>
+                            <View style={styles.lblCoin}>
                                 <Text style={styles.copyText}>COIN</Text>
                             </View>
                             <TextInput
@@ -157,15 +123,7 @@ export default class Lending extends React.Component<Props, State>{
 
                             />
                             <TouchableOpacity
-                                style={{
-                                    flex: 1,
-                                    flexGrow: 1,
-                                    backgroundColor: '#f2c73a',
-                                    paddingHorizontal: 10,
-                                    height: '100%',
-                                    alignItems: 'center',
-                                    justifyContent: 'center'
-                                }}
+                                style={styles.btnAll}
                                 onPress={() => this.allCoin()}
                             >
                                 <Text style={styles.copyText}>&lt;ALL</Text>
@@ -176,52 +134,26 @@ export default class Lending extends React.Component<Props, State>{
                         <View style={{ flexDirection: 'row', justifyContent: 'center', marginTop: 10, alignItems: 'center' }}>
                             <CheckBox
                                 value={this.state.isSelected}
-                                onValueChange={() => {
-                                    this.setState({
-                                        isSelected: !this.state.isSelected
-                                    }, () => {
-                                        this.setState({
-                                            buttonInvest: (this.state.initialValue >= this.state.minInvestment) && (this.state.initialValue <= this.state.maxInvestment) && this.state.isSelected == true
-                                        })
-                                    })
-                                }}
-                            //style={styles.checkbox}
+                                onValueChange={() => this.checkCheckbox}
                             />
-                            <Text style={{ color: '#fff', paddingLeft: 10 }}>I have read and understood your terms of use</Text>
+                            <Text style={{ color: '#fff', paddingLeft: 10 }}
+                                onPress={this.checkCheckbox}
+                            >
+                                I have read and understood your terms of use
+                                </Text>
                         </View>
 
-                        <View style={{ flexDirection: 'row', justifyContent: 'center', marginTop: 20, marginBottom: 20, alignItems: 'center' }}>
+                        <View style={styles.btnInvest}>
                             <TouchableOpacity
                                 style={this.state.buttonInvest ? styles.buttonActive : styles.buttonInactive}
                                 disabled={!this.state.buttonInvest}
                                 onPress={() => this.setState({ confirmModal: true })}
                             >
                                 <Text style={{
-                                    paddingHorizontal: 10, paddingVertical: 6, fontSize: 16,
-                                    fontWeight: "700"
+                                    paddingHorizontal: 10, paddingVertical: 6, fontSize: 16, fontWeight: "700"
                                 }}>INVEST</Text>
                             </TouchableOpacity >
-
-
-                            {/* <Button
-                            onPress={() => Alert.alert('Cannot press this one')}
-                            title="INVEST"
-                            color="#f2c73a"
-                            accessibilityLabel="Learn more about this purple button"
-                            
-                        /> */}
-
-
-
                         </View>
-
-
-
-
-
-
-
-
                     </View>
                     <View style={styles.container2}>
                         <Text style={styles.textLabel}>My Investsment</Text>
@@ -237,26 +169,17 @@ export default class Lending extends React.Component<Props, State>{
                                 />
                             }
                             keyExtractor={item => item._id != undefined ? item._id : 'null'} />
-
-
-
-
                     </View>
-
-
                 </ScrollView>
                 <PopupConfirm
                     confirmModal={this.state.confirmModal}
-                    hideBtnCancel={false}
+                    hideBtnCancel={true}
                     buttonOK={() => {
-                        console.log('button ok')
                         this.invest()
                         this.setState({ confirmModal: false })
                     }}
                     buttonCancel={() => {
                         this.setState({ confirmModal: false })
-                        //console.log('cancel');
-
                     }}
                     title='Confirm'
                     message='Are you sure want to invest?'
@@ -265,7 +188,23 @@ export default class Lending extends React.Component<Props, State>{
         )
     }
 
-   
+    checkCheckbox = () => {
+        this.setState({
+            isSelected: !this.state.isSelected
+        }, () => {
+            this.setState({
+                buttonInvest: (this.state.initialValue >= this.state.minInvestment) && (this.state.initialValue <= this.state.maxInvestment) && this.state.isSelected == true
+            })
+        })
+    }
+
+    updateLending = () => {
+        LendingService.getMyInvest().then(res => {
+            console.log(res.rows)
+            this.setState({ myInvest: res.rows })
+        })
+    }
+
 
     getTime = (date: Date | undefined): String => {
         if (date !== undefined) return date.toString().substring(0, 10)
@@ -274,11 +213,11 @@ export default class Lending extends React.Component<Props, State>{
 
     getDaysLeft = (startDate: Date | undefined): number => {
         const currentDate: Date = new Date();
-        
+
         if (startDate) {
-            const daysLeft = Math.floor((Date.parse(currentDate.toJSON().substr(0,10)) - Date.parse(startDate.toString().substr(0,10))) / (1000 * 60 * 60 * 24)
+            const daysLeft = Math.floor((Date.parse(currentDate.toJSON().substr(0, 10)) - Date.parse(startDate.toString().substr(0, 10))) / (1000 * 60 * 60 * 24)
             )
-            return daysLeft > 30 ? 30 : daysLeft 
+            return daysLeft > 30 ? 30 : daysLeft
         }
         return 0
     }
@@ -293,24 +232,22 @@ export default class Lending extends React.Component<Props, State>{
             lendingPackageId: this.state.packageID,
             loanAmount: this.state.initialValue,
         }
-        LendingService.createLending(lending)
+        LendingService.createLending(lending).then(() => {
+            this.updateLending()
+        })
 
     }
 
 
     allCoin = () => {
         this.setState({
-            initialValue: user.coinBalance
+            initialValue: this.state.maxInvestment
         })
 
 
     };
 
     onChangeText = (text: any) => {
-
-
-
-
     }
 }
 
@@ -344,15 +281,12 @@ const styles = StyleSheet.create({
     },
     inputCoin: {
         width: '100%',
-
         backgroundColor: '#fff',
         outline: 'none',
         border: 'none',
         paddingHorizontal: 10,
         paddingVertical: 5,
-
         fontWeight: "500",
-
     },
     copy: {
         paddingHorizontal: 15,
@@ -399,12 +333,42 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
     },
     confirmModalActive: {
-        width: '100%', height: '100%', backgroundColor: '#181f29', position: 'absolute', zIndex: 3, justifyContent: 'center', alignItems: 'center'
+        width: '100%',
+        height: '100%',
+        backgroundColor: '#181f29',
+        position: 'absolute',
+        zIndex: 3,
+        justifyContent: 'center',
+        alignItems: 'center'
 
     },
     confirmModalInactive: {
         display: 'none'
 
+    },
+    btnAll: {
+        flex: 1,
+        flexGrow: 1,
+        backgroundColor: '#f2c73a',
+        paddingHorizontal: 10,
+        height: '100%',
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+    btnInvest: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        marginTop: 20,
+        marginBottom: 20,
+        alignItems: 'center'
+    },
+    lblCoin: {
+        flexGrow: 1,
+        backgroundColor: '#f2c73a',
+        paddingHorizontal: 10,
+        height: '100%',
+        alignItems: 'center',
+        justifyContent: 'center'
     }
 
 
