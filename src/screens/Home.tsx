@@ -17,10 +17,12 @@ export default class Home extends Component<props, state> {
             data: []
         }
         LendingProfitHistoryService.getLendingProfit().then(res => {
-            console.log(res.rows)
-            this.setState({
-                data: res.rows
-            })
+            if (res) {
+                console.log(res.rows)
+                this.setState({
+                    data: res.rows
+                })
+            }
         })
     }
 
@@ -39,7 +41,7 @@ export default class Home extends Component<props, state> {
                         <FlatList data={this.state.data}
                             renderItem={({ item }) =>
                                 <HistoryInterest
-                                    createAt={item.createdAt?.toString().substr(0,10) || 'null'}
+                                    createAt={item.createdAt?.toString().substr(0, 10) || 'null'}
                                     profits={item.profitAmount || 0}
                                     amount={item.loanAmount || 0}
                                     daysLeft={this.getDaysLeft(item.lending?.endAt)}
@@ -48,7 +50,7 @@ export default class Home extends Component<props, state> {
                             }
                             keyExtractor={item => item._id || 'null'} />
                     </View>
-                    
+
 
                 </View>
             </ScrollView>
@@ -57,11 +59,11 @@ export default class Home extends Component<props, state> {
 
     getDaysLeft = (endDate: Date | undefined): number => {
         const currentDate: Date = new Date();
-        
+
         if (endDate) {
-            const daysLeft = Math.ceil((Date.parse(endDate.toString().substr(0,10)) - Date.parse(currentDate.toJSON().substr(0,10))) / (1000 * 60 * 60 * 24)
+            const daysLeft = Math.ceil((Date.parse(endDate.toString().substr(0, 10)) - Date.parse(currentDate.toJSON().substr(0, 10))) / (1000 * 60 * 60 * 24)
             )
-            return daysLeft 
+            return daysLeft
         }
         return 0
     }

@@ -14,6 +14,7 @@ import { User } from '@StockAfiCore/model/user/User';
 
 
 
+
 class Login extends Component<props, state> {
     constructor(props : any){
         super(props);
@@ -29,26 +30,18 @@ class Login extends Component<props, state> {
     }
 
     componentDidMount() {
-        this.checkJwt()
-
-    }
-
-    checkJwt(){
-        UserService.getJWT().then(res=>{
-            if(res !== null){
-                console.log(res);
-                if(res != ""){
-                    UserService.checkJWT(res).then(check=>{
-                        console.log(check)
-                        if(check){
-                            Actions.home()
-                        }
-                    })
-                }
+        UserService.getJWT().then(res =>{
+            console.log(res);
+            if(res){
                 
+                Actions.home()
             }
+            
         })
+
     }
+
+
 
     checkLogin =()=>{
         var user = this.state.user;
@@ -63,7 +56,7 @@ class Login extends Component<props, state> {
             }
             else {               
                 UserService.setJWT(infoLogin.jwt).then(res =>{
-                    this.checkJwt()
+                    Actions.home()
                 });
                          
             }

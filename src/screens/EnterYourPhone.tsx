@@ -29,17 +29,33 @@ class EnterYourPhone extends Component<props, state> {
         UserService.sendOTP(this.state.numberPhone).then((res) => {
             // xiu nua se thay the dieu dien cua kiem tra so dien thoai
             let error = UserService.checkValidatePhone(this.state.numberPhone);
-            if(error!= null) {
+            if (error != null) {
                 this.setState({
-                    showPopup : true,
-                    contentPopup : error
+                    showPopup: true,
+                    contentPopup: error
                 })
             }
             else {
-                if (true) {
-                    this.props.onPhone(this.state.numberPhone);
-                    Actions.confirmOTP()
-                }
+                UserService.checkExits(this.state.numberPhone).then((res) => {
+
+                    console.log(this.props.typeAction);
+                    if(res && this.props.typeAction == "signUp"){
+                        this.setState({
+                            showPopup: true,
+                            contentPopup: "Account has been registered"
+                        })
+                    }
+                    else if(!res && this.props.typeAction == "forgotPassword"){
+                        this.setState({
+                            showPopup: true,
+                            contentPopup: "Can't find your account"
+                        })
+                    } 
+                    else{
+                        Actions.confirmOTP()
+                    }
+
+                })
             }
         })
     }

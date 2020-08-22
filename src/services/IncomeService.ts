@@ -1,6 +1,7 @@
 import { Income } from "../share/base-stock-afi/model/lending/Income";
 import axios, { getAxios } from "./APIService"
 import { UserService } from "./UserService";
+import { Finance } from "@StockAfiCore/model/lending/Finance";
 
 
 
@@ -43,6 +44,15 @@ export class IncomeService {
         return ArrayValue;
     }
 
+
+    public static getFinance(): Promise<Finance>{
+        return getAxios().then(axios =>axios.get("http://localhost:4000/user/finance").
+        then(res=>{
+            console.log(res.data);
+            return res.data
+        })
+        )
+    }
 
 
 

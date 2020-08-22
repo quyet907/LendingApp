@@ -4,25 +4,25 @@ import myStyle from "../style"
 import StatisticalBasic from './StatisticalBasic';
 import { Income } from '@StockAfiCore/model/lending/Income';
 import { IncomeService } from '../services/IncomeService';
+import { Finance } from '@StockAfiCore/model/lending/Finance';
 
 export default class ListStatisticalBasic extends Component<props, state> {
     constructor(props:any){
         super(props)
         this.state = {
-            dataIncomLeding : {},
-            dataIncomReferal : {},
-            dataIncomSurplus : {},
-            dataIncomTotal : {}
+            dataFinance : {}
         }
 
     }
 
     componentDidMount(){
-        IncomeService.getListCharIncome().then(res =>{
+        IncomeService.getFinance().then(res =>{
             this.setState({
-
+                dataFinance : res
             })
         })
+
+        
     }
 
     render() {
@@ -67,8 +67,5 @@ type props ={
 }
 
 type state = {
-    dataIncomTotal : Income
-    dataIncomLeding : Income
-    dataIncomReferal : Income
-    dataIncomSurplus : Income
+    dataFinance : Finance
 }

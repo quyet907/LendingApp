@@ -25,9 +25,13 @@ axios.interceptors.response.use(
         
         console.log(err.response);
         if(err.response.status ==401){
+            UserService.getJWT().then(res=>{
+                console.log(res);
+            })
+
             UserService.setJWT("").then(res =>{
                 
-               return  Actions.login();
+                Actions.login();
                 
             })
             return Promise.reject(err);        }

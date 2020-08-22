@@ -2,6 +2,8 @@ import { BaseUser, BaseUserWithJwt } from "../share/base-ale/model/user/BaseUser
 import axios from "axios";
 import { AsyncStorage } from "react-native";
 import { Actions } from 'react-native-router-flux';
+
+
 export class UserService {
 
     public static login(user: string, pass: string): Promise<BaseUserWithJwt> {
@@ -117,6 +119,27 @@ export class UserService {
             .catch(err => {
                 return "error with server"
             })
+    }
+
+
+    public static checkExits(phone : string ) : Promise<boolean>  {
+        return axios.get('http://localhost:4000/public/user/checkExist',{
+            params: {
+                username:phone
+            }
+        }).then(res =>{
+            console.log(res);
+            console.log(res.data.isExist);
+            if(res.data.isExist){
+                return true
+            }
+            return false;
+        }).catch(err =>{
+            console.log(err);
+            return false;
+        })
+
+
     }
 
 
