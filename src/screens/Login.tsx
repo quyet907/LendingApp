@@ -24,7 +24,10 @@ class Login extends Component<props, state> {
             showPopup: false,
             contentPopup : ""
         }
-        
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        const ref = urlParams.get("ref");
+        console.log(ref);
 
         
     }
