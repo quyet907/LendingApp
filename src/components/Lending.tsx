@@ -392,5 +392,5 @@ type State = {
     buttonInvest: boolean,
     confirmModal: boolean,
 
-    myInvest: Array<LendingModel>
+    myInvest: LendingModel[]
 }

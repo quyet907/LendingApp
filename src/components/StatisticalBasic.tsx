@@ -35,7 +35,7 @@ export default class StatisticalBasic extends Component <props, state>{
 
 type props = {
     img : string
-    money : string,
+    money : number,
     content : string
 }
 type state = {

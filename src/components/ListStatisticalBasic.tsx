@@ -35,12 +35,12 @@ export default class ListStatisticalBasic extends Component<props, state> {
                     <StatisticalBasic
                         img  = {"../assets/icons8_average_2_75px.png"}
                         content = {"Tổng Tiền"}
-                        money = {"200,000"}
+                        money = {this.state.dataFinance.totalAmount || 0}
                     ></StatisticalBasic>
                     <StatisticalBasic
                         img  = {"../assets/icons8_transaction_70px_2.png"}
                         content = {"Đầu tư"}
-                        money = {"100,000"}
+                        money = {this.state.dataFinance.investedAmout || 0}
                     ></StatisticalBasic>
 
                 </View>
@@ -48,12 +48,12 @@ export default class ListStatisticalBasic extends Component<props, state> {
                     <StatisticalBasic
                         img  = {"../assets/icons8_rating_70px.png"}
                         content = {"Giới thiệu"}
-                        money = {"150,000"}
+                        money = {this.state.dataFinance.referalIncomeAmout || 0}
                     ></StatisticalBasic>
                     <StatisticalBasic
                         img  = {"../assets/icons8_wallet_70px.png"}
                         content = {"Số dư"}
-                        money = {"140,000"}
+                        money = {this.state.dataFinance.remainAmount || 0}
                     ></StatisticalBasic>
                 </View>
 
