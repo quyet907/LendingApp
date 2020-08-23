@@ -1,7 +1,8 @@
 {
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
-    "start": "expo start",
+    "start": "USER_API=http://localhost:4000; LENDING_API=http://localhost:4001; expo start",
+    "start-development": "USER_API=http://13.229.88.203:4000; LENDING_API=http://13.229.88.203:4001; expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
@@ -30,6 +31,7 @@
     "react-native-alert-pro": "^1.1.2",
     "react-native-chart-kit": "^6.4.1",
     "react-native-chartjs": "^1.0.3",
+    "react-native-dotenv": "^2.3.0",
     "react-native-flash-message": "^0.1.16",
     "react-native-fontawesome": "^7.0.0",
     "react-native-gesture-handler": "^1.7.0",
@@ -49,7 +51,8 @@
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
     "react-router-native": "^5.2.0",
-    "react-router-native-animate-stack": "^1.3.0"
+    "react-router-native-animate-stack": "^1.3.0",
+    "s": "^1.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.8.6",
