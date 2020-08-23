@@ -11,6 +11,7 @@ import { UserService } from '../services/UserService';
 import PopupConfirm from '../components/PopupConfirm';
 
 
+
 class setPassword extends Component<props, state>{
     constructor(props: any) {
         super(props)
@@ -22,6 +23,10 @@ class setPassword extends Component<props, state>{
             contentPopup : "",
             
         }
+    }
+    componentDidMount(){
+        console.log(this.props.codeReferal);
+        console.log(this.props.phoneNumber);
     }
 
     checkSetPassword = () => {
@@ -41,7 +46,10 @@ class setPassword extends Component<props, state>{
         
         else {
             if (this.props.typeAction == "signUp") {
-                UserService.register(this.props.phoneNumber, getPass, this.props.codeOTP).then(res => {
+                var getReferral = this.props.codeReferal;
+
+                console.log(this.props.phoneNumber);
+                UserService.register(this.props.phoneNumber, getPass, this.props.codeOTP, getReferral).then(res => {
                         this.setState({
                             contentPopup : res,
                             showPopup : true  
@@ -162,6 +170,7 @@ type props = {
     typeAction: string,
     phoneNumber: string,
     codeOTP: string,
+    codeReferal : string
 }
 
 type state = {
@@ -176,7 +185,8 @@ function mapStateToProps(state: any) {
     return {
         typeAction: state.LoginReducer.actionType,
         phoneNumber: state.LoginReducer.numberPhone,
-        codeOTP: state.LoginReducer.codeOTP
+        codeOTP: state.LoginReducer.codeOTP,
+        codeReferal : state.LoginReducer.referalCode
     }
 }
 

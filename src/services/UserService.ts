@@ -32,13 +32,13 @@ export class UserService {
 
 
     //futer sign up
-    public static register(userName: string, password: string, codeOTP: string): Promise<string> {
+    public static register(userName: string, password: string, codeOTP: string, codeReferal : string): Promise<string> {
         return axios.post("http://localhost:4000/public/user/register",
             {
                 "loginType": "phonenumber",
                 "username": userName,
                 "password": password,
-                "referalFromUserId": "5f3b3cecdb856ff43bf9afd2",
+                "referalFromUserId": codeReferal,
                 "otpCode": codeOTP
             })
             .then(res => {

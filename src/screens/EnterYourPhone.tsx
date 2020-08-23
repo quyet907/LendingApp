@@ -52,6 +52,7 @@ class EnterYourPhone extends Component<props, state> {
                         })
                     } 
                     else{
+                        this.props.onPhone(this.state.numberPhone)
                         Actions.confirmOTP()
                     }
 
