@@ -10,6 +10,7 @@ import { IncomeService } from '../services/IncomeService';
 
 import { connect } from "react-redux"
 import * as action from "../Action/ActionLogin"
+import * as actionPopup from "../Action/ActionPopup"
 
 
 
@@ -20,8 +21,7 @@ class Login extends Component<props, state> {
         this.state = {
             user: "",
             password: "",
-            showPopup: false,
-            contentPopup: ""
+
         }
 
     }
@@ -55,10 +55,7 @@ class Login extends Component<props, state> {
         console.log(user + " " + password);
         let getJwtToken = UserService.login(user, password).then(infoLogin => {
             if (infoLogin.jwt === undefined) {
-                this.setState({
-                    showPopup: true,
-                    contentPopup: "User or password is incorrect!"
-                })
+                actionPopup.showMessage("User or password is incorrect!")
             }
             else {
                 UserService.setJWT(infoLogin.jwt).then(res => {
@@ -74,14 +71,6 @@ class Login extends Component<props, state> {
 
         return (
             <KeyboardAvoidingView style={[myStyle.container, { alignItems: "center" }]}>
-                <PopupConfirm
-                    hideBtnCancel={false}
-                    confirmModal={this.state.showPopup}
-                    buttonOK={() => this.setState({ showPopup: false })}
-                    buttonCancel={() => this.setState({ showPopup: false })}
-                    title='Confirm'
-                    message={this.state.contentPopup}
-                />
                 <View style={[myStyle.flex2]}>
                     <LogoLogin></LogoLogin>
                 </View>
@@ -169,8 +158,7 @@ type props = {
 type state = {
     user: any,
     password: any,
-    showPopup: boolean,
-    contentPopup: string
+
 }
 
 function mapDispatchProps(dispatch: any, props: any) {

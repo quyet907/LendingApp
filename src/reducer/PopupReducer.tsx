@@ -1,13 +1,14 @@
 const  initPopupConfirm = {
-    typePopup : "",
-    hidden : false,
-    showButtonCacel : false,
-    contentShow : ""
+    typeCofirm : false,
+    showPopup : false,
+    contentShow : "Hello Luong",
+    result : true
 }
 
 const Popup =(state : any = initPopupConfirm , action : any)=>{
+
     switch(action.type){
-        case "TYPE_POPUP" : {
+        case "TYPE_COMFIRM" :{
             return  {
                 ...state,
                 typePopup : action.payload,
@@ -16,14 +17,21 @@ const Popup =(state : any = initPopupConfirm , action : any)=>{
         case "CONTENT_POPUP" : {
             return {
                 ...state,
-                typePopup : action.payload,
-                hidden : true
+                contentShow : action.payload
             }
         }
-        case "SHOW_BUTTON_CANCEL" : {
-            return  {
+
+        case "SHOW_POPUP" : {
+            return {
                 ...state,
-                showButtonCacel : action.payload
+                showPopup : action.payload
+            }
+        }
+
+        case  "SET_RESULT" : {
+            return {
+                ...state,
+                result : action.payload
             }
         }
 

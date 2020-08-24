@@ -9,7 +9,8 @@ import * as action from "../Action/ActionLogin";
 import { connect } from "react-redux"
 import { UserService } from '../services/UserService';
 import PopupConfirm from '../components/PopupConfirm';
-
+import * as actionPopup from '../Action/ActionPopup';
+import { error } from 'console';
 
 
 class setPassword extends Component<props, state>{
@@ -19,14 +20,13 @@ class setPassword extends Component<props, state>{
             checkbox: false,
             getPass: "",
             getAgainPass: "",
-            showPopup: false,
-            contentPopup : "",
+            checkSuccess : false
+
             
         }
     }
     componentDidMount(){
-        console.log(this.props.codeReferal);
-        console.log(this.props.phoneNumber);
+
     }
 
     checkSetPassword = () => {
@@ -37,10 +37,9 @@ class setPassword extends Component<props, state>{
 
   
         if (error!= null) {
+            actionPopup.showMessage(error)
             this.setState({
-                contentPopup : error,
-                showPopup : true
-                
+                checkSuccess : false
             })
         }
         
@@ -50,18 +49,14 @@ class setPassword extends Component<props, state>{
 
                 console.log(this.props.phoneNumber);
                 UserService.register(this.props.phoneNumber, getPass, this.props.codeOTP, getReferral).then(res => {
-                        this.setState({
-                            contentPopup : res,
-                            showPopup : true  
-                        })
+                    actionPopup.showMessage(res);
+                    Actions.login();
                 })
             }
             else {
                 UserService.setPassword(this.props.phoneNumber, getPass, this.props.codeOTP).then(res => {
-                    this.setState({
-                        contentPopup : res,
-                        showPopup : true 
-                    })
+                    actionPopup.showMessage(res);
+                    Actions.login();
                 })
             }
         }
@@ -70,20 +65,7 @@ class setPassword extends Component<props, state>{
     render() {
         return (
             <KeyboardAvoidingView style={[myStyle.container, { alignItems: "center" }]}>
-                <PopupConfirm
-                    hideBtnCancel = {false}
-                    confirmModal={this.state.showPopup}
-                    buttonOK={() => {
-                        if(this.state.contentPopup == "success"){
-                            Actions.login()
-                        }
-                        this.setState({ showPopup: false })}
-                        
-                    }
-                    buttonCancel={() => this.setState({ showPopup: false })}
-                    title='Confirm'
-                    message= {this.state.contentPopup}
-                />
+                
                 <View style={[myStyle.flex2]}>
                     <View style={[myStyle.frLogo]}>
                         <View
@@ -170,15 +152,15 @@ type props = {
     typeAction: string,
     phoneNumber: string,
     codeOTP: string,
-    codeReferal : string
+    codeReferal : string,
 }
 
 type state = {
+    checkSuccess : boolean,
     checkbox: boolean
     getPass: string,
     getAgainPass: string,
-    showPopup: boolean,
-    contentPopup : string
+
 }
 
 function mapStateToProps(state: any) {

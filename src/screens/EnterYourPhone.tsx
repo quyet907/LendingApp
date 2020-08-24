@@ -8,15 +8,14 @@ import { UserService } from '../services/UserService';
 import { BaseUserWithJwt } from '@Core/model/user/BaseUser';
 import { connect } from "react-redux";
 import * as action from "../Action/ActionLogin"
+import * as actionPopup from "../Action/ActionPopup";
 import PopupConfirm from '../components/PopupConfirm';
 
 class EnterYourPhone extends Component<props, state> {
     constructor(props: any) {
         super(props)
         this.state = {
-            numberPhone: "",
-            showPopup: false,
-            contentPopup: ""
+            numberPhone: ""
         }
     }
 
@@ -27,31 +26,21 @@ class EnterYourPhone extends Component<props, state> {
     }
     checkPhone() {
         UserService.sendOTP(this.state.numberPhone).then((res) => {
-            // xiu nua se thay the dieu dien cua kiem tra so dien thoai
             let error = UserService.checkValidatePhone(this.state.numberPhone);
             if (error != null) {
-                this.setState({
-                    showPopup: true,
-                    contentPopup: error
-                })
+                actionPopup.showMessage(error);
             }
             else {
                 UserService.checkExits(this.state.numberPhone).then((res) => {
 
                     console.log(this.props.typeAction);
-                    if(res && this.props.typeAction == "signUp"){
-                        this.setState({
-                            showPopup: true,
-                            contentPopup: "Account has been registered"
-                        })
+                    if (res && this.props.typeAction == "signUp") {
+                        actionPopup.showMessage("Account has been registered")
                     }
-                    else if(!res && this.props.typeAction == "forgotPassword"){
-                        this.setState({
-                            showPopup: true,
-                            contentPopup: "Can't find your account"
-                        })
-                    } 
-                    else{
+                    else if (!res && this.props.typeAction == "forgotPassword") {
+                        actionPopup.showMessage("Can't find your account")
+                    }
+                    else {
                         this.props.onPhone(this.state.numberPhone)
                         Actions.confirmOTP()
                     }
@@ -64,14 +53,7 @@ class EnterYourPhone extends Component<props, state> {
 
         return (
             <KeyboardAvoidingView style={[myStyle.container, { alignItems: "center" }]}>
-                <PopupConfirm
-                    hideBtnCancel={false}
-                    confirmModal={this.state.showPopup}
-                    buttonOK={() => this.setState({ showPopup: false })}
-                    buttonCancel={() => this.setState({ showPopup: false })}
-                    title='Confirm'
-                    message={this.state.contentPopup}
-                />
+
                 <View style={[myStyle.flex2]}>
                     <View style={[myStyle.frLogo]}>
                         <View
@@ -141,8 +123,7 @@ type props = {
 }
 type state = {
     numberPhone: string,
-    showPopup: boolean,
-    contentPopup: string
+
 }
 function mapDispatchToProps(dispatch: any, props: any) {
     return {

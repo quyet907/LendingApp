@@ -7,7 +7,6 @@ const initLogin = {
     
 }
 const Login = (state: any = initLogin, action : any )=>{
-    console.log(state);
     switch(action.type){
         case "SET_ACTION" : {       
             return {...state,

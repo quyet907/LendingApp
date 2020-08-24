@@ -15,6 +15,8 @@ import { Actions, Scene, Router } from 'react-native-router-flux';
 import Home from './src/screens/Home';
 import store from "./src/reducer/store"
 import { Provider } from "react-redux"
+import PopupShow from './src/components/PopupShow';
+import Loadding from './src/components/Loadding';
 const MyTransitionSpec = ({
   duration: 1000,
   // easing: Easing.bezier(0.2833, 0.99, 0.31833, 0.99),
@@ -71,6 +73,8 @@ export default class App extends React.Component<Props, {}>{
   render() {
     return (
       <Provider store={store}>
+        <PopupShow></PopupShow>
+        <Loadding></Loadding>
         <Router scenes={scenes} />
       </Provider>
     );

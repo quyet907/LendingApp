@@ -10,9 +10,8 @@ const all = (state: any, action: any) => {
                 ...state,
 
             }
-
-            
         }
+
 
         default : {
             return {...state}

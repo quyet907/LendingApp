@@ -2,15 +2,16 @@ import * as React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import Separator from './Separator'
 import { Colors } from 'react-native/Libraries/NewAppScreen';
+import {connect}from "react-redux";
+import * as action from "../Action/ActionPopup"
 
 
 
 
-
-export default class PopupConfirm extends React.Component<Props, {}>{
+class PopupShow extends React.Component<Props, {}>{
     render() {
         return (
-            <View style={this.props.confirmModal ? styles.confirmModalActive : { display: 'none' }}>
+            <View style={this.props.showPopup ? styles.confirmModalActive : { display: 'none' }}>
                 <View style={styles.backgroundPopup}>
 
                 </View>
@@ -19,22 +20,29 @@ export default class PopupConfirm extends React.Component<Props, {}>{
                         <Text style = {{color: 'white'}}> {this.props.title}</Text>
                     </View> */}
                     <View style={styles.textContent}>
-                        <Text style={{ color: 'white', alignItems: "center" }}>{this.props.message}</Text>
+                        <Text style={{ color: 'white', alignItems: "center" }}>{this.props.content}</Text>
                     </View>
                     <View style={{ flexDirection: 'row', justifyContent: 'center', flex: 1, alignItems: 'center' }}>
 
 
 
                         <TouchableOpacity
-                            style={(this.props.hideBtnCancel) ? styles.buttonCancel : {display: 'none'}}
-                            onPress={() => this.props.buttonCancel()}
+                            style={(this.props.typeConfirm) ? styles.buttonCancel : {display: 'none'}}
+                            onPress={() => {
+                                this.props.onShowPopup(false);
+                                this.props.onResult(false);
+                            }}
                         >
                             <Text style = {{color:"black"}} >Cancel</Text>
                         </TouchableOpacity>
 
                         <TouchableOpacity
                             style={styles.buttonOK}
-                            onPress={() => this.props.buttonOK()}
+                            onPress={() => {
+                                // this.props.onShowPopup(false);
+                                action.setShowPopup(false); 
+                                // this.props.onResult(true);
+                            }}
                         >
                             <Text>OK</Text>
                         </TouchableOpacity>
@@ -132,13 +140,34 @@ const styles = StyleSheet.create({
 
 
 type Props = {
-    confirmModal: boolean,
-    buttonOK: any,
-    buttonCancel: any,
-    hideBtnCancel: boolean,
-    title: String,
-    message: String
+    showPopup : boolean,
+    content : string,
+    typeConfirm : boolean,
+    onShowPopup(show : boolean) : void,
+    onResult(result : boolean) : void
 
 }
+
+function mapStateToProps(state : any){
+    return {
+        showPopup : state.PopupReducer.showPopup,
+        content : state.PopupReducer.contentShow,
+        typeConfirm : state.PopupReducer.typeCofirm
+    }
+}
+
+function mapDispatchToProps(dispatch :any , props : any ){
+    return {
+        onShowPopup(show : boolean) {
+            dispatch(action.showPopup(show))
+        },
+        onResult(result : boolean){
+            dispatch(action.Result(result))
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(PopupShow )
+
 
 

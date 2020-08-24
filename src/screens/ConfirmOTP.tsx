@@ -9,6 +9,8 @@ import { connect } from "react-redux";
 import * as action from "../Action/ActionLogin"
 import PopupConfirm from '../components/PopupConfirm';
 
+import * as actionPopup from "../Action/ActionPopup"
+
 
 class ConfirmOTP extends Component<props, state> {
     constructor(props: any) {
@@ -16,8 +18,7 @@ class ConfirmOTP extends Component<props, state> {
         this.state = {
             getCodeOTP: "",
             baseUser: {},
-            showPopup: false,
-            contentPopup : "",
+
 
         }
     }
@@ -40,10 +41,7 @@ class ConfirmOTP extends Component<props, state> {
                 }
             }
             else{
-                this.setState({
-                    contentPopup : res,
-                    showPopup : true
-                })
+                actionPopup.showMessage(res);
             }
         })
 
@@ -54,14 +52,7 @@ class ConfirmOTP extends Component<props, state> {
     render() {
         return (
             <KeyboardAvoidingView style={[myStyle.container, { alignItems: "center" }]}>
-                <PopupConfirm
-                    hideBtnCancel = {false}
-                    confirmModal={this.state.showPopup}
-                    buttonOK={() => this.setState({ showPopup: false })}
-                    buttonCancel={() => this.setState({ showPopup: false })}
-                    title='Confirm'
-                    message= {this.state.contentPopup}
-                />
+
                 <View style={[myStyle.flex2]}>
                     <View style={[myStyle.frLogo]}>
                         <View
@@ -135,8 +126,6 @@ type props = {
 type state = {
     getCodeOTP: string;
     baseUser: BaseUserWithJwt;
-    showPopup: boolean;
-    contentPopup : string;
 }
 
 function mapStateToProps(state: any) {
