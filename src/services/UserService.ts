@@ -1,6 +1,12 @@
-import { BaseUser, BaseUserWithJwt } from "../share/base-ale/model/user/BaseUser";
+import {
+  BaseUser,
+  BaseUserWithJwt,
+} from "../share/base-ale/model/user/BaseUser";
 import axios from "axios";
 import { AsyncStorage } from "react-native";
+import { Actions } from "react-native-router-flux";
+import { config } from "../config/Config";
+
 export class UserService {
     
     
@@ -172,37 +178,41 @@ export class UserService {
     }
 
 
-    //check validate of password
-    public static checkValidate = (pass: string, AgainPass: string): string | null => {
-        if (pass != AgainPass) {
-            return "Those passwords didn't match"
-        }
-        if (pass.length < 6) {
-            return "Use 6 character or more for your password"
-        }
-        var regex_Phone = /[0-9]$/
-        if (!regex_Phone.test(pass)) {
-            return "pass only is number";
-        }
-        return null;
+
+
+
+
+  //check validate of password
+  public static checkValidate = (
+    pass: string,
+    AgainPass: string
+  ): string | null => {
+    if (pass != AgainPass) {
+      return "Those passwords didn't match";
     }
-
-
-    //check validate phone
-    public static checkValidatePhone = (phone: string): string | null => {
-        phone.trim();
-        if (phone.length == 0) {
-            return "number phone is not null";
-        }
-        if (phone.length < 10 || phone.length > 11) {
-            return "lenght number phone is 10-11"
-        }
-        var regex_Phone = /[0-9]$/
-        if (!regex_Phone.test(phone)) {
-            return "is not a valid phone number";
-        }
-        return null;
+    if (pass.length < 6) {
+      return "Use 6 character or more for your password";
     }
+    var regex_Phone = /[0-9]$/;
+    if (!regex_Phone.test(pass)) {
+      return "pass only is number";
+    }
+    return null;
+  };
 
-
+  //check validate phone
+  public static checkValidatePhone = (phone: string): string | null => {
+    phone.trim();
+    if (phone.length == 0) {
+      return "number phone is not null";
+    }
+    if (phone.length < 10 || phone.length > 11) {
+      return "lenght number phone is 10-11";
+    }
+    var regex_Phone = /[0-9]$/;
+    if (!regex_Phone.test(phone)) {
+      return "is not a valid phone number";
+    }
+    return null;
+  };
 }
