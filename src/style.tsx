@@ -31,7 +31,10 @@ export default StyleSheet.create({
         flex : 10
     },
 
-    
+    fullCeter :{
+        justifyContent: "center",
+        alignItems: "center"
+    },
     
     img :{
         resizeMode : "contain",  

@@ -1,13 +1,11 @@
 import { BaseUser, BaseUserWithJwt } from "../share/base-ale/model/user/BaseUser";
 import axios from "axios";
 import { AsyncStorage } from "react-native";
-import { Actions } from 'react-native-router-flux';
-
-
 export class UserService {
-
+    
+    
     public static login(user: string, pass: string): Promise<BaseUserWithJwt> {
-
+    
         console.log(user + "--" + pass);
         // let getJWT: any = UserService.getJWT();
         let typeLogin: "phonenumber";
@@ -32,7 +30,7 @@ export class UserService {
 
 
     //futer sign up
-    public static register(userName: string, password: string, codeOTP: string, codeReferal : string): Promise<string> {
+    public static register(userName: string, password: string, codeOTP: string, codeReferal: string): Promise<string> {
         return axios.post("http://localhost:4000/public/user/register",
             {
                 "loginType": "phonenumber",
@@ -55,35 +53,35 @@ export class UserService {
 
     }
 
-    public static checkJWT = (jwt: string) :Promise<boolean | null> =>{
+    public static checkJWT = (jwt: string): Promise<boolean | null> => {
         return axios.get("http://localhost:4000/user/me", {
             headers: {
                 "Authorization": `Bearer ${jwt}`
             }
         })
-        .then(res =>{
-            if(res.message != null){
-                console.log(res.message)
+            .then(res => {
+                if (res.message != null) {
+                    console.log(res.message)
+                    return false;
+                }
+                else {
+                    return true;
+                }
+            })
+            .catch(error => {
+                console.log(error);
                 return false;
-            }
-            else {
-                return true;
-            }
-        })
-        .catch(error =>{
-            console.log(error);
-            return false;
-        })
+            })
     }
 
 
     public static getJWT = (): Promise<string | null> => {
-        return AsyncStorage.getItem('jwt').then(jwt => {return jwt;});
+        return AsyncStorage.getItem('jwt').then(jwt => { return jwt; });
     }
 
 
-    public static setJWT = async (jwt: string):Promise<void> => {
-            return AsyncStorage.setItem('jwt', jwt);
+    public static setJWT = async (jwt: string): Promise<void> => {
+        return AsyncStorage.setItem('jwt', jwt);
     }
 
 
@@ -121,20 +119,30 @@ export class UserService {
             })
     }
 
+    public static getMe(): Promise<BaseUserWithJwt| null> {
+        return axios.get("http://localhost:4000/user/me",)
+            .then(res => {
+                return res.data
+            })
+            .catch(err => {
+                return null;
+            })
+    }
 
-    public static checkExits(phone : string ) : Promise<boolean>  {
-        return axios.get('http://localhost:4000/public/user/checkExist',{
+
+    public static checkExits(phone: string): Promise<boolean> {
+        return axios.get('http://localhost:4000/public/user/checkExist', {
             params: {
-                username:phone
+                username: phone
             }
-        }).then(res =>{
+        }).then(res => {
             console.log(res);
             console.log(res.data.isExist);
-            if(res.data.isExist){
+            if (res.data.isExist) {
                 return true
             }
             return false;
-        }).catch(err =>{
+        }).catch(err => {
             console.log(err);
             return false;
         })
