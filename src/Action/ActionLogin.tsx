@@ -28,3 +28,9 @@ export const setCodeOTP=(codeOTP : string)=>{
         payload : codeOTP
     }
 }
+export const setReferal=(codeReferal : string)=>{
+    return {
+        type : "SET_REFERRAL",
+        payload : codeReferal
+    }
+}

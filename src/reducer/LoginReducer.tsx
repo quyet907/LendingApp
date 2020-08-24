@@ -7,7 +7,7 @@ const initLogin = {
     
 }
 const Login = (state: any = initLogin, action : any )=>{
-
+    console.log(state);
     switch(action.type){
         case "SET_ACTION" : {       
             return {...state,
@@ -32,6 +32,13 @@ const Login = (state: any = initLogin, action : any )=>{
             codeOTP : action.payload,
             }
         }
+        case "SET_REFERRAL" : {
+            console.log(action.payload);
+            return {...state,
+                referalCode : action.payload,
+            }
+        }
+
 
         default : {
             return {...state}
