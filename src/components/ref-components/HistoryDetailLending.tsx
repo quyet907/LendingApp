@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
     },
     coinGreen: {
         fontSize: 15,
-        color: '#0DB313',
+        color: '#15D02B',
         fontWeight: "600"
     },
     coinRed: {
