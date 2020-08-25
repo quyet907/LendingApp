@@ -79,6 +79,7 @@ class Login extends Component<props, state> {
                             style={[myStyle.inputLogin]}
                             selectionColor='red'
                             placeholder={"Mobile"}
+                            keyboardType='numeric'
                             maxLength={15}
                             onChange={(event) => {
                                 this.setState({ user: event.target.value })
@@ -93,6 +94,7 @@ class Login extends Component<props, state> {
                             style={[myStyle.inputLogin]}
                             placeholder={"Password"}
                             secureTextEntry={true}
+                            keyboardType='numeric'
                             maxLength={60}
                             onChange={(event) => {
                                 this.setState({
