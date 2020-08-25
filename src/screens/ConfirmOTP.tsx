@@ -51,15 +51,15 @@ class ConfirmOTP extends Component<props, state> {
 
     render() {
         return (
-            <KeyboardAvoidingView style={[myStyle.container, { alignItems: "center" }]}>
+            <KeyboardAvoidingView style={[myStyle.container,myStyle.fullCeter, { alignItems: "center" }]}>
 
-                <View style={[myStyle.flex2]}>
+                <View style={[]}>
                     <View style={[myStyle.frLogo]}>
                         <View
                             style={[{
                                 flex: 1,
-                                justifyContent: "flex-end",
-                                alignItems: "flex-end",
+                                justifyContent: "center",
+                                alignItems: "center",
                             }]}
                         >
                             <Text style={[myStyle.headerSignUp]}>Enter OTP code</Text>
@@ -67,14 +67,14 @@ class ConfirmOTP extends Component<props, state> {
                     </View>
                 </View>
 
-                <View style={[myStyle.flex4, myStyle.login]}>
+                <View style={[, myStyle.login]}>
 
 
                     <View style={[]}>
                         <TextInput
                             style={[myStyle.inputLogin, { marginTop: 30 }]}
                             selectionColor='red'
-                            placeholder={"enter otp"}
+                            placeholder={"Enter OTP"}
                             // keyboardType={'numeric'}
                             value={this.state.getCodeOTP}
                             onChange={(event) => {

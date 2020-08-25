@@ -36,7 +36,7 @@ export default class Logout extends Component <props , state> {
                             source={require('../assets/avt.png')}
                         ></Image>
                     </View>
-                    <View style={[myStyle.flex1]}>
+                    <View style={[myStyle.flex3]}>
                         <Text style={styles.inforUser}>{this.state.getPhone}</Text>
                     </View>
                 </View>
@@ -85,8 +85,8 @@ const styles = StyleSheet.create({
     },
 
     avt: {
-        height: 150,
-        width: 150,
+        height: 100,
+        width: 100,
         borderRadius: 75,
         borderWidth: 5,
         borderColor: "#f2c73a",

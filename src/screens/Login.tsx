@@ -78,7 +78,7 @@ class Login extends Component<props, state> {
                             value={this.state.user}
                             style={[myStyle.inputLogin]}
                             selectionColor='red'
-                            placeholder={"Number phone"}
+                            placeholder={"Mobile"}
                             maxLength={15}
                             onChange={(event) => {
                                 this.setState({ user: event.target.value })

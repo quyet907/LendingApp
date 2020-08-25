@@ -10,7 +10,6 @@ import { connect } from "react-redux"
 import { UserService } from '../services/UserService';
 import PopupConfirm from '../components/PopupConfirm';
 import * as actionPopup from '../Action/ActionPopup';
-import { error } from 'console';
 
 
 class setPassword extends Component<props, state>{
@@ -64,15 +63,15 @@ class setPassword extends Component<props, state>{
 
     render() {
         return (
-            <KeyboardAvoidingView style={[myStyle.container, { alignItems: "center" }]}>
+            <KeyboardAvoidingView style={[myStyle.container,myStyle.fullCeter, { alignItems: "center" }]}>
                 
-                <View style={[myStyle.flex2]}>
+                <View style={[]}>
                     <View style={[myStyle.frLogo]}>
                         <View
                             style={[{
                                 flex: 1,
-                                justifyContent: "flex-end",
-                                alignItems: "flex-end",
+                                justifyContent: "center",
+                                alignItems: "center",
                             }]}
                         >
                             <Text style={[myStyle.headerSignUp]}>Enter your password</Text>
@@ -80,7 +79,7 @@ class setPassword extends Component<props, state>{
                     </View>
                 </View>
 
-                <View style={[myStyle.flex4, myStyle.login]}>
+                <View style={[, myStyle.login]}>
 
 
                     <View style={[]}>

@@ -150,15 +150,14 @@ export default StyleSheet.create({
         justifyContent : "center"
     },
     inputLogin : {
-        borderBottomColor : "#F6C400",
-        borderBottomWidth : 2,
-        height : 50,
+        borderColor : "#F6C400",
+        borderWidth : 1,
         width : "100%",
         marginTop : 20,   
         color : "#FFFFFF",
-        fontSize : 18,
-        paddingLeft : 10,
-        
+        fontSize : 16,
+        borderRadius :5,
+    padding: 10        
 
 
     },
@@ -166,11 +165,18 @@ export default StyleSheet.create({
         marginTop : 20,
         backgroundColor : primary,
         justifyContent : "center",
+        borderwidth :1,
         width : "100%",
-        height : 50,
-        borderRadius : 10,
+        fontSize: 16,
+        padding: 10,
+        borderRadius : 5,
         alignItems : "center",
 
+    },
+
+    btnSmall:{
+fontSize: 14,
+padding: "5 10",
     },
     
     buttonLogin : {
@@ -178,8 +184,7 @@ export default StyleSheet.create({
         // fontWeight : "bold",
         // backgroundColor : primary,
         justifyContent : "center",
-        height :"99%",
-        width : "96%",
+        width : "100%",
         borderRadius : 10,
         
 
@@ -209,7 +214,8 @@ export default StyleSheet.create({
     },
     headerSignUp : {
         color : "white",
-         fontWeight : "bold", 
+         fontWeight : "400", 
+         textTransform : "uppercase",
          fontSize : 24 
     }
     
