@@ -1,6 +1,11 @@
 import {StyleSheet} from "react-native";
 
-const background = "#292927";
+const primary = "#f6c400";
+const dark  = "#12151c";
+const success = "";
+const warning = "";
+const aleart = "";
+
 
 export default StyleSheet.create({
     container : {
@@ -38,19 +43,7 @@ export default StyleSheet.create({
     
     img :{
         resizeMode : "contain",  
-    },
-    bg1 :{
-        backgroundColor : "red"
-    },
-    bg2 :{
-        backgroundColor : "blue"
     }, 
-    bg3 :{
-        backgroundColor : "yellow"
-    },  
-    bg4 :{
-        backgroundColor : "green"
-    },   
     charHome : {
         width : "100%",
         backgroundColor  : "#1e2126",
@@ -175,7 +168,7 @@ export default StyleSheet.create({
     },
     frbuttonLogin : {
         marginTop : 20,
-        backgroundColor : "rgb(246, 196, 0)",
+        backgroundColor : primary,
         justifyContent : "center",
         width : "100%",
         height : 50,
@@ -187,7 +180,7 @@ export default StyleSheet.create({
     buttonLogin : {
         // fontSize : 18,
         // fontWeight : "bold",
-        backgroundColor : "rgb(246, 196, 0)",
+        // backgroundColor : primary,
         justifyContent : "center",
         height :"99%",
         width : "96%",
