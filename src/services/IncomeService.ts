@@ -10,14 +10,12 @@ export class IncomeService {
       axios
         .get(`${config.apiGateway.user}/user/income?page=1&pageSize=100`)
         .then((res) => {
-          console.log(res);
           if (res != null) {
             return res.data;
           }
           return null;
         })
         .catch((err) => {
-          console.log(err);
         })
     );
   }

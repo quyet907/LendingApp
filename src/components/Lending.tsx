@@ -45,7 +45,6 @@ export default class Lending extends React.Component<Props, State>{
     }
     componentWillMount() {
         LendingPackageService.getLendingPackage().then(pagingLendingPackages => {
-            console.log(pagingLendingPackages.rows)
             this.setState({
                 packages: pagingLendingPackages.rows,
                 packageID: pagingLendingPackages.rows[0]._id,

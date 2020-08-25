@@ -1,10 +1,6 @@
 import {StyleSheet} from "react-native";
 
-const primary = "#f6c400";
-const dark  = "#12151c";
-const success = "";
-const warning = "";
-const aleart = "";
+import {primary, warning, } from "./Color";
 
 
 export default StyleSheet.create({

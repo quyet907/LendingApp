@@ -29,16 +29,12 @@ class Login extends Component<props, state> {
     componentDidMount() {
         const queryString = window.location.search;
         const urlParams = new URLSearchParams(queryString);
-        console.log(urlParams);
         const ref = urlParams.get("ref");
-        console.log(ref);
         if (ref) {
-            console.log(ref);
             this.props.onReferrals(ref);
         }
 
         UserService.getJWT().then(res => {
-            console.log(res);
             if (res) {
                 Actions.home()
             }
@@ -52,7 +48,6 @@ class Login extends Component<props, state> {
     checkLogin = () => {
         var user = this.state.user;
         var password = this.state.password;
-        console.log(user + " " + password);
         let getJwtToken = UserService.login(user, password).then(infoLogin => {
             if (infoLogin.jwt === undefined) {
                 actionPopup.showMessage("User or password is incorrect!")

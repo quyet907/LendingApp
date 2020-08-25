@@ -1,8 +1,12 @@
+// import {API_URL , KEY} from "react-native-dotenv";
+
 const config = {
   apiGateway: {
-    user: "http://13.229.88.203:4000",
-    lending: "http://13.229.88.203:4001",
+    user: "https://devapilending.afivn.com",
+    lending: "https://devapilending.afivn.com",
   },
 };
+
+// export default {API_URL, KEY}
 
 export { config };
