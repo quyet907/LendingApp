@@ -169,7 +169,7 @@ export default StyleSheet.create({
     },
     frbuttonLogin : {
         marginTop : 20,
-        backgroundColor : color.dark_primary,
+        backgroundColor : color.primary,
         justifyContent : "center",
         borderwidth :1,
         width : "100%",

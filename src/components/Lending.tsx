@@ -99,7 +99,8 @@ export default class Lending extends React.Component<Props, State> {
                     package={item}
                     setSelection={!this.state.packageSelected}
                     isSelected={() => {
-                      this.setState({ packageID: item._id });
+                      this.setState({ packageID: item._id },
+                        () => console.log(this.state.packageID));
                     }}
                   />
                 )
@@ -294,6 +295,7 @@ export default class Lending extends React.Component<Props, State> {
       lendingPackageId: this.state.packageID,
       loanAmount: this.state.initialValue,
     };
+    console.log("dong 298"+lending)
     LendingService.createLending(lending).then(() => {
       this.updateLending();
     });
