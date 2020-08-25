@@ -1,12 +1,18 @@
-import {StyleSheet} from "react-native";
+import {StyleSheet, ColorPropType} from "react-native";
 
-import {primary, warning, } from "./Color";
+// const primary = "#f6c400";
+// const dark  = "#12151c";
+// const success = "";
+// const warning = "";
+// const aleart = "";
+
+import * as color from './Color'
 
 
 export default StyleSheet.create({
     container : {
         flex : 1,
-        backgroundColor : "#12151c",
+        backgroundColor : color.dark_primary,
         // fontFamily  : '"BinancePlex","Arial","PingFangSC-Regular","Microsoft YaHei","sans-serif"'
         
     },
@@ -42,7 +48,7 @@ export default StyleSheet.create({
     }, 
     charHome : {
         width : "100%",
-        backgroundColor  : "#1e2126",
+        backgroundColor  : color.dark,
         borderRadius : 10,
         marginTop  : 20,
     },
@@ -74,7 +80,7 @@ export default StyleSheet.create({
     listStatisticalBasic : { 
         minHeight : 100,
         width : "100%",
-        backgroundColor : "#1e2126",
+        backgroundColor : color.dark,
         padding : 10,
         marginTop : 10,
         borderRadius : 10
@@ -105,7 +111,7 @@ export default StyleSheet.create({
     },
     listHistoryInterest : {
         minHeight  : 100,
-        backgroundColor : "#1e2126",
+        backgroundColor : color.dark,
         flex : 1,
         flexShrink : 30,
         padding : 10  ,
@@ -115,7 +121,7 @@ export default StyleSheet.create({
     HistoryInterest : {
         height : 60,
         width : "100%",
-        backgroundColor : "#12151c",
+        backgroundColor : color.dark,
         borderRadius : 10,
         justifyContent : "center",
         padding : 10  ,
@@ -163,7 +169,7 @@ export default StyleSheet.create({
     },
     frbuttonLogin : {
         marginTop : 20,
-        backgroundColor : primary,
+        backgroundColor : color.dark_primary,
         justifyContent : "center",
         borderwidth :1,
         width : "100%",

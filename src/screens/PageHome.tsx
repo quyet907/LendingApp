@@ -12,17 +12,17 @@ import ReferralScreen from "../components/ref-components/Referral"
 import setPassWord from "../screens/SetPassWord"
 import SignUp from "../screens/SignUp"
 import Icon from 'react-native-vector-icons/FontAwesome';
-
 import { Actions } from 'react-native-router-flux';
 import Logout from './Logout';
+import * as color from '../Color'
 
 const Tab = createBottomTabNavigator();
 
 const tabProps = {
-  ACTIVE: '#f2c73a',
-  INACTIVE: '#b7bfca',
+  ACTIVE: color.primary,
+  INACTIVE: color.inactive,
   ICONSIZE: 25,
-  BackgroundColor: '#202833'
+  BackgroundColor: color.dark_primary
 }
 
 

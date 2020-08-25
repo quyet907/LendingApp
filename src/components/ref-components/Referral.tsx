@@ -7,7 +7,7 @@ import HistoryDetail from './HistoryDetail';
 import FlashMessage, { showMessage, hideMessage } from "react-native-flash-message";
 import { Referal } from '@Core/model/user/Referal';
 import { ReferralService } from '../../services/ReferralService';
-
+import * as color from '../../Color'
 
 export default class Referral extends React.Component<Props, State> {
     constructor(props: any) {
@@ -164,7 +164,7 @@ const styles = StyleSheet.create({
     copy: {
         paddingHorizontal: 15,
         paddingVertical: 5,
-        backgroundColor: '#FB8C00',
+        backgroundColor: color.primary,
         borderColor: '#fff',
         borderWidth: 1.5,
         // outline: 'none',
@@ -175,7 +175,6 @@ const styles = StyleSheet.create({
     copyText: {
         fontSize: 14,
         fontWeight: "700",
-        color: '#fff'
     },
     refAbout: {
         flexDirection: 'row',

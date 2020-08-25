@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import { View, Text, Image } from "react-native"
+import { View, Text, Image, ColorPropType } from "react-native"
 import myStyle from "../style";
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
-
+import * as color from '../Color'
 
 export default class HistoryInterest extends Component<props, state> {
     constructor(props: any) {
@@ -22,7 +22,7 @@ export default class HistoryInterest extends Component<props, state> {
                     <View style={[myStyle.leftHistoryInterest]}>
                         <View style={[myStyle.row]}>
                             <Icon name="access-time" size={11} color='#575959' />
-                            <Text style={[{ color: "#575959", fontSize: 10 }]}>
+                            <Text style={[{ color: color.inactive, fontSize: 10 }]}>
                                 {this.props.createAt}
                             </Text>
                         </View>
@@ -33,25 +33,25 @@ export default class HistoryInterest extends Component<props, state> {
                                 source={require("../assets/icons8_up_26px.png")}
                             />
 
-                            <Text style={[myStyle.contentHistoryInterest, { color: "#34FF08", alignSelf: "center", justifyContent: "center", marginLeft: 10 },]}>{this.props.profits}</Text>
+                            <Text style={[myStyle.contentHistoryInterest, { color: color.success, alignSelf: "center", justifyContent: "center", marginLeft: 10 },]}>{this.props.profits}</Text>
 
 
                         </View>
                     </View>
 
                     <View style={[myStyle.row, myStyle.centerHistoryInterest]}>
-                        <Text style={[{ color: "#646b75" }, myStyle.contentHistoryInterest]}>
+                        <Text style={[{ color: color.inactive }, myStyle.contentHistoryInterest]}>
                             {this.props.amount}
                         </Text>
                         <Image
                             style={[myStyle.iconHistoryInterest, { margin: 10 }]}
                             source={require("../assets/icons8_right_26px.png")}
                         />
-                        <Text style={[{ color: "#ecb510", }, myStyle.contentHistoryInterest]}>{this.props.amount + this.props.profits}</Text>
+                        <Text style={[{ color: color.primary, }, myStyle.contentHistoryInterest]}>{this.props.amount + this.props.profits}</Text>
                     </View>
 
                     <View style={[myStyle.rightHistoryInterest]}>
-                        <Text style={[{ color: "#e5026e", fontSize: 16, }]}>
+                        <Text style={[{ color: color.secondary, fontSize: 16, }]}>
                             {this.props.daysLeft} days
                         </Text>
                     </View>
