@@ -3,6 +3,7 @@
   "scripts": {
     "start": "USER_API=http://localhost:4000; LENDING_API=http://localhost:4001; expo start",
     "start-development": "USER_API=http://13.229.88.203:4000; LENDING_API=http://13.229.88.203:4001; expo start",
+    "dev": "NODE_ENV=development; expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
@@ -21,6 +22,7 @@
     "@types/react-router-native": "^5.1.0",
     "axios": "^0.19.2",
     "chart.js": "^2.9.3",
+    "dotenv": "^8.2.0",
     "expo": "~38.0.8",
     "expo-status-bar": "^1.0.2",
     "fetch-intercept": "^2.3.1",
@@ -59,6 +61,7 @@
     "@types/node": "^14.6.0",
     "@types/react": "~16.9.41",
     "@types/react-native": "~0.62.13",
+    "@types/react-native-dotenv": "^0.2.0",
     "@types/react-native-popup-dialog": "^0.16.2",
     "typescript": "~3.9.5"
   },

@@ -17,16 +17,19 @@ import store from "./src/reducer/store"
 import { Provider } from "react-redux"
 import PopupShow from './src/components/PopupShow';
 import Loadding from './src/components/Loadding';
+
+require('dotenv').config();
+console.log(process.env)
+const db = require('db')
+db.connect({
+  host: process.env.REACT_APP_USER_API
+}, () => console.log(db.host))
+
 const MyTransitionSpec = ({
   duration: 1000,
   // easing: Easing.bezier(0.2833, 0.99, 0.31833, 0.99),
   // timing: Animated.timing,
 });
-
-
-
-
-
 
 
 const scenes = Actions.create(

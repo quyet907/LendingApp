@@ -19,11 +19,11 @@ export default class Home extends Component<props, state> {
         }
     }
 
-    componentDidMount(){
+    componentDidMount() {
         LendingProfitHistoryService.getLendingProfit().then(res => {
             this.setState({
-                data:  res != undefined ? res.rows : []
-            })
+                data: res != undefined ? res.rows : []
+            }, () => {console.log(res.rows)     })
         })
     }
 
@@ -45,7 +45,7 @@ export default class Home extends Component<props, state> {
                                     createAt={item.createdAt?.toString().substr(0, 10) || 'null'}
                                     profits={item.profitAmount || 0}
                                     amount={item.loanAmount || 0}
-                                    daysLeft={this.getDaysLeft(item.lending?.createdAt)+30}
+                                    daysLeft={this.getDaysLeft(item.lending? item.lending.createdAt : undefined)}
 
                                 />
                             }
@@ -58,15 +58,20 @@ export default class Home extends Component<props, state> {
         )
     }
 
-    getDaysLeft = (endDate: Date | undefined): number => {
-        const currentDate: Date = new Date();
+    getDaysLeft = (createAt: Date | undefined): number => {
+        const secondCurrent = Date.now()
        
-        
-        if (endDate) {
-           
-            const daysLeft = Math.floor((Date.parse(endDate.toString().substr(0,10)) - Date.parse(currentDate.toJSON().substr(0,10))) / (1000 * 60 * 60 * 24)
-            )
-            return daysLeft
+        if (createAt) {
+            if (typeof createAt == 'string') {
+                createAt = new Date(createAt)
+                const endDate = createAt.setMonth(createAt.getMonth() + 1)
+               
+                const daysLeft = Math.floor((endDate - secondCurrent) / (1000 * 60 * 60 * 24))
+               
+                return daysLeft
+            }
+            //endDate.setMonth(endDate.getMonth()+1)
+
         }
         return 0
     }

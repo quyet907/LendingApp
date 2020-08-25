@@ -14,7 +14,7 @@ export default class Referral extends React.Component<Props, State> {
         super(props)
         this.state = {
             myReferral: [],
-            myID: "ID is null"
+            myID: ""
         }
         ReferralService.getReferral().then(res => {
             this.setState({ myReferral: res.rows })
@@ -74,8 +74,8 @@ export default class Referral extends React.Component<Props, State> {
                                 <Text style={styles.amount}>{this.state.myReferral.length * 1000}</Text>
                             </View>
                         </View>
-                       
-                       
+
+
 
                     </View>
 
@@ -94,10 +94,6 @@ export default class Referral extends React.Component<Props, State> {
                                 coin={1000}
                             />}
                         keyExtractor={item => item._id || 'null ID'} />
-
-
-
-
                 </View>
 
             </ScrollView>
