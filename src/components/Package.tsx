@@ -25,7 +25,7 @@ export default class Package extends Component<Props, State> {
                         {this.props.package.name}
                     </Text>
                 </View>
-                <View style={{ backgroundColor: '#2E2D2A', alignItems: 'center', justifyContent: 'space-around', paddingVertical: 10 }}>
+                <View style={{ backgroundColor: '#2E2D2A', alignItems: 'center', justifyContent: 'space-around', paddingVertical: 10, borderRadius: 3 }}>
                     <Text style={styles.text}>Min {this.props.package.minInvestment}</Text>
                     <Text style={styles.text}>Max {this.props.package.maxInvestment}</Text>
                     <Text style={styles.text}>Profits {typeof this.props.package.profitPerDay == 'number' ? 
@@ -53,18 +53,20 @@ const styles = StyleSheet.create({
     itemContainer: {
         flex: 1,
         opacity: 0.5,
-        marginHorizontal: 6,
-        width: 115
-     
+        marginHorizontal: 4.5,
+        width: 115,
+        borderRadius: 3
+        
 
     },
     itemContainerSe: {
         flex: 1,
         marginHorizontal: 6,
         borderWidth: 1,
-        borderColor: '#ddd',
+        borderColor: '#fff',
         opacity: 1,
-        width: 115
+        width: 115,
+        borderRadius: 3
     },
     pakageSelected: {
         backgroundColor: color.primary, alignItems: 'center', justifyContent: 'center', paddingVertical: 3, 
@@ -79,7 +81,7 @@ const styles = StyleSheet.create({
 
     },
     itemLabelSe: {
-        color: '#000',
+        color: '#fff',
         fontSize: 17,
         fontWeight: '700'
 

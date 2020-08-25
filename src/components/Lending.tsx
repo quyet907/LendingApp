@@ -17,7 +17,7 @@ import {
   FlatList,
   TouchableHighlight,
 } from "react-native-gesture-handler";
-import HistoryDetail from "./ref-components/HistoryDetail";
+import HistoryDetailLending from "./ref-components/HistoryDetailLending";
 import Package from "./Package";
 import { LendingPackageService } from "../services/LendingPackageService";
 import { LendingPackage } from "@StockAfiCore/model/lending/LendingPackage";
@@ -150,7 +150,7 @@ export default class Lending extends React.Component<Props, State> {
                 style={styles.btnAll}
                 onPress={() => this.allCoin()}
               >
-                <Text style={styles.copyText}>&lt;ALL</Text>
+                <Text style={styles.copyText}>ALL</Text>
               </TouchableOpacity>
             </View>
 
@@ -203,7 +203,7 @@ export default class Lending extends React.Component<Props, State> {
             <FlatList
               data={this.state.myInvest}
               renderItem={({ item }) => (
-                <HistoryDetail
+                <HistoryDetailLending
                   title={item.lendingPackage?.name || "undefined"}
                   type={true}
                   typeLabel="AMOUNT"
@@ -357,6 +357,7 @@ const styles = StyleSheet.create({
   copyText: {
     fontSize: 16,
     fontWeight: "700",
+   
   },
   refAbout: {
     flexDirection: "row",
@@ -401,7 +402,9 @@ const styles = StyleSheet.create({
     flex: 1,
     flexGrow: 1,
     backgroundColor: color.primary,
-    paddingHorizontal: 10,
+    borderTopRightRadius: 3,
+    borderBottomRightRadius: 3,
+    paddingHorizontal: 15,
     height: "100%",
     alignItems: "center",
     justifyContent: "center",
@@ -416,7 +419,9 @@ const styles = StyleSheet.create({
   lblCoin: {
     flexGrow: 1,
     backgroundColor: color.primary,
-    paddingHorizontal: 10,
+    borderTopLeftRadius: 3,
+    borderBottomLeftRadius: 3,
+    paddingHorizontal: 12,
     height: "100%",
     alignItems: "center",
     justifyContent: "center",
