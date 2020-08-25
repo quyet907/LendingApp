@@ -15,9 +15,8 @@ export class LendingService {
         data: lending,
       })
         .then((res) => {
-          console.log(res.data);
         })
-        .catch((err) => console.log(err))
+        .catch((err)=>{})
     );
   }
 
@@ -42,7 +41,6 @@ export class LendingService {
           return res.data;
         })
         .catch((err) => {
-          console.log(err);
         })
     );
   }

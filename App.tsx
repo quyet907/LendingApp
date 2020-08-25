@@ -19,6 +19,13 @@ import Loadding from "./src/components/Loadding";
 
 require("dotenv").config();
 
+require('dotenv').config();
+console.log(process.env)
+// const db = require('db')
+// db.connect({
+//   host: process.env.REACT_APP_USER_API
+// }, () => console.log(db.host))
+
 
 
 

@@ -6,6 +6,7 @@ import * as action from "../Action/ActionPopup"
 import * as actionLoadding from "../Action/ActionLoadding"
 axios.interceptors.request.use(
     res => {
+        console.log(res);
         actionLoadding.setLoad(true)
         return res
     },
@@ -23,7 +24,6 @@ axios.interceptors.response.use(
     err => {
         actionLoadding.setLoad(false)
 
-        console.log(err.message);
         if (err.message == "Network Error") {
             action.showMessage("Network Error");
         }
@@ -33,7 +33,6 @@ axios.interceptors.response.use(
         }
         if (err.response.status == 401) {
             UserService.getJWT().then(res => {
-                console.log(res);
             })
 
             UserService.setJWT("").then(res => {

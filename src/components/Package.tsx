@@ -31,7 +31,7 @@ export default class Package extends Component<Props, State> {
                     <Text style={styles.text}>Profits {typeof this.props.package.profitPerDay == 'number' ? 
                     Math.ceil(this.props.package.profitPerDay * 30) : 0}%</Text>
                     <Text style={styles.text}>BackIn {typeof  this.props.package.capitalBackIn == 'number' ? 
-                    this.props.package.capitalBackIn/3600/24/45 : 0}</Text>
+                    Math.ceil(this.props.package.capitalBackIn/3600/24) : 0}</Text>
                 </View>
             </TouchableOpacity>
         );
