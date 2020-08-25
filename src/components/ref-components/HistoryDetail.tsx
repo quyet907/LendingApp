@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
 
     },
     time: {
-        color: '#868685',
+        color: color.inactive,
         fontSize: 10,
         marginLeft: 3
     },

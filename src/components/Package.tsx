@@ -25,7 +25,7 @@ export default class Package extends Component<Props, State> {
                         {this.props.package.name}
                     </Text>
                 </View>
-                <View style={{ backgroundColor: '#2E2D2A', alignItems: 'center', justifyContent: 'space-around', paddingVertical: 10, borderRadius: 3 }}>
+                <View style={{ backgroundColor: '#2E2D2A', alignItems: 'center', justifyContent: 'space-around', paddingVertical: 10, borderRadius: 2 }}>
                     <Text style={styles.text}>Min {this.props.package.minInvestment}</Text>
                     <Text style={styles.text}>Max {this.props.package.maxInvestment}</Text>
                     <Text style={styles.text}>Profits {typeof this.props.package.profitPerDay == 'number' ? 
@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
         opacity: 0.5,
         marginHorizontal: 4.5,
         width: 115,
-        borderRadius: 3
+        borderRadius: 2
         
 
     },
@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
         borderColor: '#fff',
         opacity: 1,
         width: 115,
-        borderRadius: 3
+        borderRadius: 2
     },
     pakageSelected: {
         backgroundColor: color.primary, alignItems: 'center', justifyContent: 'center', paddingVertical: 3, 
