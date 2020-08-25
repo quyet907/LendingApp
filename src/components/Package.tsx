@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Text, View, Dimensions, StyleSheet, TouchableOpacity } from 'react-native';
 import style from '../style';
 import { LendingPackage } from '@StockAfiCore/model/lending/LendingPackage';
-
+import *  as color from '../Color'
 
 
 
@@ -30,8 +30,8 @@ export default class Package extends Component<Props, State> {
                     <Text style={styles.text}>Max {this.props.package.maxInvestment}</Text>
                     <Text style={styles.text}>Profits {typeof this.props.package.profitPerDay == 'number' ? 
                     Math.ceil(this.props.package.profitPerDay * 30) : 0}%</Text>
-                    <Text style={styles.text}>BackIn {typeof  this.props.package.cappitalBackIn == 'number' ? 
-                    this.props.package.cappitalBackIn/3600/24/45 : 0}</Text>
+                    <Text style={styles.text}>BackIn {typeof  this.props.package.capitalBackIn == 'number' ? 
+                    this.props.package.capitalBackIn/3600/24/45 : 0}</Text>
                 </View>
             </TouchableOpacity>
         );
@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
         width: 115
     },
     pakageSelected: {
-        backgroundColor: '#f2c73a', alignItems: 'center', justifyContent: 'center', paddingVertical: 3, 
+        backgroundColor: color.primary, alignItems: 'center', justifyContent: 'center', paddingVertical: 3, 
     },
     pakage: {
         backgroundColor: '#FA801', alignItems: 'center', justifyContent: 'center', paddingVertical: 3, 

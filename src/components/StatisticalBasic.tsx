@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { View, Text, Image } from "react-native";
 import myStyle from "../style"
+import * as color from '../Color'
+
 export default class StatisticalBasic extends Component <props, state>{
     constructor(props : any ){
         super(props)
@@ -21,7 +23,7 @@ export default class StatisticalBasic extends Component <props, state>{
                 </View>
                 <View style={[]}>
                     <View style={[,myStyle.flex3, myStyle.contentStatisticalBasic]}>
-                        <Text style={[{color : "#5E5F61", fontSize : 10}]}>{this.props.content}</Text>
+                        <Text style={[{color : color.inactive, fontSize : 10}]}>{this.props.content}</Text>
                     </View>
                     <View style={[myStyle.flex3, myStyle.contentStatisticalBasic]}>
                         <Text style={[myStyle.colorWhite]}>{this.props.money} COIN</Text>

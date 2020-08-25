@@ -3,7 +3,6 @@
   "scripts": {
     "start": "USER_API=http://localhost:4000; LENDING_API=http://localhost:4001; expo start",
     "start-development": "USER_API=http://13.229.88.203:4000; LENDING_API=http://13.229.88.203:4001; expo start",
-    "dev": "NODE_ENV=development; expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
