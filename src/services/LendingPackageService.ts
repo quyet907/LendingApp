@@ -10,7 +10,7 @@ export class LendingPackageService {
     return getAxios().then((axios) =>
       axios({
         method: "GET",
-        url: `${config.apiGateway.lending}/lending_package`,
+        url: `${config.api.lendingAPI}/lending_package`,
       })
         .then((res) => {
           return res.data;
