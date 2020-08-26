@@ -189,7 +189,7 @@ export class UserService {
     }
     var regex_Phone = /[0-9]$/;
     if (!regex_Phone.test(pass)) {
-      return "pass only is number";
+      return "Password contains only numbers";
     }
     return null;
   };
@@ -205,7 +205,7 @@ export class UserService {
     }
     var regex_Phone = /[0-9]$/;
     if (!regex_Phone.test(phone)) {
-      return "is not a valid phone number";
+      return "Incorrect phone number format";
     }
     return null;
   };

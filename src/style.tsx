@@ -83,18 +83,22 @@ export default StyleSheet.create({
         backgroundColor : color.dark,
         padding : 10,
         marginTop : 10,
-        borderRadius : 10
 
     },
     statisticalBasic : {
-        width : "50%",
-        justifyContent : "center",
-        alignItems : "center"
+      width: '100%',
+    
+        padding : 10,
+        
+      
+       
+     
         
     },
     frImgStatisticalBasic : {
-        justifyContent : 'center',
-        alignItems : "center",
+        justifyContent : 'flex-start',
+        alignItems : "flex-start",
+        // alignSelf : "flex-start",
     },
     imgStatisticalBasic : {
         height : 50,
@@ -103,8 +107,8 @@ export default StyleSheet.create({
         margin: 10
     },
     contentStatisticalBasic : {
-        justifyContent : 'center',
-        alignItems : 'flex-start',
+        justifyContent : 'flex-start',
+        padding : 2
     },
     colorWhite : {
         color : "#ffffff"

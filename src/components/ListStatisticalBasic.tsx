@@ -30,29 +30,33 @@ export default class ListStatisticalBasic extends Component<props, state> {
         return (
 
             <View style = {[myStyle.listStatisticalBasic]}>
-
+                {/* FontAwesome5 */}
                 <View style = {[myStyle.row]}>
                     <StatisticalBasic
-                        img  = {"../icons/icons8_average_2_75px.png"}
-                        content = {"Tổng Tiền"}
+                        icon = "coins"
+                        color = "#FB8C00"
+                        content = {"Total"}
                         money = {this.state.dataFinance.totalAmount || 0}
                     ></StatisticalBasic>
                     <StatisticalBasic
-                        img  = {"../icons/icons8_transaction_70px_2.png"}
-                        content = {"Đầu tư"}
+                        icon = "piggy-bank"
+                        color = "#0DEA01"
+                        content = {"Invested"}
                         money = {this.state.dataFinance.investedAmout || 0}
                     ></StatisticalBasic>
 
                 </View>
                 <View style={[myStyle.row]}>
                     <StatisticalBasic
-                        img  = {"../icons/icons8_rating_70px.png"}
-                        content = {"Giới thiệu"}
+                        icon = "star"
+                        color = "#4FC3F7"
+                        content = {"Referal Income"}
                         money = {this.state.dataFinance.referalIncomeAmout || 0}
                     ></StatisticalBasic>
                     <StatisticalBasic
-                        img  = {"../icons/icons8_wallet_70px.png"}
-                        content = {"Số dư"}
+                       icon = "wallet"
+                        color = "#FC3135"
+                        content = {"Remain"}
                         money = {this.state.dataFinance.remainAmount || 0}
                     ></StatisticalBasic>
                 </View>
