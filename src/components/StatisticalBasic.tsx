@@ -17,7 +17,7 @@ export default class StatisticalBasic extends Component <props, state>{
             <View style={[myStyle.statisticalBasic, myStyle.row]}>
                 <View style={[, myStyle.frImgStatisticalBasic]}>
                     <Image
-                        source={require("../assets/icons8_average_2_75px.png")}
+                        source={require("../icons/icons8_average_2_75px.png")}
                         style={[myStyle.imgStatisticalBasic]}
                     />
                 </View>

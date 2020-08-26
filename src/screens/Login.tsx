@@ -106,7 +106,7 @@ class Login extends Component<props, state> {
 
                     <View style={[myStyle.frFotgotPassword]}>
                         <TouchableOpacity>
-                            <Text style={[{ color: "#F8C400" }]}
+                            <Text style={{ color: "#F8C400" }}
                                 onPress={(event) => {
                                     this.props.onTypeActon("forgotPassword")
                                     Actions.enterPhone()

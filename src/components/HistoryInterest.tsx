@@ -30,7 +30,7 @@ export default class HistoryInterest extends Component<props, state> {
                         <View style={[myStyle.row, { marginTop: 10 }]}>
                             <Image
                                 style={[myStyle.iconHistoryInterest]}
-                                source={require("../assets/icons8_up_26px.png")}
+                                source={require("../icons/icons8_up_26px.png")}
                             />
 
                             <Text style={[myStyle.contentHistoryInterest, { color: color.success, alignSelf: "center", justifyContent: "center", marginLeft: 10 },]}>{this.props.profits}</Text>
@@ -45,7 +45,7 @@ export default class HistoryInterest extends Component<props, state> {
                         </Text>
                         <Image
                             style={[myStyle.iconHistoryInterest, { margin: 10 }]}
-                            source={require("../assets/icons8_right_26px.png")}
+                            source={require("../icons/icons8_right_26px.png")}
                         />
                         <Text style={[{ color: color.primary, }, myStyle.contentHistoryInterest]}>{this.props.amount + this.props.profits}</Text>
                     </View>

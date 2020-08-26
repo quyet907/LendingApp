@@ -171,7 +171,7 @@ export default StyleSheet.create({
         marginTop : 20,
         backgroundColor : color.primary,
         justifyContent : "center",
-        borderwidth :1,
+        borderWidth :1,
         width : "100%",
         fontSize: 16,
         padding: 10,

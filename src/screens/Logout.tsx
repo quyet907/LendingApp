@@ -33,7 +33,7 @@ export default class Logout extends Component <props , state> {
                     <View style={[myStyle.flex6, myStyle.fullCeter]}>
                         <Image
                             style={[styles.avt]}
-                            source={require('../assets/avt.png')}
+                            source={require('../icons/avt.png')}
                         ></Image>
                     </View>
                     <View style={[myStyle.flex3]}>
