@@ -189,7 +189,7 @@ export class UserService {
     }
     var regex_Phone = /[0-9]$/;
     if (!regex_Phone.test(pass)) {
-      return "pass only is number";
+      return "Password contains only numbers";
     }
     return null;
   };
@@ -198,14 +198,14 @@ export class UserService {
   public static checkValidatePhone = (phone: string): string | null => {
     phone.trim();
     if (phone.length == 0) {
-      return "number phone is not null";
+      return "Phone number cannot be empty";
     }
     if (phone.length < 10 || phone.length > 11) {
-      return "lenght number phone is 10-11";
+      return "Phone number length from 10-11";
     }
     var regex_Phone = /[0-9]$/;
     if (!regex_Phone.test(phone)) {
-      return "is not a valid phone number";
+      return "Incorrect phone number format";
     }
     return null;
   };

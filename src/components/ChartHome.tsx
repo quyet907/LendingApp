@@ -54,9 +54,9 @@ export default class ChartHome extends Component<props, state> {
                 dataChart.datasets[2].data = IncomeService.createDataChart(res.referal);
                 
                 dataChart.labels =IncomeService.getDayDataChar(res.all);
-                dataChart.datasets[0].label = "total amount";
-                dataChart.datasets[1].label = "leding";
-                dataChart.datasets[2].label = "referal";
+                dataChart.datasets[0].label = "Total Amount";
+                dataChart.datasets[1].label = "Leding";
+                dataChart.datasets[2].label = "Referal";
                 this.setState({
                     data: dataChart
                 })

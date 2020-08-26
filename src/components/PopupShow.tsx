@@ -111,7 +111,7 @@ const styles = StyleSheet.create({
     backgroundPopup: {
         width: '100%',
         height: '100%',
-        backgroundColor: 'rgba(155, 155, 155,0.8)',
+        backgroundColor: 'rgba(120, 120, 120,0.8)',
         position: 'absolute', zIndex: 2,
         justifyContent: 'center',
         alignItems: 'center'

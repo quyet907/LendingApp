@@ -87,14 +87,17 @@ export default StyleSheet.create({
 
     },
     statisticalBasic : {
-        width : "50%",
+        // width : "50%",
         justifyContent : "center",
-        alignItems : "center"
+        alignItems : "flex-start",
+        padding : 10,
+        width : "50%"
         
     },
     frImgStatisticalBasic : {
-        justifyContent : 'center',
-        alignItems : "center",
+        justifyContent : 'flex-start',
+        alignItems : "flex-start",
+        // alignSelf : "flex-start",
     },
     imgStatisticalBasic : {
         height : 50,
@@ -104,7 +107,7 @@ export default StyleSheet.create({
     },
     contentStatisticalBasic : {
         justifyContent : 'center',
-        alignItems : 'flex-start',
+        padding : 2
     },
     colorWhite : {
         color : "#ffffff"
