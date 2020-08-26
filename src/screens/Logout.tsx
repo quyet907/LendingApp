@@ -3,19 +3,21 @@ import { View, Button, TouchableOpacity, Text, StyleSheet, Image } from 'react-n
 import myStyle from "../style"
 import { UserService } from '../services/UserService'
 import { Actions } from "react-native-router-flux"
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
-export default class Logout extends Component <props , state> {
-    constructor(props : any ){
+import FontAwesome from 'react-native-vector-icons/FontAwesome'
+import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons"
+import * as Color from "../Color"
+export default class Logout extends Component<props, state> {
+    constructor(props: any) {
         super(props)
         this.state = {
-            getPhone : ""
+            getPhone: ""
         }
     }
-    componentDidMount(){
-        UserService.getMe().then(res=>{
-            if(res!=null) {
-                if(res.username != null){
-                    this.setState({getPhone : res.username ||""})
+    componentDidMount() {
+        UserService.getMe().then(res => {
+            if (res != null) {
+                if (res.username != null) {
+                    this.setState({ getPhone: res.username || "" })
                 }
 
 
@@ -27,82 +29,76 @@ export default class Logout extends Component <props , state> {
         return (
 
 
-            <View style={myStyle.container}>
-                <View style={[myStyle.flex1, myStyle.fullCeter]}>
-                    <View style={[myStyle.flex6, myStyle.fullCeter]}>
-                        <Image
-                            style={[styles.avt]}
-                            source={require('../icons/avt.png')}
-                        ></Image>
-                    </View>
-                    <View style={[myStyle.flex3]}>
-                        <Text style={styles.inforUser}>{this.state.getPhone}</Text>
-                    </View>
+            <View style={[myStyle.container]}>
+                <View style={[styles.header]}>
+                    <Text style={[styles.contentHeader]}>Account</Text>
                 </View>
-                <View style={myStyle.flex1}>
-                    <TouchableOpacity
-                        style={styles.button}
-                        onPress={
-                            () => {
-                                UserService.setJWT("").then(res => {
-                                    Actions.login()
-                                }
-                                )
-                            }}
-                    >
-                        <View style={[myStyle.row, { paddingLeft: 20 }]}>
+                <View style={[myStyle.row, styles.layoutAccout]}>
 
-                            <View style={[{ justifyContent: "flex-end" }, myStyle.flex1]}>
-                                <Text style={styles.contentButton}>Logout</Text>
-                            </View>
-                            <View style={[{ justifyContent: "flex-end", alignItems: "center", paddingRight: 20 }]}>
-                                <Icon name={"logout"} size={20} color={"white"} />
-                            </View>
-                        </View>
+                        <FontAwesome name={"user"} size={30} color={"white"} />
+
+                        <Text style={[styles.contentAccount]}>{this.state.getPhone}</Text>
+
+                </View>
+                <View>
+                    <TouchableOpacity style={[styles.buttonLogout]} >
+                        <Text style={[styles.contentButtonLogout]}>Logout</Text>
                     </TouchableOpacity>
+
                 </View>
-
-
-
             </View>
         )
     }
 }
-type props  = {
+type props = {
 
 }
 
 type state = {
-    getPhone : string 
+    getPhone: string
 }
 
 const styles = StyleSheet.create({
-    inforUser: {
-        fontWeight: "bold",
-        color: "white",
-        fontSize: 18
-    },
-
-    avt: {
-        height: 100,
-        width: 100,
-        borderRadius: 75,
-        borderWidth: 5,
-        borderColor: "#f2c73a",
-        backgroundColor: "#12151c",
-    },
-    button: {
-        backgroundColor: "#1e2126",
-        height: 50,
-        width: "100%",
+    header: {
+        padding: 20,
         justifyContent: "center",
-        // paddigLeft: 20
+        alignItems: "center",
+        margin: 2,
+        // backgroundColor : Color.dark,
     },
-    contentButton: {
-        // paddingLeft: 20,
-        color: "white",
+    contentHeader: {
+        fontSize: 16,
         textTransform: "uppercase",
         fontWeight: "bold",
-
+        color : "white"
+    },
+    layoutAccout: {
+        padding: 20,
+        // justifyContent: "center",
+        
+        marginLeft : 20,
+        marginRight : 20,
+        borderRadius : 5,
+        backgroundColor : Color.dark
+    },
+    contentAccount: {
+        justifyContent: "center",
+        color : "white",
+        paddingLeft : 20
+        
+    },
+    buttonLogout: {
+        justifyContent: "center",
+        alignItems: "center",
+        padding: 20,
+        borderWidth: 1,
+        borderRadius : 5,
+        borderColor : Color.primary,
+        margin : 20
+    },
+    contentButtonLogout: {
+        fontSize: 16,
+        color : Color.primary,
+        textTransform : "uppercase",
     }
 })

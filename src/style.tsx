@@ -63,7 +63,6 @@ export default StyleSheet.create({
         flex: 1,
         justifyContent: "center",
         alignItems: "center",
-        // justifyItems : "center"
     },
 
     logoImg: {
@@ -83,16 +82,14 @@ export default StyleSheet.create({
         backgroundColor : color.dark,
         padding : 10,
         marginTop : 10,
+        justifyContent: "center",
+        // alignItems: "center"
 
     },
     statisticalBasic : {
       width: '100%',
     
         padding : 10,
-        
-      
-       
-     
         
     },
     frImgStatisticalBasic : {
