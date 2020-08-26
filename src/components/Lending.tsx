@@ -82,20 +82,22 @@ export default class Lending extends React.Component<Props, State> {
               horizontal
               contentContainerStyle={{ flexGrow: 1, justifyContent: "center" }}
             >
-              {this.state.packages.map((item: any) =>
+              {this.state.packages.map((item: LendingPackage) =>
                 item._id == this.state.packageID ? (
                   <Package
+                  key={item._id}
                     package={item}
                     setSelection={this.state.packageSelected}
                     isSelected={() => {
                       this.setState({
                         packageSelected: this.state.packageSelected,
-                        minInvestment: item.minInvestment,
+                        minInvestment: item.minInvestment || 0,
                       });
                     }}
                   />
                 ) : (
                   <Package
+                  key={item._id}
                     package={item}
                     setSelection={!this.state.packageSelected}
                     isSelected={() => {

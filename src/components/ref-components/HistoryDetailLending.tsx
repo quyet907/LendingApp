@@ -23,7 +23,7 @@ export default class HistoryDetail extends React.Component<Props, {}>{
                             {timeIcon}<Text style={styles.time}>{this.props.time}</Text>
                         </View>
                     </View>
-                    <View style={{ flexDirection: 'colum', alignItems: 'flex-end', flex: 1 }}>
+                    <View style={{alignItems: 'flex-end', flex: 1 }}>
                         <Text style={styles.time}>{this.props.typeLabel}</Text>
                         <View style={{ flexDirection: 'row', alignItems: 'center', flex: 1 }}>
                             <Text style={this.props.type ? styles.coinGreen : styles.coinRed}>

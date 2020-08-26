@@ -10,12 +10,13 @@ import { LendingProfitHistoryService } from "../services/LendingProfitHistorySer
 import { ProfitHistory } from "@StockAfiCore/model/lending/LendingProfitHistory";
 import axios from "axios";
 import { UserService } from "../../src/services/UserService";
-
+var uuid = require('react-native-uuid');
 export default class Home extends Component<props, state> {
   constructor(props: any) {
     super(props);
     this.state = {
       data: [],
+      index: 0
     };
   }
 
@@ -48,7 +49,7 @@ export default class Home extends Component<props, state> {
               data={this.state.data}
               renderItem={({ item }) => (
                 <HistoryInterest
-                  createAt={item.createdAt?.toString().substr(0, 10) || "null"}
+                  createAt={item.createdAt?.toString().substr(0, 10) || "undefined"}
                   profits={item.profitAmount || 0}
                   amount={item.loanAmount || 0}
                   daysLeft={this.getDaysLeft(
@@ -56,7 +57,7 @@ export default class Home extends Component<props, state> {
                   )}
                 />
               )}
-              keyExtractor={(item) => item._id || "null"}
+              keyExtractor={(item) => item._id || uuid.v4()}
             />
           </View>
         </View>
@@ -87,5 +88,6 @@ export default class Home extends Component<props, state> {
 
 type props = {};
 type state = {
-  data: ProfitHistory[];
+  data: ProfitHistory[],
+  index: number
 };
