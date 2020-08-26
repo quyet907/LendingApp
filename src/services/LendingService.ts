@@ -12,7 +12,7 @@ export class LendingService {
     return getAxios().then((axios) =>
       axios({
         method: "POST",
-        url: `${config.apiGateway.lending}/lending`,
+        url: `${config.api.lendingAPI}/lending`,
         data: lending,
       })
         .then((res) => {
@@ -25,7 +25,7 @@ export class LendingService {
     return getAxios().then((axios) =>
       axios({
         method: "GET",
-        url: `${config.apiGateway.lending}/lending`,
+        url: `${config.api.lendingAPI}/lending`,
       })
         .then((res) => {
           return res.data;
@@ -37,7 +37,7 @@ export class LendingService {
   public static getListProfitHistory(): Promise<Paging<ProfitHistory>> {
     return getAxios().then((axios) =>
       axios
-        .get(`${config.apiGateway.lending}/lending_profit`)
+        .get(`${config.api.lendingAPI}/lending_profit`)
         .then((res) => {
           return res.data;
         })

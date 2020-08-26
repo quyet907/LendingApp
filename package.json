@@ -1,7 +1,7 @@
 {
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
-    "start": "NODE_ENV: development; expo start",
+    "start": "EXPO_NODE_ENV=prod expo start",
     "start-development": "USER_API=http://13.229.88.203:4000; LENDING_API=http://13.229.88.203:4001; expo start",
     "dev": "NODE_ENV=developmentaaaa; expo start",
     "android": "expo start --android",
@@ -20,6 +20,7 @@
     "@types/react-redux": "^7.1.9",
     "@types/react-router-native": "^5.1.0",
     "axios": "^0.19.2",
+    "babel-plugin-transform-inline-environment-variables": "^0.4.3",
     "chart.js": "^2.9.3",
     "dotenv": "^8.2.0",
     "expo": "~38.0.8",

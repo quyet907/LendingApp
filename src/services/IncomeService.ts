@@ -8,7 +8,7 @@ export class IncomeService {
   public static getListCharIncome(): Promise<Income[]> {
     return getAxios().then((axios) =>
       axios
-        .get(`${config.apiGateway.user}/user/income?page=1&pageSize=100`)
+        .get(`${config.api.userAPI}/user/income?page=1&pageSize=100`)
         .then((res) => {
           if (res != null) {
             return res.data;
@@ -44,7 +44,7 @@ export class IncomeService {
 
   public static getFinance(): Promise<Finance> {
     return getAxios().then((axios) =>
-      axios.get(`${config.apiGateway.user}/user/finance`).then((res) => {
+      axios.get(`${config.api.userAPI}/user/finance`).then((res) => {
         return res.data;
       })
     );

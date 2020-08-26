@@ -17,17 +17,6 @@ import { Provider } from "react-redux";
 import PopupShow from "./src/components/PopupShow";
 import Loadding from "./src/components/Loadding";
 
-require("dotenv").config();
-
-require('dotenv').config();
-console.log(process.env)
-// const db = require('db')
-// db.connect({
-//   host: process.env.REACT_APP_USER_API
-// }, () => console.log(db.host))
-
-
-
 
 const MyTransitionSpec = {
   duration: 1000,
@@ -57,6 +46,7 @@ const tabProps = {
 export default class App extends React.Component<Props, {}> {
   constructor(props: any) {
     super(props);
+    console.log(`env is ${process.env.EXPO_NODE_ENV}`)
   }
 
   render() {

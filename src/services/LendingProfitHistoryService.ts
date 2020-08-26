@@ -11,7 +11,7 @@ export class LendingProfitHistoryService {
     return getAxios().then((axios) =>
       axios({
         method: "GET",
-        url: `${config.apiGateway.lending}/lending_profit`,
+        url: `${config.api.lendingAPI}/lending_profit`,
       })
         .then((res) => {
           return res.data;
