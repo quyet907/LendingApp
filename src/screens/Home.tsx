@@ -43,7 +43,7 @@ export default class Home extends Component<props, state> {
             <ListStatisticalBasic></ListStatisticalBasic>
           </View>
 
-          <View style={[]}>
+          <View>
             <FlatList
               data={this.state.data}
               renderItem={({ item }) => (

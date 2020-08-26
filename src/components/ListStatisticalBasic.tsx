@@ -31,7 +31,7 @@ export default class ListStatisticalBasic extends Component<props, state> {
 
             <View style = {[myStyle.listStatisticalBasic]}>
                 {/* FontAwesome5 */}
-                <View style = {[myStyle.row, myStyle.flex1]}>
+                <View style = {[myStyle.row]}>
                     <StatisticalBasic
                         icon = "coins"
                         color = "#FB8C00"

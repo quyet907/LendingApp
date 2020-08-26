@@ -77,26 +77,27 @@ export default StyleSheet.create({
 
 
 
-    listStatisticalBasic: {
-        minHeight: 100,
-        width: "100%",
-        backgroundColor: color.dark,
-        padding: 10,
-        marginTop: 10,
-        borderRadius: 10
+    listStatisticalBasic : { 
+        minHeight : 100,
+        width : "100%",
+        backgroundColor : color.dark,
+        padding : 10,
+        marginTop : 10,
 
     },
-    statisticalBasic: {
-        // width : "50%",
-        justifyContent: "center",
-        alignItems: "flex-start",
-        padding: 10,
-        width: "50%"
-
+    statisticalBasic : {
+      width: '100%',
+    
+        padding : 10,
+        
+      
+       
+     
+        
     },
-    frImgStatisticalBasic: {
-        justifyContent: 'flex-start',
-        alignItems: "flex-start",
+    frImgStatisticalBasic : {
+        justifyContent : 'flex-start',
+        alignItems : "flex-start",
         // alignSelf : "flex-start",
     },
     imgStatisticalBasic: {
@@ -105,30 +106,30 @@ export default StyleSheet.create({
         resizeMode: "contain",
         margin: 10
     },
-    contentStatisticalBasic: {
-        justifyContent: 'center',
-        padding: 2
+    contentStatisticalBasic : {
+        justifyContent : 'flex-start',
+        padding : 2
     },
-    colorWhite: {
-        color: "#ffffff"
+    colorWhite : {
+        color : "#ffffff"
     },
-    listHistoryInterest: {
-        minHeight: 100,
-        backgroundColor: color.dark,
-        flex: 1,
-        flexShrink: 30,
-        padding: 10,
-        marginTop: 10,
-        borderRadius: 10
+    listHistoryInterest : {
+        minHeight  : 100,
+        backgroundColor : color.dark,
+        flex : 1,
+        flexShrink : 30,
+        padding : 10  ,
+        marginTop    : 10,
+        borderRadius :10
     },
-    HistoryInterest: {
-        height: 60,
-        width: "100%",
-        backgroundColor: color.dark,
-        borderRadius: 10,
-        justifyContent: "center",
-        padding: 10,
-        marginTop: 10
+    HistoryInterest : {
+        height : 60,
+        width : "100%",
+        backgroundColor : color.dark,
+        borderRadius : 10,
+        justifyContent : "center",
+        padding : 10  ,
+        marginTop : 10
 
     }
     ,
@@ -153,29 +154,30 @@ export default StyleSheet.create({
 
     contentHistoryInterest: {
         // fontWeight : "bold",
-        fontSize: 16,
-        textTransform: "uppercase",
-        alignItems: "center",
-        justifyContent: "center"
+         fontSize: 16,
+          textTransform : "uppercase",
+        alignItems : "center",
+        justifyContent : "center"
     },
-    inputLogin: {
-        borderColor: "#F6C400",
-        borderWidth: 1,
-        width: "100%",
-        marginTop: 20,
-        color: "#FFFFFF",
-        fontSize: 16,
-        borderRadius: 5,
-        padding: 10
+    inputLogin : {
+        borderColor : "#F6C400",
+        borderWidth : 1,
+        width : "100%",
+        marginTop : 20,   
+        color : "#FFFFFF",
+        fontSize : 16,
+        borderRadius :5,
+    padding: 10        
 
 
     },
-    frbuttonLogin: {
-        marginTop: 20,
-        backgroundColor: color.primary,
-        justifyContent: "center",
-        borderwidth: 1,
-        width: "100%",
+    frbuttonLogin : {
+        marginTop : 20,
+        backgroundColor : color.primary,
+        justifyContent : "center",
+        borderWidth :1,
+        width : "100%",
+        
         padding: 10,
         borderRadius: 5,
         alignItems: "center",

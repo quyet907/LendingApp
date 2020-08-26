@@ -16,15 +16,15 @@ export default class StatisticalBasic extends Component<props, state>{
 
         return (
             <View style = {[myStyle.fullCeter , myStyle.flex1]}>
-                <View style={[myStyle.statisticalBasic, myStyle.row, myStyle.flex1]}>
-                    <View style={[ myStyle.frImgStatisticalBasic]}>
+                <View style={[myStyle.statisticalBasic, myStyle.row]}>
+                    <View style={{}}>
                         <Icon name={this.props.icon} size={40} color={this.props.color} />
                         {/* <Image
                         source={require("../assets/icons8_average_2_75px.png")}
                         style={[myStyle.imgStatisticalBasic]}
                     /> */}
                     </View>
-                    <View style={[{padding : 5}]}>
+                    <View style={{flex: 1, paddingLeft: 15}}>
                         <View style={[myStyle.contentStatisticalBasic, myStyle.flex1] }>
                             <Text style={[{ color: color.inactive, fontSize: 12}]}>{this.props.content}</Text>
                         </View>

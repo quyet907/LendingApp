@@ -127,7 +127,7 @@ export default class Lending extends React.Component<Props, State> {
                 <Text style={styles.copyText}>COIN</Text>
               </View>
               <TextInput
-                value={this.state.initialValue}
+                value={this.state.initialValue.toString()}
                 keyboardType={"number-pad"}
                 style={styles.inputCoin}
                 onChangeText={(text) => {

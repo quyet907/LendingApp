@@ -11,7 +11,7 @@ export default class RefAbout extends React.Component<Props, {}>{
         return (
             <View style={{ flexDirection: 'row' }}>
                 <View>
-                    <Image style={styles.logo} source={require('../../assets/icons8_user_groups_80px_1.png')} />
+                    <Image style={styles.logo} source={require('../../icons/icons8_user_groups_80px_1.png')} />
                 </View>
                 <View style={styles.subContainer}>
                     <Text style={{ color: '#868685', fontSize: 12 }}>{this.props.label}</Text>

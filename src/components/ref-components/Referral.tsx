@@ -57,7 +57,7 @@ export default class Referral extends React.Component<Props, State> {
                     <View style={styles.refAbout}>
                         <View style={{ flexDirection: 'row' }}>
                             <View>
-                                <Image style={styles.logoRef} source={require('../../assets/icons8_user_groups_80px_1.png')} />
+                                <Image style={styles.logoRef} source={require('../../icons/icons8_user_groups_80px_1.png')} />
                             </View>
                             <View style={styles.subContainer}>
                                 <Text style={{ color: '#868685', fontSize: 12 }}>Total</Text>
@@ -67,7 +67,7 @@ export default class Referral extends React.Component<Props, State> {
 
                         <View style={{ flexDirection: 'row' }}>
                             <View>
-                                <Image style={styles.logoRef} source={require('../../assets/icons8_coins_80px.png')} />
+                                <Image style={styles.logoRef} source={require('../../icons/icons8_coins_80px.png')} />
                             </View>
                             <View style={styles.subContainer}>
                                 <Text style={{ color: '#868685', fontSize: 12 }}>Reward</Text>
