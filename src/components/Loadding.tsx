@@ -58,7 +58,6 @@ type state = {
 
 
 function mapStateToProps(state : any ){
-    console.log(state.LoadingReducer.showLoad)
     return {
         showLoad: state.LoadingReducer.showLoad,
     }

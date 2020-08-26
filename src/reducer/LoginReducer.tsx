@@ -32,7 +32,6 @@ const Login = (state: any = initLogin, action : any )=>{
             }
         }
         case "SET_REFERRAL" : {
-            console.log(action.payload);
             return {...state,
                 referalCode : action.payload,
             }

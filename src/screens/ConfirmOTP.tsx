@@ -24,7 +24,6 @@ class ConfirmOTP extends Component<props, state> {
     }
 
     componentDidMount() {
-        console.log(this.props.typeAction + "-" + this.props.NumeberPhone)
 
     }
 

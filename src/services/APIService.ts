@@ -6,12 +6,11 @@ import * as action from "../Action/ActionPopup"
 import * as actionLoadding from "../Action/ActionLoadding"
 axios.interceptors.request.use(
     res => {
-        console.log(res);
         actionLoadding.setLoad(true)
         return res
     },
     err => {
-        console.log(err.response)
+
     }
 );
 

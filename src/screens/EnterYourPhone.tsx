@@ -20,7 +20,6 @@ class EnterYourPhone extends Component<props, state> {
     }
 
     componentDidMount() {
-        console.log(this.props.typeAction)
 
 
     }
@@ -33,7 +32,6 @@ class EnterYourPhone extends Component<props, state> {
             else {
                 UserService.checkExits(this.state.numberPhone).then((res) => {
 
-                    console.log(this.props.typeAction);
                     if (res && this.props.typeAction == "signUp") {
                         actionPopup.showMessage("Account has been registered")
                     }

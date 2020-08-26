@@ -37,30 +37,13 @@ const MyTransitionSpec = {
 
 const scenes = Actions.create(
   <Scene key="root" duration={4}>
-    {/* <Scene  key="test" component={checkRegax} hideNavBar={true} /> */}
     <Scene key="login" component={Login} hideNavBar={true} />
-
     <Scene key="home" component={PageHome} hideNavBar={true} />
-
-    <Scene
-      key="enterPhone"
-      component={EnterYourPhone}
-      hideNavBar={true}
-      typeAction=""
-    />
-    <Scene key="signUp" component={EnterYourPhone} hideNavBar={true} />
-    <Scene
-      key="confirmOTP"
-      component={ConfirmOTP}
-      hideNavBar={true}
-      typeAction=""
-    />
+    <Scene key="enterPhone" component={EnterYourPhone} hideNavBar={true}/>
+    <Scene key="confirmOTP" component={ConfirmOTP} hideNavBar={true} />
     <Scene key="password" component={SetPassWord} hideNavBar={true} />
   </Scene>
 );
-{
-  /* <Router scenes={scenes}/> */
-}
 
 const Tab = createBottomTabNavigator();
 

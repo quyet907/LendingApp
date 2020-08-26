@@ -256,7 +256,6 @@ export default class Lending extends React.Component<Props, State> {
 
   updateLending = () => {
     LendingService.getMyInvest().then((res) => {
-      console.log(res.rows);
       this.setState({ myInvest: res.rows });
     });
   };
@@ -295,7 +294,6 @@ export default class Lending extends React.Component<Props, State> {
       lendingPackageId: this.state.packageID,
       loanAmount: this.state.initialValue,
     };
-    console.log("dong 298"+lending)
     LendingService.createLending(lending).then(() => {
       this.updateLending();
     });
@@ -337,8 +335,6 @@ const styles = StyleSheet.create({
   inputCoin: {
     width: "100%",
     backgroundColor: "#fff",
-    // outline: 'none',
-    // border: 'none',
     paddingHorizontal: 10,
     paddingVertical: 5,
     fontWeight: "500",

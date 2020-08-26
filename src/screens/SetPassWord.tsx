@@ -36,13 +36,7 @@ class setPassword extends Component<props, state> {
     var getPass: any = this.state.getPass;
     var getAgainPass: any = this.state.getAgainPass;
     var error = UserService.checkValidate(getPass, getAgainPass);
-    console.log(
-      this.props.phoneNumber +
-        "--" +
-        this.props.codeOTP +
-        "--" +
-        this.props.typeAction
-    );
+
 
     if (error != null) {
       actionPopup.showMessage(error);
@@ -53,7 +47,6 @@ class setPassword extends Component<props, state> {
       if (this.props.typeAction == "signUp") {
         var getReferral = this.props.codeReferal;
 
-        console.log(this.props.phoneNumber);
         UserService.register(
           this.props.phoneNumber,
           getPass,

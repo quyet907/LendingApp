@@ -45,7 +45,6 @@ export class IncomeService {
   public static getFinance(): Promise<Finance> {
     return getAxios().then((axios) =>
       axios.get(`${config.apiGateway.user}/user/finance`).then((res) => {
-        console.log(res.data);
         return res.data;
       })
     );

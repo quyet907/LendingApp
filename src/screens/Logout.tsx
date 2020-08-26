@@ -13,7 +13,6 @@ export default class Logout extends Component <props , state> {
     }
     componentDidMount(){
         UserService.getMe().then(res=>{
-            console.log(res);
             if(res!=null) {
                 if(res.username != null){
                     this.setState({getPhone : res.username ||""})

@@ -21,13 +21,9 @@ export default class Home extends Component<props, state> {
 
   componentDidMount() {
     LendingProfitHistoryService.getLendingProfit().then((res) => {
-        console.log(res.rows)
       this.setState(
         {
           data: res != undefined ? res.rows : [],
-        },
-        () => {
-          console.log(res.rows);
         }
       );
     });
@@ -72,7 +68,6 @@ export default class Home extends Component<props, state> {
     const secondCurrent = Date.now();
 
     if (createAt) {
-        console.log(createAt)
       if (typeof createAt == "string") {
         createAt = new Date(createAt);
         const endDate = createAt.setMonth(createAt.getMonth() + 1);
@@ -80,7 +75,7 @@ export default class Home extends Component<props, state> {
         const daysLeft = Math.floor(
           (endDate - secondCurrent) / (1000 * 60 * 60 * 24)
         );
-       
+
 
         return daysLeft;
       }
