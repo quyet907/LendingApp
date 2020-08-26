@@ -5,7 +5,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Home from "../screens/Home";
 import LendingScreen from "../components/Lending";
 import ReferralScreen from "../components/ref-components/Referral";
-import Icon from "react-native-vector-icons/FontAwesome";
+import Icon from "react-native-vector-icons/FontAwesome5";
 import Logout from "./Logout";
 import * as color from "../Color";
 
@@ -35,6 +35,7 @@ export default class PageHome extends React.Component<Props, {}> {
             },
           }}
         >
+          
           <Tab.Screen
             name="Dashboard"
             component={Home}
@@ -57,9 +58,10 @@ export default class PageHome extends React.Component<Props, {}> {
               tabBarLabel: "Lending",
               tabBarIcon: ({ focused }) => (
                 <Icon
-                  name="dollar"
+                  name="dollar-sign"
                   size={tabProps.ICONSIZE}
                   color={focused ? tabProps.ACTIVE : tabProps.INACTIVE}
+                
                 />
               ),
             }}
@@ -78,21 +80,22 @@ export default class PageHome extends React.Component<Props, {}> {
               ),
             }}
           />
-
-          <Tab.Screen
+<Tab.Screen
             name="Profile"
             component={Logout}
             options={{
               tabBarLabel: "Profile",
               tabBarIcon: ({ focused }) => (
                 <Icon
-                  name="user"
+                  name="user-alt"
                   size={tabProps.ICONSIZE}
                   color={focused ? tabProps.ACTIVE : tabProps.INACTIVE}
+                  solid
                 />
               ),
             }}
           />
+          
         </Tab.Navigator>
       </NavigationContainer>
     );

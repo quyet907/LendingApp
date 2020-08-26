@@ -363,10 +363,10 @@ const styles = StyleSheet.create({
     paddingVertical: 20,
   },
   textLabel: {
-    paddingBottom: 15,
+    paddingVertical: 15,
     color: "#fff",
-    fontSize: 17,
-    fontWeight: "500",
+    fontSize: 18,
+    fontWeight: "600",
   },
   buttonActive: {
     backgroundColor: color.primary,
