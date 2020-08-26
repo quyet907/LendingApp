@@ -173,6 +173,7 @@ const styles = StyleSheet.create({
         borderLeftWidth: 0
     },
     copyText: {
+        color: '#fff',
         fontSize: 14,
         fontWeight: "700",
     },

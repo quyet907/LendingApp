@@ -75,6 +75,7 @@ class ConfirmOTP extends Component<props, state> {
                             style={[myStyle.inputLogin, { marginTop: 30 }]}
                             selectionColor='red'
                             placeholder={"Enter OTP"}
+                            keyboardType='numeric'
                             // keyboardType={'numeric'}
                             value={this.state.getCodeOTP}
                             onChange={(event) => {
@@ -94,7 +95,7 @@ class ConfirmOTP extends Component<props, state> {
                             }}
                         >
                             <Text style={[myStyle.textButton]}>
-                                confirm
+                                Confirm
                             </Text>
                         </TouchableOpacity>
 

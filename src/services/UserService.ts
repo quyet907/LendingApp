@@ -198,10 +198,17 @@ export class UserService {
   public static checkValidatePhone = (phone: string): string | null => {
     phone.trim();
     if (phone.length == 0) {
+<<<<<<< HEAD
       return "Phone number cannot be empty";
     }
     if (phone.length < 10 || phone.length > 11) {
       return "Phone number length from 10-11";
+=======
+      return "Mobile can't be blank";
+    }
+    if (phone.length < 10 || phone.length > 11) {
+      return "Mobile is not valid";
+>>>>>>> bf618f220d3b33e3d2db7268f1dd111f80d6f674
     }
     var regex_Phone = /[0-9]$/;
     if (!regex_Phone.test(phone)) {
