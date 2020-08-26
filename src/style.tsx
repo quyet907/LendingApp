@@ -173,7 +173,7 @@ export default StyleSheet.create({
         justifyContent : "center",
         borderWidth :1,
         width : "100%",
-        fontSize: 16,
+        
         padding: 10,
         borderRadius : 5,
         alignItems : "center",
