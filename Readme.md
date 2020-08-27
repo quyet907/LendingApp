@@ -15,3 +15,10 @@ f2c73a màu vang
 
 2. Run application 
 # npm start 
+
+# 3. build application
+    - npm run build-web-dev
+    - npx serve web-build
+
+# 4. Deploy
+    - npm run deploy-web-dev    

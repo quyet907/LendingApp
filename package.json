@@ -1,13 +1,15 @@
 {
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
-    "start": "EXPO_NODE_ENV=prod expo start",
+    "start": "EXPO_NODE_ENV=local expo start",
     "start-development": "USER_API=http://13.229.88.203:4000; LENDING_API=http://13.229.88.203:4001; expo start",
     "dev": "NODE_ENV=developmentaaaa; expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "eject": "expo eject"
+    "eject": "expo eject",
+    "build-web-dev": "EXPO_NODE_ENV=development expo build:web",
+    "deploy-web-dev": "npm install; npm run build-web-dev; firebase deploy --token 1//0eyjOjFnoon2ECgYIARAAGA4SNwF-L9IrcIgjxQJ42B084OE6HEcDq_F9WIQirbJym8Jp37HeRFF-hUoCCiapQnS01jEZQ5ziyoI"
   },
   "dependencies": {
     "@react-native-community/checkbox": "^0.4.2",
