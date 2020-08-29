@@ -132,7 +132,7 @@ class Login extends Component<props, state> {
             <TouchableOpacity
               onPress={(event) => {
                 this.props.onTypeActon("signUp");
-                Actions.signUp();
+                Actions.enterPhone();
               }}
             >
               <Text style={[{ color: "#F8C400" }]}>Create new account</Text>
