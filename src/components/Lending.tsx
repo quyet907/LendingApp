@@ -26,12 +26,14 @@ import { Lending as LendingModel } from "@StockAfiCore/model/lending/Lending";
 import { ProfitHistory } from "@StockAfiCore/model/lending/LendingProfitHistory";
 import PopupConfirm from "./PopupConfirm";
 import * as color from '../Color'
+import { IncomeService } from "../services/IncomeService";
 
 export default class Lending extends React.Component<Props, State> {
   constructor(props: any) {
     super(props);
     this.state = {
       initialValue: 0,
+      wallet: 0,
       isSelected: false,
 
       packageSelected: true,
@@ -60,6 +62,9 @@ export default class Lending extends React.Component<Props, State> {
     LendingService.getMyInvest().then((res) => {
       this.setState({ myInvest: res.rows });
     });
+    IncomeService.getFinance().then((res) => {
+      this.setState({wallet: res.remainAmount || 0})
+    })
   }
 
   render() {
@@ -102,7 +107,10 @@ export default class Lending extends React.Component<Props, State> {
                       setSelection={!this.state.packageSelected}
                       isSelected={() => {
                         this.setState({ packageID: item._id },
-                          () => console.log(this.state.packageID));
+                          () => this.setState({
+                            minInvestment: item.minInvestment || 0,
+                            maxInvestment: item.maxInvestment || 0
+                          }));
                       }}
                     />
                   )
@@ -116,7 +124,7 @@ export default class Lending extends React.Component<Props, State> {
                 marginTop: 30,
               }}
             >
-              <Text style={styles.textLabel}>Wallet Balance: 1000 COIN</Text>
+              <Text style={styles.textLabel}>Wallet Balance: {this.state.wallet} COIN</Text>
             </View>
 
             <View
@@ -440,6 +448,7 @@ type Props = {};
 type State = {
   initialValue: any;
   isSelected: boolean;
+  wallet: number;
 
   packageSelected: any;
   packageID: any;
