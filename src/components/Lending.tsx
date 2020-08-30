@@ -85,7 +85,7 @@ export default class Lending extends React.Component<Props, State> {
               {this.state.packages.map((item: LendingPackage) =>
                 item._id == this.state.packageID ? (
                   <Package
-                  key={item._id}
+                    key={item._id}
                     package={item}
                     setSelection={this.state.packageSelected}
                     isSelected={() => {
@@ -96,16 +96,16 @@ export default class Lending extends React.Component<Props, State> {
                     }}
                   />
                 ) : (
-                  <Package
-                  key={item._id}
-                    package={item}
-                    setSelection={!this.state.packageSelected}
-                    isSelected={() => {
-                      this.setState({ packageID: item._id },
-                        () => console.log(this.state.packageID));
-                    }}
-                  />
-                )
+                    <Package
+                      key={item._id}
+                      package={item}
+                      setSelection={!this.state.packageSelected}
+                      isSelected={() => {
+                        this.setState({ packageID: item._id },
+                          () => console.log(this.state.packageID));
+                      }}
+                    />
+                  )
               )}
             </ScrollView>
 
@@ -152,7 +152,7 @@ export default class Lending extends React.Component<Props, State> {
                 style={styles.btnAll}
                 onPress={() => this.allCoin()}
               >
-                <Text style={styles.copyText}>ALL</Text>
+                <Text style={styles.copyText}>MAX</Text>
               </TouchableOpacity>
             </View>
 
@@ -210,9 +210,9 @@ export default class Lending extends React.Component<Props, State> {
                   type={true}
                   typeLabel="AMOUNT"
                   time={
-                    this.getTime(item.createdAt) 
-                   
-                   
+                    this.getTime(item.createdAt)
+
+
                   }
                   coin={item.loanAmount || 0}
                 />
@@ -274,7 +274,7 @@ export default class Lending extends React.Component<Props, State> {
       const daysLeft = Math.floor(
         (Date.parse(currentDate.toJSON().substr(0, 10)) -
           Date.parse(startDate.toString().substr(0, 10))) /
-          (1000 * 60 * 60 * 24)
+        (1000 * 60 * 60 * 24)
       );
       return daysLeft > 30 ? 30 : daysLeft;
     }
@@ -307,7 +307,7 @@ export default class Lending extends React.Component<Props, State> {
     });
   };
 
-  onChangeText = (text: any) => {};
+  onChangeText = (text: any) => { };
 }
 
 const styles = StyleSheet.create({
@@ -355,7 +355,7 @@ const styles = StyleSheet.create({
   copyText: {
     fontSize: 16,
     fontWeight: "700",
-   
+
   },
   refAbout: {
     flexDirection: "row",
