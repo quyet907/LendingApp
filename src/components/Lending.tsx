@@ -26,12 +26,14 @@ import { Lending as LendingModel } from "@StockAfiCore/model/lending/Lending";
 import { ProfitHistory } from "@StockAfiCore/model/lending/LendingProfitHistory";
 import PopupConfirm from "./PopupConfirm";
 import * as color from '../Color'
+import { IncomeService } from "../services/IncomeService";
 
 export default class Lending extends React.Component<Props, State> {
   constructor(props: any) {
     super(props);
     this.state = {
       initialValue: 0,
+      wallet: 0,
       isSelected: false,
 
       packageSelected: true,
@@ -60,6 +62,9 @@ export default class Lending extends React.Component<Props, State> {
     LendingService.getMyInvest().then((res) => {
       this.setState({ myInvest: res.rows });
     });
+    IncomeService.getFinance().then((res) => {
+      this.setState({wallet: res.remainAmount || 0})
+    })
   }
 
   render() {
@@ -85,7 +90,7 @@ export default class Lending extends React.Component<Props, State> {
               {this.state.packages.map((item: LendingPackage) =>
                 item._id == this.state.packageID ? (
                   <Package
-                  key={item._id}
+                    key={item._id}
                     package={item}
                     setSelection={this.state.packageSelected}
                     isSelected={() => {
@@ -96,16 +101,19 @@ export default class Lending extends React.Component<Props, State> {
                     }}
                   />
                 ) : (
-                  <Package
-                  key={item._id}
-                    package={item}
-                    setSelection={!this.state.packageSelected}
-                    isSelected={() => {
-                      this.setState({ packageID: item._id },
-                        () => console.log(this.state.packageID));
-                    }}
-                  />
-                )
+                    <Package
+                      key={item._id}
+                      package={item}
+                      setSelection={!this.state.packageSelected}
+                      isSelected={() => {
+                        this.setState({ packageID: item._id },
+                          () => this.setState({
+                            minInvestment: item.minInvestment || 0,
+                            maxInvestment: item.maxInvestment || 0
+                          }));
+                      }}
+                    />
+                  )
               )}
             </ScrollView>
 
@@ -116,7 +124,7 @@ export default class Lending extends React.Component<Props, State> {
                 marginTop: 30,
               }}
             >
-              <Text style={styles.textLabel}>Wallet Balance: 1000 COIN</Text>
+              <Text style={styles.textLabel}>Wallet Balance: {this.state.wallet} COIN</Text>
             </View>
 
             <View
@@ -152,7 +160,7 @@ export default class Lending extends React.Component<Props, State> {
                 style={styles.btnAll}
                 onPress={() => this.allCoin()}
               >
-                <Text style={styles.copyText}>ALL</Text>
+                <Text style={styles.copyText}>MAX</Text>
               </TouchableOpacity>
             </View>
 
@@ -166,7 +174,7 @@ export default class Lending extends React.Component<Props, State> {
             >
               <CheckBox
                 value={this.state.isSelected}
-                onValueChange={() => this.checkCheckbox}
+                onValueChange={() => this.checkCheckbox()}
               />
               <Text
                 style={{ color: "#fff", paddingLeft: 10 }}
@@ -210,9 +218,9 @@ export default class Lending extends React.Component<Props, State> {
                   type={true}
                   typeLabel="AMOUNT"
                   time={
-                    this.getTime(item.createdAt) 
-                   
-                   
+                    this.getTime(item.createdAt)
+
+
                   }
                   coin={item.loanAmount || 0}
                 />
@@ -241,6 +249,7 @@ export default class Lending extends React.Component<Props, State> {
   }
 
   checkCheckbox = () => {
+    console.log('click')
     this.setState(
       {
         isSelected: !this.state.isSelected,
@@ -274,7 +283,7 @@ export default class Lending extends React.Component<Props, State> {
       const daysLeft = Math.floor(
         (Date.parse(currentDate.toJSON().substr(0, 10)) -
           Date.parse(startDate.toString().substr(0, 10))) /
-          (1000 * 60 * 60 * 24)
+        (1000 * 60 * 60 * 24)
       );
       return daysLeft > 30 ? 30 : daysLeft;
     }
@@ -304,10 +313,18 @@ export default class Lending extends React.Component<Props, State> {
   allCoin = () => {
     this.setState({
       initialValue: this.state.maxInvestment,
+    }, 
+    () => {
+      this.setState({
+        buttonInvest:
+          this.state.initialValue >= this.state.minInvestment &&
+          this.state.initialValue <= this.state.maxInvestment &&
+          this.state.isSelected == true,
+      });
     });
   };
 
-  onChangeText = (text: any) => {};
+  onChangeText = (text: any) => { };
 }
 
 const styles = StyleSheet.create({
@@ -355,7 +372,7 @@ const styles = StyleSheet.create({
   copyText: {
     fontSize: 16,
     fontWeight: "700",
-   
+
   },
   refAbout: {
     flexDirection: "row",
@@ -431,6 +448,7 @@ type Props = {};
 type State = {
   initialValue: any;
   isSelected: boolean;
+  wallet: number;
 
   packageSelected: any;
   packageID: any;

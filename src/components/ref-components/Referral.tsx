@@ -8,6 +8,7 @@ import FlashMessage, { showMessage, hideMessage } from "react-native-flash-messa
 import { Referal } from '@Core/model/user/Referal';
 import { ReferralService } from '../../services/ReferralService';
 import * as color from '../../Color'
+import { config } from '../../config/Config';
 
 export default class Referral extends React.Component<Props, State> {
     constructor(props: any) {
@@ -118,7 +119,7 @@ export default class Referral extends React.Component<Props, State> {
     }
 
     getLinkRef = () => {
-        return 'https://lendinggame.com/?ref=' + this.state.myID
+        return `${config.api.domain}/?ref=${ this.state.myID}`
     }
 }
 
