@@ -166,7 +166,7 @@ export default class Lending extends React.Component<Props, State> {
             >
               <CheckBox
                 value={this.state.isSelected}
-                onValueChange={() => this.checkCheckbox}
+                onValueChange={() => this.checkCheckbox()}
               />
               <Text
                 style={{ color: "#fff", paddingLeft: 10 }}
@@ -241,6 +241,7 @@ export default class Lending extends React.Component<Props, State> {
   }
 
   checkCheckbox = () => {
+    console.log('click')
     this.setState(
       {
         isSelected: !this.state.isSelected,
@@ -304,6 +305,14 @@ export default class Lending extends React.Component<Props, State> {
   allCoin = () => {
     this.setState({
       initialValue: this.state.maxInvestment,
+    }, 
+    () => {
+      this.setState({
+        buttonInvest:
+          this.state.initialValue >= this.state.minInvestment &&
+          this.state.initialValue <= this.state.maxInvestment &&
+          this.state.isSelected == true,
+      });
     });
   };
 
