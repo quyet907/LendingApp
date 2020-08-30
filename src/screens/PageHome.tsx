@@ -8,6 +8,7 @@ import ReferralScreen from "../components/ref-components/Referral";
 import Icon from "react-native-vector-icons/FontAwesome5";
 import Logout from "./Logout";
 import * as color from "../Color";
+import ListBid from "./ListBid";
 
 const Tab = createBottomTabNavigator();
 
@@ -38,7 +39,7 @@ export default class PageHome extends React.Component<Props, {}> {
           
           <Tab.Screen
             name="Dashboard"
-            component={Home}
+            component={ListBid}
             options={{
               tabBarLabel: "Dashboard",
               tabBarIcon: ({ focused }) => (

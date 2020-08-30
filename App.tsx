@@ -1,4 +1,4 @@
-import * as React from "react";
+import  * as React from "react";
 import { View, StyleSheet } from "react-native";
 
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
@@ -16,6 +16,7 @@ import store from "./src/reducer/store";
 import { Provider } from "react-redux";
 import PopupShow from "./src/components/PopupShow";
 import Loadding from "./src/components/Loadding";
+import Bid from "./src/screens/Bid";
 
 
 const MyTransitionSpec = {
@@ -31,6 +32,7 @@ const scenes = Actions.create(
     <Scene key="enterPhone" component={EnterYourPhone} hideNavBar={true}/>
     <Scene key="confirmOTP" component={ConfirmOTP} hideNavBar={true} />
     <Scene key="password" component={SetPassWord} hideNavBar={true} />
+    <Scene key="bid" component={Bid} hideNavBar={true} />
   </Scene>
 );
 
