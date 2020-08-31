@@ -4,7 +4,7 @@ const localConfig: IConfig = {
   api: {
     lendingAPI: "http://localhost:4001",
     userAPI: "http://localhost:4000",
-    domain: 'https://lending-31b52.web.app'
+    domain: 'http://localhost:19006'
   },
 };
 

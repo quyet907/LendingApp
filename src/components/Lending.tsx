@@ -149,8 +149,8 @@ export default class Lending extends React.Component<Props, State> {
                       this.setState({
                         buttonInvest:
                           this.state.initialValue >= this.state.minInvestment &&
-                          this.state.initialValue <= this.state.maxInvestment &&
-                          this.state.isSelected == true,
+                          this.state.initialValue <= this.state.maxInvestment 
+                          // &&                         this.state.isSelected == true,
                       });
                     }
                   );
@@ -172,16 +172,20 @@ export default class Lending extends React.Component<Props, State> {
                 alignItems: "center",
               }}
             >
-              <CheckBox
+              {/* <CheckBox
                 value={this.state.isSelected}
                 onValueChange={() => this.checkCheckbox()}
+                style={{
+                  backgroundColor:"red",
+                  borderColor:"red"
+                }}
               />
               <Text
                 style={{ color: "#fff", paddingLeft: 10 }}
                 onPress={this.checkCheckbox}
               >
                 I have read and understood your terms of use
-              </Text>
+              </Text> */}
             </View>
 
             <View style={styles.btnInvest}>
@@ -208,8 +212,8 @@ export default class Lending extends React.Component<Props, State> {
             </View>
           </View>
           <View style={styles.container2}>
-            <Text style={styles.textLabel}>My Investsment</Text>
-            <Separator />
+            {/* <Text style={styles.textLabel}>My Investsment</Text>
+            <Separator /> */}
             <FlatList
               data={this.state.myInvest}
               renderItem={({ item }) => (
@@ -258,8 +262,8 @@ export default class Lending extends React.Component<Props, State> {
         this.setState({
           buttonInvest:
             this.state.initialValue >= this.state.minInvestment &&
-            this.state.initialValue <= this.state.maxInvestment &&
-            this.state.isSelected == true,
+            this.state.initialValue <= this.state.maxInvestment
+            //  &&           this.state.isSelected == true,
         });
       }
     );
@@ -318,8 +322,8 @@ export default class Lending extends React.Component<Props, State> {
       this.setState({
         buttonInvest:
           this.state.initialValue >= this.state.minInvestment &&
-          this.state.initialValue <= this.state.maxInvestment &&
-          this.state.isSelected == true,
+          this.state.initialValue <= this.state.maxInvestment
+          //  &&       this.state.isSelected == true,
       });
     });
   };
@@ -331,19 +335,14 @@ const styles = StyleSheet.create({
   container: {
     padding: 20,
     paddingTop: 10,
-    borderWidth: 1,
-    borderColor: "#868685",
     paddingBottom: 5,
     backgroundColor: color.dark,
   },
   container2: {
-    marginTop: 20,
-    padding: 20,
-    borderWidth: 1,
-    borderColor: "#868685",
+    paddingVertical: 20,
     paddingBottom: 5,
     paddingTop: 10,
-    backgroundColor: color.dark,
+    // backgroundColor: color.dark,
   },
   logo: {
     width: 50,

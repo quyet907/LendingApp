@@ -18,6 +18,7 @@ export default class Home extends Component<props, state> {
       data: [],
       index: 0
     };
+    
   }
 
   componentDidMount() {
