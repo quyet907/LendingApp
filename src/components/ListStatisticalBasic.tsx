@@ -31,7 +31,7 @@ export default class ListStatisticalBasic extends Component<props, state> {
 
             <View style = {[myStyle.listStatisticalBasic]}>
                 {/* FontAwesome5 */}
-                <View style = {[myStyle.row]}>
+                <View style = {[myStyle.row, {width: "100%"}]}>
                     <StatisticalBasic
                         icon = "coins"
                         color = "#FB8C00"
@@ -46,7 +46,7 @@ export default class ListStatisticalBasic extends Component<props, state> {
                     ></StatisticalBasic>
 
                 </View>
-                <View style={[myStyle.row]}>
+                <View style={[myStyle.row, {width: "100%"}]}>
                     <StatisticalBasic
                         icon = "star"
                         color = "#4FC3F7"

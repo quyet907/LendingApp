@@ -83,13 +83,16 @@ export default StyleSheet.create({
         padding : 10,
         marginTop : 10,
         justifyContent: "center",
-        // alignItems: "center"
+        alignItems: "center"
 
     },
     statisticalBasic : {
-      width: '100%',
-    
+        flex : 1,
+        width : "100%",
         padding : 10,
+        display : "flex",
+        justifyContent : "center",
+        alignItems: "center"
         
     },
     frImgStatisticalBasic : {
