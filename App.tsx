@@ -1,5 +1,5 @@
-import  * as React from "react";
-import { View, StyleSheet } from "react-native";
+import   * as React from "react";
+import { View, StyleSheet, RefreshControl } from "react-native";
 
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
@@ -52,6 +52,7 @@ export default class App extends React.Component<Props, {}> {
   render() {
     return (
       <Provider store={store}>
+
         <PopupShow></PopupShow>
         <Loadding></Loadding>
         <Router scenes={scenes} />

@@ -21,13 +21,19 @@ const tabProps = {
 export default class PageHome extends React.Component<Props, state> {
   constructor(props: any) {
     super(props);
+    this.state = {
+      reload: true,
+    }
   }
 
   render() {
     return (
       <NavigationContainer>
+
         <Tab.Navigator
+         
           tabBarOptions={{
+
             activeTintColor: tabProps.ACTIVE,
             inactiveTintColor: tabProps.INACTIVE,
             style: {
@@ -35,18 +41,17 @@ export default class PageHome extends React.Component<Props, state> {
             },
           }}
         >
-          
+
           <Tab.Screen
+          
             name="Dashboard"
             component={Home}
             options={{
               
               tabBarLabel: "Dashboard",
               tabBarIcon: ({ focused }) => (
+                
                 <Icon
-                  onPress={()=>{
-                  
-                  }}
                   name="home"
                   size={tabProps.ICONSIZE}
                   color={focused ? tabProps.ACTIVE : tabProps.INACTIVE}
@@ -62,10 +67,11 @@ export default class PageHome extends React.Component<Props, state> {
               tabBarLabel: "Lending",
               tabBarIcon: ({ focused }) => (
                 <Icon
+    
                   name="dollar-sign"
                   size={tabProps.ICONSIZE}
                   color={focused ? tabProps.ACTIVE : tabProps.INACTIVE}
-                
+
                 />
               ),
             }}
@@ -77,6 +83,7 @@ export default class PageHome extends React.Component<Props, state> {
               tabBarLabel: "Referral",
               tabBarIcon: ({ focused }) => (
                 <Icon
+
                   name="users"
                   size={tabProps.ICONSIZE}
                   color={focused ? tabProps.ACTIVE : tabProps.INACTIVE}
@@ -84,13 +91,15 @@ export default class PageHome extends React.Component<Props, state> {
               ),
             }}
           />
-<Tab.Screen
+          <Tab.Screen
             name="Profile"
             component={Logout}
+
             options={{
               tabBarLabel: "Profile",
               tabBarIcon: ({ focused }) => (
                 <Icon
+
                   name="user-alt"
                   size={tabProps.ICONSIZE}
                   color={focused ? tabProps.ACTIVE : tabProps.INACTIVE}
@@ -99,7 +108,7 @@ export default class PageHome extends React.Component<Props, state> {
               ),
             }}
           />
-          
+
         </Tab.Navigator>
       </NavigationContainer>
     );
@@ -108,7 +117,7 @@ export default class PageHome extends React.Component<Props, state> {
 
 type Props = {};
 type state = {
-  reload : boolean
+  reload: boolean
 }
 const styles = StyleSheet.create({
   container: {
