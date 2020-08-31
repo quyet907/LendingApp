@@ -43,10 +43,10 @@ export default class Logout extends Component<props, state> {
 
         <View style={[myStyle.row, styles.layoutAccout]}>
           <View style={[styles.containerAvt]}>
-            <Image
+            {/* <Image
               style={[styles.imgAvt]}
               source={require("../icons/05-your-face-is-rad-san-diego-headshot-and-business-branding-photographer-gallery.jpg")}
-            />
+            /> */}
           </View>
           <View style={{ justifyContent: "space-around", height: "100%" }}>
             <Text style={[styles.contentAccount]}>{this.state.getPhone}</Text>
@@ -149,7 +149,7 @@ const styles = StyleSheet.create({
     textTransform: "uppercase",
   },
   containerAvt: {
-    backgroundColor: Color.primary,
+    backgroundColor: 'gray',
     borderRadius: 50,
     width: 55,
     height: 55,

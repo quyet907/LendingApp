@@ -1,10 +1,9 @@
 import * as React from 'react';
 import { View, StyleSheet, Text, Image } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import Separator from '../Separator'
-import style from 'src/style';
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import * as color from '../../Color'
-const timeIcon = <Icon name="access-time" size={13} color='#868685' />;
+const timeIcon = <Icon name="access-time" size={12} color='#868685' />;
 export default class HistoryDetail extends React.Component<Props, {}>{
     constructor(props: any) {
         super(props)
@@ -12,18 +11,18 @@ export default class HistoryDetail extends React.Component<Props, {}>{
     render() {
         return (
             <View >
-                <View style={{ flexDirection: 'row', alignItems: 'center', flex: 1, paddingVertical: 10 }}>
-                    <View>
-                        <Image style={styles.logo} source={require('../../icons/icons8_male_user_32px_1.png')} />
+                <View style={styles.container}>
+                <View style={{marginRight: 15}}>
+                        <FontAwesome5 name='user-circle' size={35} color={color.success}/>
                     </View>
 
-                    <View style={{ flexDirection: 'column', justifyContent: 'space-between', height: 42 }}>
+                    <View style={{justifyContent: 'space-between', height: 42 }}>
                         <Text style={styles.title}>{this.props.title}</Text>
                         <View style={{ flexDirection: 'row', alignItems: 'center', flex: 1 }}>
                             {timeIcon}<Text style={styles.time}>{this.props.time}</Text>
                         </View>
                     </View>
-                    <View style={{ flexDirection: 'colum', alignItems: 'flex-end', flex: 1 }}>
+                    <View style={{ alignItems: 'flex-end', flex: 1 }}>
                         <Text style={styles.time}>{this.props.typeLabel}</Text>
                         <View style={{ flexDirection: 'row', alignItems: 'center', flex: 1 }}>
                             <Text style={this.props.type ? styles.coinGreen : styles.coinRed}>
@@ -32,7 +31,7 @@ export default class HistoryDetail extends React.Component<Props, {}>{
                     </View>
 
                 </View>
-                <Separator />
+                
             </View>
         )
     }
@@ -47,8 +46,16 @@ type Props = {
 }
 
 const styles = StyleSheet.create({
-
-
+    container: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        flex: 1,
+        paddingVertical: 12,
+        paddingHorizontal: 20,
+        borderRadius: 5,
+        marginBottom: 10,
+        backgroundColor: color.dark
+    },
     subContainer: {
         height: 50,
         flexDirection: 'column',
@@ -79,7 +86,7 @@ const styles = StyleSheet.create({
     },
     coinGreen: {
         fontSize: 15,
-        color: '#15D02B',
+        color: color.success,
         fontWeight: "600"
     },
     coinRed: {

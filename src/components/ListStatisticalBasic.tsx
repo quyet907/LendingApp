@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
-import {View, Image, Text} from "react-native";
+import {View, Image, Text, ColorPropType} from "react-native";
 import myStyle from "../style"
 import StatisticalBasic from './StatisticalBasic';
 import { Income } from '@StockAfiCore/model/lending/Income';
 import { IncomeService } from '../services/IncomeService';
 import { Finance } from '@StockAfiCore/model/lending/Finance';
-
+import * as color from '../Color'
 export default class ListStatisticalBasic extends Component<props, state> {
     constructor(props:any){
         super(props)
@@ -40,7 +40,7 @@ export default class ListStatisticalBasic extends Component<props, state> {
                     ></StatisticalBasic>
                     <StatisticalBasic
                         icon = "piggy-bank"
-                        color = "#0DEA01"
+                        color = {color.success}
                         content = {"Invested"}
                         money = {this.state.dataFinance.investedAmout || 0}
                     ></StatisticalBasic>

@@ -9,6 +9,7 @@ import { Referal } from '@Core/model/user/Referal';
 import { ReferralService } from '../../services/ReferralService';
 import * as color from '../../Color'
 import { config } from '../../config/Config';
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 export default class Referral extends React.Component<Props, State> {
     constructor(props: any) {
@@ -27,7 +28,7 @@ export default class Referral extends React.Component<Props, State> {
 
     render() {
         return (
-            <ScrollView style={{ backgroundColor: '#181f29' }}>
+            <ScrollView style={{ backgroundColor: color.dark_primary }}>
                 <FlashMessage position="center" />
                 <View style={styles.container}>
                     {/* <Text style={styles.textLabel}>REFERRAL</Text> */}
@@ -57,21 +58,21 @@ export default class Referral extends React.Component<Props, State> {
 
                     <View style={styles.refAbout}>
                         <View style={{ flexDirection: 'row' }}>
-                            <View>
-                                <Image style={styles.logoRef} source={require('../../icons/icons8_user_groups_80px_1.png')} />
+                            <View style={styles.containerIcon}>
+                                <FontAwesome5 name='user-friends' size={40} color='#00C4F8' />
                             </View>
                             <View style={styles.subContainer}>
-                                <Text style={{ color: '#868685', fontSize: 12 }}>Total</Text>
+                                <Text style={{ color: color.inactive, fontSize: 12 }}>Total</Text>
                                 <Text style={styles.amount}>{this.state.myReferral.length}</Text>
                             </View>
                         </View>
 
-                        <View style={{ flexDirection: 'row' }}>
-                            <View>
-                                <Image style={styles.logoRef} source={require('../../icons/icons8_coins_80px.png')} />
+                        <View style={{ flexDirection: 'row' , marginLeft: 45}}>
+                            <View style={styles.containerIcon}>
+                                <FontAwesome5 name='coins' size={40} color={color.primary} />
                             </View>
                             <View style={styles.subContainer}>
-                                <Text style={{ color: '#868685', fontSize: 12 }}>Reward</Text>
+                                <Text style={{ color: color.inactive, fontSize: 12 }}>Reward</Text>
                                 <Text style={styles.amount}>{this.state.myReferral.length * 1000}</Text>
                             </View>
                         </View>
@@ -83,8 +84,7 @@ export default class Referral extends React.Component<Props, State> {
 
                 </View>
                 <View style={styles.container2}>
-                    <Text style={{ paddingBottom: 15, color: '#fff', fontSize: 17, fontWeight: "500" }}>My Referrals</Text>
-                    <Separator />
+                    {/* <Text style={{ paddingBottom: 15, color: '#fff', fontSize: 17, fontWeight: "500" }}>My Referrals</Text> */}
                     <FlatList data={this.state.myReferral}
                         renderItem={({ item }) =>
                             <HistoryDetail
@@ -119,26 +119,25 @@ export default class Referral extends React.Component<Props, State> {
     }
 
     getLinkRef = () => {
-        return `${config.api.domain}/?ref=${ this.state.myID}`
+        return `${config.api.domain}/?ref=${this.state.myID}`
     }
 }
 
 const styles = StyleSheet.create({
+    containerIcon: { 
+        justifyContent: 'center', 
+        alignItems: 'center',
+        paddingHorizontal: 15
+     },
     container: {
         padding: 20,
-        borderWidth: 1,
-        borderColor: '#868685',
         paddingBottom: 5,
-        backgroundColor: '#1e2126'
+        backgroundColor: color.dark
     },
     container2: {
-        marginTop: 20,
-        padding: 20,
-        borderWidth: 1,
-        borderColor: '#868685',
-        paddingBottom: 5,
+        paddingBottom: 10,
         paddingTop: 10,
-        backgroundColor: '#1e2126'
+        // backgroundColor: color.dark
     },
     logo: {
         width: 50,
@@ -157,7 +156,7 @@ const styles = StyleSheet.create({
 
         paddingHorizontal: 15,
         paddingVertical: 5,
-        fontSize: 10,
+        fontSize: 12,
         fontWeight: "500",
         color: '#fff'
     },
@@ -179,7 +178,7 @@ const styles = StyleSheet.create({
     },
     refAbout: {
         flexDirection: 'row',
-        justifyContent: 'space-around',
+        justifyContent: 'center',
         paddingVertical: 20
 
     },
