@@ -149,7 +149,7 @@ export default class Lending extends React.Component<Props, State> {
                       this.setState({
                         buttonInvest:
                           this.state.initialValue >= this.state.minInvestment &&
-                          this.state.initialValue <= this.state.maxInvestment 
+                          this.state.initialValue <= this.state.maxInvestment
                           // &&                         this.state.isSelected == true,
                       });
                     }

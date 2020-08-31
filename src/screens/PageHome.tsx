@@ -18,7 +18,7 @@ const tabProps = {
   BackgroundColor: color.dark_primary,
 };
 
-export default class PageHome extends React.Component<Props, {}> {
+export default class PageHome extends React.Component<Props, state> {
   constructor(props: any) {
     super(props);
   }
@@ -40,9 +40,13 @@ export default class PageHome extends React.Component<Props, {}> {
             name="Dashboard"
             component={Home}
             options={{
+              
               tabBarLabel: "Dashboard",
               tabBarIcon: ({ focused }) => (
                 <Icon
+                  onPress={()=>{
+                  
+                  }}
                   name="home"
                   size={tabProps.ICONSIZE}
                   color={focused ? tabProps.ACTIVE : tabProps.INACTIVE}
@@ -103,7 +107,9 @@ export default class PageHome extends React.Component<Props, {}> {
 }
 
 type Props = {};
-
+type state = {
+  reload : boolean
+}
 const styles = StyleSheet.create({
   container: {
     flex: 1,
