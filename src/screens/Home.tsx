@@ -73,7 +73,7 @@ export default class Home extends Component<props, state> {
     if (createAt) {
       if (typeof createAt == "string") {
         createAt = new Date(createAt);
-        const endDate = createAt.setMonth(createAt.getMonth() + 1);
+        const endDate = createAt.setMonth(createAt.getMonth() + 0);
 
         const daysLeft = Math.floor(
           (endDate - secondCurrent) / (1000 * 60 * 60 * 24)
