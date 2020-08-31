@@ -12,7 +12,7 @@ export default class HistoryDetail extends React.Component<Props, {}>{
     render() {
         return (
             <View >
-                <View style={{ flexDirection: 'row', alignItems: 'center', flex: 1, paddingVertical: 10 }}>
+                <View style={styles.container}>
                     <View>
                         <Image style={styles.logo} source={require('../../icons/icons8_payment_history_30px.png')} />
                     </View>
@@ -32,7 +32,6 @@ export default class HistoryDetail extends React.Component<Props, {}>{
                     </View>
 
                 </View>
-                <Separator />
             </View>
         )
     }
@@ -47,7 +46,16 @@ type Props = {
 }
 
 const styles = StyleSheet.create({
-
+    container: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        flex: 1,
+        paddingVertical: 12,
+        paddingHorizontal: 20,
+        borderRadius: 5,
+        marginBottom: 10,
+        backgroundColor: color.dark
+    },
 
     subContainer: {
         height: 50,
@@ -58,7 +66,7 @@ const styles = StyleSheet.create({
         width: 35,
         height: 35,
         resizeMode: 'contain',
-        marginRight: 10,
+        marginRight: 15,
 
     },
     amount: {

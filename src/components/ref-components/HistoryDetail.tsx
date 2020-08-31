@@ -12,18 +12,18 @@ export default class HistoryDetail extends React.Component<Props, {}>{
     render() {
         return (
             <View >
-                <View style={{ flexDirection: 'row', alignItems: 'center', flex: 1, paddingVertical: 10 }}>
+                <View style={styles.container}>
                     <View>
                         <Image style={styles.logo} source={require('../../icons/icons8_male_user_32px_1.png')} />
                     </View>
 
-                    <View style={{ flexDirection: 'column', justifyContent: 'space-between', height: 42 }}>
+                    <View style={{justifyContent: 'space-between', height: 42 }}>
                         <Text style={styles.title}>{this.props.title}</Text>
                         <View style={{ flexDirection: 'row', alignItems: 'center', flex: 1 }}>
                             {timeIcon}<Text style={styles.time}>{this.props.time}</Text>
                         </View>
                     </View>
-                    <View style={{ flexDirection: 'colum', alignItems: 'flex-end', flex: 1 }}>
+                    <View style={{ alignItems: 'flex-end', flex: 1 }}>
                         <Text style={styles.time}>{this.props.typeLabel}</Text>
                         <View style={{ flexDirection: 'row', alignItems: 'center', flex: 1 }}>
                             <Text style={this.props.type ? styles.coinGreen : styles.coinRed}>
@@ -32,7 +32,7 @@ export default class HistoryDetail extends React.Component<Props, {}>{
                     </View>
 
                 </View>
-                <Separator />
+                
             </View>
         )
     }
@@ -47,8 +47,16 @@ type Props = {
 }
 
 const styles = StyleSheet.create({
-
-
+    container: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        flex: 1,
+        paddingVertical: 12,
+        paddingHorizontal: 20,
+        borderRadius: 5,
+        marginBottom: 10,
+        backgroundColor: color.dark
+    },
     subContainer: {
         height: 50,
         flexDirection: 'column',

@@ -27,11 +27,11 @@ export default class Referral extends React.Component<Props, State> {
 
     render() {
         return (
-            <ScrollView style={{ backgroundColor: '#181f29' }}>
+            <ScrollView style={{ backgroundColor: color.dark_primary }}>
                 <FlashMessage position="center" />
                 <View style={styles.container}>
                     <Text style={styles.textLabel}>REFERRAL</Text>
-                    <Text style={{ textAlign: 'justify', color: '#fff' }}>
+                    <Text style={{ textAlign: 'justify', color: '#fff', fontSize: 15 }}>
                         The Lending game referral program is a great way to read the word of this great service and to earn even more money with your friend! Refer friends and receive 1000 COIN of their earnings for life!
                         </Text>
                     <View style={{
@@ -83,8 +83,7 @@ export default class Referral extends React.Component<Props, State> {
 
                 </View>
                 <View style={styles.container2}>
-                    <Text style={{ paddingBottom: 15, color: '#fff', fontSize: 17, fontWeight: "500" }}>My Referrals</Text>
-                    <Separator />
+                    {/* <Text style={{ paddingBottom: 15, color: '#fff', fontSize: 17, fontWeight: "500" }}>My Referrals</Text> */}
                     <FlatList data={this.state.myReferral}
                         renderItem={({ item }) =>
                             <HistoryDetail
@@ -126,19 +125,13 @@ export default class Referral extends React.Component<Props, State> {
 const styles = StyleSheet.create({
     container: {
         padding: 20,
-        borderWidth: 1,
-        borderColor: '#868685',
         paddingBottom: 5,
-        backgroundColor: '#1e2126'
+        backgroundColor: color.dark
     },
     container2: {
-        marginTop: 20,
-        padding: 20,
-        borderWidth: 1,
-        borderColor: '#868685',
-        paddingBottom: 5,
+        paddingBottom: 10,
         paddingTop: 10,
-        backgroundColor: '#1e2126'
+        // backgroundColor: color.dark
     },
     logo: {
         width: 50,
@@ -157,7 +150,7 @@ const styles = StyleSheet.create({
 
         paddingHorizontal: 15,
         paddingVertical: 5,
-        fontSize: 10,
+        fontSize: 12,
         fontWeight: "500",
         color: '#fff'
     },
