@@ -96,15 +96,7 @@ export default class Lending extends React.Component<Props, State> {
                       this.setState({
                         packageSelected: this.state.packageSelected,
                         minInvestment: item.minInvestment || 0,
-                      }, 
-                      () => {
-                        this.setState({
-                          buttonInvest:
-                            this.state.initialValue >= this.state.minInvestment
-                          // &&         this.state.initialValue <= this.state.maxInvestment
-                          //  &&           this.state.isSelected == true,
-                        });
-                      });
+                      }, this.enableButtonInvest);
                     }}
                   />
                 ) : (
@@ -117,14 +109,7 @@ export default class Lending extends React.Component<Props, State> {
                           () => this.setState({
                             minInvestment: item.minInvestment || 0,
                             // maxInvestment: item.maxInvestment || 0
-                          }, () => {
-                            this.setState({
-                              buttonInvest:
-                                this.state.initialValue >= this.state.minInvestment
-                              // &&         this.state.initialValue <= this.state.maxInvestment
-                              //  &&           this.state.isSelected == true,
-                            });
-                          }));
+                          }, this.enableButtonInvest));
                       }}
                     />
                   )
@@ -158,16 +143,7 @@ export default class Lending extends React.Component<Props, State> {
                   this.setState(
                     {
                       initialValue: parseInt(text),
-                    },
-                    () => {
-                      this.setState({
-                        buttonInvest:
-                          this.state.initialValue >= this.state.minInvestment
-                        // && this.state.initialValue <= this.state.maxInvestment 
-                        // &&                         this.state.isSelected == true,
-                      });
-                    }
-                  );
+                    }, this.enableButtonInvest);
                 }}
               />
               <TouchableOpacity
@@ -272,14 +248,7 @@ export default class Lending extends React.Component<Props, State> {
       {
         isSelected: !this.state.isSelected,
       },
-      () => {
-        this.setState({
-          buttonInvest:
-            this.state.initialValue >= this.state.minInvestment
-          // &&         this.state.initialValue <= this.state.maxInvestment
-          //  &&           this.state.isSelected == true,
-        });
-      }
+      this.enableButtonInvest
     );
   };
 
@@ -331,17 +300,22 @@ export default class Lending extends React.Component<Props, State> {
     this.setState({
       initialValue: this.state.wallet,
     },
-      () => {
-        this.setState({
-          buttonInvest:
-            this.state.initialValue >= this.state.minInvestment
-          // &&         this.state.initialValue <= this.state.maxInvestment
-          //  &&       this.state.isSelected == true,
-        });
-      });
+      this.enableButtonInvest);
   };
 
   onChangeText = (text: any) => { };
+
+  enableButtonInvest = (): void => {
+
+    this.setState({
+      buttonInvest:
+        this.state.initialValue >= this.state.minInvestment &&
+        this.state.initialValue <= this.state.wallet
+      // &&         this.state.initialValue <= this.state.maxInvestment
+      //  &&           this.state.isSelected == true,
+    });
+
+  }
 }
 
 const styles = StyleSheet.create({
