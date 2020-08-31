@@ -8,6 +8,9 @@ import ReferralScreen from "../components/ref-components/Referral";
 import Icon from "react-native-vector-icons/FontAwesome5";
 import Logout from "./Logout";
 import * as color from "../Color";
+import MyBid from "../components/bid-history-components/MyBidWin";
+import HistoryBidScreen from "../screens/HistoryBidScreen";
+import LogoutScreen from "./LogoutScreen";
 
 const Tab = createBottomTabNavigator();
 
@@ -35,10 +38,10 @@ export default class PageHome extends React.Component<Props, {}> {
             },
           }}
         >
-          
+
           <Tab.Screen
             name="Dashboard"
-            component={Home}
+            component={HistoryBidScreen}
             options={{
               tabBarLabel: "Dashboard",
               tabBarIcon: ({ focused }) => (
@@ -61,7 +64,7 @@ export default class PageHome extends React.Component<Props, {}> {
                   name="dollar-sign"
                   size={tabProps.ICONSIZE}
                   color={focused ? tabProps.ACTIVE : tabProps.INACTIVE}
-                
+
                 />
               ),
             }}
@@ -80,9 +83,9 @@ export default class PageHome extends React.Component<Props, {}> {
               ),
             }}
           />
-<Tab.Screen
+          <Tab.Screen
             name="Profile"
-            component={Logout}
+            component={LogoutScreen}
             options={{
               tabBarLabel: "Profile",
               tabBarIcon: ({ focused }) => (
@@ -95,7 +98,7 @@ export default class PageHome extends React.Component<Props, {}> {
               ),
             }}
           />
-          
+
         </Tab.Navigator>
       </NavigationContainer>
     );

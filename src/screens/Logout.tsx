@@ -15,6 +15,7 @@ import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityI
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 import * as Color from "../Color";
 import Separator from "../components/Separator";
+import { createSwitchNavigator, createAppContainer } from 'react-navigation';
 
 export default class Logout extends Component<props, state> {
   constructor(props: any) {
@@ -52,17 +53,22 @@ export default class Logout extends Component<props, state> {
           </View>
         </View>
 
-        {/* <View style = {{marginTop: 12}}>
-          <TouchableOpacity style={[myStyle.row, styles.layoutAccout]}>
-            <FontAwesome name={"user"} size={30} color={"white"} />
-            <Text style={[styles.contentFuture]}>Future 1</Text>
+        <View style = {{marginTop: 12}}>
+          <TouchableOpacity 
+          style={[myStyle.row, styles.layoutAccout]}
+          onPress={()=> this.props.navigation.navigate('Referral')}
+          
+          >
+            <FontAwesome name={"users"} size={21} color={"white"} />
+            <Text style={[styles.contentFuture]}>Referral</Text>
           </TouchableOpacity>
           
-          <TouchableOpacity style={[myStyle.row, styles.layoutAccout]}>
-            <FontAwesome name={"user"} size={30} color={"white"} />
-            <Text style={[styles.contentFuture]}>Future 1</Text>
+          <TouchableOpacity style={[myStyle.row, styles.layoutAccout]}
+           onPress={()=> this.props.navigation.navigate('MyBid')}>
+            <FontAwesome5 name={"history"} size={23} color={"white"} />
+            <Text style={[styles.contentFuture]}>My Bid</Text>
           </TouchableOpacity>
-        </View> */}
+        </View>
 
         <View style={{ marginTop: 12 }}>
           <TouchableOpacity style={[myStyle.row, styles.layoutAccout]}
@@ -72,7 +78,7 @@ export default class Logout extends Component<props, state> {
                 })
             }}
           >
-            <FontAwesome name={"sign-out"} size={30} color={Color.primary} />
+            <FontAwesome name={"sign-out"} size={23} color={Color.primary} />
             <Text style={[styles.contentFuture]}>Log out</Text>
             
           </TouchableOpacity>
@@ -86,7 +92,9 @@ export default class Logout extends Component<props, state> {
     );
   }
 }
-type props = {};
+type props = {
+  navigation: any
+};
 
 type state = {
   getPhone: string;

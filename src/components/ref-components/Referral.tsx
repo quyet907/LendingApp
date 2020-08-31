@@ -30,7 +30,7 @@ export default class Referral extends React.Component<Props, State> {
             <ScrollView style={{ backgroundColor: '#181f29' }}>
                 <FlashMessage position="center" />
                 <View style={styles.container}>
-                    <Text style={styles.textLabel}>REFERRAL</Text>
+                    {/* <Text style={styles.textLabel}>REFERRAL</Text> */}
                     <Text style={{ textAlign: 'justify', color: '#fff' }}>
                         The Lending game referral program is a great way to read the word of this great service and to earn even more money with your friend! Refer friends and receive 1000 COIN of their earnings for life!
                         </Text>
