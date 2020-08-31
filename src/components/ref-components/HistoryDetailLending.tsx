@@ -1,10 +1,11 @@
 import * as React from 'react';
 import { View, StyleSheet, Text, Image } from 'react-native';
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import Separator from '../Separator'
 import style from 'src/style';
 import * as color from '../../Color'
-const timeIcon = <Icon name="access-time" size={13} color='#868685' />;
+const timeIcon = <MaterialIcons name="access-time" size={13} color={color.inactive} />;
 export default class HistoryDetail extends React.Component<Props, {}>{
     constructor(props: any) {
         super(props)
@@ -13,8 +14,8 @@ export default class HistoryDetail extends React.Component<Props, {}>{
         return (
             <View >
                 <View style={styles.container}>
-                    <View>
-                        <Image style={styles.logo} source={require('../../icons/icons8_payment_history_30px.png')} />
+                    <View style={{marginRight: 15}}>
+                        <FontAwesome5 name='money-bill-alt' size={35} color={color.success}/>
                     </View>
 
                     <View style={{ flexDirection: 'column', justifyContent: 'space-between', height: 42 }}>
@@ -76,7 +77,7 @@ const styles = StyleSheet.create({
     },
     title: {
         color: '#fff',
-        fontSize: 15,
+        fontSize: 16,
         fontWeight: "600",
 
     },
@@ -87,7 +88,7 @@ const styles = StyleSheet.create({
     },
     coinGreen: {
         fontSize: 15,
-        color: '#15D02B',
+        color: color.success,
         fontWeight: "600"
     },
     coinRed: {

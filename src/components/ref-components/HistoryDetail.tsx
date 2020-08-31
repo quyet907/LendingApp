@@ -1,8 +1,7 @@
 import * as React from 'react';
 import { View, StyleSheet, Text, Image } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import Separator from '../Separator'
-import style from 'src/style';
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import * as color from '../../Color'
 const timeIcon = <Icon name="access-time" size={13} color='#868685' />;
 export default class HistoryDetail extends React.Component<Props, {}>{
@@ -13,8 +12,8 @@ export default class HistoryDetail extends React.Component<Props, {}>{
         return (
             <View >
                 <View style={styles.container}>
-                    <View>
-                        <Image style={styles.logo} source={require('../../icons/icons8_male_user_32px_1.png')} />
+                <View style={{marginRight: 15}}>
+                        <FontAwesome5 name='user-circle' size={35} color={color.success}/>
                     </View>
 
                     <View style={{justifyContent: 'space-between', height: 42 }}>
@@ -87,7 +86,7 @@ const styles = StyleSheet.create({
     },
     coinGreen: {
         fontSize: 15,
-        color: '#15D02B',
+        color: color.success,
         fontWeight: "600"
     },
     coinRed: {

@@ -9,6 +9,7 @@ import { Referal } from '@Core/model/user/Referal';
 import { ReferralService } from '../../services/ReferralService';
 import * as color from '../../Color'
 import { config } from '../../config/Config';
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 export default class Referral extends React.Component<Props, State> {
     constructor(props: any) {
@@ -57,21 +58,21 @@ export default class Referral extends React.Component<Props, State> {
 
                     <View style={styles.refAbout}>
                         <View style={{ flexDirection: 'row' }}>
-                            <View>
-                                <Image style={styles.logoRef} source={require('../../icons/icons8_user_groups_80px_1.png')} />
+                            <View style={styles.containerIcon}>
+                                <FontAwesome5 name='user-friends' size={40} color='#00C4F8' />
                             </View>
                             <View style={styles.subContainer}>
-                                <Text style={{ color: '#868685', fontSize: 12 }}>Total</Text>
+                                <Text style={{ color: color.inactive, fontSize: 12 }}>Total</Text>
                                 <Text style={styles.amount}>{this.state.myReferral.length}</Text>
                             </View>
                         </View>
 
-                        <View style={{ flexDirection: 'row' }}>
-                            <View>
-                                <Image style={styles.logoRef} source={require('../../icons/icons8_coins_80px.png')} />
+                        <View style={{ flexDirection: 'row' , marginLeft: 45}}>
+                            <View style={styles.containerIcon}>
+                                <FontAwesome5 name='coins' size={40} color={color.primary} />
                             </View>
                             <View style={styles.subContainer}>
-                                <Text style={{ color: '#868685', fontSize: 12 }}>Reward</Text>
+                                <Text style={{ color: color.inactive, fontSize: 12 }}>Reward</Text>
                                 <Text style={styles.amount}>{this.state.myReferral.length * 1000}</Text>
                             </View>
                         </View>
@@ -118,11 +119,16 @@ export default class Referral extends React.Component<Props, State> {
     }
 
     getLinkRef = () => {
-        return `${config.api.domain}/?ref=${ this.state.myID}`
+        return `${config.api.domain}/?ref=${this.state.myID}`
     }
 }
 
 const styles = StyleSheet.create({
+    containerIcon: { 
+        justifyContent: 'center', 
+        alignItems: 'center',
+        paddingHorizontal: 15
+     },
     container: {
         padding: 20,
         paddingBottom: 5,
@@ -172,7 +178,7 @@ const styles = StyleSheet.create({
     },
     refAbout: {
         flexDirection: 'row',
-        justifyContent: 'space-around',
+        justifyContent: 'center',
         paddingVertical: 20
 
     },
