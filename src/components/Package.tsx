@@ -25,7 +25,7 @@ export default class Package extends Component<Props, State> {
                         {this.props.package.name}
                     </Text>
                 </View>
-                <View style={{ backgroundColor: '#2E2D2A', alignItems: 'center', justifyContent: 'space-around', paddingVertical: 10, borderRadius: 2 }}>
+                <View style={{ backgroundColor: '#2E2D2A', alignItems: 'center', justifyContent: 'space-between', paddingVertical: 15, borderRadius: 2 }}>
                     <Text style={styles.text}>Min {this.props.package.minInvestment}</Text>
                     <Text style={styles.text}>Profits {typeof this.props.package.profitPerDay == 'number' ? 
                     Math.ceil(this.props.package.profitPerDay * 30) : 0}%</Text>
