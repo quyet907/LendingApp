@@ -55,7 +55,7 @@ export default class Home extends Component<props, state> {
                   profits={item.profitAmount || 0}
                   amount={item.loanAmount || 0}
                   daysLeft={this.getDaysLeft(
-                    item.lending ? item.lending.endAt : undefined
+                    item.lending ? item.lending.endAt : undefined, item.makeProfitAt
                   )}
                 />
               )}
@@ -67,22 +67,16 @@ export default class Home extends Component<props, state> {
     );
   }
 
-  getDaysLeft = (createAt: Date | undefined): number => {
+  getDaysLeft = (endAt: Date | undefined, makeAt: Date | undefined): number => {
     const secondCurrent = Date.now();
 
-    if (createAt) {
-      if (typeof createAt == "string") {
-        createAt = new Date(createAt);
-        const endDate = createAt.setMonth(createAt.getMonth() + 1);
-
-        const daysLeft = Math.floor(
-          (endDate - secondCurrent) / (1000 * 60 * 60 * 24)
+    if (endAt && makeAt) {
+      const leftSecond = Date.parse(endAt.toString())  - Date.parse(makeAt.toString());
+        const daysLeft = Math.ceil(
+          leftSecond / (1000 * 60 * 60 * 24)
         );
-
-
         return daysLeft;
-      }
-      //endDate.setMonth(endDate.getMonth()+1)
+     
     }
     return 0;
   };
