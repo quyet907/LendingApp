@@ -55,7 +55,7 @@ export default class Home extends Component<props, state> {
                   profits={item.profitAmount || 0}
                   amount={item.loanAmount || 0}
                   daysLeft={this.getDaysLeft(
-                    item.lending ? item.lending.createdAt : undefined
+                    item.lending ? item.lending.endAt : undefined
                   )}
                 />
               )}
