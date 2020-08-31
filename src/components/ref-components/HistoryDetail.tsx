@@ -3,7 +3,7 @@ import { View, StyleSheet, Text, Image } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import * as color from '../../Color'
-const timeIcon = <Icon name="access-time" size={13} color='#868685' />;
+const timeIcon = <Icon name="access-time" size={12} color='#868685' />;
 export default class HistoryDetail extends React.Component<Props, {}>{
     constructor(props: any) {
         super(props)
