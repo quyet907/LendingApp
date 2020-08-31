@@ -23,6 +23,7 @@ export default class Home extends Component<props, state> {
 
   componentDidMount() {
     LendingProfitHistoryService.getLendingProfit().then((res) => {
+      console.log(res.rows)
       this.setState(
         {
           data: res != undefined ? res.rows : [],
@@ -54,7 +55,7 @@ export default class Home extends Component<props, state> {
                   profits={item.profitAmount || 0}
                   amount={item.loanAmount || 0}
                   daysLeft={this.getDaysLeft(
-                    item.lending ? item.lending.createdAt : undefined
+                    item.lending ? item.lending.endAt : undefined
                   )}
                 />
               )}
