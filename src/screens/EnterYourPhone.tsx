@@ -24,27 +24,31 @@ class EnterYourPhone extends Component<props, state> {
 
     }
     checkPhone() {
-        UserService.sendOTP(this.state.numberPhone).then((res) => {
-            let error = UserService.checkValidatePhone(this.state.numberPhone);
-            if (error != null) {
-                actionPopup.showMessage(error);
+        
+
+        UserService.checkExits(this.state.numberPhone).then((res) => {
+
+            if (res && this.props.typeAction == "signUp") {
+                actionPopup.showMessage("Account has been registered")
+            }
+            else if (!res && this.props.typeAction == "forgotPassword") {
+                actionPopup.showMessage("Can't find your account")
             }
             else {
-                UserService.checkExits(this.state.numberPhone).then((res) => {
-
-                    if (res && this.props.typeAction == "signUp") {
-                        actionPopup.showMessage("Account has been registered")
-                    }
-                    else if (!res && this.props.typeAction == "forgotPassword") {
-                        actionPopup.showMessage("Can't find your account")
+                this.props.onPhone(this.state.numberPhone)
+                UserService.sendOTP(this.state.numberPhone).then((res) => {
+                    let error = UserService.checkValidatePhone(this.state.numberPhone);
+                    if (error != null) {
+                        actionPopup.showMessage(error);
                     }
                     else {
-                        this.props.onPhone(this.state.numberPhone)
-                        Actions.confirmOTP()
+                        
                     }
-
                 })
+                Actions.confirmOTP()
+
             }
+
         })
     }
     render() {

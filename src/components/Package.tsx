@@ -25,13 +25,12 @@ export default class Package extends Component<Props, State> {
                         {this.props.package.name}
                     </Text>
                 </View>
-                <View style={{ backgroundColor: '#2E2D2A', alignItems: 'center', justifyContent: 'space-around', paddingVertical: 10, borderRadius: 2 }}>
+                <View style={{ backgroundColor: '#2E2D2A', alignItems: 'center', justifyContent: 'space-between', paddingVertical: 15, borderRadius: 2 }}>
                     <Text style={styles.text}>Min {this.props.package.minInvestment}</Text>
-                    <Text style={styles.text}>Max {this.props.package.maxInvestment}</Text>
                     <Text style={styles.text}>Profits {typeof this.props.package.profitPerDay == 'number' ? 
                     Math.ceil(this.props.package.profitPerDay * 30) : 0}%</Text>
                     <Text style={styles.text}>BackIn {typeof  this.props.package.capitalBackIn == 'number' ? 
-                    Math.ceil(this.props.package.capitalBackIn/3600/24) : 0}</Text>
+                    Math.ceil(this.props.package.capitalBackIn/3600/24) : 0} days</Text>
                 </View>
             </TouchableOpacity>
         );

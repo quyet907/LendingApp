@@ -23,7 +23,6 @@ import { LendingPackageService } from "../services/LendingPackageService";
 import { LendingPackage } from "@StockAfiCore/model/lending/LendingPackage";
 import { LendingService } from "../services/LendingService";
 import { Lending as LendingModel } from "@StockAfiCore/model/lending/Lending";
-import { ProfitHistory } from "@StockAfiCore/model/lending/LendingProfitHistory";
 import PopupConfirm from "./PopupConfirm";
 import * as color from '../Color'
 import { IncomeService } from "../services/IncomeService";
@@ -41,7 +40,7 @@ export default class Lending extends React.Component<Props, State> {
       packages: [],
 
       minInvestment: 1,
-      maxInvestment: 1000,
+      // maxInvestment: 1000,
 
       buttonInvest: false,
       confirmModal: false,
@@ -56,14 +55,14 @@ export default class Lending extends React.Component<Props, State> {
         packages: pagingLendingPackages.rows,
         packageID: pagingLendingPackages.rows[0]._id,
         minInvestment: pagingLendingPackages.rows[0].minInvestment || 0,
-        maxInvestment: pagingLendingPackages.rows[0].maxInvestment || 0,
+        // maxInvestment: pagingLendingPackages.rows[0].maxInvestment || 0,
       });
     });
     LendingService.getMyInvest().then((res) => {
       this.setState({ myInvest: res.rows });
     });
     IncomeService.getFinance().then((res) => {
-      this.setState({wallet: res.remainAmount || 0})
+      this.setState({ wallet: res.remainAmount || 0 })
     })
   }
 
@@ -97,7 +96,7 @@ export default class Lending extends React.Component<Props, State> {
                       this.setState({
                         packageSelected: this.state.packageSelected,
                         minInvestment: item.minInvestment || 0,
-                      });
+                      }, this.enableButtonInvest);
                     }}
                   />
                 ) : (
@@ -109,8 +108,8 @@ export default class Lending extends React.Component<Props, State> {
                         this.setState({ packageID: item._id },
                           () => this.setState({
                             minInvestment: item.minInvestment || 0,
-                            maxInvestment: item.maxInvestment || 0
-                          }));
+                            // maxInvestment: item.maxInvestment || 0
+                          }, this.enableButtonInvest));
                       }}
                     />
                   )
@@ -144,23 +143,14 @@ export default class Lending extends React.Component<Props, State> {
                   this.setState(
                     {
                       initialValue: parseInt(text),
-                    },
-                    () => {
-                      this.setState({
-                        buttonInvest:
-                          this.state.initialValue >= this.state.minInvestment &&
-                          this.state.initialValue <= this.state.maxInvestment 
-                          // &&                         this.state.isSelected == true,
-                      });
-                    }
-                  );
+                    }, this.enableButtonInvest);
                 }}
               />
               <TouchableOpacity
                 style={styles.btnAll}
                 onPress={() => this.allCoin()}
               >
-                <Text style={styles.copyText}>MAX</Text>
+                <Text style={styles.copyText}>ALL</Text>
               </TouchableOpacity>
             </View>
 
@@ -258,14 +248,7 @@ export default class Lending extends React.Component<Props, State> {
       {
         isSelected: !this.state.isSelected,
       },
-      () => {
-        this.setState({
-          buttonInvest:
-            this.state.initialValue >= this.state.minInvestment &&
-            this.state.initialValue <= this.state.maxInvestment
-            //  &&           this.state.isSelected == true,
-        });
-      }
+      this.enableButtonInvest
     );
   };
 
@@ -280,13 +263,12 @@ export default class Lending extends React.Component<Props, State> {
     else return "null";
   };
 
-  getDaysLeft = (startDate: Date | undefined): number => {
+  getDaysLeft = (endAt: Date | undefined): number => {
     const currentDate: Date = new Date();
 
-    if (startDate) {
+    if (endAt) {
       const daysLeft = Math.floor(
-        (Date.parse(currentDate.toJSON().substr(0, 10)) -
-          Date.parse(startDate.toString().substr(0, 10))) /
+        (Date.parse(endAt.toString().substr(0, 10)) - Date.parse(currentDate.toJSON().substr(0, 10))) /
         (1000 * 60 * 60 * 24)
       );
       return daysLeft > 30 ? 30 : daysLeft;
@@ -316,19 +298,24 @@ export default class Lending extends React.Component<Props, State> {
 
   allCoin = () => {
     this.setState({
-      initialValue: this.state.maxInvestment,
-    }, 
-    () => {
-      this.setState({
-        buttonInvest:
-          this.state.initialValue >= this.state.minInvestment &&
-          this.state.initialValue <= this.state.maxInvestment
-          //  &&       this.state.isSelected == true,
-      });
-    });
+      initialValue: this.state.wallet,
+    },
+      this.enableButtonInvest);
   };
 
   onChangeText = (text: any) => { };
+
+  enableButtonInvest = (): void => {
+
+    this.setState({
+      buttonInvest:
+        this.state.initialValue >= this.state.minInvestment &&
+        this.state.initialValue <= this.state.wallet
+      // &&         this.state.initialValue <= this.state.maxInvestment
+      //  &&           this.state.isSelected == true,
+    });
+
+  }
 }
 
 const styles = StyleSheet.create({
@@ -453,7 +440,7 @@ type State = {
   packageID: any;
   packages: LendingPackage[];
   minInvestment: number;
-  maxInvestment: number;
+  // maxInvestment: number;
   buttonInvest: boolean;
   confirmModal: boolean;
 

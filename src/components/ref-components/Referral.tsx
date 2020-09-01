@@ -54,10 +54,13 @@ export default class Referral extends React.Component<Props, State> {
                         </TouchableOpacity >
                     </View>
 
-                    <Separator />
+                    <View style={{justifyContent: 'center', flexDirection: 'row'}}>
+                         <View style={styles.separator} />
+                    </View>
+                   
 
                     <View style={styles.refAbout}>
-                        <View style={{ flexDirection: 'row' }}>
+                        <View style={{ flexDirection: 'row', justifyContent: 'center', flex: 1 }}>
                             <View style={styles.containerIcon}>
                                 <FontAwesome5 name='user-friends' size={40} color='#00C4F8' />
                             </View>
@@ -67,7 +70,7 @@ export default class Referral extends React.Component<Props, State> {
                             </View>
                         </View>
 
-                        <View style={{ flexDirection: 'row' , marginLeft: 45}}>
+                        <View style={{ flexDirection: 'row', flex: 1}}>
                             <View style={styles.containerIcon}>
                                 <FontAwesome5 name='coins' size={40} color={color.primary} />
                             </View>
@@ -178,7 +181,7 @@ const styles = StyleSheet.create({
     },
     refAbout: {
         flexDirection: 'row',
-        justifyContent: 'center',
+        // justifyContent: 'center',
         paddingVertical: 20
 
     },
@@ -203,7 +206,13 @@ const styles = StyleSheet.create({
         fontSize: 26,
         fontWeight: "600",
         color: '#fff'
-    }
+    },
+    separator: {
+       backgroundColor: color.inactive,
+        height: 1,
+        width: '90%',
+  
+      },
 
 })
 
