@@ -28,7 +28,7 @@ axios.interceptors.response.use(
         }
 
         if (err.response.status == 404) {
-            action.showMessage("Error 404")
+            action.showMessage("Have error when processing")
         }
         if (err.response.status == 401) {
             UserService.getJWT().then(res => {
@@ -40,6 +40,14 @@ axios.interceptors.response.use(
 
             })
             return Promise.reject(err);
+        }
+        if(err.response.status == 500){
+            if(err.response.message){
+                action.showMessage(err.response.message)
+            }
+            else {
+                action.showMessage("Have error when processing")
+            }
         }
     }
 )
