@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 20,
         borderRadius: 5,
         marginBottom: 10,
-        backgroundColor: color.dark
+        backgroundColor: color.background
     },
     subContainer: {
         height: 50,

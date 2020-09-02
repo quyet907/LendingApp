@@ -25,7 +25,7 @@ export default class LogoutScreen extends Component<props, state> {
                         title: 'Referral', 
                         headerTintColor: '#fff',
                         headerStyle: {
-                            backgroundColor: color.dark
+                            backgroundColor: color.background
                           },
                     }}
                     />
@@ -34,7 +34,7 @@ export default class LogoutScreen extends Component<props, state> {
                         title: 'My Bid', 
                         headerTintColor: '#fff',
                         headerStyle: {
-                            backgroundColor: color.dark
+                            backgroundColor: color.background
                           },
                     }}
                     />

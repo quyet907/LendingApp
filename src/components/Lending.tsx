@@ -65,11 +65,11 @@ export default class Lending extends React.Component<Props, State> {
       this.setState({ wallet: res.remainAmount || 0 })
     })
   }
-
+    
   render() {
     return (
       <View style={{ flex: 1 }}>
-        <ScrollView style={{ backgroundColor: color.dark_primary }}>
+        <ScrollView style={{ backgroundColor: color.background_primary }}>
           <View style={styles.container}>
             <Text style={styles.textLabel}>INVEST</Text>
             <View
@@ -323,13 +323,13 @@ const styles = StyleSheet.create({
     padding: 20,
     paddingTop: 10,
     paddingBottom: 5,
-    backgroundColor: color.dark,
+    backgroundColor: color.background,
   },
   container2: {
     paddingVertical: 20,
     paddingBottom: 5,
     paddingTop: 10,
-    // backgroundColor: color.dark,
+    
   },
   logo: {
     width: 50,
@@ -390,7 +390,7 @@ const styles = StyleSheet.create({
   confirmModalActive: {
     width: "100%",
     height: "100%",
-    backgroundColor: color.dark,
+    backgroundColor: color.background,
     position: "absolute",
     zIndex: 3,
     justifyContent: "center",

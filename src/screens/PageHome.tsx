@@ -18,7 +18,7 @@ const tabProps = {
   ACTIVE: color.primary,
   INACTIVE: color.inactive,
   ICONSIZE: 25,
-  BackgroundColor: color.dark_primary,
+  BackgroundColor: color.background_primary,
 };
 
 export default class PageHome extends React.Component<Props, state> {
@@ -47,7 +47,7 @@ export default class PageHome extends React.Component<Props, state> {
 
           <Tab.Screen
             name="Dashboard"
-            component={HistoryBidScreen}
+            component={Home}
             options={{
               
               tabBarLabel: "Dashboard",

@@ -28,7 +28,7 @@ export default class Referral extends React.Component<Props, State> {
 
     render() {
         return (
-            <ScrollView style={{ backgroundColor: color.dark_primary }}>
+            <ScrollView style={{ backgroundColor: color.background_primary }}>
                 <FlashMessage position="center" />
                 <View style={styles.container}>
                     {/* <Text style={styles.textLabel}>REFERRAL</Text> */}
@@ -135,7 +135,7 @@ const styles = StyleSheet.create({
     container: {
         padding: 20,
         paddingBottom: 5,
-        backgroundColor: color.dark
+        backgroundColor: color.background
     },
     container2: {
         paddingBottom: 10,

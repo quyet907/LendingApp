@@ -119,7 +119,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     // justifyContent: "center",
     borderRadius: 5,
-    backgroundColor: Color.dark,
+    backgroundColor: Color.background,
     borderBottomWidth: 1,
     borderColor: Color.inactive,
   },
