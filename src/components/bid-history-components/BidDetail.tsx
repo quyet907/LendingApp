@@ -17,14 +17,19 @@ export default class BidDetail extends React.Component<Props, {}>{
                     </View>
 
                     <View style={styles.subContainer2}>
-                        <Text style={{ fontSize: 16, fontWeight: "600" }}>Netflix Premium Account</Text>
+                        <Text style={[{ fontSize: 16, fontWeight: "600" }, styles.fontWhiteColor]}>Netflix Premium Account</Text>
+                        <View style={{flexDirection: 'row' , flex: 1, justifyContent: 'space-between'}}>
 
-                        <Text style={{color: color.inactive}}>27-04-2020</Text>
-                        <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                            <Text style={styles.times}>19 times</Text>
-                            <Text style={styles.price}>1200 VND</Text>
+                            <View style={{justifyContent: 'space-around', paddingTop: 5}}>
+                                <Text style={{ color: color.inactive }}>27-04-2020</Text>
+                                <Text style={[styles.times, styles.fontWhiteColor]}>19 times</Text>
+                            </View>
+                            <View style={{justifyContent: 'flex-end', alignItems: 'flex-end'}}>
+                                <Text style={{ color: color.inactive, textDecorationLine: 'line-through' }}>15000 VND</Text>
+                                <Text style={[styles.price]}>1200 VND</Text>
+                            </View>
+
                         </View>
-
 
                     </View>
 
@@ -44,21 +49,22 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         flex: 1,
-        paddingVertical: 10,
+        padding: 15,
+        paddingVertical: 15,
 
-        shadowColor: "#000",
+        shadowColor: "#333",
         shadowOffset: {
             width: 0,
-            height: 4,
+            height: 3,
         },
         shadowOpacity: 0.30,
         shadowRadius: 4.65,
-        elevation: 8,
+        elevation: 2,
 
 
         marginBottom: 10,
-        padding: 15,
-        borderRadius: 5
+        borderRadius: 5,
+        backgroundColor: color.dark
     },
 
     subContainer: {
@@ -77,20 +83,24 @@ const styles = StyleSheet.create({
         marginRight: 10,
 
     },
- 
- 
+
+
     img: {
         width: 70,
         height: 70,
         borderRadius: 5
     },
     price: {
-        fontSize: 18, 
+        fontSize: 18,
         fontWeight: "600",
         color: color.primary
     },
     times: {
-        fontSize: 16
+        fontSize: 16,
+        fontWeight: '600'
+    },
+    fontWhiteColor: {
+        color: 'white'
     }
 
 

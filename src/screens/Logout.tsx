@@ -53,34 +53,41 @@ export default class Logout extends Component<props, state> {
           </View>
         </View>
 
-        <View style = {{marginTop: 12}}>
-          <TouchableOpacity 
-          style={[myStyle.row, styles.layoutAccout]}
-          onPress={()=> this.props.navigation.navigate('Referral')}
-          
+        <View style={{ marginTop: 12 }}>
+          <TouchableOpacity
+            style={[myStyle.row, styles.layoutAccout]}
+            onPress={() => this.props.navigation.navigate('Referral')}
+
           >
-            <FontAwesome name={"users"} size={21} color={"white"} />
+            <View style={styles.containerIcon}>
+              <FontAwesome5 name={"users"} size={21} color={"white"} />
+            </View>
+
             <Text style={[styles.contentFuture]}>Referral</Text>
           </TouchableOpacity>
-          
+
           <TouchableOpacity style={[myStyle.row, styles.layoutAccout]}
-           onPress={()=> this.props.navigation.navigate('MyBid')}>
-            <FontAwesome5 name={"history"} size={23} color={"white"} />
+            onPress={() => this.props.navigation.navigate('MyBid')}>
+            <View style={styles.containerIcon}>
+              <FontAwesome5 name={"history"} size={23} color={"white"} />
+            </View>
             <Text style={[styles.contentFuture]}>My Bid</Text>
           </TouchableOpacity>
         </View>
 
         <View style={{ marginTop: 12 }}>
           <TouchableOpacity style={[myStyle.row, styles.layoutAccout]}
-            onPress = {()=>{
-                UserService.setJWT("").then(res =>{
-                    Actions.home()
-                })
+            onPress={() => {
+              UserService.setJWT("").then(res => {
+                Actions.home()
+              })
             }}
           >
-            <FontAwesome name={"sign-out"} size={23} color={Color.primary} />
+            <View style={styles.containerIcon}>
+              <FontAwesome name={"sign-out"} size={23} color={Color.primary} />
+            </View>
             <Text style={[styles.contentFuture]}>Log out</Text>
-            
+
           </TouchableOpacity>
 
           {/* <TouchableOpacity style={[styles.buttonLogout]}>
@@ -131,9 +138,9 @@ const styles = StyleSheet.create({
   },
   contentFuture: {
     color: "white",
-    paddingLeft: 17,
-    fontSize: 16, 
-  }  ,
+    // paddingLeft: 17,
+    fontSize: 16,
+  },
   buttonLogout: {
     justifyContent: "center",
     alignItems: "center",
@@ -161,5 +168,8 @@ const styles = StyleSheet.create({
     height: "100%",
     resizeMode: "cover",
     borderRadius: 50,
+  },
+  containerIcon: { 
+    width: 40 
   },
 });

@@ -15,7 +15,7 @@ export default class MyBidLost extends React.Component<Props, State> {
 
     render() {
         return (
-            <ScrollView style={{ backgroundColor: '#fff' }}>
+            <ScrollView style={{ backgroundColor: color.dark_primary }}>
                 <View style={styles.container2}>
                     {/* <Text style={{ paddingBottom: 15,  fontSize: 17, fontWeight: "500" }}>My Bid</Text>
                     <Separator /> */}
@@ -41,12 +41,12 @@ const styles = StyleSheet.create({
     },
     container2: {
         marginTop: 5,
-        paddingHorizontal: 20,
+        // paddingHorizontal: 20,
         //borderWidth: 1,
         borderColor: '#868685',
         paddingBottom: 5,
         paddingTop: 10,
-        backgroundColor: '#fff'
+        
     },
 
   

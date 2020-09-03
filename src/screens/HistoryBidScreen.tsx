@@ -11,7 +11,10 @@ export default class HistoryBidScreen extends React.Component {
         <Tab.Navigator  
         tabBarOptions={{
           activeTintColor: '#fff',
-          style: { backgroundColor: color.dark }
+          style: { backgroundColor: color.dark },
+          indicatorStyle: {
+            backgroundColor: color.primary
+          }
         }}>
           <Tab.Screen name='Win bid' component={MyBidWin} />
           <Tab.Screen name='Lost bid' component={MyBidLost} />
