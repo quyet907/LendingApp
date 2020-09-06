@@ -13,20 +13,20 @@ export default class BidDetail extends React.Component<Props, {}>{
             <View >
                 <View style={styles.container}>
                     <View style={styles.subContainer}>
-                        <Image style={styles.img} source={require('../../icons/netflixlogo.0.0.jpeg')} />
+                        <Image style={styles.img} source={{uri: this.props.imgURL}} />
                     </View>
 
                     <View style={styles.subContainer2}>
-                        <Text style={[{ fontSize: 16, fontWeight: "600" }, styles.fontWhiteColor]}>Netflix Premium Account</Text>
+        <Text style={[{ fontSize: 16, fontWeight: "600" }, styles.fontWhiteColor]}>{this.props.name}</Text>
                         <View style={{flexDirection: 'row' , flex: 1, justifyContent: 'space-between'}}>
 
                             <View style={{justifyContent: 'space-around', paddingTop: 5}}>
-                                <Text style={{ color: color.inactive }}>27-04-2020</Text>
-                                <Text style={[styles.times, styles.fontWhiteColor]}>19 times</Text>
+                                <Text style={{ color: color.inactive }}>{this.props.bidAt}</Text>
+                                <Text style={[styles.times, styles.fontWhiteColor]}>{this.props.bidClick}</Text>
                             </View>
                             <View style={{justifyContent: 'flex-end', alignItems: 'flex-end'}}>
-                                <Text style={{ color: color.inactive, textDecorationLine: 'line-through' }}>15000 VND</Text>
-                                <Text style={[styles.price]}>1200 VND</Text>
+                                <Text style={{ color: color.inactive, textDecorationLine: 'line-through' }}>{this.props.startPrice}</Text>
+                                <Text style={[styles.price]}>{this.props.endPrice}</Text>
                             </View>
 
                         </View>
@@ -41,6 +41,12 @@ export default class BidDetail extends React.Component<Props, {}>{
 }
 
 type Props = {
+    imgURL: string;
+    name: string,
+    bidAt: string;
+    bidClick: number;
+    startPrice: number;
+    endPrice: number;
 
 }
 
@@ -64,7 +70,7 @@ const styles = StyleSheet.create({
 
         marginBottom: 10,
         borderRadius: 5,
-        backgroundColor: color.dark
+        backgroundColor: color.background
     },
 
     subContainer: {

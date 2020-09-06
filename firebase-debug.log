@@ -1,0 +1,64 @@
+[debug] [2020-08-27T03:39:33.386Z] ----------------------------------------------------------------------
+[debug] [2020-08-27T03:39:33.390Z] Command:       /usr/local/bin/node /usr/local/bin/firebase deploy --token 1//0eyjOjFnoon2ECgYIARAAGA4SNwF-L9IrcIgjxQJ42B084OE6HEcDq_F9WIQirbJym8Jp37HeRFF-hUoCCiapQnS01jEZQ5ziyoI
+[debug] [2020-08-27T03:39:33.390Z] CLI Version:   8.9.0
+[debug] [2020-08-27T03:39:33.390Z] Platform:      darwin
+[debug] [2020-08-27T03:39:33.391Z] Node Version:  v12.16.1
+[debug] [2020-08-27T03:39:33.391Z] Time:          Thu Aug 27 2020 04:39:33 GMT+0100 (British Summer Time)
+[debug] [2020-08-27T03:39:33.392Z] ----------------------------------------------------------------------
+[debug] [2020-08-27T03:39:33.392Z] 
+[debug] [2020-08-27T03:39:33.405Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2020-08-27T03:39:33.405Z] > authorizing via --token option
+[debug] [2020-08-27T03:39:33.406Z] [iam] checking project lending-31b52 for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2020-08-27T03:39:33.408Z] > refreshing access token with scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2020-08-27T03:39:33.408Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2020-08-27T03:39:33.597Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Thu, 27 Aug 2020 03:39:33 GMT","server":"scaffolding on HTTPServer2","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-27=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-08-27T03:39:33.599Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/lending-31b52:testIamPermissions  
+ {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2020-08-27T03:39:34.628Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Thu, 27 Aug 2020 03:39:34 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","server-timing":"gfet4t7; dur=823","alt-svc":"h3-29=\":443\"; ma=2592000,h3-27=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-08-27T03:39:34.630Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/lending-31b52  
+ 
+[debug] [2020-08-27T03:39:35.012Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Thu, 27 Aug 2020 03:39:34 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-27=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[info] 
+[info] === Deploying to 'lending-31b52'...
+[info] 
+[info] i  deploying hosting 
+[debug] [2020-08-27T03:39:35.015Z] >>> HTTP REQUEST POST https://firebasehosting.googleapis.com/v1beta1/sites/lending-31b52/versions  
+ {"config":{"rewrites":[{"glob":"**","path":"/index.html"}]},"labels":{"deployment-tool":"cli-firebase"}}
+[debug] [2020-08-27T03:39:36.908Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Thu, 27 Aug 2020 03:39:36 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-27=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[info] i  hosting[lending-31b52]: beginning deploy... 
+[info] i  hosting[lending-31b52]: found 44 files in web-build 
+[debug] [2020-08-27T03:39:36.938Z] [hosting] hash cache [d2ViLWJ1aWxk] stored for 44 files
+[debug] [2020-08-27T03:39:36.938Z] [hosting][hash queue][FINAL] {"max":6,"min":1,"avg":1,"active":0,"complete":44,"success":44,"errored":0,"retried":0,"total":44,"elapsed":9}
+[debug] [2020-08-27T03:39:36.938Z] >>> HTTP REQUEST POST https://firebasehosting.googleapis.com/v1beta1/sites/lending-31b52/versions/6d9d4034df9ce940:populateFiles  
+ <request body omitted>
+[debug] [2020-08-27T03:39:38.644Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Thu, 27 Aug 2020 03:39:38 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-27=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-08-27T03:39:38.645Z] [hosting][populate queue][FINAL] {"max":1708,"min":1708,"avg":1708,"active":0,"complete":1,"success":1,"errored":0,"retried":0,"total":1,"elapsed":1708}
+[debug] [2020-08-27T03:39:38.645Z] [hosting] uploads queued: 0
+[debug] [2020-08-27T03:39:38.645Z] [hosting][upload queue][FINAL] {"max":0,"min":9999999999,"avg":0,"active":0,"complete":0,"success":0,"errored":0,"retried":0,"total":0,"elapsed":1598499578645}
+[info] ✔  hosting[lending-31b52]: file upload complete 
+[debug] [2020-08-27T03:39:38.646Z] [hosting] deploy completed after 1736ms
+[debug] [2020-08-27T03:39:38.824Z] [
+  {
+    "config": {
+      "public": "web-build",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ],
+      "site": "lending-31b52"
+    },
+    "site": "lending-31b52",
+    "version": "sites/lending-31b52/versions/6d9d4034df9ce940"
+  }
+]
+[info] i  hosting[lending-31b52]: finalizing version... 
+[debug] [2020-08-27T03:39:38.825Z] >>> HTTP REQUEST PATCH https://firebasehosting.googleapis.com/v1beta1/sites/lending-31b52/versions/6d9d4034df9ce940?updateMask=status  
+ {"status":"FINALIZED"}

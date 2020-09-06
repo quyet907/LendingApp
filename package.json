@@ -3,7 +3,7 @@
   "scripts": {
     "start": "EXPO_NODE_ENV=local expo start",
     "start-dev": "EXPO_NODE_ENV=development expo start",
-    "dev": "NODE_ENV=developmentaaaa; expo start",
+    "dev": "EXPO_NODE_ENV=development expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",

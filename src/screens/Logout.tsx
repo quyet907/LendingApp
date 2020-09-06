@@ -112,7 +112,7 @@ const styles = StyleSheet.create({
     padding: 20,
 
     margin: 2,
-    // backgroundColor : Color.dark,
+    // backgroundColor : Color.background,
   },
   contentHeader: {
     fontSize: 18,
@@ -126,7 +126,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     // justifyContent: "center",
     borderRadius: 5,
-    backgroundColor: Color.dark,
+    backgroundColor: Color.background,
     borderBottomWidth: 1,
     borderColor: Color.inactive,
   },

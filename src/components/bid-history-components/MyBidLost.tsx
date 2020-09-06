@@ -15,14 +15,13 @@ export default class MyBidLost extends React.Component<Props, State> {
 
     render() {
         return (
-            <ScrollView style={{ backgroundColor: color.dark_primary }}>
+            <ScrollView style={{ backgroundColor: color.background_primary }}>
                 <View style={styles.container2}>
                     {/* <Text style={{ paddingBottom: 15,  fontSize: 17, fontWeight: "500" }}>My Bid</Text>
                     <Separator /> */}
 
-                    <BidDetail />
-                    <BidDetail />
-                    <BidDetail />
+       
+                   
 
                 </View>
 
