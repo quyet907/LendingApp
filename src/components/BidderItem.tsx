@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { View, Image, Text } from 'react-native'
 import myStyle from "../style"
+import { BidProductHistory } from '@StockAfiCore/model/bid/BidProductHistory'
 export default class BidderItem extends Component <props , state> {
     constructor(props: any) {
         super(props)
@@ -11,21 +12,21 @@ export default class BidderItem extends Component <props , state> {
     render() {
         return (
             <View style = {[myStyle.bidderItem]}>
-                <View>
+                {/* <View>
                     <Image
                         style = {[myStyle.avtBidder]}
                         source ={
                             {uri : "https://ds1.static.rtbf.be/article/image/370x208/f/1/5/8cedb6d8a46047b5725a91c8a33f6c6574bafb8c.jpg"}
                         }
                     />
-                </View>
+                </View> */}
 
                 <View style={{flex : 1, paddingHorizontal : 10}}>
-                    <Text style={[myStyle.textNameBidderItem]}>Hieu Ho</Text>
+            <Text style={[myStyle.textNameBidderItem]}>{this.props.bidder.userId}</Text>
                 </View>
 
                 <View style={[myStyle.priceBidderItem]}>
-                    <Text style={[myStyle.textPriceBidderItem]}>$60</Text>
+            <Text style={[myStyle.textPriceBidderItem]}>{this.props.bidder.bidPrice}</Text>
                 </View>
             </View>
         )
@@ -33,7 +34,7 @@ export default class BidderItem extends Component <props , state> {
 }
 
 type props = {
-    bidder : any
+    bidder : BidProductHistory
 }
 type state = {
 

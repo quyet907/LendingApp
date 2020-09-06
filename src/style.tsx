@@ -407,13 +407,14 @@ export default StyleSheet.create({
     priceBidderItem  :{
         height : 40,
         width : 60,
-        borderRadius: color.borderRadius,
-        backgroundColor: color.primary,
+        // borderRadius: color.borderRadius,
+        // backgroundColor: color.primary,
         alignItems : "center",
         justifyContent : "center"
     },
     textPriceBidderItem :{
-        // color : color.text
+        color : color.primary,
+        fontWeight : "bold",
     }
 
 

@@ -1,55 +1,98 @@
 import React, { Component } from 'react'
-import { View, Text , TouchableOpacity, Image} from 'react-native'
+import { View, Text, TouchableOpacity, Image } from 'react-native'
 import myStyle from "../style"
 import Carousel from 'react-native-snap-carousel';
 import ListBidder from '../components/ListBidder';
 import * as color from "../Color"
-import {Actions} from "react-native-router-flux"
-export default class Bid extends Component <props, state>{
+import { Actions } from "react-native-router-flux"
+import { BidProduct } from '@StockAfiCore/model/bid/BidProduct';
+import { BidService } from '../services/BidService';
+import { Product } from '@StockAfiCore/model/product/Product';
+import { BidProductHistory } from '@StockAfiCore/model/bid/BidProductHistory';
+import { BidProductHistoryService } from '../services/BidProductHistoryService';
+import { Paging } from '@Core/controller/Paging';
+
+var bidProductId = "";
+export default class Bid extends Component<props, state>{
     constructor(props: any) {
         super(props)
-        this.state= {
-            data : [
-                "https://media.doanhnghiepvn.vn/Images/Uploaded/Share/2019/12/24/Dan-gai-xinh-em-chua-18-khien-dan-mang-lim-tim-lan-dau-gap-mat_3.jpg",
-                "https://media.doanhnghiepvn.vn/Images/Uploaded/Share/2019/12/24/Dan-gai-xinh-em-chua-18-khien-dan-mang-lim-tim-lan-dau-gap-mat_2.jpg",
-                "https://media.doanhnghiepvn.vn/Images/Uploaded/Share/2019/12/24/dan-gai-xinh-em-chua-18-khien-dan-mang-lim-tim-lan-dau-gap-mat.jpg",
-                "https://media.doanhnghiepvn.vn/Images/Uploaded/Share/2019/12/24/Dan-gai-xinh-em-chua-18-khien-dan-mang-lim-tim-lan-dau-gap-mat_2.jpg",
+        this.state = {
+            product: {},
+            bidProduct: {},
+            bidders: [],
+            timeBid: 10,
+            priceBid: 0,
 
-            ],
-            bidders : [
-                { id  : 1, img : "", name : "Hieu Ho 1", price : 10},
-                { id  : 2, img : "", name : "Hieu Ho 2"},
-                { id  : 3, img : "", name : "Hieu Ho 3"},
-                { id  : 4, img : "", name : "Hieu Ho 4"},
-                { id  : 5, img : "", name : "Hieu Ho 5"},
-                { id  : 6, img : "", name : "Hieu Ho 6"},
-                { id  : 7, img : "", name : "Hieu Ho 7"},
-                { id  : 8, img : "", name : "Hieu Ho 8"},
-            ]
         }
+        bidProductId = this.props.data;
     }
+
+    componentDidMount() {
+        BidService.getBidInfo(bidProductId).then((bidProduct: BidProduct) => {
+            console.log(this.props)
+
+            this.setState({
+                bidProduct: bidProduct,
+                product: bidProduct.product || {}
+            })
+            let calcTime: number = 0;
+            if (bidProduct.latestBidAt) {
+                calcTime = BidService.calcTime(bidProduct.latestBidAt)
+            } else if (bidProduct.startBidAt) {
+                calcTime = BidService.calcTime(bidProduct.startBidAt)
+            }
+
+            this.setState({
+                timeBid: calcTime,
+                priceBid: bidProduct.endPrice || bidProduct.startPrice || 0
+            })
+
+        })
+
+        BidProductHistoryService.getListById(bidProductId)
+            .then((listBidder: BidProductHistory[]) => {
+                console.log(listBidder);
+                if (listBidder) {
+                    let list: Array<BidProductHistory> = listBidder.rows;
+                    this.setState({
+                        bidders: list
+                    })
+                }
+            })
+
+        setInterval(
+            () => {
+                this.setState({
+                    timeBid: this.state.timeBid - 1,
+                })
+            },
+            1000
+        );this
+
+    }
+
     render() {
         return (
             <View style={[myStyle.containerLight]}>
-                 <View style = {[myStyle.btnCloseBid    ]}>
-                     <TouchableOpacity style ={[]}
-                        onPress={()=>{
+                <View style={[myStyle.btnCloseBid]}>
+                    <TouchableOpacity style={[]}
+                        onPress={() => {
                             Actions.home();
                         }}
-                     >
+                    >
                         <Text>X</Text>
-                     </TouchableOpacity>
-                 </View>
-                 <View style={[{alignItems: "center"}]}>
-                    
+                    </TouchableOpacity>
+                </View>
+                <View style={[{ alignItems: "center" }]}>
+
                     <Carousel
                         layout={'tinder'}
                         style={[]}
-                        data ={this.state.data}
+                        data={this.state.product.thumbImagesUrl}
 
-                        renderItem={({item})=>{
+                        renderItem={({ item }) => {
                             return (
-                                <View style={[myStyle.frImgProdcurBid, {height : 300}]}>
+                                <View style={[myStyle.frImgProdcurBid, { height: 300 }]}>
                                     <Image
                                         style={[myStyle.imgProductBid]}
                                         source={{ uri: `${item}` }}
@@ -59,50 +102,65 @@ export default class Bid extends Component <props, state>{
                         }}
                         sliderWidth={window.innerWidth}
                         itemWidth={window.innerWidth}
-                        />
+                    />
 
-                        <View style = {[myStyle.frPriceAndTimePageBid]}>
-                            <View style = {[myStyle.childFrPriceAndTimePageBid]}>
-                                <Text style = {{color : color.warning, fontWeight : "bold", fontSize : 20, }}>10s</Text>
-                                <Text style = {{color : color.inactive}}>Happenning</Text> 
-                            </View>
-                            <View style = {[myStyle.childFrPriceAndTimePageBid]}>
-                                <Text style = {{color : color.text_primary, fontWeight : "bold", fontSize : 20,}}>$60</Text>
-                                <Text style = {{color : color.inactive}}>Price bid</Text> 
-                            </View>
+                    <View style={[myStyle.frPriceAndTimePageBid]}>
+                        <View style={[myStyle.childFrPriceAndTimePageBid]}>
+                            <Text style={{ color: color.warning, fontWeight: "bold", fontSize: 20, }}>{BidService.changeTextTime(this.state.timeBid)}</Text>
+                            <Text style={{ color: color.inactive }}>{BidService.changeTextStatus(this.state.timeBid)}</Text>
                         </View>
+                        <View style={[myStyle.childFrPriceAndTimePageBid]}>
+                            <Text style={{ color: color.text_primary, fontWeight: "bold", fontSize: 20, }}>
+                                {BidService.roundingMoney(this.state.priceBid)}</Text>
+                            <Text style={{ color: color.inactive }}>Price bid</Text>
+                        </View>
+                    </View>
                 </View>
 
-                <View style ={[myStyle.nameProductPageBid]}>
-                    <Text style ={{fontSize: 20, color: color.text, fontWeight:"500"}}>Chicken red</Text>
+                <View style={[myStyle.nameProductPageBid]}>
+                    <Text style={{ fontSize: 20, color: color.text, fontWeight: "500" }}>{`${this.state.product.name}`}</Text>
                 </View>
 
-       
-                <View style ={[myStyle.frListBidder]}>
-                    <Text style ={[myStyle.headerBidder]}>Bidder</Text>
+
+                <View style={[myStyle.frListBidder]}>
+                    <Text style={[myStyle.headerBidder]}>Bidder</Text>
                     <ListBidder
-                        bidders = {this.state.bidders}
+                        bidders={this.state.bidders}
                     ></ListBidder>
                 </View>
-                
-                <View style={[myStyle.frButtonBid]}>
+
+                <View
+                    style={BidService.checkBidding(this.state.timeBid) ? [myStyle.frButtonBid] : { display: "none" }}
+                >
                     <TouchableOpacity
-                        style = {[myStyle.buttonBid]}
+                        style={[myStyle.buttonBid]}
+                        onPress={() => {
+                            BidService.BidAction(bidProductId).then(res => {
+                                this.setState({
+                                    timeBid: 5
+                                })
+                            })
+                        }}
                     >
-                        <Text style={[myStyle.btnSmall]}>Palce A Bid</Text>
+                        <Text
+                            style={[myStyle.btnSmall]}
+                        >{BidService.changeTextButton(this.state.timeBid)}
+                        </Text>
                     </TouchableOpacity>
                 </View>
-                
+
             </View>
         )
     }
 }
 
 type props = {
-
 }
 
-type state ={
-    data : Array<any>
-    bidders :Array<any>
+type state = {
+    bidProduct: BidProduct
+    product: Product
+    bidders: Array<BidProductHistory>
+    timeBid: number,
+    priceBid: number
 }

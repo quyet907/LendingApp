@@ -11,6 +11,8 @@ import * as color from "../Color";
 import MyBid from "../components/bid-history-components/MyBidWin";
 import HistoryBidScreen from "../screens/HistoryBidScreen";
 import LogoutScreen from "./LogoutScreen";
+import PageBid from "./PageBid";
+import Bid from "./Bid";
 
 const Tab = createBottomTabNavigator();
 
@@ -47,7 +49,7 @@ export default class PageHome extends React.Component<Props, state> {
 
           <Tab.Screen
             name="Dashboard"
-            component={Home}
+            component={PageBid}
             options={{
               
               tabBarLabel: "Dashboard",

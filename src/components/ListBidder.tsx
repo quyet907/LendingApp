@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { View , FlatList, ScrollView} from 'react-native'
 import myStyle from "../style"
 import BidderItem from './BidderItem'
+import { BidProductHistory } from '@StockAfiCore/model/bid/BidProductHistory'
 export default class ListBidder extends Component<props , state> {
     constructor(props: any){
         super(props),
@@ -29,7 +30,7 @@ export default class ListBidder extends Component<props , state> {
 }
 
 type props = {
-    bidders : Array<any>
+    bidders : Array<BidProductHistory>
 }
 type state = {
 
