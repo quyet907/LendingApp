@@ -7,9 +7,8 @@ import { Referal } from '@Core/model/user/Referal';
 import { ReferralService } from '../../services/ReferralService';
 import * as color from '../../Color'
 import BidDetail from './BidDetail';
-import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
-import { BidProductHistoryService } from '../../services/BidProductHistoryService';
-import { BidProductHistory } from '@StockAfiCore/model/bid/BidProductHistory';
+import { BidStatisticService } from '../../services/BidStatisticService';
+import { BidProductStatistic } from '@StockAfiCore/model/bid/BidProductStatistic';
 export default class MyBidWin extends React.Component<Props, State> {
     constructor(props: any) {
         super(props);
@@ -19,10 +18,11 @@ export default class MyBidWin extends React.Component<Props, State> {
     }
 
     componentDidMount() {
-        BidProductHistoryService.getBidHistory().then((res) => {
+        BidStatisticService.getBidProductStatistic().then((res) => {
             this.setState({
-                winBidList: res.rows
+                winBidList: res
             })
+
         })
     }
 
@@ -32,22 +32,22 @@ export default class MyBidWin extends React.Component<Props, State> {
                 <View style={styles.container2}>
                     {/* <Text style={{ paddingBottom: 15,  fontSize: 17, fontWeight: "500" }}>My Bid</Text>
                     <Separator /> */}
-                    {/* <FlatList
+                    <FlatList
                         data={this.state.winBidList}
                         renderItem={({ item }) => {
                             return (
                                 <BidDetail
-                                    imgURL={item.product?.thumbImagesUrl}
-                                    name={item.product.name}
-                                    bidAt={item.product?.createdAt }
-                                    bidClick=number
-                                    startPrice= number
-                                    endPrice= number
+                                    imgURL={item.product?.thumbImagesUrl ? item.product.thumbImagesUrl[0] : "null"}
+                                    name={item.bidProduct?.product?.name || "undefined"}
+                                    bidAt={this.getTime(item.bidProduct?.latestBidAt) || "undefined"}
+                                    bidClick={item.bidCount || 0}
+                                    startPrice={item.bidProduct?.startPrice || 0}
+                                    endPrice={item.bidProduct?.endPrice || 0}
                                 />
                             )
                         }}
-                        keyExtractor={(item) => item.id != undefined ? item.id : "null"}
-                    /> */}
+                        keyExtractor={(item) => item.bidProductId ? item.bidProductId : 'null'}
+                    />
 
 
                 </View>
@@ -55,6 +55,11 @@ export default class MyBidWin extends React.Component<Props, State> {
             </ScrollView>
         )
     }
+
+    getTime = (date: Date | undefined): string => {
+        if (date !== undefined) return date.toString().substring(0, 10);
+        else return "null";
+    };
 
 }
 
@@ -83,6 +88,6 @@ type Props = {
 }
 
 type State = {
-    winBidList: Array<BidProductHistory>
+    winBidList: Array<BidProductStatistic>
 
 }

@@ -1,8 +1,10 @@
 import * as React from 'react';
-import { View, StyleSheet, Text, Image } from 'react-native';
+import { View, StyleSheet, Text, Image, ImageProps } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import Separator from '../Separator'
 import * as color from '../../Color'
+import { BidProductStatistic } from '@StockAfiCore/model/bid/BidProductStatistic';
+import { Url } from 'url';
 const timeIcon = <Icon name="access-time" size={13} color='#868685' />;
 export default class BidDetail extends React.Component<Props, {}>{
     constructor(props: any) {
@@ -22,7 +24,7 @@ export default class BidDetail extends React.Component<Props, {}>{
 
                             <View style={{justifyContent: 'space-around', paddingTop: 5}}>
                                 <Text style={{ color: color.inactive }}>{this.props.bidAt}</Text>
-                                <Text style={[styles.times, styles.fontWhiteColor]}>{this.props.bidClick}</Text>
+                                <Text style={[styles.times, styles.fontWhiteColor]}>{`${this.props.bidClick} clicks`}</Text>
                             </View>
                             <View style={{justifyContent: 'flex-end', alignItems: 'flex-end'}}>
                                 <Text style={{ color: color.inactive, textDecorationLine: 'line-through' }}>{this.props.startPrice}</Text>
@@ -94,7 +96,8 @@ const styles = StyleSheet.create({
     img: {
         width: 70,
         height: 70,
-        borderRadius: 5
+        borderRadius: 5,
+        resizeMode: 'cover'
     },
     price: {
         fontSize: 18,

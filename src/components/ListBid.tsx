@@ -70,7 +70,7 @@ export default class ListBid extends Component<props, state> {
           renderItem={({ item }) => 
             <TouchableOpacity
               onPress={()=>{
-                Actions.bid()
+                Actions.bid("5f548ff081a38155cb4e028b");
               }}
             >
             <ProductBid 

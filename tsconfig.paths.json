@@ -14,6 +14,7 @@
             "@StockAfiModel/*": [
                 "src/share/base-stock-afi/model/*"
             ],
+            
         }
     }
 }
