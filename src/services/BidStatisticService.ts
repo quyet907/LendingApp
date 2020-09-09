@@ -1,10 +1,10 @@
 import { Paging } from "@Core/controller/Paging";
 import { getAxios } from "./APIService";
 import { config } from "../config/Config";
-import { BidProductStatistic } from "@StockAfiCore/model/bid/BidProductStatistic";
+import { BidStatistic } from "@StockAfiCore/model/bid/BidStatistic";
 
 export class BidStatisticService {
-  public static getBidProductStatistic(): Promise<BidProductStatistic[]> {
+  public static getBidStatistic(): Promise<BidStatistic[]> {
     return getAxios().then((axios) =>
       axios({
         method: "GET",
@@ -13,6 +13,7 @@ export class BidStatisticService {
         .then((res) => {
           return res.data;
         })
+        .catch((err) => console.log("err"))
     );
     //throw new Error("this function is not implement");
   }

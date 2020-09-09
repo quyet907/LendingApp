@@ -1,14 +1,10 @@
 import * as React from 'react';
 import { View, Text, TextInput, Image, StyleSheet, Button, Clipboard } from 'react-native';
-import Separator from '../Separator'
 import { TouchableOpacity, ScrollView, FlatList } from 'react-native-gesture-handler';
-import FlashMessage, { showMessage, hideMessage } from "react-native-flash-message";
-import { Referal } from '@Core/model/user/Referal';
-import { ReferralService } from '../../services/ReferralService';
 import * as color from '../../Color'
 import BidDetail from './BidDetail';
-import { BidStatisticService } from '../../services/BidStatisticService';
-import { BidProductStatistic } from '@StockAfiCore/model/bid/BidProductStatistic';
+import { BidStatisticService } from 'src/services/BidStatisticService';
+import { BidStatus, BidStatistic } from "@StockAfiModel/bid/BidStatistic";
 export default class MyBidWin extends React.Component<Props, State> {
     constructor(props: any) {
         super(props);
@@ -18,9 +14,9 @@ export default class MyBidWin extends React.Component<Props, State> {
     }
 
     componentDidMount() {
-        BidStatisticService.getBidProductStatistic().then((res) => {
+        BidStatisticService.getBidStatistic().then((bidStatistics) => {
             this.setState({
-                winBidList: res
+                winBidList: bidStatistics.filter(bidStatistic => bidStatistic.bidStatus === BidStatus.win)
             })
 
         })
@@ -88,6 +84,6 @@ type Props = {
 }
 
 type State = {
-    winBidList: Array<BidProductStatistic>
+    winBidList: BidStatistic[]
 
 }
