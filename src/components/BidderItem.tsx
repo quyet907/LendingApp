@@ -1,12 +1,8 @@
 import React, { Component } from 'react'
 import { View, Image, Text } from 'react-native'
 import myStyle from "../style"
-<<<<<<< HEAD
-export default class BidderItem extends Component<props, state> {
-=======
 import { BidProductHistory } from '@StockAfiCore/model/bid/BidProductHistory'
 export default class BidderItem extends Component <props , state> {
->>>>>>> e760a1d28785d651e6e9392be56230cae7e8abd8
     constructor(props: any) {
         super(props)
         this.state = {
@@ -15,13 +11,8 @@ export default class BidderItem extends Component <props , state> {
     }
     render() {
         return (
-<<<<<<< HEAD
-            <View style={[myStyle.bidderItem]}>
-                <View>
-=======
-            <View style = {[myStyle.bidderItem]}>
+            <View style = {this.props.firtBidder==this.props.bidder._id ?[myStyle.lastBidderItem] : [myStyle.bidderItem]}>
                 {/* <View>
->>>>>>> e760a1d28785d651e6e9392be56230cae7e8abd8
                     <Image
                         style={[myStyle.avtBidder]}
                         source={
@@ -29,14 +20,8 @@ export default class BidderItem extends Component <props , state> {
                         }
                     />
                 </View> */}
-
-<<<<<<< HEAD
-                <View style={{ flex: 1, paddingHorizontal: 10 }}>
-                    <Text style={[myStyle.textNameBidderItem]}>Hieu Ho</Text>
-=======
                 <View style={{flex : 1, paddingHorizontal : 10}}>
-            <Text style={[myStyle.textNameBidderItem]}>{this.props.bidder.userId}</Text>
->>>>>>> e760a1d28785d651e6e9392be56230cae7e8abd8
+            <Text style={[myStyle.textNameBidderItem]}>{this.props.bidder.user?.username}</Text>
                 </View>
 
                 <View style={[myStyle.priceBidderItem]}>
@@ -48,12 +33,9 @@ export default class BidderItem extends Component <props , state> {
 }
 
 type props = {
-<<<<<<< HEAD
-    bidder: any
-=======
-    bidder : BidProductHistory
->>>>>>> e760a1d28785d651e6e9392be56230cae7e8abd8
+    bidder : BidProductHistory,
+    firtBidder : string 
 }
 type state = {
-
+    
 }

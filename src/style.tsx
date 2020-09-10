@@ -283,9 +283,11 @@ export default StyleSheet.create({
         shadowRadius: 10,
     },
     frStatusAndTime: {
-        padding: 10,
-        flexDirection: "row",
-        justifyContent: "flex-end",
+        // padding: 10,
+        // flexDirection: "row",
+        flex : 1,
+        alignItems : "center",
+        justifyContent : "center",
     },
     
     nameProductBid: {
@@ -314,7 +316,7 @@ export default StyleSheet.create({
     timeProductBid: {
         color: color.text_primary,
         fontWeight: "bold",
-        paddingLeft : 10
+        paddingLeft : 10,
     },
 
 
@@ -364,6 +366,15 @@ export default StyleSheet.create({
         padding : 10,
         margin : 2,
         backgroundColor : color.background_primary,
+        borderRadius : color.borderRadius
+    },
+    lastBidderItem : {
+        flexDirection : "row",
+        alignItems : "center",
+        justifyContent  : "space-between",
+        padding : 10,
+        margin : 2,
+        backgroundColor : color.inactive,
         borderRadius : color.borderRadius
     },
     headerBidder : {

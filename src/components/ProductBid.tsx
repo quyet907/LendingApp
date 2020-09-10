@@ -3,10 +3,54 @@ import { View, Text, Image } from "react-native";
 import myStyle from "../style";
 import Actions from "react-native-router-flux"
 import * as color from "../Color"
-export default class ProductBid extends Component<props, state> {
+import { BidProduct } from "@StockAfiCore/model/bid/BidProduct";
+import { BidService } from "../services/BidService";
+import {connect} from "react-redux";
+import  * as actionAll from "../Action/ActionAll"
+import store from "../reducer/store"
+import { FormatService } from "../services/FormatService";
+ class ProductBid extends Component<props, state> {
     constructor(props: any) {
         super(props);
-        this.state = {};
+        this.state = {
+            timeCount : this.props.time,
+            img : "",
+            price : 0
+        };
+
+        
+    }
+
+    
+
+    componentDidMount(){
+        this.setValue();
+        setInterval(
+            () => {
+                this.setState({
+                    timeCount: this.state.timeCount - 1,
+                })
+            },
+            1000
+        );
+    }
+
+    setValue (){
+        if(this.props.bidProduct.product?.thumbImagesUrl){
+            this.setState({
+                img : this.props.bidProduct.product.thumbImagesUrl[0]
+            })
+        }
+        let price:number = 0;
+        if(this.props.bidProduct.endPrice){
+           price = this.props.bidProduct.endPrice;
+        }
+        if(this.props.bidProduct.startPrice){
+            price = this.props.bidProduct.startPrice;
+        }
+        this.setState({
+            price : price
+        })
     }
     render() {
         return (
@@ -16,29 +60,29 @@ export default class ProductBid extends Component<props, state> {
                         <View style={[myStyle.frImgProdcurBid]}>
                             <Image
                                 style={[myStyle.imgProductBid]}
-                                source={{ uri: `${this.props.img}` }}
+                                source={{ uri: `${this.state.img}` }}
                             />
                         </View>
                         <View style={[myStyle.frPriceAndTime]}>
                             
                             <View style={[myStyle.frStatusAndTime]}>
-                                <View>
+                                {/* <View>
                                     <Text style={[myStyle.statusProductBid]}>{this.props.status}</Text>
-                                </View>
+                                </View> */}
                                 <View>
-                                    <Text style={[myStyle.timeProductBid]}>{this.props.time}S</Text>
+                                    <Text style={[myStyle.timeProductBid]}>{BidService.changeTextTime(this.state.timeCount)}</Text>
                                 </View>
                             </View>
                             <View>
-                                <Text style={[myStyle.priceProductBid]}>${this.props.price}</Text>
+                                <Text style={[myStyle.priceProductBid]}>{FormatService.roundingMoney(this.state.price) }</Text>
                             </View>
                         </View>
                     </View>
                 </View>
                 <View>
                     <View style = {[myStyle.frNameandDetailProductBid]}>
-                        <Text style={[myStyle.nameProductBid]}>{this.props.name}</Text>
-                        <Text style = {{color : color.inactive}}>This is human</Text>
+                        <Text style={[myStyle.nameProductBid]}>{this.props.bidProduct.product?.name}</Text>
+                        <Text style = {{color : color.inactive}}>This is a monkey beautifull</Text>
                     </View>
 
                 </View>
@@ -47,10 +91,23 @@ export default class ProductBid extends Component<props, state> {
     }
 }
 type props = {
-    name: string;
-    img: string;
-    price: number;
-    status: string;
-    time: string;
+    bidProduct : BidProduct,
+    time : number;
+    onReload():void
 };
-type state = {};
+type state = {
+    timeCount : number,
+    img : string,
+    price : number
+};
+
+function mapDispatchToProps(dispatch : any , props : any ) {
+    return {
+        onReload(){
+            dispatch(actionAll.reload())
+        }
+    }
+}
+
+
+export default connect(null,mapDispatchToProps)(ProductBid)

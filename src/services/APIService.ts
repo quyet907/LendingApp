@@ -7,7 +7,7 @@ import * as actionLoadding from "../Action/ActionLoadding"
 import { config } from "../config/Config";
 axios.interceptors.request.use(
     res => {
-        actionLoadding.setLoad(true)
+        actionLoadding.setLoad(90)
         return res
     },
     err => {
@@ -16,11 +16,11 @@ axios.interceptors.request.use(
 );
 axios.interceptors.response.use(
     res => {
-        actionLoadding.setLoad(false)
+        actionLoadding.setLoad(0)
         return res;
     },
     err => {
-        actionLoadding.setLoad(false)
+        actionLoadding.setLoad(0)
 
         if (err.message == "Network Error") {
             action.showMessage("Network Error");

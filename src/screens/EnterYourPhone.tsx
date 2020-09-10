@@ -10,6 +10,7 @@ import { connect } from "react-redux";
 import * as action from "../Action/ActionLogin"
 import * as actionPopup from "../Action/ActionPopup";
 import PopupConfirm from '../components/PopupConfirm';
+import store from "../reducer/store"
 
 class EnterYourPhone extends Component<props, state> {
     constructor(props: any) {
@@ -20,7 +21,7 @@ class EnterYourPhone extends Component<props, state> {
     }
 
     componentDidMount() {
-
+        
 
     }
     checkPhone() {

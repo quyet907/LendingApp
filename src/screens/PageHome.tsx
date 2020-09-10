@@ -49,7 +49,7 @@ export default class PageHome extends React.Component<Props, state> {
 
           <Tab.Screen
             name="Dashboard"
-            component={PageBid}
+            component={Home}
             options={{
               
               tabBarLabel: "Dashboard",
@@ -81,10 +81,10 @@ export default class PageHome extends React.Component<Props, state> {
             }}
           />
           <Tab.Screen
-            name="Referral"
-            component={ReferralScreen}
+            name="Bid"
+            component={PageBid}
             options={{
-              tabBarLabel: "Referral",
+              tabBarLabel: "Bid",
               tabBarIcon: ({ focused }) => (
                 <Icon
 

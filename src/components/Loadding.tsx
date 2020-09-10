@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { View, ActivityIndicator , StyleSheet} from 'react-native'
 import myStyle from "../style"
 import  { connect} from "react-redux"
+import { ProgressBar, Colors } from 'react-native-paper';
 class Loadding extends Component <Props , state>{
     constructor(props: any){
         super(props);
@@ -14,11 +15,13 @@ class Loadding extends Component <Props , state>{
     }
     render() {
         return (
-            <View style={[(this.props.showLoad) ? styles.frameLoadding : {display: "none"}]}>
-                <View style={styles.background}></View>
+            
+            <View style={[(this.props.valueLoad>0) ? styles.frameLoadding : {display: "none"}]}>
+                <ProgressBar progress={0.5} color={Colors.red800} />
+                {/* <View style={styles.background}></View>
                 <View style={myStyle.fullCeter}>
                 <ActivityIndicator size="large" color="#00ff00" />
-                </View>
+                </View> */}
             </View>
         )
     }
@@ -29,12 +32,17 @@ class Loadding extends Component <Props , state>{
 
 const styles = StyleSheet.create({
     frameLoadding: {
-        width: '100%',
-        height: '100%',
+        // width: '100%',
+        // height: '100%',
         // backgroundColor: 'rgba(24, 31, 41,)',
         position: 'absolute', zIndex: 3,
-        justifyContent: 'center',
-        alignItems: 'center'
+        top : 0,
+        left : 0,
+        width : '100%',
+        height : 5
+        // justifyContent: 'center',
+        // alignItems: 'center'
+        
 
     },
 
@@ -49,7 +57,7 @@ const styles = StyleSheet.create({
 })
 
 type Props = {
-    showLoad : boolean,
+    valueLoad : number,
 }
 
 type state = {
@@ -59,7 +67,7 @@ type state = {
 
 function mapStateToProps(state : any ){
     return {
-        showLoad: state.LoadingReducer.showLoad,
+        valueLoad: state.LoadingReducer.valueLoad,
     }
 }
 function mapDispatchToProps(dispatch: any, props: any) {

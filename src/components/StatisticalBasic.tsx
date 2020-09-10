@@ -3,6 +3,7 @@ import { View, Text, Image } from "react-native";
 import myStyle from "../style"
 import * as color from '../Color'
 import Icon from "react-native-vector-icons/FontAwesome5"
+import { FormatService } from '../services/FormatService';
 
 export default class StatisticalBasic extends Component<props, state>{
     constructor(props: any) {
@@ -26,7 +27,7 @@ export default class StatisticalBasic extends Component<props, state>{
                                 <Text style={[{ color: color.inactive, fontSize: 12 }]}>{this.props.content}</Text>
                             </View>
                             <View style={[myStyle.contentStatisticalBasic, myStyle.flex1]}>
-                                <Text style={[myStyle.colorWhite]}>{this.props.money} COIN</Text>
+                                <Text style={[myStyle.colorWhite]}>{FormatService.roundingMoney(this.props.money)} COIN</Text>
                             </View>
 
                         </View>

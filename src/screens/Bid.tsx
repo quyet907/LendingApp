@@ -11,6 +11,7 @@ import { Product } from '@StockAfiCore/model/product/Product';
 import { BidProductHistory } from '@StockAfiCore/model/bid/BidProductHistory';
 import { BidProductHistoryService } from '../services/BidProductHistoryService';
 import { Paging } from '@Core/controller/Paging';
+import { FormatService } from '../services/FormatService';
 
 var bidProductId = "";
 export default class Bid extends Component<props, state>{
@@ -24,42 +25,18 @@ export default class Bid extends Component<props, state>{
             priceBid: 0,
 
         }
+        console.log(this.props);
         bidProductId = this.props.data;
-    }
-
-    componentDidMount() {
         BidService.getBidInfo(bidProductId).then((bidProduct: BidProduct) => {
-            console.log(this.props)
+            this.renderDataBid(bidProduct);
 
-            this.setState({
-                bidProduct: bidProduct,
-                product: bidProduct.product || {}
-            })
-            let calcTime: number = 0;
-            if (bidProduct.latestBidAt) {
-                calcTime = BidService.calcTime(bidProduct.latestBidAt)
-            } else if (bidProduct.startBidAt) {
-                calcTime = BidService.calcTime(bidProduct.startBidAt)
-            }
-
-            this.setState({
-                timeBid: calcTime,
-                priceBid: bidProduct.endPrice || bidProduct.startPrice || 0
-            })
+            
 
         })
 
-        BidProductHistoryService.getListById(bidProductId)
-            .then((listBidder: BidProductHistory[]) => {
-                console.log(listBidder);
-                if (listBidder) {
-                    let list: Array<BidProductHistory> = listBidder.rows;
-                    this.setState({
-                        bidders: list
-                    })
-                }
-            })
+    }
 
+    componentDidMount() {
         setInterval(
             () => {
                 this.setState({
@@ -67,8 +44,44 @@ export default class Bid extends Component<props, state>{
                 })
             },
             1000
-        );this
+        );
 
+        // BidProductHistoryService.getListById(bidProductId)
+        //     .then((listBidder: BidProductHistory[]) => {
+        //         console.log(listBidder);
+        //         if (listBidder) {
+        //             let list: Array<BidProductHistory> = listBidder;
+        //             this.setState({
+        //                 bidders: list
+        //             })
+        //         }
+        //     })
+
+        
+
+    }
+
+    renderDataBid(bidProduct : BidProduct) {
+        
+
+        this.setState({
+            bidProduct: bidProduct,
+            product: bidProduct.product || {},
+            bidders: bidProduct.listHistoryBid || []
+        })
+        let calcTime: number = 0;
+        if (bidProduct.latestBidAt) {
+            calcTime = BidService.calcTime(bidProduct.latestBidAt)
+        } else if (bidProduct.startBidAt) {
+            calcTime = BidService.calcTime(bidProduct.startBidAt)
+        }
+
+        this.setState({
+            timeBid: calcTime,
+            priceBid: bidProduct.endPrice || bidProduct.startPrice || 0
+        })
+
+        
     }
 
     render() {
@@ -111,7 +124,7 @@ export default class Bid extends Component<props, state>{
                         </View>
                         <View style={[myStyle.childFrPriceAndTimePageBid]}>
                             <Text style={{ color: color.text_primary, fontWeight: "bold", fontSize: 20, }}>
-                                {BidService.roundingMoney(this.state.priceBid)}</Text>
+                                {FormatService.roundingMoney(this.state.priceBid)}</Text>
                             <Text style={{ color: color.inactive }}>Price bid</Text>
                         </View>
                     </View>
@@ -134,11 +147,9 @@ export default class Bid extends Component<props, state>{
                 >
                     <TouchableOpacity
                         style={[myStyle.buttonBid]}
-                        onPress={() => {
-                            BidService.BidAction(bidProductId).then(res => {
-                                this.setState({
-                                    timeBid: 5
-                                })
+                        onPress={(event) => {
+                            BidService.BidAction(bidProductId).then((bidProduct: BidProduct) => {
+                                this.renderDataBid(bidProduct);
                             })
                         }}
                     >

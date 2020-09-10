@@ -3,33 +3,65 @@ import { getAxios } from "./APIService";
 import { config } from "../config/Config";
 import { Paging } from "@Core/controller/Paging";
 import { BidProduct } from "@StockAfiModel/bid/BidProduct";
+import ProductBid from "src/components/ProductBid";
 
 export class BidService {
     public static getBidInfo(id: string): Promise<BidProduct> {
         return getAxios().then((axios) =>
             axios({
                 method: "GET",
-                url: `${config.api.lendingAPI}/bid_product/${id}`,
-                // params: {
-                //     bid_productId: id
-                // }
+                url: `${config.api.lendingAPI}/bid_product/getId`,
+                params: {
+                    bid_productId: id
+                }
             }).then((res) => {
                     return res.data;
                 })
                 .catch((err) => console.log(err))
         );
     }
-    public static BidAction(id : string ) : Promise<boolean> {
+    public static BidAction(id : string ) : Promise<BidProduct> {
         return getAxios().then((axios) =>{
             return axios({
                 method : "POST",
                 url : `${config.api.lendingAPI}/bid_product/bid`,
                 data : {bid_productId : id}
             })
-            .then(res=>{
+            .then((res)=>{
+                console.log(res);
                 return res.data
             })
             .catch(err=>{
+                return err;
+            })
+        })
+    }
+
+    public static getListBidComming() : Promise<BidProduct[]>{
+        return getAxios().then((axios) =>{
+            return axios({
+                method : "GET",
+                url : `${config.api.lendingAPI}/bid_product/getComming`,
+            })
+            .then((res)=>{
+                return res.data;
+            })
+            .catch((err)=>{
+                return err;
+            })
+        })
+    }
+
+    public static getListBidding() : Promise<BidProduct[]>{
+        return getAxios().then((axios) =>{
+            return axios({
+                method : "GET",
+                url : `${config.api.lendingAPI}/bid_product/getBidding`,
+            })
+            .then((res)=>{
+                return res.data;
+            })
+            .catch((err)=>{
                 return err;
             })
         })
@@ -61,7 +93,6 @@ export class BidService {
 
     public static calcTime(Time: Date): number {
         Time = new Date(Time);
-        console.log(Time);
         let Calc: number = (Time.getTime() + 10 * 1000) - (new Date().getTime());
         return Math.round(Calc / 1000);
     }
@@ -80,6 +111,8 @@ export class BidService {
         return `Place A Bid`;
     }
 
+    
+
     public static changeTextTime(calcTime: number): string {
         if (calcTime < 0) {
             return `Finished`
@@ -89,6 +122,8 @@ export class BidService {
         }
         return `${calcTime}S`;
     }
+
+
     public static changeTextStatus(calcTime: number): string {
 
         if (calcTime < 0) {

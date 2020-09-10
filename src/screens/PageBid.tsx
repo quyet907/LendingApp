@@ -2,13 +2,15 @@ import React, { Component } from 'react'
 import { View } from 'react-native'
 import myStyle from "../style"
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs'
-import ListBid from '../components/ListBid';
-import Bid from './Bid';
+import ListBidComming from '../components/ListBidComming';
+import ListBidding from '../components/ListBidding';
+import store from "../reducer/store"
 import * as color from "../Color"
 const Tab = createMaterialTopTabNavigator();
 
 export default class PageBid extends Component {
     render() {
+        console.log(store.getState().Allreducer);
         return (
             <View style={[{ backgroundColor: color.background, flex: 1 }]}>
                 <Tab.Navigator tabBarOptions={{
@@ -23,8 +25,8 @@ export default class PageBid extends Component {
 
 
                 }}>
-                    <Tab.Screen name="Doing" component={ListBid} />
-                    <Tab.Screen name="Sap" component={ListBid} />
+                    <Tab.Screen name="Doing" component={ListBidding} key={"bidding"} />
+                    <Tab.Screen name="Comming" component={ListBidComming} key= {"comming"}/>
                 </Tab.Navigator>
             </View>
         )
