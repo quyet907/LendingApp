@@ -7,6 +7,7 @@ import { BidStatisticService } from "../../services/BidStatisticService"
 import { BidStatistic } from "@StockAfiModel/bid/BidStatistic";
 import { BidStatus } from '../../share/base-stock-afi/model/bid/BidStatus';
 import { v4 as uuidv4 } from 'uuid';
+import { Actions } from 'react-native-router-flux';
 export default class WinBid extends React.Component<Props, State> {
     constructor(props: any) {
         super(props);
@@ -18,8 +19,7 @@ export default class WinBid extends React.Component<Props, State> {
     componentDidMount() {
         BidStatisticService.getBidStatistic().then((bidStatistics: BidStatistic[]) => {
             const bid = bidStatistics.filter(bidStatistic => bidStatistic.bidStatus == BidStatus.win);
-            console.log(bidStatistics);
-            
+
             this.setState({
                 winBidList: bid
 
@@ -38,14 +38,18 @@ export default class WinBid extends React.Component<Props, State> {
                         data={this.state.winBidList}
                         renderItem={({ item }) => {
                             return (
-                                <BidDetail
-                                imgURL={item.bidProduct && item.bidProduct.product && item.bidProduct.product.thumbImagesUrl ? item.bidProduct.product.thumbImagesUrl[0] : 'null'}
-                                    name={item.bidProduct?.product?.name || "undefined"}
-                                    bidAt={this.getTime(item.bidProduct?.latestBidAt) || "undefined"}
-                                    bidClick={item.count || 0}
-                                    startPrice={item.bidProduct?.startPrice || 0}
-                                    endPrice={item.bidProduct?.endPrice || 0}
-                                />
+                                <TouchableOpacity
+                                    onPress={() => Actions.bid(item._id)}
+                                >
+                                    <BidDetail
+                                        imgURL={item.bidProduct && item.bidProduct.product && item.bidProduct.product.thumbImagesUrl ? item.bidProduct.product.thumbImagesUrl[0] : 'null'}
+                                        name={item.bidProduct?.product?.name || "undefined"}
+                                        bidAt={this.getTime(item.bidProduct?.latestBidAt) || "undefined"}
+                                        bidClick={item.count || 0}
+                                        startPrice={item.bidProduct?.startPrice || 0}
+                                        endPrice={item.bidProduct?.endPrice || 0}
+                                    />
+                                </TouchableOpacity>
                             )
                         }}
                         keyExtractor={(item) => item.bidProductId ? item.bidProductId : uuidv4()}

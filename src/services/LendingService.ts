@@ -8,7 +8,6 @@ import { config } from "../config/Config";
 
 export class LendingService {
   public static createLending(lending: Lending): Promise<any> {
-    console.log(lending);
     return getAxios().then((axios) =>
       axios({
         method: "POST",

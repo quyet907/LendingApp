@@ -27,7 +27,6 @@ export class BidService {
                 data : {bid_productId : id}
             })
             .then((res)=>{
-                console.log(res);
                 return res.data
             })
             .catch(err=>{
@@ -66,45 +65,33 @@ export class BidService {
         })
     }
 
-    public static roundingMoney = (money: number): string => {
-        let moneyString: string = "";
-        if (money >= 0 && money < 1e3) {
-            moneyString = money.toFixed(2).toString();
-        }
-        else if (money >= 1e3 && money < 1e6) {
-            moneyString = `${(money / 1e3).toFixed(2).toString()}K`;
-        }
-        else if (money >= 1e6 && money < 1e9) {
-            moneyString = `${(money / 1e6).toFixed(2).toString()}M`;
-        }
-        else if (money >= 1e9 && money < 1e12) {
-            moneyString = `${(money / 1e9).toFixed(2).toString()}B`;
-        }
-        else if (money >= 1e12 && money < 1e15) {
-            moneyString = `${(money / 1e12).toFixed(2).toString()}KB`;
-        }
-        else if (money >= 1e15 && money < 1e18) {
-            moneyString = `${(money / 1e15).toFixed(2).toString()}MB`;
-        }
+    public static getTimeCountBid(bidProduct : BidProduct): number{
+        let calcTime: number = 0;
+        if (bidProduct.latestBidAt) {
+            calcTime = BidService.calcTime(bidProduct.latestBidAt)
+        } else if (bidProduct.startBidAt) {
+            calcTime = BidService.calcTime(bidProduct.startBidAt)
+        } 
 
-        return `$${moneyString}`;
+        return calcTime;
     }
+    
 
     public static calcTime(Time: Date): number {
         Time = new Date(Time);
-        let Calc: number = (Time.getTime() + 10 * 1000) - (new Date().getTime());
+        let Calc: number = (Time.getTime() + config.api.timeLimit * 1000) - (new Date().getTime());
         return Math.round(Calc / 1000);
     }
 
     public static checkBidding(Time: number): boolean {
-        return Time <= 10 && Time >= 0 ? true : false;
+        return Time <= config.api.timeLimit && Time >= 0 ? true : false;
     }
 
     public static changeTextButton(calcTime: number): string {
         if (calcTime < 0) {
             return `Finished`
         }
-        if (calcTime > 10) {
+        if (calcTime > config.api.timeLimit) {
             return "Upcoming"
         }
         return `Place A Bid`;
@@ -116,7 +103,7 @@ export class BidService {
         if (calcTime < 0) {
             return `Finished`
         }
-        if (calcTime > 10) {
+        if (calcTime > config.api.timeLimit) {
             return `${BidService.getTimeStart(calcTime)}`
         }
         return `${calcTime}S`;
@@ -128,14 +115,14 @@ export class BidService {
         if (calcTime < 0) {
             return `${BidService.getTimeFinsh(Math.abs(calcTime))}`
         }
-        if (calcTime > 10) {
+        if (calcTime > config.api.timeLimit) {
             return "Upcoming"
         }
         return "Happing";
     }
 
     public static getTimeStart(calcTime: number): string {
-        calcTime -= 10;
+        calcTime -= config.api.timeLimit;
         const minutes = 60;
         const hours = minutes * 60;
         const day = hours * 24;

@@ -3,5 +3,6 @@ export interface IConfig {
     userAPI: string;
     lendingAPI: string;
     domain: string;
+    timeLimit : number;
   };
 }

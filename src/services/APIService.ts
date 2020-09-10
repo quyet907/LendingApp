@@ -78,11 +78,9 @@ export const getAxios = async () => {
 //       },
 //     })
 //       .then((res) => {
-//           console.log(res)
 //           return res
 //       })
 //       .catch((err)=>{
-//           console.log(err)
 //         action.showMessage("Have error with get")
 //       })
 //   );

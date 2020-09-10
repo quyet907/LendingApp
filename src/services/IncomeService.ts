@@ -35,6 +35,7 @@ export class IncomeService {
     let ArrayValue = new Array();
     for (let i = 0; i < listAll.length; i++) {
       let getValue = listAll[i].amount;
+      
       ArrayValue.push(getValue);
     }
 

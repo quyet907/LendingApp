@@ -10,7 +10,6 @@ const Tab = createMaterialTopTabNavigator();
 
 export default class PageBid extends Component {
     render() {
-        console.log(store.getState().Allreducer);
         return (
             <View style={[{ backgroundColor: color.background, flex: 1 }]}>
                 <Tab.Navigator tabBarOptions={{

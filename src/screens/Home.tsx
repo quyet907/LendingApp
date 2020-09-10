@@ -23,7 +23,6 @@ export default class Home extends Component<props, state> {
 
   componentDidMount() {
     LendingProfitHistoryService.getLendingProfit().then((res) => {
-      console.log(res.rows)
       this.setState(
         {
           data: res != undefined ? res.rows : [],
