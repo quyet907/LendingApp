@@ -3,7 +3,6 @@ import { getAxios } from "./APIService";
 import { config } from "../config/Config";
 import { Paging } from "@Core/controller/Paging";
 import { BidProduct } from "@StockAfiModel/bid/BidProduct";
-import ProductBid from "src/components/ProductBid";
 
 export class BidService {
     public static getBidInfo(id: string): Promise<BidProduct> {
