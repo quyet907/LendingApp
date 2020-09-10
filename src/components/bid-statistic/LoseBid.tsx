@@ -18,7 +18,6 @@ export default class LoseBid extends React.Component<Props, State> {
     componentDidMount() {
         BidStatisticService.getBidStatistic().then((bidStatistics: BidStatistic[]) => {
             const bid = bidStatistics.filter(bidStatistic => bidStatistic.bidStatus == BidStatus.lose);
-            console.log(bidStatistics);
             
             this.setState({
                 loseBidList: bid

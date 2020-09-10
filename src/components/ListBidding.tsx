@@ -50,7 +50,6 @@ export default class ListBidComming extends Component<props, state> {
             >
             <ProductBid 
               bidProduct = {item}
-              time = {BidService.calcTime(item.latestBidAt|| new Date)}
           />
           </TouchableOpacity  >
 

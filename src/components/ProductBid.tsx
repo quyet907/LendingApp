@@ -9,16 +9,15 @@ import {connect} from "react-redux";
 import  * as actionAll from "../Action/ActionAll"
 import store from "../reducer/store"
 import { FormatService } from "../services/FormatService";
+import { time } from "console";
  class ProductBid extends Component<props, state> {
     constructor(props: any) {
         super(props);
         this.state = {
-            timeCount : this.props.time,
+            timeCount : 0,
             img : "",
             price : 0
         };
-
-        
     }
 
     
@@ -28,12 +27,14 @@ import { FormatService } from "../services/FormatService";
         setInterval(
             () => {
                 this.setState({
-                    timeCount: this.state.timeCount - 1,
+                    timeCount: BidService.getTimeCountBid(this.props.bidProduct),
                 })
             },
-            1000
+            500
         );
     }
+
+
 
     setValue (){
         if(this.props.bidProduct.product?.thumbImagesUrl){
@@ -45,7 +46,7 @@ import { FormatService } from "../services/FormatService";
         if(this.props.bidProduct.endPrice){
            price = this.props.bidProduct.endPrice;
         }
-        if(this.props.bidProduct.startPrice){
+        else if(this.props.bidProduct.startPrice){
             price = this.props.bidProduct.startPrice;
         }
         this.setState({
@@ -92,7 +93,6 @@ import { FormatService } from "../services/FormatService";
 }
 type props = {
     bidProduct : BidProduct,
-    time : number;
     onReload():void
 };
 type state = {

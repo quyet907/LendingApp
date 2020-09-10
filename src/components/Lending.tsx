@@ -51,7 +51,6 @@ export default class Lending extends React.Component<Props, State> {
   }
   componentDidMount() {
     LendingPackageService.getLendingPackage().then((pagingLendingPackages: Paging<LendingPackage>) => {
-      console.log(pagingLendingPackages.rows);
       if (pagingLendingPackages.rows.length > 0) {
         
         this.setState({
@@ -247,7 +246,6 @@ export default class Lending extends React.Component<Props, State> {
   }
 
   checkCheckbox = () => {
-    console.log('click')
     this.setState(
       {
         isSelected: !this.state.isSelected,

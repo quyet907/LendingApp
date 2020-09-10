@@ -25,7 +25,7 @@ export default class Bid extends Component<props, state>{
             priceBid: 0,
 
         }
-        console.log(this.props);
+
         bidProductId = this.props.data;
         BidService.getBidInfo(bidProductId).then((bidProduct: BidProduct) => {
             this.renderDataBid(bidProduct);
@@ -39,50 +39,33 @@ export default class Bid extends Component<props, state>{
     componentDidMount() {
         setInterval(
             () => {
+
+                BidService.getBidInfo(bidProductId).then((bidProduct: BidProduct) => {
+                    this.renderDataBid(bidProduct);
+                })
+
                 this.setState({
-                    timeBid: this.state.timeBid - 1,
+                    timeBid: BidService.getTimeCountBid(this.state.bidProduct),
                 })
             },
-            1000
+            500
         );
-
-        // BidProductHistoryService.getListById(bidProductId)
-        //     .then((listBidder: BidProductHistory[]) => {
-        //         console.log(listBidder);
-        //         if (listBidder) {
-        //             let list: Array<BidProductHistory> = listBidder;
-        //             this.setState({
-        //                 bidders: list
-        //             })
-        //         }
-        //     })
-
-        
 
     }
 
     renderDataBid(bidProduct : BidProduct) {
-        
-
         this.setState({
             bidProduct: bidProduct,
             product: bidProduct.product || {},
             bidders: bidProduct.listHistoryBid || []
         })
-        let calcTime: number = 0;
-        if (bidProduct.latestBidAt) {
-            calcTime = BidService.calcTime(bidProduct.latestBidAt)
-        } else if (bidProduct.startBidAt) {
-            calcTime = BidService.calcTime(bidProduct.startBidAt)
-        }
-
         this.setState({
-            timeBid: calcTime,
             priceBid: bidProduct.endPrice || bidProduct.startPrice || 0
         })
-
         
     }
+
+    
 
     render() {
         return (
@@ -138,7 +121,7 @@ export default class Bid extends Component<props, state>{
                 <View style={[myStyle.frListBidder]}>
                     <Text style={[myStyle.headerBidder]}>Bidder</Text>
                     <ListBidder
-                        bidders={this.state.bidders}
+                        bidders={this.state.bidders.reverse()}
                     ></ListBidder>
                 </View>
 

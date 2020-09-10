@@ -36,18 +36,7 @@ export default class ListBidComming extends Component<props, state> {
     })
   }
 
-  // findMinTime(bidCommings : BidProduct[]) {
-  //   let getListDate:Array<any> = bidCommings.map(bid =>{
-  //     if(bid.startBidAt){
-  //       return new Date(bid.startBidAt);
-  //     }
-  //   })
 
-  //   if(getListDate){
-  //     let minDate = new Date(Math.min(...getListDate))
-  //     console.log(minDate);
-  //   }
-  // }
 
 
   render() {

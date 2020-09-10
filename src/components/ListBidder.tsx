@@ -12,18 +12,15 @@ export default class ListBidder extends Component<props, state> {
             }
     }
     componentDidUpdate() {
-
-        if(this.props.bidders!=null &&this.props.bidders.length >0 && this.props.bidders[0]._id){
-            if (!this.state.firstBidder) {
-                this.setState({
-                    firstBidder: this.props.bidders[0]._id
-                })
-            }
-        }
         
     }
 
     
+    
+
+    
+
+
     render() {
         return (
             <ScrollView style={[]}>
@@ -33,7 +30,7 @@ export default class ListBidder extends Component<props, state> {
 
                         return (
                             <BidderItem
-                            firstBidder={this.state.firstBidder}
+                                firstBidder={this.props.bidders[0]._id}
                                 bidder={item}
                             ></BidderItem>
 
