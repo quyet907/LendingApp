@@ -3,7 +3,7 @@ import { IConfig } from "./IConfig";
 const localConfig: IConfig = {
   api: {
     lendingAPI: "http://localhost:4001",
-    userAPI: "http://localhost:4000",
+    userAPI: "http://localhost:4001",
     domain: 'http://localhost:19006'
   },
 };

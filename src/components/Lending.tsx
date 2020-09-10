@@ -26,6 +26,7 @@ import { Lending as LendingModel } from "@StockAfiCore/model/lending/Lending";
 import PopupConfirm from "./PopupConfirm";
 import * as color from '../Color'
 import { IncomeService } from "../services/IncomeService";
+import { Paging } from "@Core/controller/Paging";
 
 export default class Lending extends React.Component<Props, State> {
   constructor(props: any) {
@@ -49,14 +50,17 @@ export default class Lending extends React.Component<Props, State> {
     };
   }
   componentDidMount() {
-    LendingPackageService.getLendingPackage().then((pagingLendingPackages) => {
+    LendingPackageService.getLendingPackage().then((pagingLendingPackages: Paging<LendingPackage>) => {
       console.log(pagingLendingPackages.rows);
-      this.setState({
-        packages: pagingLendingPackages.rows,
-        packageID: pagingLendingPackages.rows[0]._id,
-        minInvestment: pagingLendingPackages.rows[0].minInvestment || 0,
-        // maxInvestment: pagingLendingPackages.rows[0].maxInvestment || 0,
-      });
+      if (pagingLendingPackages.rows.length > 0) {
+        
+        this.setState({
+          packages: pagingLendingPackages.rows,
+          packageID: pagingLendingPackages.rows[0]._id,
+          minInvestment: pagingLendingPackages.rows[0].minInvestment || 0,
+          // maxInvestment: pagingLendingPackages.rows[0].maxInvestment || 0,
+        });
+      }
     });
     LendingService.getMyInvest().then((res) => {
       this.setState({ myInvest: res.rows });

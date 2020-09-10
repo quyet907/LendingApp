@@ -3,8 +3,9 @@ import { View, Text, TextInput, Image, StyleSheet, Button, Clipboard } from 'rea
 import { TouchableOpacity, ScrollView, FlatList } from 'react-native-gesture-handler';
 import * as color from '../../Color'
 import BidDetail from './BidDetail';
-import { BidStatisticService } from '../../services/BidStatisticService';
-import { BidStatus, BidStatistic } from '@StockAfiModel/bid/BidStatistic';
+import { BidStatistic } from '@StockAfiModel/bid/BidStatistic';
+import { BidStatisticService } from "../../services/BidStatisticService"
+import { BidStatus } from '../../share/base-stock-afi/model/bid/BidStatus';
 export default class MyBidLost extends React.Component<Props, State> {
     constructor(props: any) {
         super(props);
@@ -14,9 +15,9 @@ export default class MyBidLost extends React.Component<Props, State> {
     }
 
     componentDidMount() {
-        BidStatisticService.getBidStatistic().then((bidStatistics) => {
+        BidStatisticService.getBidStatistic().then((bidStatistics: BidStatistic[]) => {
             this.setState({
-                loseBids: bidStatistics.filter(bidStatistic => bidStatistic.bidStatus === BidStatus.lose)
+                // loseBids: bidStatistics.filter(bidStatistic => bidStatistic.bidStatus === BidStatus.lose)
             })
 
         })
