@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
-import MyBidWin from '../components/bid-history-components/MyBidWin';
-import MyBidLost from '../components/bid-history-components/MyBidLost';
+import MyBidWin from '../components/bid-statistic/WinBid';
+import MyBidLost from '../components/bid-statistic/LoseBid';
 import * as color from '../Color'
 const Tab = createMaterialTopTabNavigator();
 

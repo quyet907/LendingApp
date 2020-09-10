@@ -1,9 +1,9 @@
 import { Paging } from "@Core/controller/Paging";
 import {getAxios} from "./APIService";
 import {config} from "../config/Config"
-import { BidProductHistory } from "@StockAfiCore/model/bid/BidProductHistory";
+import { BidHistory } from "@StockAfiCore/model/bid/BidHistory";
 export class BidProductHistoryService {
-    public static getListById(idBidProduct : string ): Promise<BidProductHistory[]>{
+    public static getStatistic(idBidProduct : string ): Promise<BidHistory[]>{
         return getAxios().then((axios) =>{
            return axios({
                 method : "GET",

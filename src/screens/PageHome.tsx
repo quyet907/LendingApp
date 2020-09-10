@@ -8,7 +8,7 @@ import ReferralScreen from "../components/ref-components/Referral";
 import Icon from "react-native-vector-icons/FontAwesome5";
 import Logout from "./Logout";
 import * as color from "../Color";
-import MyBid from "../components/bid-history-components/MyBidWin";
+import MyBid from "../components/bid-statistic/WinBid";
 import HistoryBidScreen from "../screens/HistoryBidScreen";
 import LogoutScreen from "./LogoutScreen";
 import PageBid from "./PageBid";

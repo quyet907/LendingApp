@@ -7,16 +7,16 @@ export default class ListBidder extends Component<props, state> {
     constructor(props: any) {
         super(props),
             this.state = {
-                firtBidder: "",
+                firstBidder: "",
 
             }
     }
     componentDidUpdate() {
 
         if(this.props.bidders!=null &&this.props.bidders.length >0 && this.props.bidders[0]._id){
-            if (!this.state.firtBidder) {
+            if (!this.state.firstBidder) {
                 this.setState({
-                    firtBidder: this.props.bidders[0]._id
+                    firstBidder: this.props.bidders[0]._id
                 })
             }
         }
@@ -33,7 +33,7 @@ export default class ListBidder extends Component<props, state> {
 
                         return (
                             <BidderItem
-                                firtBidder={this.state.firtBidder}
+                            firstBidder={this.state.firstBidder}
                                 bidder={item}
                             ></BidderItem>
 
@@ -50,5 +50,5 @@ type props = {
     bidders: Array<BidProductHistory>
 }
 type state = {
-    firtBidder: string,
+    firstBidder: string,
 }

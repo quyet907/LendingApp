@@ -1,15 +1,13 @@
 import * as React from 'react';
 import { View, Text, TextInput, Image, StyleSheet, Button, Clipboard } from 'react-native';
-import Separator from '../Separator'
 import { TouchableOpacity, ScrollView, FlatList } from 'react-native-gesture-handler';
-import FlashMessage, { showMessage, hideMessage } from "react-native-flash-message";
-import { Referal } from '@Core/model/user/Referal';
-import { ReferralService } from '../../services/ReferralService';
 import * as color from '../../Color'
 import BidDetail from './BidDetail';
-import { BidStatisticService } from '../../services/BidStatisticService';
-import { BidProductStatistic } from '@StockAfiCore/model/bid/BidProductStatistic';
-export default class MyBidWin extends React.Component<Props, State> {
+import { BidStatisticService } from "../../services/BidStatisticService"
+import { BidStatistic } from "@StockAfiModel/bid/BidStatistic";
+import { BidStatus } from '../../share/base-stock-afi/model/bid/BidStatus';
+import { v4 as uuidv4 } from 'uuid';
+export default class WinBid extends React.Component<Props, State> {
     constructor(props: any) {
         super(props);
         this.state = {
@@ -18,9 +16,13 @@ export default class MyBidWin extends React.Component<Props, State> {
     }
 
     componentDidMount() {
-        BidStatisticService.getBidProductStatistic().then((res) => {
+        BidStatisticService.getBidStatistic().then((bidStatistics: BidStatistic[]) => {
+            const bid = bidStatistics.filter(bidStatistic => bidStatistic.bidStatus == BidStatus.win);
+            console.log(bidStatistics);
+            
             this.setState({
-                winBidList: res
+                winBidList: bid
+
             })
 
         })
@@ -37,16 +39,16 @@ export default class MyBidWin extends React.Component<Props, State> {
                         renderItem={({ item }) => {
                             return (
                                 <BidDetail
-                                    imgURL={item.product?.thumbImagesUrl ? item.product.thumbImagesUrl[0] : "null"}
+                                imgURL={item.bidProduct && item.bidProduct.product && item.bidProduct.product.thumbImagesUrl ? item.bidProduct.product.thumbImagesUrl[0] : 'null'}
                                     name={item.bidProduct?.product?.name || "undefined"}
                                     bidAt={this.getTime(item.bidProduct?.latestBidAt) || "undefined"}
-                                    bidClick={item.bidCount || 0}
+                                    bidClick={item.count || 0}
                                     startPrice={item.bidProduct?.startPrice || 0}
                                     endPrice={item.bidProduct?.endPrice || 0}
                                 />
                             )
                         }}
-                        keyExtractor={(item) => item.bidProductId ? item.bidProductId : 'null'}
+                        keyExtractor={(item) => item.bidProductId ? item.bidProductId : uuidv4()}
                     />
 
 
@@ -88,6 +90,6 @@ type Props = {
 }
 
 type State = {
-    winBidList: Array<BidProductStatistic>
+    winBidList: BidStatistic[]
 
 }

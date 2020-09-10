@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { View, Image, Text } from 'react-native'
 import myStyle from "../style"
-import { BidProductHistory } from '@StockAfiCore/model/bid/BidProductHistory'
+import { BidHistory } from '@StockAfiCore/model/bid/BidHistory'
 export default class BidderItem extends Component <props , state> {
     constructor(props: any) {
         super(props)
@@ -11,7 +11,7 @@ export default class BidderItem extends Component <props , state> {
     }
     render() {
         return (
-            <View style = {this.props.firtBidder==this.props.bidder._id ?[myStyle.lastBidderItem] : [myStyle.bidderItem]}>
+            <View style = {this.props.firstBidder==this.props.bidder._id ?[myStyle.lastBidderItem] : [myStyle.bidderItem]}>
                 {/* <View>
                     <Image
                         style={[myStyle.avtBidder]}
@@ -33,8 +33,8 @@ export default class BidderItem extends Component <props , state> {
 }
 
 type props = {
-    bidder : BidProductHistory,
-    firtBidder : string 
+    bidder : BidHistory,
+    firstBidder : string
 }
 type state = {
     
