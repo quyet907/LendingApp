@@ -13,20 +13,20 @@ export default class BidDetail extends React.Component<Props, {}>{
             <View >
                 <View style={styles.container}>
                     <View style={styles.subContainer}>
-                        <Image style={styles.img} source={{uri: this.props.imgURL}} />
+                        <Image style={styles.img} source={{ uri: this.props.imgURL }} />
                     </View>
 
                     <View style={styles.subContainer2}>
-        <Text style={[{ fontSize: 16, fontWeight: "600" }, styles.fontWhiteColor]}>{this.props.name}</Text>
-                        <View style={{flexDirection: 'row' , flex: 1, justifyContent: 'space-between'}}>
+                        <Text style={[{ fontSize: 16, fontWeight: "600" }, styles.fontWhiteColor]}>{this.props.name}</Text>
+                        <View style={{ flexDirection: 'row', flex: 1, justifyContent: 'space-between' }}>
 
-                            <View style={{justifyContent: 'space-around', paddingTop: 5}}>
+                            <View style={{ justifyContent: 'space-around', paddingTop: 5 }}>
                                 <Text style={{ color: color.inactive }}>{this.props.bidAt}</Text>
                                 <Text style={[styles.times, styles.fontWhiteColor]}>{`${this.props.bidClick} clicks`}</Text>
                             </View>
-                            <View style={{justifyContent: 'flex-end', alignItems: 'flex-end'}}>
-                                <Text style={{ color: color.inactive, textDecorationLine: 'line-through' }}>{this.props.startPrice}</Text>
-                                <Text style={[styles.price]}>{this.props.endPrice}</Text>
+                            <View style={{ justifyContent: 'flex-end', alignItems: 'flex-end' }}>
+                                <Text style={{ color: color.inactive, textDecorationLine: 'line-through' }}>${this.props.startPrice}</Text>
+                                <Text style={[styles.price]}>${this.props.endPrice}</Text>
                             </View>
 
                         </View>
@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         flex: 1,
         padding: 15,
-        paddingVertical: 15,
+        paddingVertical: 10,
 
         shadowColor: "#333",
         shadowOffset: {
@@ -68,13 +68,14 @@ const styles = StyleSheet.create({
         elevation: 2,
 
 
-        marginBottom: 10,
+        marginBottom: 14,
         borderRadius: 5,
         backgroundColor: color.background
     },
 
     subContainer: {
-        flexBasis: 80
+        flexBasis: 80,
+        marginRight: 6,
 
     },
     subContainer2: {

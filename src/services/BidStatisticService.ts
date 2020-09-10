@@ -8,7 +8,7 @@ export class BidStatisticService {
     return getAxios().then((axios) =>
       axios({
         method: "GET",
-        url: `${config.api.lendingAPI}/bid_product/statistic`,
+        url: `${config.api.lendingAPI}/bid_history/statistic`,
       })
         .then((res) => {
           return res.data;
