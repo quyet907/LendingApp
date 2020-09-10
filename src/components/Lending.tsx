@@ -27,8 +27,9 @@ import PopupConfirm from "./PopupConfirm";
 import * as color from '../Color'
 import { IncomeService } from "../services/IncomeService";
 import { Paging } from "@Core/controller/Paging";
+import { useIsFocused } from "@react-navigation/native";
 
-export default class Lending extends React.Component<Props, State> {
+class Lending extends React.Component<Props, State> {
   constructor(props: any) {
     super(props);
     this.state = {
@@ -49,6 +50,11 @@ export default class Lending extends React.Component<Props, State> {
       myInvest: [],
     };
   }
+
+  componentWillUpdate(previousProps: Props){
+    console.log(`Tab change Lending focus is ${previousProps.isFocused}`)
+  }
+
   componentDidMount() {
     LendingPackageService.getLendingPackage().then((pagingLendingPackages: Paging<LendingPackage>) => {
       if (pagingLendingPackages.rows.length > 0) {
@@ -431,12 +437,15 @@ const styles = StyleSheet.create({
   },
 });
 
-type Props = {};
+type Props = {
+  isFocused:boolean
+};
 
 type State = {
   initialValue: any;
   isSelected: boolean;
   wallet: number;
+
 
   packageSelected: any;
   packageID: any;
@@ -448,3 +457,9 @@ type State = {
 
   myInvest: LendingModel[];
 };
+
+export default function (props: Props) {
+  const isFocused = useIsFocused();
+
+  return <Lending {...props} isFocused={isFocused} />;
+}
