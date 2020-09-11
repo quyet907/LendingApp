@@ -48,12 +48,14 @@ export default class ListBidComming extends Component<props, state> {
           renderItem={({ item }) =>
             <TouchableOpacity
               onPress={() => {
-                Actions.bid(item._id);
+                this.props.navigation.navigate("Detail", {
+                  bid: item._id
+                });
               }}
             >
               <ProductBid
                 bidProduct={item}
-                time={BidService.calcTime(item.startBidAt || new Date)}
+                // time={BidService.calcTime(item.startBidAt || new Date)}
               />
             </TouchableOpacity  >
 
@@ -66,10 +68,10 @@ export default class ListBidComming extends Component<props, state> {
 }
 
 type props = {
-
+  navigation: any
 };
 type state = {
-  bidCommings: Array<BidProduct>;
+  bidCommings: BidProduct[];
 };
 
 

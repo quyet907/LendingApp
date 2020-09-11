@@ -9,7 +9,7 @@ import {connect} from "react-redux";
 import  * as actionAll from "../../Action/ActionAll"
 import store from "../../reducer/store"
 import { FormatService } from "../../services/FormatService";
- class ProductBid extends Component<props, state> {
+class ProductBid extends Component<props, state> {
     constructor(props: any) {
         super(props);
         this.state = {
