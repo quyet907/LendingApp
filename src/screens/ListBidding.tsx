@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { View, FlatList } from "react-native";
-import ProductBid from "../components/ProductBid";
+import ProductBid from "../components/bid/ProductBid";
 import myStyle from "../style";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import {Actions } from "react-native-router-flux"

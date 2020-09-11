@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { View, Image, Text } from 'react-native'
-import myStyle from "../style"
+import myStyle from "../../style"
 import { BidHistory } from '@StockAfiCore/model/bid/BidHistory'
 export default class BidderItem extends Component <props , state> {
     constructor(props: any) {

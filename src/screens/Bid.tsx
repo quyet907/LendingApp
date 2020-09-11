@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { View, Text, TouchableOpacity, Image } from 'react-native'
 import myStyle from "../style"
 import Carousel from 'react-native-snap-carousel';
-import ListBidder from '../components/ListBidder';
+import ListBidder from '../components/bid/ListBidder';
 import * as color from "../Color"
 import { Actions } from "react-native-router-flux"
 import { BidProduct } from '@StockAfiCore/model/bid/BidProduct';

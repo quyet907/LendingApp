@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { View, Text, Image } from "react-native";
-import myStyle from "../style"
-import * as color from '../Color'
+import myStyle from "../../style"
+import * as color from '../../Color'
 import Icon from "react-native-vector-icons/FontAwesome5"
-import { FormatService } from '../services/FormatService';
+import { FormatService } from '../../services/FormatService';
 
 export default class StatisticalBasic extends Component<props, state>{
     constructor(props: any) {

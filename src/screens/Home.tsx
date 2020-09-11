@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import { View, ScrollView } from "react-native";
 import myStyle from "../style";
-import ChartHome from "../components/ChartHome";
-import ListStatisticalBasic from "../components/ListStatisticalBasic";
-import ListHistoryInterest from "../components/ListHistoryInterest";
+import ChartHome from "../components/home/ChartHome";
+import ListStatisticalBasic from "../components/home/ListStatisticalBasic";
+import ListHistoryInterest from "../components/home/ListHistoryInterest";
 import { FlatList } from "react-native-gesture-handler";
-import HistoryInterest from "../components/HistoryInterest";
+import HistoryInterest from "../components/home/HistoryInterest";
 import { LendingProfitHistoryService } from "../services/LendingProfitHistoryService";
 import { ProfitHistory } from "@StockAfiCore/model/lending/LendingProfitHistory";
 import axios from "axios";

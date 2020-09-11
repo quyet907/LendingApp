@@ -11,11 +11,8 @@ import myStyle from "../style";
 import { UserService } from "../services/UserService";
 import { Actions } from "react-native-router-flux";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
-import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 import * as Color from "../Color";
-import Separator from "../components/Separator";
-import { createSwitchNavigator, createAppContainer } from 'react-navigation';
 
 export default class Logout extends Component<props, state> {
   constructor(props: any) {

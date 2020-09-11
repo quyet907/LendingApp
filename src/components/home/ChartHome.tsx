@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { View} from "react-native";
 import {LineChart} from "react-native-chart-kit";
 import { Line } from "react-chartjs-2";
-import { IncomeService } from '../services/IncomeService';
+import { IncomeService } from '../../services/IncomeService';
 
 
 const dataChart:any = {

@@ -65,7 +65,7 @@ export class UserService {
             }
         })
             .then(res => {
-                if (res.message != null) {
+                if (res && res.message) {
                     return false;
                 }
                 else {

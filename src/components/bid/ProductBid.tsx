@@ -1,15 +1,14 @@
 import React, { Component } from "react";
 import { View, Text, Image } from "react-native";
-import myStyle from "../style";
+import myStyle from "../../style";
 import Actions from "react-native-router-flux"
-import * as color from "../Color"
+import * as color from "../../Color"
 import { BidProduct } from "@StockAfiCore/model/bid/BidProduct";
-import { BidService } from "../services/BidService";
+import { BidService } from "../../services/BidService";
 import {connect} from "react-redux";
-import  * as actionAll from "../Action/ActionAll"
-import store from "../reducer/store"
-import { FormatService } from "../services/FormatService";
-import { time } from "console";
+import  * as actionAll from "../../Action/ActionAll"
+import store from "../../reducer/store"
+import { FormatService } from "../../services/FormatService";
  class ProductBid extends Component<props, state> {
     constructor(props: any) {
         super(props);

@@ -30,7 +30,7 @@ export class IncomeService {
         ArrayDate.push(`${getDate.getDate()}/${getDate.getMonth()}`);
       }
     }
-    return ArrayDate.reverse();
+    return ArrayDate;
   }
 
   public static createDataChart(listAll: Income[]): Array<number> {
@@ -42,7 +42,7 @@ export class IncomeService {
         ArrayValue.push(getValue);
       }
     }
-    ArrayValue.reverse();
+
 
     return ArrayValue;
   }

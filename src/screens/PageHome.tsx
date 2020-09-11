@@ -3,8 +3,7 @@ import { View, StyleSheet } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Home from "../screens/Home";
-import LendingScreen from "../components/Lending";
-import ReferralScreen from "../components/ref-components/Referral";
+import LendingScreen from "./Lending";
 import Icon from "react-native-vector-icons/FontAwesome5";
 import Logout from "./Logout";
 import * as color from "../Color";
@@ -13,7 +12,7 @@ import HistoryBidScreen from "../screens/HistoryBidScreen";
 import LogoutScreen from "./LogoutScreen";
 import PageBid from "./PageBid";
 import Bid from "./Bid";
-import Referral from "../components/ref-components/Referral";
+import Referral from "./Referral";
 
 const Tab = createBottomTabNavigator();
 

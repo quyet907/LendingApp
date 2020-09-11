@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Text, View, Dimensions, StyleSheet, TouchableOpacity } from 'react-native';
-import style from '../style';
+import style from '../../../style';
 import { LendingPackage } from '@StockAfiCore/model/lending/LendingPackage';
-import *  as color from '../Color'
+import *  as color from '../../../Color'
 
 
 

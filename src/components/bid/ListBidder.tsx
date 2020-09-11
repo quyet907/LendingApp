@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { View, FlatList, ScrollView } from 'react-native'
-import myStyle from "../style"
+import myStyle from "../../style"
 import BidderItem from './BidderItem'
 import { BidHistory } from '@StockAfiCore/model/bid/BidHistory'
 export default class ListBidder extends Component<props, state> {
