@@ -1,8 +1,9 @@
 import * as React from 'react'
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
-import MyBidWin from '../components/bid-statistic/WinBid';
-import MyBidLost from '../components/bid-statistic/LoseBid';
+import WinBid from '../components/bid-statistic/WinBid';
+import LoseBid from '../components/bid-statistic/LoseBid';
 import * as color from '../Color'
+import { title } from 'process';
 const Tab = createMaterialTopTabNavigator();
 
 export default class HistoryBidScreen extends React.Component {
@@ -13,8 +14,8 @@ export default class HistoryBidScreen extends React.Component {
           activeTintColor: '#fff',
           style: { backgroundColor: color.background }
         }}>
-          <Tab.Screen name='Win bid' component={MyBidWin} />
-          <Tab.Screen name='Lost bid' component={MyBidLost} />
+          <Tab.Screen name='WinBid' component={WinBid}  options={{ tabBarLabel: 'Win bid' }}/>
+          <Tab.Screen name='LoseBid' component={LoseBid}  options={{ tabBarLabel: 'Lose bid' }}/>
         </Tab.Navigator>
       )
     }

@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { View, StyleSheet, Text, Image, ImageProps } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import Separator from '../Separator'
 import * as color from '../../Color'
 const timeIcon = <Icon name="access-time" size={13} color='#868685' />;
 export default class BidDetail extends React.Component<Props, {}>{
