@@ -6,19 +6,19 @@ import { IncomeService } from '../services/IncomeService';
 
 
 const dataChart:any = {
-    labels : ["cột1", "cột 2", "cột 3", "cột4"],
+    labels : [],
     datasets : [
         {
-            label : "hàng 1",
-            data : [1, 4, 2, 8],
+            label : "",
+            data : [],
             fill : true,
             backgroundColor :"rgba(242, 199, 58,0.1)",
             borderColor : "rgba(242, 199, 58,0.7)"
 
         },
         {
-            label : "hàng 2",
-            data : [2, 6, 5, 9],
+            label : "",
+            data : [],
             fill : true,
             backgroundColor :"rgba(0, 192, 135,0.1)",
             borderColor : "rgba(0, 192, 135,0.7)"
@@ -26,8 +26,8 @@ const dataChart:any = {
 
         },
         {
-            label : "hàng 3",
-            data : [3, 4, 8, 7],
+            label : "",
+            data : [],
             fill : true,
             backgroundColor :"rgba(229, 3, 113,0.1)",
             borderColor : "rgba(229, 3, 113,0.7)"

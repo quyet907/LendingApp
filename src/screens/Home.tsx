@@ -12,23 +12,37 @@ import axios from "axios";
 import { UserService } from "../../src/services/UserService";
 import { IncomeService } from "../services/IncomeService";
 import { Finance } from "@StockAfiCore/model/lending/Finance";
+import { useIsFocused } from "@react-navigation/native";
 // import { Income } from "@StockAfiCore/model/lending/Income";
 var uuid = require('react-native-uuid');
-export default class Home extends Component<props, state> {
+class Home extends Component<Props, State> {
   constructor(props: any) {
     super(props);
     this.state = {
       data: [],
       index: 0,
       dataChart: [],
-      dataFinance : {}
+      dataFinance: {}
     };
 
   }
 
   componentDidMount() {
     this.getDataChart();
-    this.getDataFinance();
+      this.getDataFinance();
+      this.getDataProfit()
+  };
+
+  componentWillReceiveProps(previousProps: Props) {
+    if (previousProps.isFocused) {
+      this.getDataChart();
+      this.getDataFinance();
+      this.getDataProfit()
+    }
+  }
+
+
+  getDataProfit() {
     LendingProfitHistoryService.getLendingProfit().then((res) => {
       this.setState(
         {
@@ -38,10 +52,8 @@ export default class Home extends Component<props, state> {
     });
   };
 
-
-
   getDataChart() {
-    IncomeService.getListCharIncome().then((incomes : any) => {
+    IncomeService.getListCharIncome().then((incomes: any) => {
       console.log(incomes);
       if (incomes != undefined) {
 
@@ -53,10 +65,8 @@ export default class Home extends Component<props, state> {
     })
   }
 
-
-
   getDataFinance() {
-    IncomeService.getFinance().then((finance : Finance) => {
+    IncomeService.getFinance().then((finance: Finance) => {
       this.setState({
         dataFinance: finance
       })
@@ -77,7 +87,7 @@ export default class Home extends Component<props, state> {
           </View>
           <View style={myStyle.listStatisticalBasic}>
             <ListStatisticalBasic
-              dataFinance  = {this.state.dataFinance}
+              dataFinance={this.state.dataFinance}
             ></ListStatisticalBasic>
           </View>
 
@@ -116,10 +126,20 @@ export default class Home extends Component<props, state> {
   };
 }
 
-type props = {};
-type state = {
+type Props = {
+  isFocused: boolean
+
+};
+type State = {
   data: ProfitHistory[],
   index: number,
   dataChart: any,
-  dataFinance : Finance
+  dataFinance: Finance
 };
+
+
+export default function (props: Props) {
+  const isFocused = useIsFocused();
+
+  return <Home {...props} isFocused={isFocused} />;
+}

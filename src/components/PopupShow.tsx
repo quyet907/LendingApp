@@ -16,9 +16,7 @@ class PopupShow extends React.Component<Props, {}>{
 
                 </View>
                 <View style={styles.popup}>
-                    {/* <View style={styles.textContent}>
-                        <Text style = {{color: 'white'}}> {this.props.title}</Text>
-                    </View> */}
+                    
                     <View style={styles.textContent}>
                         <Text style={{ color: 'white', alignItems: "center" }}>{this.props.content}</Text>
                     </View>

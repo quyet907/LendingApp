@@ -39,18 +39,6 @@ export default class PopupConfirm extends React.Component<Props, {}>{
                             <Text>OK</Text>
                         </TouchableOpacity>
 
-
-
-
-                        {/* {this.props.hideBtnCancel ? null : <Button color = {"#f2c73a"} title='Cancel' onPress={() => this.props.buttonCancel()}></Button>}
-                        <Text style={{ marginHorizontal: 5 }}></Text>
-                        <Button
-                            color = {"#f2c73a"}
-                            title='OK' onPress={() => {
-                            
-                            this.props.buttonOK()
-                        }
-                        }></Button> */}
                     </View>
 
                 </View>

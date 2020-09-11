@@ -3,12 +3,7 @@ import {
   View,
   Text,
   TextInput,
-  Image,
   StyleSheet,
-  Button,
-  Clipboard,
-  CheckBox,
-  Alert,
 } from "react-native";
 import Separator from "./Separator";
 import {

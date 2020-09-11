@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import { View } from 'react-native'
 import myStyle from "../style"
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs'
-import ListBidComming from '../components/ListBidComming';
-import ListBidding from '../components/ListBidding';
+import ListBidComming from './ListBidComming';
+import ListBidding from './ListBidding';
 import store from "../reducer/store"
 import * as color from "../Color"
 const Tab = createMaterialTopTabNavigator();
