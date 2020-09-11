@@ -8,7 +8,7 @@ import { Actions } from "react-native-router-flux"
 import { BidProduct } from '@StockAfiCore/model/bid/BidProduct';
 import { BidService } from '../services/BidService';
 import { Product } from '@StockAfiCore/model/product/Product';
-import { BidProductHistory } from '@StockAfiCore/model/bid/BidProductHistory';
+import { BidHistory } from '@StockAfiCore/model/bid/BidHistory';
 import { BidProductHistoryService } from '../services/BidProductHistoryService';
 import { Paging } from '@Core/controller/Paging';
 import { FormatService } from '../services/FormatService';
@@ -154,7 +154,7 @@ type props = {
 type state = {
     bidProduct: BidProduct
     product: Product
-    bidders: Array<BidProductHistory>
+    bidders: Array<BidHistory>
     timeBid: number,
     priceBid: number
 }

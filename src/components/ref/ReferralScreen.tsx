@@ -3,16 +3,17 @@ import { View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
-import Lending from '../components/Lending'
+import Referral from 'src/screens/Referral';
+
 
 
 const LendingStack = createStackNavigator();
 
-export default class LendingScreen extends React.Component {
+export default class ReferralScreen extends React.Component {
   render () {
     return (
       <LendingStack.Navigator>
-        <LendingStack.Screen name='Lending' component={Lending} />
+        <LendingStack.Screen name='Referral' component={Referral} />
       </LendingStack.Navigator>
     )
   }

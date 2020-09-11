@@ -2,8 +2,6 @@ import * as React from 'react';
 import { View, StyleSheet, Text, Image } from 'react-native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
-import Separator from '../Separator'
-import style from 'src/style';
 import * as color from '../../Color'
 const timeIcon = <MaterialIcons name="access-time" size={12} color={color.inactive} />;
 export default class HistoryDetail extends React.Component<Props, {}>{

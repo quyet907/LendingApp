@@ -1,15 +1,13 @@
 import * as React from 'react';
 import { View, Text, TextInput, Image, StyleSheet, Button, Clipboard } from 'react-native';
-import Separator from '../Separator'
 import { TouchableOpacity, ScrollView, FlatList } from 'react-native-gesture-handler';
-import RefAbout from './RefAbout';
-import HistoryDetail from './HistoryDetail';
 import FlashMessage, { showMessage, hideMessage } from "react-native-flash-message";
 import { Referal } from '@Core/model/user/Referal';
-import { ReferralService } from '../../services/ReferralService';
-import * as color from '../../Color'
-import { config } from '../../config/Config';
+import * as color from '../Color'
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import { ReferralService } from '../../src/services/ReferralService';
+import { config } from '../config/Config';
+import HistoryDetail from '../components/ref/HistoryDetail';
 
 export default class Referral extends React.Component<Props, State> {
     constructor(props: any) {
@@ -31,7 +29,7 @@ export default class Referral extends React.Component<Props, State> {
             <ScrollView style={{ backgroundColor: color.background_primary }}>
                 <FlashMessage position="center" />
                 <View style={styles.container}>
-                    {/* <Text style={styles.textLabel}>REFERRAL</Text> */}
+                    <Text style={styles.textLabel}>REFERRAL</Text>
                     <Text style={{ textAlign: 'justify', color: '#fff' }}>
                         The Lending game referral program is a great way to read the word of this great service and to earn even more money with your friend! Refer friends and receive 1000 COIN of their earnings for life!
                         </Text>
@@ -54,10 +52,10 @@ export default class Referral extends React.Component<Props, State> {
                         </TouchableOpacity >
                     </View>
 
-                    <View style={{justifyContent: 'center', flexDirection: 'row'}}>
-                         <View style={styles.separator} />
+                    <View style={{ justifyContent: 'center', flexDirection: 'row' }}>
+                        <View style={styles.separator} />
                     </View>
-                   
+
 
                     <View style={styles.refAbout}>
                         <View style={{ flexDirection: 'row', justifyContent: 'center', flex: 1 }}>
@@ -70,7 +68,7 @@ export default class Referral extends React.Component<Props, State> {
                             </View>
                         </View>
 
-                        <View style={{ flexDirection: 'row', flex: 1}}>
+                        <View style={{ flexDirection: 'row', flex: 1 }}>
                             <View style={styles.containerIcon}>
                                 <FontAwesome5 name='coins' size={40} color={color.primary} />
                             </View>
@@ -79,9 +77,6 @@ export default class Referral extends React.Component<Props, State> {
                                 <Text style={styles.amount}>{this.state.myReferral.length * 1000}</Text>
                             </View>
                         </View>
-
-
-
                     </View>
 
 
@@ -127,11 +122,11 @@ export default class Referral extends React.Component<Props, State> {
 }
 
 const styles = StyleSheet.create({
-    containerIcon: { 
-        justifyContent: 'center', 
+    containerIcon: {
+        justifyContent: 'center',
         alignItems: 'center',
         paddingHorizontal: 15
-     },
+    },
     container: {
         padding: 20,
         paddingBottom: 5,
@@ -208,11 +203,11 @@ const styles = StyleSheet.create({
         color: '#fff'
     },
     separator: {
-       backgroundColor: color.inactive,
+        backgroundColor: color.inactive,
         height: 1,
         width: '90%',
-  
-      },
+
+    },
 
 })
 
