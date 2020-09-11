@@ -17,7 +17,7 @@ class Lending extends React.Component<Props, State> {
   constructor(props: any) {
     super(props);
     this.state = {
-      initialValue: 0,
+      initialValue: 1,
       wallet: 0,
       isSelected: false,
 
@@ -36,27 +36,9 @@ class Lending extends React.Component<Props, State> {
 
   }
 
-  componentWillUpdate(next: Props) {
-    if (next.isFocused === true) {
-      // LendingPackageService.getLendingPackage().then(
-      //   (pagingLendingPackages: Paging<LendingPackage>) => {
-      //     if (pagingLendingPackages.rows.length > 0) {
-      //       this.setState({
-      //         packages: pagingLendingPackages.rows,
-      //         packageID: pagingLendingPackages.rows[0]._id,
-      //         minInvestment: pagingLendingPackages.rows[0].minInvestment || 0,
-      //         // maxInvestment: pagingLendingPackages.rows[0].maxInvestment || 0,
-      //       });
-      //     }
-      //   }
-      // );
-      // LendingService.getMyInvest().then((res) => {
-      //   this.setState({ myInvest: res.rows });
-      // });
-      // IncomeService.getFinance().then((res) => {
-      //   this.setState({ wallet: res.remainAmount || 0 });
-      //   // });
-      // })
+  componentWillReceiveProps(prev: Props) {
+    if (prev.isFocused) {
+      this.getDataToState();
       console.log("will");
       
     }
@@ -64,24 +46,7 @@ class Lending extends React.Component<Props, State> {
 
 
     componentDidMount() {
-      // LendingPackageService.getLendingPackage().then(
-      //   (pagingLendingPackages: Paging<LendingPackage>) => {
-      //     if (pagingLendingPackages.rows.length > 0) {
-      //       this.setState({
-      //         packages: pagingLendingPackages.rows,
-      //         packageID: pagingLendingPackages.rows[0]._id,
-      //         minInvestment: pagingLendingPackages.rows[0].minInvestment || 0,
-      //         // maxInvestment: pagingLendingPackages.rows[0].maxInvestment || 0,
-      //       });
-      //     }
-      //   }
-      // );
-      // LendingService.getMyInvest().then((res) => {
-      //   this.setState({ myInvest: res.rows });
-      // });
-      // IncomeService.getFinance().then((res) => {
-      //   this.setState({ wallet: res.remainAmount || 0 });
-      // });
+      this.getDataToState();
     }
 
     render() {
@@ -97,7 +62,7 @@ class Lending extends React.Component<Props, State> {
                   marginTop: 10,
                 }}
               >
-                <Text style={styles.textLabel}>CHOOSE ONE PACKAGE {this.setState({ wallet: this.state.wallet +1})}</Text>
+                <Text style={styles.textLabel}>CHOOSE ONE PACKAGE {this.state.initialValue}</Text>
               </View>
 
               <ScrollView
@@ -265,6 +230,31 @@ class Lending extends React.Component<Props, State> {
           />
         </View>
       );
+    }
+
+    getDataToState(){
+      LendingPackageService.getLendingPackage().then(
+        (pagingLendingPackages: Paging<LendingPackage>) => {
+          if (pagingLendingPackages.rows.length > 0) {
+            this.setState({
+              packages: pagingLendingPackages.rows,
+              packageID: pagingLendingPackages.rows[0]._id,
+              minInvestment: pagingLendingPackages.rows[0].minInvestment || 0,
+              // maxInvestment: pagingLendingPackages.rows[0].maxInvestment || 0,
+            });
+          }
+        }
+      );
+      LendingService.getMyInvest().then((res) => {
+        this.setState({ myInvest: res.rows });
+      });
+      IncomeService.getFinance().then((res) => {
+        this.setState({ wallet: res.remainAmount || 0 });
+        // });
+      })
+      this.setState({
+        initialValue: this.state.initialValue +1
+      })
     }
 
     checkCheckbox = () => {
