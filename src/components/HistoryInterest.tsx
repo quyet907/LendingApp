@@ -61,6 +61,7 @@ export default class HistoryInterest extends Component<props, state> {
     }
 }
 
+
 type props = {
     createAt: string,
     profits: number,

@@ -6,7 +6,7 @@ import { Income } from '@StockAfiCore/model/lending/Income';
 import { IncomeService } from '../services/IncomeService';
 import { Finance } from '@StockAfiCore/model/lending/Finance';
 import * as color from '../Color'
-export default class ListStatisticalBasic extends Component<props, state> {
+export default class ListStatisticalBasic extends Component<Props, State> {
     constructor(props:any){
         super(props)
         this.state = {
@@ -16,11 +16,7 @@ export default class ListStatisticalBasic extends Component<props, state> {
     }
 
     componentDidMount(){
-        IncomeService.getFinance().then(res =>{
-            this.setState({
-                dataFinance : res
-            })
-        })
+        
 
         
     }
@@ -36,13 +32,13 @@ export default class ListStatisticalBasic extends Component<props, state> {
                         icon = "coins"
                         color = "#FB8C00"
                         content = {"Total"}
-                        money = {this.state.dataFinance.totalAmount || 0}
+                        money = {this.props.dataFinance.totalAmount || 0}
                     ></StatisticalBasic>
                     <StatisticalBasic
                         icon = "piggy-bank"
                         color = {color.success}
                         content = {"Invested"}
-                        money = {this.state.dataFinance.investedAmout || 0}
+                        money = {this.props.dataFinance.investedAmout || 0}
                     ></StatisticalBasic>
 
                 </View>
@@ -51,13 +47,13 @@ export default class ListStatisticalBasic extends Component<props, state> {
                         icon = "star"
                         color = "#4FC3F7"
                         content = {"Referal Income"}
-                        money = {this.state.dataFinance.referalIncomeAmout || 0}
+                        money = {this.props.dataFinance.referalIncomeAmout || 0}
                     ></StatisticalBasic>
                     <StatisticalBasic
                        icon = "wallet"
                         color = "#FC3135"
                         content = {"Remain"}
-                        money = {this.state.dataFinance.remainAmount || 0}
+                        money = {this.props.dataFinance.remainAmount || 0}
                     ></StatisticalBasic>
                 </View>
 
@@ -66,10 +62,10 @@ export default class ListStatisticalBasic extends Component<props, state> {
     }
 }
 
-type props ={
-
+type Props ={
+    dataFinance : Finance
 }
 
-type state = {
-    dataFinance : Finance
+type State = {
+    
 }

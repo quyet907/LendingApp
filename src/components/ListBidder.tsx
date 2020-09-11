@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { View, FlatList, ScrollView } from 'react-native'
 import myStyle from "../style"
 import BidderItem from './BidderItem'
-import { BidProductHistory } from '@StockAfiCore/model/bid/BidProductHistory'
+import { BidHistory } from '@StockAfiCore/model/bid/BidHistory'
 export default class ListBidder extends Component<props, state> {
     constructor(props: any) {
         super(props),
@@ -30,13 +30,13 @@ export default class ListBidder extends Component<props, state> {
 
                         return (
                             <BidderItem
-                                firstBidder={this.props.bidders[0]._id}
+                                firstBidder={this.props.bidders[0]._id || ""}
                                 bidder={item}
                             ></BidderItem>
 
                         )
                     }}
-                    keyExtractor={(item) => item.id != undefined ? item.id : "null"}
+                    keyExtractor={(item) => item._id != undefined ? item._id : "null"}
                 />
             </ScrollView>
         )
@@ -44,7 +44,7 @@ export default class ListBidder extends Component<props, state> {
 }
 
 type props = {
-    bidders: Array<BidProductHistory>
+    bidders: Array<BidHistory>
 }
 type state = {
     firstBidder: string,

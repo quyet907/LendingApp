@@ -21,8 +21,6 @@ export default class PageBid extends Component {
                         indicatorStyle: {
                             backgroundColor: color.primary,
                         },
-
-
                 }}>
                     <Tab.Screen name="Doing" component={ListBidding} key={"bidding"} />
                     <Tab.Screen name="Comming" component={ListBidComming} key= {"comming"}/>

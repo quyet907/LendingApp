@@ -6,6 +6,7 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 import {Actions } from "react-native-router-flux"
 import { BidService } from "../services/BidService";
 import { BidProduct } from "@StockAfiCore/model/bid/BidProduct";
+import { FormatService } from "../services/FormatService";
 export default class ListBidComming extends Component<props, state> {
   constructor(props: any) {
     super(props);
@@ -19,6 +20,7 @@ export default class ListBidComming extends Component<props, state> {
   componentDidMount() {
     setInterval(
       () => {
+        FormatService.testComponet();
         if(new Date().getSeconds()%3==0){
           this.getListBidding()
         }

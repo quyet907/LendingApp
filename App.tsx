@@ -15,7 +15,7 @@ import Home from "./src/screens/Home";
 import store from "./src/reducer/store";
 import { Provider } from "react-redux";
 import PopupShow from "./src/components/PopupShow";
-import Loadding from "./src/components/Loadding";
+import Loadding from "./src/screens/Loadding";
 import Bid from "./src/screens/Bid";
 
 

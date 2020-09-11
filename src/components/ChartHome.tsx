@@ -41,28 +41,26 @@ export default class ChartHome extends Component<props, state> {
     constructor(props : any ){
         super(props);
         this.state ={
-            data : dataChart
+            
         }
     }
 
     componentDidMount(){
-        IncomeService.getListCharIncome().then(res=>{
+        console.log(this.props.dataChart);
+        
+    }
 
-            if(res!= undefined){
-                dataChart.datasets[0].data = IncomeService.createDataChart(res.all);
-                dataChart.datasets[1].data = IncomeService.createDataChart(res.lending);
-                dataChart.datasets[2].data = IncomeService.createDataChart(res.referal);
-                
-                dataChart.labels =IncomeService.getDayDataChar(res.all);
-                dataChart.datasets[0].label = "Total Amount";
-                dataChart.datasets[1].label = "Leding";
-                dataChart.datasets[2].label = "Referal";
-                this.setState({
-                    data: dataChart
-                })
-            }
-            
-        })
+
+    componentWillReceiveProps(nextProps : props){
+        console.log(nextProps.dataChart)
+        dataChart.datasets[0].data = IncomeService.createDataChart(nextProps.dataChart.all);
+        dataChart.datasets[1].data = IncomeService.createDataChart(nextProps.dataChart.lending);
+        dataChart.datasets[2].data = IncomeService.createDataChart(nextProps.dataChart.referal);
+
+        dataChart.labels = IncomeService.getDayDataChar(nextProps.dataChart.all);
+        dataChart.datasets[0].label = "Total Amount";
+        dataChart.datasets[1].label = "Leding";
+        dataChart.datasets[2].label = "Referal";
     }
     
     render() {
@@ -70,7 +68,7 @@ export default class ChartHome extends Component<props, state> {
             <View>
 
                 <Line
-                    data = {this.state.data}
+                    data = {dataChart}
                     options ={
                         {
                             title :{
@@ -95,9 +93,9 @@ export default class ChartHome extends Component<props, state> {
 }
 
 type props ={
-    
+    dataChart :any
 }
 
 type state = {
-    data : any
+    
 }

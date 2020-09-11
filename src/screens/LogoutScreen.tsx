@@ -6,6 +6,7 @@ import Referral from "../components/ref-components/Referral";
 import HistoryBidScreen from "./HistoryBidScreen";
 import Logout from "./Logout";
 import * as color from '../Color'
+import PageBid from "./PageBid";
 const Stack = createStackNavigator();
 
 export default class LogoutScreen extends Component<props, state> {
@@ -20,9 +21,9 @@ export default class LogoutScreen extends Component<props, state> {
             <NavigationContainer independent={true}>
                 <Stack.Navigator initialRouteName="Logout" >
                     <Stack.Screen name="Logout" component={Logout} options={{headerShown: false}}/>
-                    <Stack.Screen name="Referral" component={Referral} 
+                    <Stack.Screen name="Bid" component={PageBid} 
                     options={{
-                        title: 'Referral', 
+                        title: 'Bid', 
                         headerTintColor: '#fff',
                         headerStyle: {
                             backgroundColor: color.background

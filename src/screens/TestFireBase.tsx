@@ -12,8 +12,6 @@ export default class TestFireBase extends Component<props, state> {
             count : 1,
             getCount : 0
         }
-
-
     }
 
     addNew() {

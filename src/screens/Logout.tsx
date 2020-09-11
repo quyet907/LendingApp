@@ -56,14 +56,14 @@ export default class Logout extends Component<props, state> {
         <View style={{ marginTop: 12 }}>
           <TouchableOpacity
             style={[myStyle.row, styles.layoutAccout]}
-            onPress={() => this.props.navigation.navigate('Referral')}
+            onPress={() => this.props.navigation.navigate('Bid')}
 
           >
             <View style={styles.containerIcon}>
               <FontAwesome5 name={"users"} size={21} color={"white"} />
             </View>
 
-            <Text style={[styles.contentFuture]}>Referral</Text>
+            <Text style={[styles.contentFuture]}>Bid</Text>
           </TouchableOpacity>
 
           <TouchableOpacity style={[myStyle.row, styles.layoutAccout]}

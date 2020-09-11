@@ -13,6 +13,7 @@ import HistoryBidScreen from "../screens/HistoryBidScreen";
 import LogoutScreen from "./LogoutScreen";
 import PageBid from "./PageBid";
 import Bid from "./Bid";
+import Referral from "../components/ref-components/Referral";
 
 const Tab = createBottomTabNavigator();
 
@@ -33,12 +34,14 @@ export default class PageHome extends React.Component<Props, state> {
 
   render() {
     return (
-      <NavigationContainer>
+      <NavigationContainer
+      
+      >
 
         <Tab.Navigator
-         
+          
           tabBarOptions={{
-
+              
             activeTintColor: tabProps.ACTIVE,
             inactiveTintColor: tabProps.INACTIVE,
             style: {
@@ -56,6 +59,7 @@ export default class PageHome extends React.Component<Props, state> {
               tabBarIcon: ({ focused }) => (
                 
                 <Icon
+
                   name="home"
                   size={tabProps.ICONSIZE}
                   color={focused ? tabProps.ACTIVE : tabProps.INACTIVE}
@@ -81,10 +85,10 @@ export default class PageHome extends React.Component<Props, state> {
             }}
           />
           <Tab.Screen
-            name="Bid"
-            component={PageBid}
+            name="Referral"
+            component={Referral}
             options={{
-              tabBarLabel: "Bid",
+              tabBarLabel: "Referral",
               tabBarIcon: ({ focused }) => (
                 <Icon
 

@@ -10,18 +10,25 @@ import { LendingProfitHistoryService } from "../services/LendingProfitHistorySer
 import { ProfitHistory } from "@StockAfiCore/model/lending/LendingProfitHistory";
 import axios from "axios";
 import { UserService } from "../../src/services/UserService";
+import { IncomeService } from "../services/IncomeService";
+import { Finance } from "@StockAfiCore/model/lending/Finance";
+// import { Income } from "@StockAfiCore/model/lending/Income";
 var uuid = require('react-native-uuid');
 export default class Home extends Component<props, state> {
   constructor(props: any) {
     super(props);
     this.state = {
       data: [],
-      index: 0
+      index: 0,
+      dataChart: [],
+      dataFinance : {}
     };
-    
+
   }
 
   componentDidMount() {
+    this.getDataChart();
+    this.getDataFinance();
     LendingProfitHistoryService.getLendingProfit().then((res) => {
       this.setState(
         {
@@ -29,7 +36,32 @@ export default class Home extends Component<props, state> {
         }
       );
     });
+  };
+
+
+
+  getDataChart() {
+    IncomeService.getListCharIncome().then((incomes : any) => {
+      console.log(incomes);
+      if (incomes != undefined) {
+
+        this.setState({
+          dataChart: incomes
+        })
+      }
+
+    })
   }
+
+
+
+  getDataFinance() {
+    IncomeService.getFinance().then((finance : Finance) => {
+      this.setState({
+        dataFinance: finance
+      })
+    })
+  };
 
   render() {
     return (
@@ -39,10 +71,14 @@ export default class Home extends Component<props, state> {
       >
         <View style={[myStyle.container]}>
           <View style={[myStyle.charHome]}>
-            <ChartHome></ChartHome>
+            <ChartHome
+              dataChart={this.state.dataChart}
+            ></ChartHome>
           </View>
           <View style={myStyle.listStatisticalBasic}>
-            <ListStatisticalBasic></ListStatisticalBasic>
+            <ListStatisticalBasic
+              dataFinance  = {this.state.dataFinance}
+            ></ListStatisticalBasic>
           </View>
 
           <View>
@@ -70,12 +106,11 @@ export default class Home extends Component<props, state> {
     const secondCurrent = Date.now();
 
     if (endAt && makeAt) {
-      const leftSecond = Date.parse(endAt.toString())  - Date.parse(makeAt.toString());
-        const daysLeft = Math.ceil(
-          leftSecond / (1000 * 60 * 60 * 24)
-        );
-        return daysLeft;
-     
+      const leftSecond = Date.parse(endAt.toString()) - Date.parse(makeAt.toString());
+      const daysLeft = Math.ceil(
+        leftSecond / (1000 * 60 * 60 * 24)
+      );
+      return daysLeft;
     }
     return 0;
   };
@@ -84,5 +119,7 @@ export default class Home extends Component<props, state> {
 type props = {};
 type state = {
   data: ProfitHistory[],
-  index: number
+  index: number,
+  dataChart: any,
+  dataFinance : Finance
 };
