@@ -6,6 +6,7 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 import { Actions } from "react-native-router-flux"
 import { BidService } from "../services/BidService";
 import { BidProduct } from "@StockAfiCore/model/bid/BidProduct";
+import { ScreenName } from "./ScreenName";
 export default class ListBidComming extends Component<props, state> {
   constructor(props: any) {
     super(props);
@@ -48,9 +49,11 @@ export default class ListBidComming extends Component<props, state> {
           renderItem={({ item }) =>
             <TouchableOpacity
               onPress={() => {
-                this.props.navigation.navigate("Detail", {
-                  bidProduct: item,
-                });
+              this.props.navigation.navigate(ScreenName.BidProduct, {
+                bidProductId: item._id
+              });
+               
+                
               }}
             >
               <ProductBid

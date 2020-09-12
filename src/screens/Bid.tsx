@@ -26,7 +26,7 @@ export default class Bid extends Component<props, state>{
 
         }
 
-        bidProductId = this.props.data;
+        bidProductId = this.props.route.params.bidProductId;
         BidService.getBidInfo(bidProductId).then((bidProduct: BidProduct) => {
             this.renderDataBid(bidProduct);
 
@@ -87,7 +87,7 @@ export default class Bid extends Component<props, state>{
                         style={[]}
                         data={this.state.product.thumbImagesUrl}
 
-                        renderItem={({ item }) => {
+                        renderItem={(item ) => {
                             return (
                                 <View style={[myStyle.frImgProdcurBid, { height: 300 }]}>
                                     <Image
@@ -150,6 +150,7 @@ export default class Bid extends Component<props, state>{
 }
 
 type props = {
+    route: any
 }
 
 type state = {

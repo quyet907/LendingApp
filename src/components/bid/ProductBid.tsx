@@ -22,6 +22,7 @@ class ProductBid extends Component<props, state> {
 
 
     componentDidMount() {
+        // console.log(this.props.navigation.getParam('id', 'default'));
         this.setValue();
         setInterval(
             () => {
@@ -31,14 +32,13 @@ class ProductBid extends Component<props, state> {
             },
             500
         );
-        console.log(this.props.bidProduct);
         
     }
 
 
 
     setValue() {
-        if (this.props.bidProduct.product?.thumbImagesUrl) {
+        if (this.props.bidProduct.product && this.props.bidProduct.product.thumbImagesUrl) {
             this.setState({
                 img: this.props.bidProduct.product.thumbImagesUrl[0]
             })
@@ -83,13 +83,18 @@ class ProductBid extends Component<props, state> {
                 </View>
                 <View>
                     <View style={[myStyle.frNameandDetailProductBid]}>
-                        <Text style={[myStyle.nameProductBid]}>{this.props.bidProduct.product.name || "undefined"}</Text>
+                        <Text style={[myStyle.nameProductBid]}>{this.logProduct}</Text>
                         <Text style={{ color: color.inactive }}>This is a monkey beautifull</Text>
                     </View>
 
                 </View>
             </View>
         );
+    }
+
+    logProduct = () => {
+        console.log(this.props.bidProduct.product?.name);
+        
     }
 }
 type props = {
