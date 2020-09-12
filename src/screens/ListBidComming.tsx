@@ -49,7 +49,7 @@ export default class ListBidComming extends Component<props, state> {
             <TouchableOpacity
               onPress={() => {
                 this.props.navigation.navigate("Detail", {
-                  bid: item._id
+                  bidProduct: item,
                 });
               }}
             >

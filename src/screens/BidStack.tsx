@@ -8,6 +8,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import ProductBid from '../components/bid/ProductBid';
 import ListBidComming from './ListBidComming';
+import ListBidding from './ListBidding';
 const Tab = createMaterialTopTabNavigator();
 const Stack = createStackNavigator();
 
@@ -20,7 +21,7 @@ export default class BidStack extends React.Component {
                     activeTintColor: '#fff',
                     style: { backgroundColor: color.background }
                 }}>
-                <Tab.Screen name='Doing' component={WinBid} options={{ tabBarLabel: 'Doing' }} />
+                <Tab.Screen name='Doing' component={ListBidding} options={{ tabBarLabel: 'Doing' }} />
                 <Tab.Screen name='Coming' component={ListBidComming} options={{ tabBarLabel: 'Coming' }} />
             </Tab.Navigator>
 

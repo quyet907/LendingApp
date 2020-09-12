@@ -4,7 +4,6 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
 import HistoryBidScreen from "./HistoryBidScreen";
 import Logout from "./Logout";
-import BidScreen from "./BidScreen"
 import * as color from '../Color'
 import PageBid from "./PageBid";
 import Referral from "./Referral";
