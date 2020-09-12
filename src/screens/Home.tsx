@@ -54,7 +54,6 @@ class Home extends Component<Props, State> {
 
   getDataChart() {
     IncomeService.getListCharIncome().then((incomes: any) => {
-      console.log(incomes);
       if (incomes != undefined) {
 
         this.setState({

@@ -16,7 +16,7 @@ export class BidService {
             }).then((res) => {
                     return res.data;
                 })
-                .catch((err) => console.log(err))
+                .catch((err) => err)
         );
     }
     public static BidAction(id : string ) : Promise<BidProduct> {

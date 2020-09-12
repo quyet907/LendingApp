@@ -9,6 +9,7 @@ import {connect} from "react-redux";
 import  * as actionAll from "../../Action/ActionAll"
 import store from "../../reducer/store"
 import { FormatService } from "../../services/FormatService";
+var runTimeProductBid:any;
  class ProductBid extends Component<props, state> {
     constructor(props: any) {
         super(props);
@@ -19,12 +20,16 @@ import { FormatService } from "../../services/FormatService";
         };
     }
 
-    
+    componentDidUnmount(){
+        console.log("on will unmount product bid");
+        clearInterval(runTimeProductBid);
+    }
 
     componentDidMount(){
         this.setValue();
-        setInterval(
+        runTimeProductBid=  setInterval(
             () => {
+                console.log("on run product bid");
                 this.setState({
                     timeCount: BidService.getTimeCountBid(this.props.bidProduct),
                 })

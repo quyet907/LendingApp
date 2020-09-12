@@ -7,19 +7,28 @@ import {Actions } from "react-native-router-flux"
 import { BidService } from "../services/BidService";
 import { BidProduct } from "@StockAfiCore/model/bid/BidProduct";
 import { FormatService } from "../services/FormatService";
+var autoReload:any;
 export default class ListBidComming extends Component<props, state> {
   constructor(props: any) {
     super(props);
     this.state = {
-      bidCommings : []
+      biddings : []
     };
 
     this.getListBidding();
 
   }
+
+  componentWillUnmount(){
+    console.log("on wil unmount on list bidding");
+    clearInterval(autoReload);
+    this.setState({ biddings : []})
+  }
+
   componentDidMount() {
-    setInterval(
+    autoReload = setInterval(
       () => {
+        console.log("on run auto reload bidding");
         FormatService.testComponet();
         if(new Date().getSeconds()%3==0){
           this.getListBidding()
@@ -32,7 +41,7 @@ export default class ListBidComming extends Component<props, state> {
   getListBidding(){
     BidService.getListBidding().then((bidProducts :BidProduct[] )=>{
       this.setState({
-        bidCommings : bidProducts
+        biddings : bidProducts
       })
     })
   }
@@ -42,7 +51,7 @@ export default class ListBidComming extends Component<props, state> {
     return (
       <View style={myStyle.containerLight}>
         <FlatList
-          data={this.state.bidCommings}
+          data={this.state.biddings}
           contentContainerStyle = {myStyle.ListBidProduct}
           renderItem={({ item }) => 
             <TouchableOpacity
@@ -67,7 +76,7 @@ type props = {
 
 };
 type state = {
-  bidCommings: Array<BidProduct>;
+  biddings: Array<BidProduct>;
 };
 
 

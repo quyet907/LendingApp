@@ -6,6 +6,7 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 import { Actions } from "react-native-router-flux"
 import { BidService } from "../services/BidService";
 import { BidProduct } from "@StockAfiCore/model/bid/BidProduct";
+var autoReload :any;
 export default class ListBidComming extends Component<props, state> {
   constructor(props: any) {
     super(props);
@@ -17,9 +18,18 @@ export default class ListBidComming extends Component<props, state> {
 
   }
 
+  componentWillUnmount(){
+    console.log("on wil unmount on list bid comming");
+    
+    clearInterval(autoReload);
+    this.setState({
+      bidCommings : []
+    })
+  }
   componentDidMount() {
-    setInterval(
+    autoReload = setInterval(
       () => {
+        console.log("on run auto reload comming");
         if(new Date().getSeconds()%3==0){
           this.getListComming()
         }

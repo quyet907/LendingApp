@@ -12,9 +12,10 @@ import { BidHistory } from '@StockAfiCore/model/bid/BidHistory';
 import { BidProductHistoryService } from '../services/BidProductHistoryService';
 import { Paging } from '@Core/controller/Paging';
 import { FormatService } from '../services/FormatService';
-
+import { clearInterval } from 'timers';
+var timeahihi;
 var bidProductId = "";
-export default class Bid extends Component<props, state>{
+ class Bid extends Component<props, state>{
     constructor(props: any) {
         super(props)
         this.state = {
@@ -36,21 +37,39 @@ export default class Bid extends Component<props, state>{
 
     }
 
+    
+    componentDidCatch(){
+        console.log("on did catch")
+    }
+    
+    componentWillUnmount(){
+        console.log("on will unmount")
+    }
+
     componentDidMount() {
         
-        setInterval(
+        timeahihi =  setInterval(
             () => {
-                
                 BidService.getBidInfo(bidProductId).then((bidProduct: BidProduct) => {
                     this.renderDataBid(bidProduct);
                 })
 
+                // if(Actions.currentScene.toString() !=="bid"){
+                    
+                //     clearInterval(timeahihi);
+                // }
+
+                console.log(this);
+
+
                 this.setState({
                     timeBid: BidService.getTimeCountBid(this.state.bidProduct),
-                })
+                })   
             },
             500
         );
+
+
 
     }
 
@@ -159,3 +178,8 @@ type state = {
     timeBid: number,
     priceBid: number
 }
+
+export default function (props: any) {
+    // const isFocused = useIsFocused();
+    return <Bid {...props}  />;
+  }

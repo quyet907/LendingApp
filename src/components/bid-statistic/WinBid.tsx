@@ -63,7 +63,7 @@ export default class WinBid extends React.Component<Props, State> {
     }
 
     getTime = (date: Date | undefined): string => {
-        if (date !== undefined) return date.toString().substring(0, 10);
+        if (date) return date.toString().substring(0, 10);
         else return "null";
     };
 
