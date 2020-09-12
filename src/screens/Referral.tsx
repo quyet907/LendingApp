@@ -17,19 +17,19 @@ class Referral extends React.Component<Props, State> {
             myReferral: [],
             myID: ""
         }
-        
+
     }
 
     componentDidMount() {
         this.getDataReferal();
     }
-    componentWillReceiveProps(previousProps: Props){
-        if(previousProps.isFocused){
+    componentWillReceiveProps(previousProps: Props) {
+        if (previousProps.isFocused) {
             this.getDataReferal();
         }
     }
 
-    getDataReferal(){
+    getDataReferal() {
         ReferralService.getReferral().then(res => {
             this.setState({ myReferral: res.rows })
         })
@@ -37,7 +37,7 @@ class Referral extends React.Component<Props, State> {
             this.setState({ myID: res._id || "null" })
         })
     }
-    
+
 
     render() {
         return (
@@ -107,7 +107,7 @@ class Referral extends React.Component<Props, State> {
                                 time={this.getTime(item.createdAt)}
                                 coin={1000}
                             />}
-                        keyExtractor={item => item._id || 'null ID'} />
+                        keyExtractor={(item: Referal, index: number) => item._id || index.toString()} />
                 </View>
 
             </ScrollView>
@@ -197,9 +197,10 @@ const styles = StyleSheet.create({
     },
     textLabel: {
         paddingBottom: 15,
-        color: '#fff',
-        fontSize: 17,
-        fontWeight: "500"
+        fontSize: 18,
+        textTransform: "uppercase",
+        fontWeight: "bold",
+        color: "white",
     },
     subContainer: {
         height: 50,
@@ -227,7 +228,7 @@ const styles = StyleSheet.create({
 })
 
 type Props = {
-    isFocused : boolean;
+    isFocused: boolean;
 }
 
 type State = {
@@ -237,6 +238,6 @@ type State = {
 
 export default function (props: Props) {
     const isFocused = useIsFocused();
-  
+
     return <Referral {...props} isFocused={isFocused} />;
-  }
+}

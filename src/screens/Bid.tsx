@@ -26,8 +26,8 @@ var bidProductId = "";
             priceBid: 0,
 
         }
-
-        bidProductId = this.props.data;
+        console.log(this.props);
+        bidProductId = this.props.productId;
         BidService.getBidInfo(bidProductId).then((bidProduct: BidProduct) => {
             this.renderDataBid(bidProduct);
 
@@ -169,6 +169,7 @@ var bidProductId = "";
 }
 
 type props = {
+    productId : string,
 }
 
 type state = {

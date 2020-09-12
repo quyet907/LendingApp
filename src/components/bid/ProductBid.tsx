@@ -5,27 +5,31 @@ import Actions from "react-native-router-flux"
 import * as color from "../../Color"
 import { BidProduct } from "@StockAfiCore/model/bid/BidProduct";
 import { BidService } from "../../services/BidService";
-import {connect} from "react-redux";
-import  * as actionAll from "../../Action/ActionAll"
+import { connect } from "react-redux";
+import * as actionAll from "../../Action/ActionAll"
 import store from "../../reducer/store"
 import { FormatService } from "../../services/FormatService";
+import { Product } from "@StockAfiCore/model/product/Product";
 var runTimeProductBid:any;
  class ProductBid extends Component<props, state> {
     constructor(props: any) {
         super(props);
         this.state = {
-            timeCount : 0,
-            img : "",
-            price : 0
+            timeCount: 0,
+            img: "",
+            price: 0,
+            product : {}
         };
     }
 
     componentDidUnmount(){
         console.log("on will unmount product bid");
         clearInterval(runTimeProductBid);
+        console.log(this.props.bidProduct._id)
     }
 
-    componentDidMount(){
+
+    componentDidMount() {
         this.setValue();
         runTimeProductBid=  setInterval(
             () => {
@@ -36,25 +40,35 @@ var runTimeProductBid:any;
             },
             500
         );
+
+        
     }
 
 
 
-    setValue (){
-        if(this.props.bidProduct.product?.thumbImagesUrl){
-            this.setState({
-                img : this.props.bidProduct.product.thumbImagesUrl[0]
-            })
+    setValue() {
+
+        let price: number = 0;
+        if (this.props.bidProduct.endPrice) {
+            price = this.props.bidProduct.endPrice;
         }
-        let price:number = 0;
-        if(this.props.bidProduct.endPrice){
-           price = this.props.bidProduct.endPrice;
-        }
-        else if(this.props.bidProduct.startPrice){
+        else if (this.props.bidProduct.startPrice) {
             price = this.props.bidProduct.startPrice;
         }
+        let product: Product = {}
+        let img : string= "";
+
+        if(this.props.bidProduct&&this.props.bidProduct.product){
+            product = this.props.bidProduct.product
+            if(product.thumbImagesUrl){
+                img = product.thumbImagesUrl[0]|| "";
+            }
+        }
+
         this.setState({
-            price : price
+            price: price,
+            product : product,
+            img: img
         })
     }
     render() {
@@ -69,7 +83,7 @@ var runTimeProductBid:any;
                             />
                         </View>
                         <View style={[myStyle.frPriceAndTime]}>
-                            
+
                             <View style={[myStyle.frStatusAndTime]}>
                                 {/* <View>
                                     <Text style={[myStyle.statusProductBid]}>{this.props.status}</Text>
@@ -79,15 +93,15 @@ var runTimeProductBid:any;
                                 </View>
                             </View>
                             <View>
-                                <Text style={[myStyle.priceProductBid]}>{FormatService.roundingMoney(this.state.price) }</Text>
+                                <Text style={[myStyle.priceProductBid]}>{FormatService.roundingMoney(this.state.price)}</Text>
                             </View>
                         </View>
                     </View>
                 </View>
                 <View>
-                    <View style = {[myStyle.frNameandDetailProductBid]}>
-                        <Text style={[myStyle.nameProductBid]}>{this.props.bidProduct.product?.name}</Text>
-                        <Text style = {{color : color.inactive}}>This is a monkey beautifull</Text>
+                    <View style={[myStyle.frNameandDetailProductBid]}>
+                        <Text style={[myStyle.nameProductBid]}>{this.state.product.name}</Text>
+                        <Text style={{ color: color.inactive }}>This is a monkey beautifull</Text>
                     </View>
 
                 </View>
@@ -96,22 +110,23 @@ var runTimeProductBid:any;
     }
 }
 type props = {
-    bidProduct : BidProduct,
-    onReload():void
+    bidProduct: BidProduct,
+    onReload(): void
 };
 type state = {
-    timeCount : number,
-    img : string,
-    price : number
+    timeCount: number,
+    img: string,
+    price: number,
+    product : Product
 };
 
-function mapDispatchToProps(dispatch : any , props : any ) {
+function mapDispatchToProps(dispatch: any, props: any) {
     return {
-        onReload(){
+        onReload() {
             dispatch(actionAll.reload())
         }
     }
 }
 
 
-export default connect(null,mapDispatchToProps)(ProductBid)
+export default connect(null, mapDispatchToProps)(ProductBid)

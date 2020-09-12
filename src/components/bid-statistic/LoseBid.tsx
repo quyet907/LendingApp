@@ -7,7 +7,9 @@ import { BidStatisticService } from "../../services/BidStatisticService"
 import { BidStatistic } from "@StockAfiModel/bid/BidStatistic";
 import { BidStatus } from '../../share/base-stock-afi/model/bid/BidStatus';
 import { v4 as uuidv4 } from 'uuid';
-export default class LoseBid extends React.Component<Props, State> {
+import { useIsFocused } from '@react-navigation/native';
+import { BidProduct } from '@StockAfiCore/model/bid/BidProduct';
+class LoseBid extends React.Component<Props, State> {
     constructor(props: any) {
         super(props);
         this.state = {
@@ -15,17 +17,17 @@ export default class LoseBid extends React.Component<Props, State> {
         }
     }
 
+    componentWillReceiveProps(prev: Props) {
+        if (prev.isFocused) {
+          this.getDataToState();
+        }
+      }
+
     componentDidMount() {
-        BidStatisticService.getBidStatistic().then((bidStatistics: BidStatistic[]) => {
-            const bid = bidStatistics.filter(bidStatistic => bidStatistic.bidStatus == BidStatus.lose);
-            
-            this.setState({
-                loseBidList: bid
-
-            })
-
-        })
+        this.getDataToState();
     }
+
+     
 
     render() {
         return (
@@ -47,7 +49,7 @@ export default class LoseBid extends React.Component<Props, State> {
                                 />
                             )
                         }}
-                        keyExtractor={(item) => item.bidProductId ? item.bidProductId : uuidv4()}
+                        keyExtractor={(item: BidStatistic, index: number) => item.bidProductId || index.toString()}
                     />
 
 
@@ -55,6 +57,15 @@ export default class LoseBid extends React.Component<Props, State> {
 
             </ScrollView>
         )
+    }
+
+    getDataToState(){
+        BidStatisticService.getBidStatistic().then((bidStatistics: BidStatistic[]) => {
+            const bid = bidStatistics.filter(bidStatistic => bidStatistic.bidStatus == BidStatus.lose);
+            this.setState({
+                loseBidList: bid
+            })
+        })
     }
 
     getTime = (date: Date | undefined): string => {
@@ -85,10 +96,16 @@ const styles = StyleSheet.create({
 })
 
 type Props = {
-
+    isFocused: boolean
 }
 
 type State = {
     loseBidList: BidStatistic[]
 
+}
+
+export default function (props: Props) {
+    const isFocused = useIsFocused();
+
+    return <LoseBid {...props} isFocused={isFocused} />;
 }

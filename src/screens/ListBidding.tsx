@@ -3,26 +3,26 @@ import { View, FlatList } from "react-native";
 import ProductBid from "../components/bid/ProductBid";
 import myStyle from "../style";
 import { TouchableOpacity } from "react-native-gesture-handler";
-import {Actions } from "react-native-router-flux"
+import { Actions } from "react-native-router-flux"
 import { BidService } from "../services/BidService";
 import { BidProduct } from "@StockAfiCore/model/bid/BidProduct";
 import { FormatService } from "../services/FormatService";
-var autoReload:any;
-export default class ListBidComming extends Component<props, state> {
+var autoReload: any;
+export default class ListBidding extends Component<props, state> {
   constructor(props: any) {
     super(props);
     this.state = {
-      biddings : []
+      biddings: []
     };
 
     this.getListBidding();
 
   }
 
-  componentWillUnmount(){
+  componentWillUnmount() {
     console.log("on wil unmount on list bidding");
     clearInterval(autoReload);
-    this.setState({ biddings : []})
+    this.setState({ biddings: [] })
   }
 
   componentDidMount() {
@@ -30,7 +30,7 @@ export default class ListBidComming extends Component<props, state> {
       () => {
         console.log("on run auto reload bidding");
         FormatService.testComponet();
-        if(new Date().getSeconds()%3==0){
+        if (new Date().getSeconds() % 3 == 0) {
           this.getListBidding()
         }
       },
@@ -38,10 +38,10 @@ export default class ListBidComming extends Component<props, state> {
     );
   }
 
-  getListBidding(){
-    BidService.getListBidding().then((bidProducts :BidProduct[] )=>{
+  getListBidding() {
+    BidService.getListBidding().then((bidProducts: BidProduct[]) => {
       this.setState({
-        biddings : bidProducts
+        biddings: bidProducts
       })
     })
   }
@@ -52,19 +52,21 @@ export default class ListBidComming extends Component<props, state> {
       <View style={myStyle.containerLight}>
         <FlatList
           data={this.state.biddings}
-          contentContainerStyle = {myStyle.ListBidProduct}
-          renderItem={({ item }) => 
+          contentContainerStyle={myStyle.ListBidProduct}
+          renderItem={({ item }) =>
             <TouchableOpacity
-              onPress={()=>{
-                Actions.bid(item._id);
+              onPress={() => {
+                this.props.navigation.navigate("Detail", {
+                  bidProduct: item.id,
+                });
               }}
             >
-            <ProductBid 
-              bidProduct = {item}
-          />
-          </TouchableOpacity  >
+              <ProductBid
+                bidProduct={item}
+              />
+            </TouchableOpacity  >
 
-        }
+          }
           keyExtractor={(item) => (item._id != undefined ? item._id : "null")}
         />
       </View>
@@ -73,7 +75,7 @@ export default class ListBidComming extends Component<props, state> {
 }
 
 type props = {
-
+  navigation: any
 };
 type state = {
   biddings: Array<BidProduct>;

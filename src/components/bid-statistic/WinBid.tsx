@@ -8,24 +8,22 @@ import { BidStatistic } from "@StockAfiModel/bid/BidStatistic";
 import { BidStatus } from '../../share/base-stock-afi/model/bid/BidStatus';
 import { v4 as uuidv4 } from 'uuid';
 import { Actions } from 'react-native-router-flux';
-export default class WinBid extends React.Component<Props, State> {
+import { useIsFocused } from '@react-navigation/native';
+class WinBid extends React.Component<Props, State> {
     constructor(props: any) {
         super(props);
         this.state = {
             winBidList: []
         }
     }
+    componentWillReceiveProps(prev: Props) {
+        if (prev.isFocused) {
+            this.getDataToState();
+        }
+    }
 
     componentDidMount() {
-        BidStatisticService.getBidStatistic().then((bidStatistics: BidStatistic[]) => {
-            const bid = bidStatistics.filter(bidStatistic => bidStatistic.bidStatus == BidStatus.win);
-
-            this.setState({
-                winBidList: bid
-
-            })
-
-        })
+        this.getDataToState();
     }
 
     render() {
@@ -52,7 +50,7 @@ export default class WinBid extends React.Component<Props, State> {
                                 </TouchableOpacity>
                             )
                         }}
-                        keyExtractor={(item) => item.bidProductId ? item.bidProductId : uuidv4()}
+                        keyExtractor={(item: BidStatistic, index: number) => item.bidProductId || index.toString()}
                     />
 
 
@@ -60,6 +58,15 @@ export default class WinBid extends React.Component<Props, State> {
 
             </ScrollView>
         )
+    }
+
+    getDataToState() {
+        BidStatisticService.getBidStatistic().then((bidStatistics: BidStatistic[]) => {
+            const bid = bidStatistics.filter(bidStatistic => bidStatistic.bidStatus == BidStatus.win);
+            this.setState({
+                winBidList: bid
+            })
+        })
     }
 
     getTime = (date: Date | undefined): string => {
@@ -90,10 +97,16 @@ const styles = StyleSheet.create({
 })
 
 type Props = {
-
+    isFocused: boolean;
 }
 
 type State = {
     winBidList: BidStatistic[]
 
+}
+
+export default function (props: Props) {
+    const isFocused = useIsFocused();
+
+    return <WinBid {...props} isFocused={isFocused} />;
 }

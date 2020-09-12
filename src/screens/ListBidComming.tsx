@@ -19,7 +19,7 @@ export default class ListBidComming extends Component<props, state> {
   }
 
   componentWillUnmount(){
-    console.log("on wil unmount on list bid comming");
+    // console.log("on wil unmount on list bid comming");
     
     clearInterval(autoReload);
     this.setState({
@@ -29,7 +29,7 @@ export default class ListBidComming extends Component<props, state> {
   componentDidMount() {
     autoReload = setInterval(
       () => {
-        console.log("on run auto reload comming");
+        // console.log("on run auto reload comming");
         if(new Date().getSeconds()%3==0){
           this.getListComming()
         }
@@ -58,12 +58,14 @@ export default class ListBidComming extends Component<props, state> {
           renderItem={({ item }) =>
             <TouchableOpacity
               onPress={() => {
-                Actions.bid(item._id);
+                this.props.navigation.navigate("bid", {
+                  productId: item.id,
+                });
               }}
             >
               <ProductBid
                 bidProduct={item}
-                time={BidService.calcTime(item.startBidAt || new Date)}
+                // time={BidService.calcTime(item.startBidAt || new Date)}
               />
             </TouchableOpacity  >
 
@@ -76,10 +78,10 @@ export default class ListBidComming extends Component<props, state> {
 }
 
 type props = {
-
+  navigation: any
 };
 type state = {
-  bidCommings: Array<BidProduct>;
+  bidCommings: BidProduct[];
 };
 
 

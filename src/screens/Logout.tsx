@@ -64,7 +64,7 @@ export default class Logout extends Component<props, state> {
           </TouchableOpacity>
 
           <TouchableOpacity style={[myStyle.row, styles.layoutAccout]}
-            onPress={() => this.props.navigation.navigate('MyBid')}>
+            onPress={() => this.props.navigation.navigate('BidStatistic')}>
             <View style={styles.containerIcon}>
               <FontAwesome5 name={"history"} size={23} color={"white"} />
             </View>
@@ -107,7 +107,8 @@ type state = {
 const styles = StyleSheet.create({
   header: {
     padding: 20,
-
+    paddingTop: 17,
+    paddingBottom: 15,
     margin: 2,
     // backgroundColor : Color.background,
   },

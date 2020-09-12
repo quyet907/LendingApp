@@ -11,6 +11,7 @@ export default class HistoryBidScreen extends React.Component {
       return (
         <Tab.Navigator  
         tabBarOptions={{
+          indicatorStyle: {backgroundColor: color.primary},
           activeTintColor: '#fff',
           style: { backgroundColor: color.background }
         }}>
