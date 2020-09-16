@@ -29,8 +29,8 @@ const MyTransitionSpec = {
 
 const scenes = Actions.create(
   <Scene key="root" duration={4}>
-    <Scene key="login" component={Login} hideNavBar={true} back = {false} />
-    <Scene key="home" component={PageHome} hideNavBar={true} onExit= {() => {console.log("bà nội cha mày")}}/>
+    <Scene key="login" component={Login} hideNavBar={true} />
+    <Scene key="home" component={PageHome} hideNavBar={true}/>
     <Scene key="enterPhone" component={EnterYourPhone} hideNavBar={true} />
     <Scene key="confirmOTP" component={ConfirmOTP} hideNavBar={true} />
     <Scene key="password" component={SetPassWord} hideNavBar={true} />
@@ -61,8 +61,7 @@ export default class App extends React.Component<Props, {}> {
 
         <PopupShow></PopupShow>
         <Loadding></Loadding>
-        <PageHome></PageHome>
-        {/* <Router scenes={scenes} /> */}
+        <Router scenes={scenes} />
         
       </Provider>
     );

@@ -13,6 +13,7 @@ import { Actions } from "react-native-router-flux";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 import * as Color from "../Color";
+import { ScreenName } from "./ScreenName";
 
 export default class Logout extends Component<props, state> {
   constructor(props: any) {
@@ -53,7 +54,7 @@ export default class Logout extends Component<props, state> {
         <View style={{ marginTop: 12 }}>
           <TouchableOpacity
             style={[myStyle.row, styles.layoutAccout]}
-            onPress={() => this.props.navigation.navigate('Bid')}
+            onPress={() => this.props.navigation.navigate(ScreenName.ListBid)}
 
           >
             <View style={styles.containerIcon}>
@@ -64,7 +65,7 @@ export default class Logout extends Component<props, state> {
           </TouchableOpacity>
 
           <TouchableOpacity style={[myStyle.row, styles.layoutAccout]}
-            onPress={() => this.props.navigation.navigate('BidStatistic')}>
+            onPress={() => this.props.navigation.navigate(ScreenName.BidStatistic)}>
             <View style={styles.containerIcon}>
               <FontAwesome5 name={"history"} size={23} color={"white"} />
             </View>

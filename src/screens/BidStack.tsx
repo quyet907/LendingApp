@@ -23,6 +23,7 @@ export default class BidStack extends React.Component {
                 }}>
                 <Tab.Screen name='Doing' component={ListBidding} options={{ tabBarLabel: 'Doing' }} />
                 <Tab.Screen name='Coming' component={ListBidComming} options={{ tabBarLabel: 'Coming' }} />
+                
             </Tab.Navigator>
 
         )

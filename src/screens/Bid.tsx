@@ -13,9 +13,17 @@ import { BidProductHistoryService } from '../services/BidProductHistoryService';
 import { Paging } from '@Core/controller/Paging';
 import { FormatService } from '../services/FormatService';
 import { clearInterval } from 'timers';
+import { firebase } from "../../FirebaseConfig";
+import { User } from '@StockAfiCore/model/user/User';
+import { BaseUser } from '@Core/model/user/BaseUser';
+import * as  PageBid from "./PageBid";
+var pageBid = PageBid.default;
+
+// pageBid.render();
+var fireStoreFirebase = firebase.firestore();
 var timeahihi;
 var bidProductId = "";
- class Bid extends Component<props, state>{
+class Bid extends Component<props, state>{
     constructor(props: any) {
         super(props)
         this.state = {
@@ -26,45 +34,70 @@ var bidProductId = "";
             priceBid: 0,
 
         }
-        console.log(this.props);
-        bidProductId = this.props.productId;
+
+        bidProductId = this.props.route.params.bidProductId;
         BidService.getBidInfo(bidProductId).then((bidProduct: BidProduct) => {
             this.renderDataBid(bidProduct);
-
-            
-
         })
-
     }
 
-    
-    componentDidCatch(){
-        console.log("on did catch")
-    }
-    
-    componentWillUnmount(){
-        console.log("on will unmount")
+    listenOnChange() {
+        var copyBidProduct: BidProduct = this.state.bidProduct;
+        var getBidProductFirebase = fireStoreFirebase.collection("bidProduct").doc(bidProductId);
+        var self = this;
+        getBidProductFirebase.onSnapshot({
+            // Listen for document metadata changes
+            includeMetadataChanges: true
+        }, function (doc) {
+            if (doc) {
+                var firebaseBidProduct = doc.data();
+                if (firebaseBidProduct) {
+                    copyBidProduct.endPrice = firebaseBidProduct.endPrice;
+                    var createObjectBidHistory: BidHistory = {};
+                    var createUser : BaseUser = {
+                        username : firebaseBidProduct.latestBidUser
+                    };
+                    createObjectBidHistory.user = createUser;
+                    createObjectBidHistory._id = firebaseBidProduct.lastHistoryId;
+                    createObjectBidHistory.bidPrice = copyBidProduct.stepPrice;
+                    copyBidProduct.listHistoryBid?.push(createObjectBidHistory);
+                    if(firebaseBidProduct.latestBidAt){
+                    copyBidProduct.latestBidAt = new Date(firebaseBidProduct.latestBidAt);
+                    }
+                }
+                self.renderDataBid(copyBidProduct);
+            }
+        });
     }
 
     componentDidMount() {
-        
-        timeahihi =  setInterval(
+        this.listenOnChange();
+        BidService.getBidInfo(bidProductId).then((bidProduct: BidProduct) => {
+            console.log(bidProduct);
+            this.renderDataBid(bidProduct);
+            this.listenOnChange();
+        })
+
+
+
+        var getBidProductFirebase = fireStoreFirebase.collection("bidProduct").doc(bidProductId);
+        getBidProductFirebase.get().then(function (doc: any) {
+            if (doc.exists) {
+                console.log("Document data:", doc.data());
+            } else {
+                // doc.data() will be undefined in this case
+                console.log("No such document!");
+            }
+
+        }).catch(function (error) {
+            console.log("Error getting document:", error);
+        });
+
+        timeahihi = setInterval(
             () => {
-                BidService.getBidInfo(bidProductId).then((bidProduct: BidProduct) => {
-                    this.renderDataBid(bidProduct);
-                })
-
-                // if(Actions.currentScene.toString() !=="bid"){
-                    
-                //     clearInterval(timeahihi);
-                // }
-
-                console.log(this);
-
-
                 this.setState({
                     timeBid: BidService.getTimeCountBid(this.state.bidProduct),
-                })   
+                })
             },
             500
         );
@@ -73,24 +106,37 @@ var bidProductId = "";
 
     }
 
-    renderDataBid(bidProduct : BidProduct) {
+    renderDataBid(bidProduct: BidProduct) {
         this.setState({
             bidProduct: bidProduct,
             product: bidProduct.product || {},
-            bidders: bidProduct.listHistoryBid || []
+            
         })
+        let filterDataBidder: BaseUser[] = new Array();
+
+        // if(bidProduct.listHistoryBid){
+        //     bidProduct.listHistoryBid.map((user: BaseUser)=>{
+        //         let userFiltered: BaseUser = {
+        //             _id : user._id,
+        //             username  : user.username
+        //         }
+        //         filterDataBidder.push(userFiltered)
+        //     })
+        // }
+
         this.setState({
+            bidders: bidProduct.listHistoryBid || [],
             priceBid: bidProduct.endPrice || bidProduct.startPrice || 0
         })
-        
+
     }
 
-    
+
 
     render() {
         return (
             <View style={[myStyle.containerLight]}>
-                <View style={[myStyle.btnCloseBid]}>
+                {/* <View style={[myStyle.btnCloseBid]}>
                     <TouchableOpacity style={[]}
                         onPress={() => {
                             Actions.home();
@@ -98,7 +144,7 @@ var bidProductId = "";
                     >
                         <Text>X</Text>
                     </TouchableOpacity>
-                </View>
+                </View> */}
                 <View style={[{ alignItems: "center" }]}>
 
                     <Carousel
@@ -106,12 +152,13 @@ var bidProductId = "";
                         style={[]}
                         data={this.state.product.thumbImagesUrl}
 
-                        renderItem={({ item }) => {
+                        renderItem={(item) => {
+                            // console.log(item);
                             return (
                                 <View style={[myStyle.frImgProdcurBid, { height: 300 }]}>
                                     <Image
                                         style={[myStyle.imgProductBid]}
-                                        source={{ uri: `${item}` }}
+                                        source={{ uri: `${item.item}` }}
                                     />
                                 </View>
                             )
@@ -152,7 +199,7 @@ var bidProductId = "";
                         style={[myStyle.buttonBid]}
                         onPress={(event) => {
                             BidService.BidAction(bidProductId).then((bidProduct: BidProduct) => {
-                                this.renderDataBid(bidProduct);
+                                // this.renderDataBid(bidProduct);
                             })
                         }}
                     >
@@ -169,7 +216,7 @@ var bidProductId = "";
 }
 
 type props = {
-    productId : string,
+    route: any
 }
 
 type state = {
@@ -182,5 +229,5 @@ type state = {
 
 export default function (props: any) {
     // const isFocused = useIsFocused();
-    return <Bid {...props}  />;
-  }
+    return <Bid {...props} />;
+}

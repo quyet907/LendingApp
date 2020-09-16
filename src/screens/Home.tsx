@@ -138,6 +138,7 @@ type State = {
 
 
 export default function (props: Props) {
+  console.log(useIsFocused());
   const isFocused = useIsFocused();
 
   return <Home {...props} isFocused={isFocused} />;

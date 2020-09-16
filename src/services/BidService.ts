@@ -14,73 +14,76 @@ export class BidService {
                     bid_productId: id
                 }
             }).then((res) => {
-                    return res.data;
-                })
+                return res.data;
+            })
                 .catch((err) => err)
         );
     }
-    public static BidAction(id : string ) : Promise<BidProduct> {
-        return getAxios().then((axios) =>{
+    public static BidAction(id: string): Promise<BidProduct> {
+        return getAxios().then((axios) => {
             return axios({
-                method : "POST",
-                url : `${config.api.lendingAPI}/bid_product/bid`,
-                data : {bid_productId : id}
+                method: "POST",
+                url: `${config.api.lendingAPI}/bid_product/bid`,
+                data: { bid_productId: id }
             })
-            .then((res)=>{
-                return res.data
-            })
-            .catch(err=>{
-                return err;
-            })
+                .then((res) => {
+                    return res.data
+                })
+                .catch(err => {
+                    return err;
+                })
         })
     }
 
-    public static getListBidComming() : Promise<BidProduct[]>{
-        return getAxios().then((axios) =>{
+    public static getListBidComming(): Promise<BidProduct[]> {
+        return getAxios().then((axios) => {
             return axios({
-                method : "GET",
-                url : `${config.api.lendingAPI}/bid_product/getComming`,
+                method: "GET",
+                url: `${config.api.lendingAPI}/bid_product/getComming`,
             })
-            .then((res)=>{
-                return res.data;
-            })
-            .catch((err)=>{
-                return err;
-            })
+                .then((res) => {
+                    return res.data;
+                })
+                .catch((err) => {
+                    return err;
+                })
         })
     }
 
-    public static getListBidding() : Promise<BidProduct[]>{
-        return getAxios().then((axios) =>{
+    public static getListBidding(): Promise<BidProduct[]> {
+        return getAxios().then((axios) => {
             return axios({
-                method : "GET",
-                url : `${config.api.lendingAPI}/bid_product/getBidding`,
+                method: "GET",
+                url: `${config.api.lendingAPI}/bid_product/getBidding`,
             })
-            .then((res)=>{
-                return res.data;
-            })
-            .catch((err)=>{
-                return err;
-            })
+                .then((res) => {
+                    return res.data;
+                })
+                .catch((err) => {
+                    return err;
+                })
         })
     }
 
-    public static getTimeCountBid(bidProduct : BidProduct): number{
+    public static getTimeCountBid(bidProduct: BidProduct): number {
         let calcTime: number = 0;
         if (bidProduct.latestBidAt) {
             calcTime = BidService.calcTime(bidProduct.latestBidAt)
         } else if (bidProduct.startBidAt) {
             calcTime = BidService.calcTime(bidProduct.startBidAt)
-        } 
+        }
 
         return calcTime;
     }
-    
 
-    public static calcTime(Time: Date): number {
-        Time = new Date(Time);
-        let Calc: number = (Time.getTime() + config.api.timeLimit * 1000) - (new Date().getTime());
-        return Math.round(Calc / 1000);
+
+    public static calcTime(Time: Date | undefined): number {
+        if (Time) {
+            Time = new Date(Time);
+            let Calc: number = (Time.getTime() + config.api.timeLimit * 1000) - (new Date().getTime());
+            return Math.round(Calc / 1000);
+        }
+        return 0;
     }
 
     public static checkBidding(Time: number): boolean {
@@ -97,7 +100,7 @@ export class BidService {
         return `Place A Bid`;
     }
 
-    
+
 
     public static changeTextTime(calcTime: number): string {
         if (calcTime < 0) {

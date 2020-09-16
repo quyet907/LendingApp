@@ -7,35 +7,60 @@ import { Actions } from "react-native-router-flux"
 import { BidService } from "../services/BidService";
 import { BidProduct } from "@StockAfiCore/model/bid/BidProduct";
 import { FormatService } from "../services/FormatService";
+import { ScreenName } from "./ScreenName";
+import {firebase} from "../../FirebaseConfig";
+import { useIsFocused } from "@react-navigation/native";
+
+
 var autoReload: any;
-export default class ListBidding extends Component<props, state> {
+class ListBidding extends Component<Props, state> {
   constructor(props: any) {
     super(props);
     this.state = {
-      biddings: []
+      biddings: [],
+      reload: true
     };
 
     this.getListBidding();
 
+    firebase.firestore().collection("bidProduct").orderBy("timestamp", "desc").limit(1)
+      .onSnapshot((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          let bidProduct = doc.data();
+          bidProduct.id = doc.id;
+          console.log(bidProduct);
+        });
+      });
+
+      // ordersCollection.add({
+      //   ..., // all your other fields
+      //   timestamp: firebase.firestore.FieldValue.serverTimestamp()
+      // });
+
   }
 
   componentWillUnmount() {
-    console.log("on wil unmount on list bidding");
+    // console.log("on wil unmount on list bidding");
     clearInterval(autoReload);
     this.setState({ biddings: [] })
   }
 
   componentDidMount() {
+    // this.getListBidding()
     autoReload = setInterval(
       () => {
-        console.log("on run auto reload bidding");
-        FormatService.testComponet();
-        if (new Date().getSeconds() % 3 == 0) {
-          this.getListBidding()
-        }
+        this.setState({
+          reload: !this.state.reload
+        })
+
       },
-      1000
+      500
     );
+  }
+  componentWillReceiveProps(nextProps : any ){
+    if(nextProps.isFocused){
+      this.getListBidding();
+    }
   }
 
   getListBidding() {
@@ -52,19 +77,33 @@ export default class ListBidding extends Component<props, state> {
       <View style={myStyle.containerLight}>
         <FlatList
           data={this.state.biddings}
+          extraData={this.state.reload}
           contentContainerStyle={myStyle.ListBidProduct}
-          renderItem={({ item }) =>
-            <TouchableOpacity
-              onPress={() => {
-                this.props.navigation.navigate("Detail", {
-                  bidProduct: item.id,
-                });
-              }}
-            >
-              <ProductBid
-                bidProduct={item}
-              />
-            </TouchableOpacity  >
+          renderItem={({ item }) => {
+            if (BidService.getTimeCountBid(item) >= 0) {
+              return (
+                <TouchableOpacity
+                  onPress={() => {
+                    this.props.navigation.navigate(ScreenName.BidProduct, {
+                      bidProductId: item._id
+                    });
+
+
+                  }}
+                >
+                  <ProductBid
+                    bidProduct={item}
+                    reload={this.state.reload}
+                  />
+                </TouchableOpacity  >
+              )
+            } 
+              return (<div></div>)
+            
+
+          }
+
+
 
           }
           keyExtractor={(item) => (item._id != undefined ? item._id : "null")}
@@ -74,11 +113,17 @@ export default class ListBidding extends Component<props, state> {
   }
 }
 
-type props = {
-  navigation: any
+type Props = {
+  navigation: any, 
+  isFocused: boolean,
 };
 type state = {
   biddings: Array<BidProduct>;
+  reload: boolean
 };
 
 
+export default function (props : Props){
+  console.log(useIsFocused())
+  return <ListBidding {...props} isFocused = {useIsFocused()} />
+}

@@ -24,6 +24,8 @@ class WinBid extends React.Component<Props, State> {
 
     componentDidMount() {
         this.getDataToState();
+        // console.log(this.props.route);
+        
     }
 
     render() {
@@ -97,7 +99,8 @@ const styles = StyleSheet.create({
 })
 
 type Props = {
-    isFocused: boolean;
+    isFocused: boolean,
+    route: any,
 }
 
 type State = {
