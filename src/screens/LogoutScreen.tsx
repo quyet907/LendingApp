@@ -16,8 +16,6 @@ const Stack = createStackNavigator();
 export default class LogoutScreen extends Component<Props, State> {
     constructor(props: any) {
         super(props);
-
-
     }
 
     render() {
@@ -42,6 +40,7 @@ export default class LogoutScreen extends Component<Props, State> {
                             backgroundColor: color.background
                           },
                     }}
+                    
                     />
                     <Stack.Screen name={ScreenName.BidProduct} component={Bid} 
                      options={{

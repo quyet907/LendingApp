@@ -29,15 +29,14 @@ axios.interceptors.response.use(
             action.showMessage("Have error when processing")
         }
         if (err.response.status == 401) {
-            UserService.getJWT().then(res => {
-            })
+            // UserService.getJWT().then(res => {
+            // })
             UserService.setJWT("").then(res => {
                 Actions.login();
             })
             return Promise.reject(err);
         }
         if(err.response.status == 500){
-            console.log(err.response);
             if(err.response.message){
                 action.showMessage(err.response.message)
             }

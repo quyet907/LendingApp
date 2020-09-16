@@ -9,33 +9,46 @@ import { connect } from "react-redux";
 import * as actionAll from "../../Action/ActionAll"
 import store from "../../reducer/store"
 import { FormatService } from "../../services/FormatService";
-class ProductBid extends Component<props, state> {
+import { Product } from "@StockAfiCore/model/product/Product";
+import { firebase } from "../../../FirebaseConfig";
+
+
+var runTimeProductBid: any;
+class ProductBid extends Component<Props, state> {
     constructor(props: any) {
         super(props);
         this.state = {
-            timeCount: 0,
             img: "",
-            price: 0
+            price: 0,
+            product: {}
         };
     }
 
+    componentDidUnmount() {
+        clearInterval(runTimeProductBid);
+    }
 
 
     componentDidMount() {
         // console.log(this.props.navigation.getParam('id', 'default'));
         this.setValue();
-        setInterval(
-            () => {
-                this.setState({
-                    timeCount: BidService.getTimeCountBid(this.props.bidProduct),
-                })
-            },
-            500
-        );
-        
+        // runTimeProductBid=  setInterval(
+        //     () => {
+        //         // console.log("on run product bid");
+        //         this.setState({
+        //             timeCount: BidService.getTimeCountBid(this.props.bidProduct),
+        //         })
+        //     },
+        //     500
+        // );
+
     }
+    componentWillReceiveProps(nextProps: Props) {
+        if (!nextProps.bidProduct === this.props.bidProduct) {
+            this.setValue();
+        }
 
-
+    }
 
     setValue() {
         if (this.props.bidProduct.product && this.props.bidProduct.product.thumbImagesUrl) {
@@ -50,10 +63,35 @@ class ProductBid extends Component<props, state> {
         else if (this.props.bidProduct.startPrice) {
             price = this.props.bidProduct.startPrice;
         }
+        let product: Product = {}
+        let img: string = "";
+
+        if (this.props.bidProduct && this.props.bidProduct.product) {
+            product = this.props.bidProduct.product
+            if (product.thumbImagesUrl) {
+                img = product.thumbImagesUrl[0] || "";
+            }
+        }
+        
+        this.onListenFirebase();
         this.setState({
-            price: price
+            price: price,
+            product: product,
+            img: img
         })
     }
+
+    onListenFirebase() {
+        var fireStoreFirebase = firebase.firestore();
+        var getBidProductFirebase = fireStoreFirebase.collection("bidProduct").doc(this.props.bidProduct._id);
+        getBidProductFirebase.onSnapshot({
+            includeMetadataChanges : true
+        }, (doc)=>{
+             console.log(doc.data());
+        })
+
+    }
+
     render() {
         return (
             <View style={[myStyle.productBid]}>
@@ -72,7 +110,7 @@ class ProductBid extends Component<props, state> {
                                     <Text style={[myStyle.statusProductBid]}>{this.props.status}</Text>
                                 </View> */}
                                 <View>
-                                    <Text style={[myStyle.timeProductBid]}>{BidService.changeTextTime(this.state.timeCount)}</Text>
+                                    <Text style={[myStyle.timeProductBid]}>{BidService.changeTextTime(BidService.getTimeCountBid(this.props.bidProduct))}</Text>
                                 </View>
                             </View>
                             <View>
@@ -83,7 +121,7 @@ class ProductBid extends Component<props, state> {
                 </View>
                 <View>
                     <View style={[myStyle.frNameandDetailProductBid]}>
-                        <Text style={[myStyle.nameProductBid]}>{this.logProduct}</Text>
+                        <Text style={[myStyle.nameProductBid]}>{this.state.product.name}</Text>
                         <Text style={{ color: color.inactive }}>This is a monkey beautifull</Text>
                     </View>
 
@@ -94,26 +132,19 @@ class ProductBid extends Component<props, state> {
 
     logProduct = () => {
         console.log(this.props.bidProduct.product?.name);
-        
+
     }
 }
-type props = {
+type Props = {
     bidProduct: BidProduct,
-    onReload(): void
+    onChangeBid(): BidProduct
 };
 type state = {
-    timeCount: number,
     img: string,
-    price: number
+    price: number,
+    product: Product
 };
 
-function mapDispatchToProps(dispatch: any, props: any) {
-    return {
-        onReload() {
-            dispatch(actionAll.reload())
-        }
-    }
-}
 
 
-export default connect(null, mapDispatchToProps)(ProductBid)
+export default connect(null, null)(ProductBid)

@@ -24,7 +24,7 @@ class WinBid extends React.Component<Props, State> {
 
     componentDidMount() {
         this.getDataToState();
-        console.log(this.props.route);
+        // console.log(this.props.route);
         
     }
 
@@ -72,7 +72,7 @@ class WinBid extends React.Component<Props, State> {
     }
 
     getTime = (date: Date | undefined): string => {
-        if (date !== undefined) return date.toString().substring(0, 10);
+        if (date) return date.toString().substring(0, 10);
         else return "null";
     };
 

@@ -38,6 +38,10 @@ class Lending extends React.Component<Props, State> {
   }
 
   componentWillReceiveProps(prev: Props) {
+    if (prev.isFocused) {
+      this.getDataToState();
+      
+    }
     // if (prev.isFocused) {
     //   this.getDataToState();
     //   console.log("will");

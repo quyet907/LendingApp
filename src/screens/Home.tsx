@@ -54,7 +54,6 @@ class Home extends Component<Props, State> {
 
   getDataChart() {
     IncomeService.getListCharIncome().then((incomes: any) => {
-      console.log(incomes);
       if (incomes != undefined) {
 
         this.setState({
@@ -139,6 +138,7 @@ type State = {
 
 
 export default function (props: Props) {
+  console.log(useIsFocused());
   const isFocused = useIsFocused();
 
   return <Home {...props} isFocused={isFocused} />;

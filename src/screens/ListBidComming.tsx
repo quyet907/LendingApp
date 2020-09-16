@@ -7,26 +7,45 @@ import { Actions } from "react-native-router-flux"
 import { BidService } from "../services/BidService";
 import { BidProduct } from "@StockAfiCore/model/bid/BidProduct";
 import { ScreenName } from "./ScreenName";
-export default class ListBidComming extends Component<props, state> {
+import { config } from "../config/Config";
+import { useIsFocused } from "@react-navigation/native";
+
+var autoReload: any;
+ class ListBidComming extends Component<Props, state> {
   constructor(props: any) {
     super(props);
     this.state = {
-      bidCommings: []
+      bidCommings: [],
+      reload: true,
     };
 
     this.getListComming();
 
   }
 
+  componentWillUnmount() {
+    // console.log("on wil unmount on list bid comming");
+
+    clearInterval(autoReload);
+    this.setState({
+      bidCommings: []
+    })
+  }
   componentDidMount() {
-    setInterval(
+    // this.getListComming();
+    autoReload = setInterval(
       () => {
-        if(new Date().getSeconds()%3==0){
-          this.getListComming()
-        }
+        this.setState({
+          reload: !this.state.reload
+        })
       },
       1000
     );
+  }
+  componentWillReceiveProps(nextProps: Props){
+    if(nextProps.isFocused){
+      this.getListComming();
+    }
   }
 
   getListComming() {
@@ -45,22 +64,33 @@ export default class ListBidComming extends Component<props, state> {
       <View style={myStyle.containerLight}>
         <FlatList
           data={this.state.bidCommings}
+          extraData = {this.state.reload}
           contentContainerStyle={myStyle.ListBidProduct}
-          renderItem={({ item }) =>
-            <TouchableOpacity
-              onPress={() => {
-              this.props.navigation.navigate(ScreenName.BidProduct, {
-                bidProductId: item._id
-              });
-               
-                
-              }}
-            >
-              <ProductBid
-                bidProduct={item}
-                // time={BidService.calcTime(item.startBidAt || new Date)}
-              />
-            </TouchableOpacity  >
+          renderItem={({ item }) => {
+            if (BidService.getTimeCountBid(item)  > config.api.timeLimit) {
+              return (
+                <TouchableOpacity
+                  onPress={() => {
+                    this.props.navigation.navigate(ScreenName.BidProduct, {
+                      bidProductId: item._id
+                    });
+
+
+                  }}
+                >
+                  <ProductBid
+                    bidProduct={item}
+                    reload={this.state.reload}
+                  />
+                </TouchableOpacity  >
+              )
+            } else {
+              
+            }
+
+          }
+
+
 
           }
           keyExtractor={(item) => (item._id != undefined ? item._id : "null")}
@@ -70,11 +100,20 @@ export default class ListBidComming extends Component<props, state> {
   }
 }
 
-type props = {
-  navigation: any
+type Props = {
+  navigation: any,
+  isFocused : boolean
 };
 type state = {
-  bidCommings: BidProduct[];
+  bidCommings: BidProduct[],
+  reload: boolean
+
 };
 
+
+export default function (props: Props) {
+  console.log(useIsFocused())
+
+  return <ListBidComming {...props} isFocused={useIsFocused()} />;
+}
 
