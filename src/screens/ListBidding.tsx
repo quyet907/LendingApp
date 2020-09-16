@@ -17,19 +17,10 @@ export default class ListBidding extends Component<props, state> {
     };
 
     this.getListBidding();
-
-    firebase.firestore().collection("bidProduct").orderBy("timestamp", "desc").limit(1)
-      .onSnapshot((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-          let bidProduct = doc.data();
-          bidProduct.id = doc.id;
-          console.log(bidProduct);
-        });
-      });
-
-
-
   }
+
+
+
   componentDidMount() {
     // setInterval(
     //   () => {
@@ -40,6 +31,37 @@ export default class ListBidding extends Component<props, state> {
     //   },
     //   1000
     // );
+
+    // firebase.firestore().collection("bidProduct").onSnapshot((snapshot) => {
+    //   let bid: any[] = [];
+    //   querySnapshot.forEach((doc) => {
+    //     let bidProduct = doc.data();
+    //     bidProduct.id = doc.id;
+    //     bid.push(bidProduct)
+    //   });
+    //   Math.max.apply(Math, bid.map((o) => {
+    //     console.log(o);
+
+    //     return o
+    //   }))
+    //   console.log(bid);
+
+    // });
+
+    firebase.firestore().collection("bidProduct").onSnapshot((snapshot)=> {
+        snapshot.docChanges().forEach((change)=> {
+            if (change.type === "added") {
+                console.log("New city: ", change.doc.data());
+            }
+            if (change.type === "modified") {
+                console.log("Modified city: ", change.doc.data());
+            }
+            if (change.type === "removed") {
+                console.log("Removed city: ", change.doc.data());
+            }
+        });
+    });
+
   }
 
   getListBidding() {
