@@ -85,10 +85,7 @@ var autoReload: any;
                 </TouchableOpacity  >
               )
             } else {
-              var index = this.state.bidCommings.indexOf(item);
-              this.setState({
-                bidCommings : this.state.bidCommings.splice(index, 1)
-              })
+              
             }
 
           }

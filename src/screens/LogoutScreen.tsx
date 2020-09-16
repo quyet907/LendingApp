@@ -40,6 +40,7 @@ export default class LogoutScreen extends Component<Props, State> {
                             backgroundColor: color.background
                           },
                     }}
+                    
                     />
                     <Stack.Screen name={ScreenName.BidProduct} component={Bid} 
                      options={{

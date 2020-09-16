@@ -10,7 +10,8 @@ export default class TestFireBase extends Component<props, state> {
         super(props);
         this.state = {
             count : 1,
-            getCount : 0
+            getCount : 0,
+            lastBidAt: ''
         }
     }
 
@@ -28,8 +29,15 @@ export default class TestFireBase extends Component<props, state> {
         })
     }
 
-    onget(){
+    onget(bidProductId: string){
+        storage.on('value', (snapshot: any[])=> {
+            const bidProduct =  snapshot.find(childSnap => childSnap.val().key === bidProductId)
+            const lastBidAt = bidProduct.lastBidAt;
+            this.setState({
+                lastBidAt : lastBidAt
+            })
 
+        })
     }
     render() {
         
@@ -37,7 +45,7 @@ export default class TestFireBase extends Component<props, state> {
         return (
             <View style={{ justifyContent: 'center', alignItems: 'center' }}>
                 <Text>{
-                    storage.child("count").on("value", snapshot=>{
+                    storage.child("count").on("value", (snapshot: any)=>{
                         return (snapshot)
                     })
                     }</Text>
@@ -67,5 +75,6 @@ type props = {
 
 type state = {
     count : number,
-    getCount : number
+    getCount : number,
+    lastBidAt: string
 }

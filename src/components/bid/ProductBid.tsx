@@ -10,19 +10,21 @@ import * as actionAll from "../../Action/ActionAll"
 import store from "../../reducer/store"
 import { FormatService } from "../../services/FormatService";
 import { Product } from "@StockAfiCore/model/product/Product";
+import { firebase } from "../../../FirebaseConfig";
 
-var runTimeProductBid:any;
- class ProductBid extends Component<Props, state> {
+
+var runTimeProductBid: any;
+class ProductBid extends Component<Props, state> {
     constructor(props: any) {
         super(props);
         this.state = {
             img: "",
             price: 0,
-            product : {}
+            product: {}
         };
     }
 
-    componentDidUnmount(){
+    componentDidUnmount() {
         clearInterval(runTimeProductBid);
     }
 
@@ -39,10 +41,10 @@ var runTimeProductBid:any;
         //     },
         //     500
         // );
-        
+
     }
-    componentWillReceiveProps(nextProps : Props){
-        if(!nextProps.bidProduct === this.props.bidProduct){
+    componentWillReceiveProps(nextProps: Props) {
+        if (!nextProps.bidProduct === this.props.bidProduct) {
             this.setValue();
         }
 
@@ -62,21 +64,34 @@ var runTimeProductBid:any;
             price = this.props.bidProduct.startPrice;
         }
         let product: Product = {}
-        let img : string= "";
+        let img: string = "";
 
-        if(this.props.bidProduct&&this.props.bidProduct.product){
+        if (this.props.bidProduct && this.props.bidProduct.product) {
             product = this.props.bidProduct.product
-            if(product.thumbImagesUrl){
-                img = product.thumbImagesUrl[0]|| "";
+            if (product.thumbImagesUrl) {
+                img = product.thumbImagesUrl[0] || "";
             }
         }
-
+        
+        this.onListenFirebase();
         this.setState({
             price: price,
-            product : product,
+            product: product,
             img: img
         })
     }
+
+    onListenFirebase() {
+        var fireStoreFirebase = firebase.firestore();
+        var getBidProductFirebase = fireStoreFirebase.collection("bidProduct").doc(this.props.bidProduct._id);
+        getBidProductFirebase.onSnapshot({
+            includeMetadataChanges : true
+        }, (doc)=>{
+             console.log(doc.data());
+        })
+
+    }
+
     render() {
         return (
             <View style={[myStyle.productBid]}>
@@ -106,7 +121,7 @@ var runTimeProductBid:any;
                 </View>
                 <View>
                     <View style={[myStyle.frNameandDetailProductBid]}>
-                            <Text style={[myStyle.nameProductBid]}>{this.state.product.name}</Text>
+                        <Text style={[myStyle.nameProductBid]}>{this.state.product.name}</Text>
                         <Text style={{ color: color.inactive }}>This is a monkey beautifull</Text>
                     </View>
 
@@ -117,26 +132,19 @@ var runTimeProductBid:any;
 
     logProduct = () => {
         console.log(this.props.bidProduct.product?.name);
-        
+
     }
 }
 type Props = {
     bidProduct: BidProduct,
-    onReload(): void
+    onChangeBid(): BidProduct
 };
 type state = {
     img: string,
     price: number,
-    product : Product
+    product: Product
 };
 
-function mapDispatchToProps(dispatch: any, props: any) {
-    return {
-        onReload() {
-            dispatch(actionAll.reload())
-        }
-    }
-}
 
 
-export default connect(null, mapDispatchToProps)(ProductBid)
+export default connect(null, null)(ProductBid)

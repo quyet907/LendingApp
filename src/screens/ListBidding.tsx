@@ -32,10 +32,6 @@ class ListBidding extends Component<Props, state> {
         });
       });
 
-      // ordersCollection.add({
-      //   ..., // all your other fields
-      //   timestamp: firebase.firestore.FieldValue.serverTimestamp()
-      // });
 
   }
 
@@ -68,6 +64,7 @@ class ListBidding extends Component<Props, state> {
       this.setState({
         biddings: bidProducts
       })
+ 
     })
   }
 

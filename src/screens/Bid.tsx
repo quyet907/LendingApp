@@ -17,11 +17,11 @@ import { firebase } from "../../FirebaseConfig";
 import { User } from '@StockAfiCore/model/user/User';
 import { BaseUser } from '@Core/model/user/BaseUser';
 import * as  PageBid from "./PageBid";
-var pageBid = PageBid.default;
 
 // pageBid.render();
 var fireStoreFirebase = firebase.firestore();
 var timeahihi;
+
 var bidProductId = "";
 class Bid extends Component<props, state>{
     constructor(props: any) {
@@ -54,15 +54,15 @@ class Bid extends Component<props, state>{
                 if (firebaseBidProduct) {
                     copyBidProduct.endPrice = firebaseBidProduct.endPrice;
                     var createObjectBidHistory: BidHistory = {};
-                    var createUser : BaseUser = {
-                        username : firebaseBidProduct.latestBidUser
+                    var createUser: BaseUser = {
+                        username: firebaseBidProduct.latestBidUser
                     };
                     createObjectBidHistory.user = createUser;
                     createObjectBidHistory._id = firebaseBidProduct.lastHistoryId;
                     createObjectBidHistory.bidPrice = copyBidProduct.stepPrice;
                     copyBidProduct.listHistoryBid?.push(createObjectBidHistory);
-                    if(firebaseBidProduct.latestBidAt){
-                    copyBidProduct.latestBidAt = new Date(firebaseBidProduct.latestBidAt);
+                    if (firebaseBidProduct.latestBidAt) {
+                        copyBidProduct.latestBidAt = new Date(firebaseBidProduct.latestBidAt.seconds*1000);
                     }
                 }
                 self.renderDataBid(copyBidProduct);
@@ -110,7 +110,7 @@ class Bid extends Component<props, state>{
         this.setState({
             bidProduct: bidProduct,
             product: bidProduct.product || {},
-            
+
         })
         let filterDataBidder: BaseUser[] = new Array();
 
@@ -152,8 +152,7 @@ class Bid extends Component<props, state>{
                         style={[]}
                         data={this.state.product.thumbImagesUrl}
 
-                        renderItem={(item) => {
-                            // console.log(item);
+                        renderItem={(item: any) => {
                             return (
                                 <View style={[myStyle.frImgProdcurBid, { height: 300 }]}>
                                     <Image
@@ -228,6 +227,5 @@ type state = {
 }
 
 export default function (props: any) {
-    // const isFocused = useIsFocused();
     return <Bid {...props} />;
 }

@@ -1,7 +1,7 @@
 import * as React from "react";
 import { View, Text, TextInput, Image, StyleSheet } from "react-native";
 import { TouchableOpacity, ScrollView, FlatList } from "react-native-gesture-handler";
-import HistoryDetailLending from "../components/lending/HistoryDetailLending";
+import HistoryDetailLending from "../components/lending/HistoryLendingDetail";
 import Package from "../components/lending/lending-package/Package";
 import { LendingPackageService } from "../services/LendingPackageService";
 import { LendingPackage } from "@StockAfiCore/model/lending/LendingPackage";
@@ -12,6 +12,7 @@ import * as color from "../Color";
 import { IncomeService } from "../services/IncomeService";
 import { Paging } from "@Core/controller/Paging";
 import { useIsFocused } from "@react-navigation/native";
+import HistoriesLending from "../components/lending/HistoriesLending";
 
 class Lending extends React.Component<Props, State> {
   constructor(props: any) {
@@ -41,6 +42,11 @@ class Lending extends React.Component<Props, State> {
       this.getDataToState();
       
     }
+    // if (prev.isFocused) {
+    //   this.getDataToState();
+    //   console.log("will");
+
+    // }
   }
 
 
@@ -194,10 +200,14 @@ class Lending extends React.Component<Props, State> {
               </TouchableOpacity>
             </View>
           </View>
-          <View style={styles.container2}>
+
+          <HistoriesLending
+            historiesLending={this.state.myInvest}
+          ></HistoriesLending>
+          {/* <View style={styles.container2}> */}
             {/* <Text style={styles.textLabel}>My Investsment</Text>
             <Separator /> */}
-            <FlatList
+            {/* <FlatList
               data={this.state.myInvest}
               renderItem={({ item }) => (
                 <HistoryDetailLending
@@ -210,8 +220,8 @@ class Lending extends React.Component<Props, State> {
               )}
               keyExtractor={(item: LendingModel, index: number) => item._id || index.toString()
               }
-            />
-          </View>
+            /> */}
+          {/* </View> */}
         </ScrollView>
         <PopupConfirm
           confirmModal={this.state.confirmModal}
@@ -243,13 +253,16 @@ class Lending extends React.Component<Props, State> {
         }
       }
     );
+
     LendingService.getMyInvest().then((res) => {
       this.setState({ myInvest: res.rows });
     });
+
     IncomeService.getFinance().then((res) => {
       this.setState({ wallet: res.remainAmount || 0 });
       // });
     })
+    
     this.setState({
       initialValue: this.state.initialValue + 1
     })
@@ -264,7 +277,7 @@ class Lending extends React.Component<Props, State> {
     );
   };
 
-  updateLending = () => {
+  updateMyInvest = () => {
     LendingService.getMyInvest().then((res) => {
       this.setState({ myInvest: res.rows });
     });
@@ -305,7 +318,7 @@ class Lending extends React.Component<Props, State> {
       loanAmount: this.state.initialValue,
     };
     LendingService.createLending(lending).then(() => {
-      this.updateLending();
+      this.updateMyInvest();
     });
   };
 
