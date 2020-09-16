@@ -12,6 +12,8 @@ import { BidHistory } from '@StockAfiCore/model/bid/BidHistory';
 import { BidProductHistoryService } from '../services/BidProductHistoryService';
 import { Paging } from '@Core/controller/Paging';
 import { FormatService } from '../services/FormatService';
+import { firebase } from "../../FirebaseConfig";
+var storage = firebase.database().ref("bidProduct");
 
 var bidProductId = "";
 export default class Bid extends Component<props, state>{
@@ -30,21 +32,35 @@ export default class Bid extends Component<props, state>{
         BidService.getBidInfo(bidProductId).then((bidProduct: BidProduct) => {
             this.renderDataBid(bidProduct);
 
-            
+
 
         })
 
+        firebase.firestore().collection("bidProduct").doc()
+            .onSnapshot({
+                // Listen for document metadata changes
+                includeMetadataChanges: true
+            }, function (doc) {
+                console.log(doc.data());
+                
+            });
     }
 
     componentDidMount() {
-        
+
+        firebase.firestore().collection("bidProduct").get().then((querySnapshot) => {
+            querySnapshot.forEach((doc) => {
+                console.log(doc.data());
+            });
+        });
+
+
+
         setInterval(
             () => {
-                
                 BidService.getBidInfo(bidProductId).then((bidProduct: BidProduct) => {
                     this.renderDataBid(bidProduct);
                 })
-
                 this.setState({
                     timeBid: BidService.getTimeCountBid(this.state.bidProduct),
                 })
@@ -54,7 +70,7 @@ export default class Bid extends Component<props, state>{
 
     }
 
-    renderDataBid(bidProduct : BidProduct) {
+    renderDataBid(bidProduct: BidProduct) {
         this.setState({
             bidProduct: bidProduct,
             product: bidProduct.product || {},
@@ -63,10 +79,10 @@ export default class Bid extends Component<props, state>{
         this.setState({
             priceBid: bidProduct.endPrice || bidProduct.startPrice || 0
         })
-        
+
     }
 
-    
+
 
     render() {
         return (
@@ -87,7 +103,7 @@ export default class Bid extends Component<props, state>{
                         style={[]}
                         data={this.state.product.thumbImagesUrl}
 
-                        renderItem={(item ) => {
+                        renderItem={(item: any) => {
                             return (
                                 <View style={[myStyle.frImgProdcurBid, { height: 300 }]}>
                                     <Image

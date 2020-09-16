@@ -4,7 +4,7 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import * as color from '../../Color'
 const timeIcon = <MaterialIcons name="access-time" size={12} color={color.inactive} />;
-export default class HistoryDetail extends React.Component<Props, {}>{
+export default class HistoryLendingDetail extends React.Component<Props, {}>{
     constructor(props: any) {
         super(props)
     }

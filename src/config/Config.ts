@@ -5,7 +5,7 @@ const localConfig: IConfig = {
     lendingAPI: "http://localhost:4001",
     userAPI: "http://localhost:4001",
     domain: 'http://localhost:19006',
-    timeLimit : 100,
+    timeLimit : 10000,
   },
 };
 
