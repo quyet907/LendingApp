@@ -4,19 +4,14 @@ import myStyle from "../style"
 import Carousel from 'react-native-snap-carousel';
 import ListBidder from '../components/bid/ListBidder';
 import * as color from "../Color"
-import { Actions } from "react-native-router-flux"
 import { BidProduct } from '@StockAfiCore/model/bid/BidProduct';
 import { BidService } from '../services/BidService';
 import { Product } from '@StockAfiCore/model/product/Product';
 import { BidHistory } from '@StockAfiCore/model/bid/BidHistory';
-import { BidProductHistoryService } from '../services/BidProductHistoryService';
 import { Paging } from '@Core/controller/Paging';
 import { FormatService } from '../services/FormatService';
-import { clearInterval } from 'timers';
 import { firebase } from "../../FirebaseConfig";
-import { User } from '@StockAfiCore/model/user/User';
 import { BaseUser } from '@Core/model/user/BaseUser';
-import * as  PageBid from "./PageBid";
 
 // pageBid.render();
 var fireStoreFirebase = firebase.firestore();
@@ -31,7 +26,7 @@ class Bid extends Component<props, state>{
             bidProduct: {},
             bidders: [],
             timeBid: 10,
-            priceBid: 0,
+
 
         }
 
@@ -46,7 +41,6 @@ class Bid extends Component<props, state>{
         var getBidProductFirebase = fireStoreFirebase.collection("bidProduct").doc(bidProductId);
         var self = this;
         getBidProductFirebase.onSnapshot({
-            // Listen for document metadata changes
             includeMetadataChanges: true
         }, function (doc) {
             if (doc) {
@@ -70,28 +64,13 @@ class Bid extends Component<props, state>{
         });
     }
 
+
     componentDidMount() {
         this.listenOnChange();
         BidService.getBidInfo(bidProductId).then((bidProduct: BidProduct) => {
-            console.log(bidProduct);
             this.renderDataBid(bidProduct);
             this.listenOnChange();
         })
-
-
-
-        var getBidProductFirebase = fireStoreFirebase.collection("bidProduct").doc(bidProductId);
-        getBidProductFirebase.get().then(function (doc: any) {
-            if (doc.exists) {
-                console.log("Document data:", doc.data());
-            } else {
-                // doc.data() will be undefined in this case
-                console.log("No such document!");
-            }
-
-        }).catch(function (error) {
-            console.log("Error getting document:", error);
-        });
 
         timeahihi = setInterval(
             () => {
@@ -101,9 +80,6 @@ class Bid extends Component<props, state>{
             },
             500
         );
-
-
-
     }
 
     renderDataBid(bidProduct: BidProduct) {
@@ -112,23 +88,9 @@ class Bid extends Component<props, state>{
             product: bidProduct.product || {},
 
         })
-        let filterDataBidder: BaseUser[] = new Array();
-
-        // if(bidProduct.listHistoryBid){
-        //     bidProduct.listHistoryBid.map((user: BaseUser)=>{
-        //         let userFiltered: BaseUser = {
-        //             _id : user._id,
-        //             username  : user.username
-        //         }
-        //         filterDataBidder.push(userFiltered)
-        //     })
-        // }
-
         this.setState({
             bidders: bidProduct.listHistoryBid || [],
-            priceBid: bidProduct.endPrice || bidProduct.startPrice || 0
         })
-
     }
 
 
@@ -173,14 +135,14 @@ class Bid extends Component<props, state>{
                         </View>
                         <View style={[myStyle.childFrPriceAndTimePageBid]}>
                             <Text style={{ color: color.text_primary, fontWeight: "bold", fontSize: 20, }}>
-                                {FormatService.roundingMoney(this.state.priceBid)}</Text>
+                                {FormatService.roundingMoney(BidService.getPriceBidProduct(this.state.bidProduct))}</Text>
                             <Text style={{ color: color.inactive }}>Price bid</Text>
                         </View>
                     </View>
                 </View>
 
                 <View style={[myStyle.nameProductPageBid]}>
-                    <Text style={{ fontSize: 20, color: color.text, fontWeight: "500" }}>{`${this.state.product.name}`}</Text>
+                    <Text style={{ fontSize: 20, color: color.text, fontWeight: "500" }}>{`${BidService.getNameBidProduct(this.state.bidProduct)}`}</Text>
                 </View>
 
 
@@ -223,7 +185,6 @@ type state = {
     product: Product
     bidders: BidHistory[]
     timeBid: number,
-    priceBid: number
 }
 
 export default function (props: any) {

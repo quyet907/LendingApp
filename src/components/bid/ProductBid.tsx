@@ -11,140 +11,79 @@ import store from "../../reducer/store"
 import { FormatService } from "../../services/FormatService";
 import { Product } from "@StockAfiCore/model/product/Product";
 import { firebase } from "../../../FirebaseConfig";
+import { UserService } from "src/services/UserService";
 
 
-var runTimeProductBid: any;
-class ProductBid extends Component<Props, state> {
+export default class ProductBid extends Component<Props, state> {
     constructor(props: any) {
         super(props);
         this.state = {
-            img: "",
-            price: 0,
-            product: {}
+            
         };
     }
-
-    componentDidUnmount() {
-        clearInterval(runTimeProductBid);
-    }
-
-
-    componentDidMount() {
-        // console.log(this.props.navigation.getParam('id', 'default'));
-        this.setValue();
-        // runTimeProductBid=  setInterval(
-        //     () => {
-        //         // console.log("on run product bid");
-        //         this.setState({
-        //             timeCount: BidService.getTimeCountBid(this.props.bidProduct),
-        //         })
-        //     },
-        //     500
-        // );
-
-    }
-    componentWillReceiveProps(nextProps: Props) {
-        if (!nextProps.bidProduct === this.props.bidProduct) {
-            this.setValue();
-        }
-
-    }
-
-    setValue() {
-        if (this.props.bidProduct.product && this.props.bidProduct.product.thumbImagesUrl) {
-            this.setState({
-                img: this.props.bidProduct.product.thumbImagesUrl[0]
-            })
-        }
-        let price: number = 0;
-        if (this.props.bidProduct.endPrice) {
-            price = this.props.bidProduct.endPrice;
-        }
-        else if (this.props.bidProduct.startPrice) {
-            price = this.props.bidProduct.startPrice;
-        }
-        let product: Product = {}
-        let img: string = "";
-
-        if (this.props.bidProduct && this.props.bidProduct.product) {
-            product = this.props.bidProduct.product
-            if (product.thumbImagesUrl) {
-                img = product.thumbImagesUrl[0] || "";
-            }
-        }
-        
-        this.onListenFirebase();
-        this.setState({
-            price: price,
-            product: product,
-            img: img
-        })
-    }
-
-    onListenFirebase() {
-        var fireStoreFirebase = firebase.firestore();
-        var getBidProductFirebase = fireStoreFirebase.collection("bidProduct").doc(this.props.bidProduct._id);
-        getBidProductFirebase.onSnapshot({
-            includeMetadataChanges : true
-        }, (doc)=>{
-             console.log(doc.data());
-        })
-
-    }
+    // onListenFirebase() {
+    //     let seft = this;
+    //     let fireStoreFirebase = firebase.firestore();
+    //     let getBidProductFirebase = fireStoreFirebase.collection("bidProduct").doc(this.props.bidProduct._id);
+    //     getBidProductFirebase.onSnapshot({
+    //         includeMetadataChanges : true
+    //     }, (doc)=>{
+    //          if(doc.data()){
+    //             let getDataDoc:any =  doc.data(); 
+    //             let duplicateProduct = seft.props.bidProduct;
+    //             if(getDataDoc.endPrice){
+    //                 duplicateProduct.endPrice = getDataDoc.endPrice;
+    //             }
+    //             if(getDataDoc.latestBidAt){
+    //                 duplicateProduct.latestBidAt = new Date(getDataDoc.latestBidAt.seconds * 1000);
+    //             }   
+    //             seft.props.onChangeBid(duplicateProduct);
+    //          }
+    //     })
+    // }
 
     render() {
         return (
+            
             <View style={[myStyle.productBid]}>
                 <View>
                     <View style={[myStyle.frImgAndPrice]}>
                         <View style={[myStyle.frImgProdcurBid]}>
                             <Image
                                 style={[myStyle.imgProductBid]}
-                                source={{ uri: `${this.state.img}` }}
+                                source={{ uri: `${BidService.getImgFirtBidProduct(this.props.bidProduct)}` }}
                             />
                         </View>
                         <View style={[myStyle.frPriceAndTime]}>
 
                             <View style={[myStyle.frStatusAndTime]}>
-                                {/* <View>
-                                    <Text style={[myStyle.statusProductBid]}>{this.props.status}</Text>
-                                </View> */}
                                 <View>
                                     <Text style={[myStyle.timeProductBid]}>{BidService.changeTextTime(BidService.getTimeCountBid(this.props.bidProduct))}</Text>
                                 </View>
                             </View>
                             <View>
-                                <Text style={[myStyle.priceProductBid]}>{FormatService.roundingMoney(this.state.price)}</Text>
+                                <Text style={[myStyle.priceProductBid]}>{FormatService.roundingMoney(BidService.getPriceBidProduct(this.props.bidProduct))}</Text>
                             </View>
                         </View>
                     </View>
                 </View>
                 <View>
                     <View style={[myStyle.frNameandDetailProductBid]}>
-                        <Text style={[myStyle.nameProductBid]}>{this.state.product.name}</Text>
+                        <Text style={[myStyle.nameProductBid]}>{BidService.getNameBidProduct(this.props.bidProduct)}</Text>
                         <Text style={{ color: color.inactive }}>This is a monkey beautifull</Text>
                     </View>
-
                 </View>
             </View>
         );
     }
-
-    logProduct = () => {
-        console.log(this.props.bidProduct.product?.name);
-
-    }
 }
 type Props = {
     bidProduct: BidProduct,
-    onChangeBid(): BidProduct
+    // onChangeBid(bidProduct : BidProduct) : void    
 };
 type state = {
-    img: string,
-    price: number,
-    product: Product
+
 };
 
 
 
-export default connect(null, null)(ProductBid)

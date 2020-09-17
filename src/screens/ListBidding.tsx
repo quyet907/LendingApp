@@ -8,11 +8,13 @@ import { BidService } from "../services/BidService";
 import { BidProduct } from "@StockAfiCore/model/bid/BidProduct";
 import { FormatService } from "../services/FormatService";
 import { ScreenName } from "./ScreenName";
-import {firebase} from "../../FirebaseConfig";
+import { firebase } from "../../FirebaseConfig";
 import { useIsFocused } from "@react-navigation/native";
 
 
 var autoReload: any;
+var getThis: any;
+
 class ListBidding extends Component<Props, state> {
   constructor(props: any) {
     super(props);
@@ -20,6 +22,7 @@ class ListBidding extends Component<Props, state> {
       biddings: [],
       reload: true
     };
+    getThis = this;
 
     this.getListBidding();
 
@@ -48,13 +51,12 @@ class ListBidding extends Component<Props, state> {
         this.setState({
           reload: !this.state.reload
         })
-
       },
       500
     );
   }
-  componentWillReceiveProps(nextProps : any ){
-    if(nextProps.isFocused){
+  componentWillReceiveProps(nextProps: any) {
+    if (nextProps.isFocused) {
       this.getListBidding();
     }
   }
@@ -64,11 +66,24 @@ class ListBidding extends Component<Props, state> {
       this.setState({
         biddings: bidProducts
       })
- 
+
     })
   }
+  // onChangeProduct(product: BidProduct) {
 
-
+  //   var getBiddingChange: BidProduct[] = getThis.state.biddings;
+  //   getBiddingChange.map((bidProduct: BidProduct) => {
+  //     if (bidProduct._id == product._id) {
+  //       console.log("ahihi======");
+  //       bidProduct = product;
+  //     }
+  //     return bidProduct;
+  //   })
+  //   getThis.setState({
+  //     biddings: getBiddingChange
+  //   })
+  // }
+  
   render() {
     return (
       <View style={myStyle.containerLight}>
@@ -77,6 +92,7 @@ class ListBidding extends Component<Props, state> {
           extraData={this.state.reload}
           contentContainerStyle={myStyle.ListBidProduct}
           renderItem={({ item }) => {
+
             if (BidService.getTimeCountBid(item) >= 0) {
               return (
                 <TouchableOpacity
@@ -84,19 +100,16 @@ class ListBidding extends Component<Props, state> {
                     this.props.navigation.navigate(ScreenName.BidProduct, {
                       bidProductId: item._id
                     });
-
-
                   }}
                 >
                   <ProductBid
                     bidProduct={item}
-                    reload={this.state.reload}
                   />
                 </TouchableOpacity  >
               )
-            } 
-              return (<div></div>)
-            
+            }
+            return (<div></div>)
+
 
           }
 
@@ -108,10 +121,11 @@ class ListBidding extends Component<Props, state> {
       </View>
     );
   }
+
 }
 
 type Props = {
-  navigation: any, 
+  navigation: any,
   isFocused: boolean,
 };
 type state = {
@@ -120,7 +134,7 @@ type state = {
 };
 
 
-export default function (props : Props){
+export default function (props: Props) {
   console.log(useIsFocused())
-  return <ListBidding {...props} isFocused = {useIsFocused()} />
+  return <ListBidding {...props} isFocused={useIsFocused()} />
 }

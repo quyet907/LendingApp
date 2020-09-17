@@ -69,12 +69,31 @@ export class BidService {
         let calcTime: number = 0;
         if (bidProduct.latestBidAt) {
             calcTime = BidService.calcTime(bidProduct.latestBidAt)
+            
         } else if (bidProduct.startBidAt) {
             calcTime = BidService.calcTime(bidProduct.startBidAt)
         }
-
         return calcTime;
     }
+
+    public static getImgFirtBidProduct(bidProduct : BidProduct) : string{
+        if (bidProduct.product && bidProduct.product.thumbImagesUrl)
+            return bidProduct.product.thumbImagesUrl[0];
+        return ""
+    }
+    public static getPriceBidProduct(bidProduct : BidProduct) : number{
+        if (bidProduct.endPrice)    return  bidProduct.endPrice;
+        if (bidProduct.startPrice)  return  bidProduct.startPrice;
+        return 0;
+    }
+
+    public static getNameBidProduct(bidProduct : BidProduct) : string{
+        if(bidProduct.product && bidProduct.product.name)
+            return bidProduct.product.name
+        return "Product of Afi"
+        
+    }
+
 
 
     public static calcTime(Time: Date | undefined): number {
@@ -103,6 +122,7 @@ export class BidService {
 
 
     public static changeTextTime(calcTime: number): string {
+        // console.log(calcTime);
         if (calcTime < 0) {
             return `Finished`
         }
