@@ -1,17 +1,10 @@
 import React, { Component } from "react";
 import { View, Text, Image } from "react-native";
 import myStyle from "../../style";
-import Actions from "react-native-router-flux"
 import * as color from "../../Color"
 import { BidProduct } from "@StockAfiCore/model/bid/BidProduct";
 import { BidService } from "../../services/BidService";
-import { connect } from "react-redux";
-import * as actionAll from "../../Action/ActionAll"
-import store from "../../reducer/store"
 import { FormatService } from "../../services/FormatService";
-import { Product } from "@StockAfiCore/model/product/Product";
-import { firebase } from "../../../FirebaseConfig";
-import { UserService } from "src/services/UserService";
 
 
 export default class ProductBid extends Component<Props, state> {
@@ -79,7 +72,6 @@ export default class ProductBid extends Component<Props, state> {
 }
 type Props = {
     bidProduct: BidProduct,
-    // onChangeBid(bidProduct : BidProduct) : void    
 };
 type state = {
 

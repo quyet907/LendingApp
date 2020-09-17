@@ -25,18 +25,10 @@ class ListBidding extends Component<Props, state> {
     getThis = this;
 
     this.getListBidding();
-
-    firebase.firestore().collection("bidProduct").orderBy("timestamp", "desc").limit(1)
-      .onSnapshot((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-          let bidProduct = doc.data();
-          bidProduct.id = doc.id;
-          console.log(bidProduct);
-        });
-      });
-
-
   }
+
+
+
 
   componentWillUnmount() {
     // console.log("on wil unmount on list bidding");
@@ -45,7 +37,40 @@ class ListBidding extends Component<Props, state> {
   }
 
   componentDidMount() {
+
+    firebase.firestore().collection("bidProduct")
+      .onSnapshot((snapshot) => {
+        console.log(snapshot.docChanges().length);
+
+        snapshot.docChanges().forEach((change) => {
+          if (change.type === "added" || change.type === "modified") {
+              // console.log("New: ", change.doc.data());
+            const bidProductChange = change.doc.data();
+            console.log("Modified: ", bidProductChange);
+            let biddings = [...this.state.biddings];
+            
+            
+            const bidIndex = biddings.findIndex(bidding => bidding._id == change.doc.id)
+            if (bidIndex >= 0){
+              biddings[bidIndex].latestBidAt = new Date(bidProductChange.latestBidAt.seconds);
+              console.log(biddings[bidIndex]);
+            }
+
+            this.setState({
+              biddings: biddings
+            })
+            
+
+            // let newList = listBidding.map
+            // this.setState({biddings: this.state.biddings.map(bd)})
+          }
+          // if (change.type === "removed") {
+          //     console.log("Removed: ", change.doc.data());
+          // }
+        });
+      });
     // this.getListBidding()
+<<<<<<< HEAD
     autoReload = setInterval(
       () => {
         this.setState({
@@ -54,6 +79,17 @@ class ListBidding extends Component<Props, state> {
       },
       500
     );
+=======
+    // autoReload = setInterval(
+    //   () => {
+    //     this.setState({
+    //       reload: !this.state.reload
+    //     })
+
+    //   },
+    //   500
+    // );
+>>>>>>> 456aed274b7dd54d9c278ad0fda90d142597dcc7
   }
   componentWillReceiveProps(nextProps: any) {
     if (nextProps.isFocused) {
