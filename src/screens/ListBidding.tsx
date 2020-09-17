@@ -8,7 +8,7 @@ import { BidService } from "../services/BidService";
 import { BidProduct } from "@StockAfiCore/model/bid/BidProduct";
 import { FormatService } from "../services/FormatService";
 import { ScreenName } from "./ScreenName";
-import {firebase} from "../../FirebaseConfig";
+import { firebase } from "../../FirebaseConfig";
 import { useIsFocused } from "@react-navigation/native";
 
 
@@ -25,7 +25,7 @@ class ListBidding extends Component<Props, state> {
   }
 
 
-  }
+
 
   componentWillUnmount() {
     // console.log("on wil unmount on list bidding");
@@ -34,19 +34,51 @@ class ListBidding extends Component<Props, state> {
   }
 
   componentDidMount() {
-    // this.getListBidding()
-    autoReload = setInterval(
-      () => {
-        this.setState({
-          reload: !this.state.reload
-        })
 
-      },
-      500
-    );
+    firebase.firestore().collection("bidProduct")
+      .onSnapshot((snapshot) => {
+        console.log(snapshot.docChanges().length);
+
+        snapshot.docChanges().forEach((change) => {
+          if (change.type === "added" || change.type === "modified") {
+              // console.log("New: ", change.doc.data());
+            const bidProductChange = change.doc.data();
+            console.log("Modified: ", bidProductChange);
+            let biddings = [...this.state.biddings];
+            
+            
+            const bidIndex = biddings.findIndex(bidding => bidding._id == change.doc.id)
+            if (bidIndex >= 0){
+              biddings[bidIndex].latestBidAt = new Date(bidProductChange.latestBidAt.seconds);
+              console.log(biddings[bidIndex]);
+            }
+
+            this.setState({
+              biddings: biddings
+            })
+            
+
+            // let newList = listBidding.map
+            // this.setState({biddings: this.state.biddings.map(bd)})
+          }
+          // if (change.type === "removed") {
+          //     console.log("Removed: ", change.doc.data());
+          // }
+        });
+      });
+    // this.getListBidding()
+    // autoReload = setInterval(
+    //   () => {
+    //     this.setState({
+    //       reload: !this.state.reload
+    //     })
+
+    //   },
+    //   500
+    // );
   }
-  componentWillReceiveProps(nextProps : any ){
-    if(nextProps.isFocused){
+  componentWillReceiveProps(nextProps: any) {
+    if (nextProps.isFocused) {
       this.getListBidding();
     }
   }
@@ -56,7 +88,7 @@ class ListBidding extends Component<Props, state> {
       this.setState({
         biddings: bidProducts
       })
- 
+
     })
   }
 
@@ -86,9 +118,9 @@ class ListBidding extends Component<Props, state> {
                   />
                 </TouchableOpacity  >
               )
-            } 
-              return (<div></div>)
-            
+            }
+            return (<div></div>)
+
 
           }
 
@@ -103,7 +135,7 @@ class ListBidding extends Component<Props, state> {
 }
 
 type Props = {
-  navigation: any, 
+  navigation: any,
   isFocused: boolean,
 };
 type state = {
@@ -112,7 +144,7 @@ type state = {
 };
 
 
-export default function (props : Props){
+export default function (props: Props) {
   console.log(useIsFocused())
-  return <ListBidding {...props} isFocused = {useIsFocused()} />
+  return <ListBidding {...props} isFocused={useIsFocused()} />
 }

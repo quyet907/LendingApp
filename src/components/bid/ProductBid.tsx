@@ -87,7 +87,7 @@ class ProductBid extends Component<Props, state> {
         getBidProductFirebase.onSnapshot({
             includeMetadataChanges : true
         }, (doc)=>{
-             console.log(doc.data());
+            //  console.log(doc.data());
         })
 
     }
