@@ -58,6 +58,7 @@ class ListBidding extends Component<Props, state> {
 
             this.setState({
               biddings: biddings
+            }, () => { console.log("da set");
             })
             
 
