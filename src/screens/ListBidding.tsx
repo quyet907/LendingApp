@@ -45,16 +45,60 @@ class ListBidding extends Component<Props, state> {
   }
 
   componentDidMount() {
-    // this.getListBidding()
+    this.getListBidding();
+    console.log("on component did mount ");
+    firebase.firestore().collection("bidProduct")
+      .onSnapshot((snapshot) => {
+        console.log(snapshot.docChanges().length);
+
+        snapshot.docChanges().forEach((change) => {
+          if (change.type === "added" || change.type === "modified") {
+              // console.log("New: ", change.doc.data());
+            const bidProductChange = change.doc.data();
+            console.log("Modified: ", bidProductChange);
+            let biddings = [...this.state.biddings];
+            
+            
+            const bidIndex = biddings.findIndex(bidding => bidding._id == change.doc.id)
+            if (bidIndex >= 0){
+              biddings[bidIndex].latestBidAt = new Date(bidProductChange.latestBidAt.seconds);
+              biddings[bidIndex].endPrice = bidProductChange.endPrice;
+              console.log(biddings[bidIndex]);
+            }
+
+
+            this.setState({
+              biddings: biddings
+            }, () => { console.log("da set");
+            })
+
+
+            
+
+            // let newList = listBidding.map
+            // this.setState({biddings: this.state.biddings.map(bd)})
+          }
+          // if (change.type === "removed") {
+          //     console.log("Removed: ", change.doc.data());
+          // }
+        });
+      });
+    
     autoReload = setInterval(
       () => {
         this.setState({
           reload: !this.state.reload
         })
+
       },
       500
     );
   }
+
+
+
+
+
   componentWillReceiveProps(nextProps: any) {
     if (nextProps.isFocused) {
       this.getListBidding();
@@ -85,6 +129,7 @@ class ListBidding extends Component<Props, state> {
   // }
 
   render() {
+    // console.log(this.state.biddings);
     return (
       <View style={myStyle.containerLight}>
         <FlatList

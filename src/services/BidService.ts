@@ -82,6 +82,7 @@ export class BidService {
         return ""
     }
     public static getPriceBidProduct(bidProduct : BidProduct) : number{
+        console.log(bidProduct.endPrice);
         if (bidProduct.endPrice)    return  bidProduct.endPrice;
         if (bidProduct.startPrice)  return  bidProduct.startPrice;
         return 0;
