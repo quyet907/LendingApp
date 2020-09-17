@@ -55,7 +55,6 @@ export default class App extends React.Component<Props, {}> {
 
   render() {
 
-    console.log()
     return (
       <Provider store={store}>
 

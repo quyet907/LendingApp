@@ -58,6 +58,7 @@ class Bid extends Component<props, state>{
                     if (firebaseBidProduct.latestBidAt) {
                         copyBidProduct.latestBidAt = new Date(firebaseBidProduct.latestBidAt.seconds*1000);
                     }
+                    Array.from(new Set(copyBidProduct.listHistoryBid?.map((item: BidHistory) => item._id)))
                 }
                 self.renderDataBid(copyBidProduct);
             }
@@ -86,8 +87,8 @@ class Bid extends Component<props, state>{
         this.setState({
             bidProduct: bidProduct,
             product: bidProduct.product || {},
-
         })
+
         this.setState({
             bidders: bidProduct.listHistoryBid || [],
         })

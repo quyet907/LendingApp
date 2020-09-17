@@ -24,7 +24,6 @@ class WinBid extends React.Component<Props, State> {
 
     componentDidMount() {
         this.getDataToState();
-        // console.log(this.props.route);
         
     }
 

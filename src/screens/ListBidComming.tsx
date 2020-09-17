@@ -24,7 +24,6 @@ var autoReload: any;
   }
 
   componentWillUnmount() {
-    // console.log("on wil unmount on list bid comming");
 
     clearInterval(autoReload);
     this.setState({
@@ -112,8 +111,6 @@ type state = {
 
 
 export default function (props: Props) {
-  console.log(useIsFocused())
-
   return <ListBidComming {...props} isFocused={useIsFocused()} />;
 }
 

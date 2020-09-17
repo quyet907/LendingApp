@@ -14,6 +14,7 @@ export default class ProductBid extends Component<Props, state> {
             
         };
     }
+
     // onListenFirebase() {
     //     let seft = this;
     //     let fireStoreFirebase = firebase.firestore();
@@ -35,9 +36,7 @@ export default class ProductBid extends Component<Props, state> {
     //     })
     // }
 
-    componentWillReceiveProps(nextProps : Props){
-        console.log(nextProps.bidProduct);
-    }
+    
     render() {
         return (
             
