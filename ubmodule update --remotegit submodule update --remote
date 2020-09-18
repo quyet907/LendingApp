@@ -1,0 +1,1396 @@
+[33mcommit 67c9a9bd03b335818bb74475e11e3382f294a37b[m[33m ([m[1;36mHEAD -> [m[1;32mdevelop[m[33m, [m[1;31morigin/develop[m[33m)[m
+Merge: 056f780 66294aa
+Author: quyet <quyetf4@gmail.com>
+Date:   Fri Sep 18 08:47:58 2020 +0700
+
+    Merge branch 'develop' of https://github.com/quyet907/lending-app into develop
+
+[33mcommit 056f7802bb4565f008047bca3ca8f82877308d12[m
+Author: quyet <quyetf4@gmail.com>
+Date:   Fri Sep 18 08:47:47 2020 +0700
+
+    Update
+
+[33mcommit 66294aa639afb6b367412ac19fa4260df96ee6eb[m
+Merge: 9719f97 abd4871
+Author: lgnvpr <lgnvpr@gmail.com>
+Date:   Fri Sep 18 08:42:11 2020 +0700
+
+    fix bug lan 1
+
+[33mcommit 9719f97cb4356c7c1a2a7ee5a9f50a0d164d7980[m
+Author: lgnvpr <lgnvpr@gmail.com>
+Date:   Fri Sep 18 08:40:31 2020 +0700
+
+    fix bug lan 1
+
+[33mcommit abd4871a9eacca9ec3adf05b2da621e11988fbe0[m
+Author: quyet <quyetf4@gmail.com>
+Date:   Fri Sep 18 08:35:35 2020 +0700
+
+    Update bid statistic
+
+[33mcommit f4e49879cd22da6a19b01a96c351cadab4b90656[m
+Author: quyet <quyetf4@gmail.com>
+Date:   Fri Sep 18 08:27:15 2020 +0700
+
+    Update
+
+[33mcommit 2d63601a0763e3264abb787f95acded1b4bc24f8[m
+Author: lgnvpr <lgnvpr@gmail.com>
+Date:   Thu Sep 17 10:55:59 2020 +0700
+
+    update fix date
+
+[33mcommit ec7774cee6d09ef167b9583948d415d3800c35f0[m
+Author: lgnvpr <lgnvpr@gmail.com>
+Date:   Thu Sep 17 08:46:06 2020 +0700
+
+    udpate realease
+
+[33mcommit 601e8e6ee299462f3e7aa182752ba93fb53e9d8d[m
+Author: lgnvpr <lgnvpr@gmail.com>
+Date:   Thu Sep 17 08:15:41 2020 +0700
+
+    update
+
+[33mcommit 56de97ece7ac45037e7fa5879675774e37c67aa7[m
+Merge: 3f7bac3 926ad15
+Author: lgnvpr <lgnvpr@gmail.com>
+Date:   Thu Sep 17 08:11:18 2020 +0700
+
+    Merge branch 'develop' of https://github.com/quyet907/lending-app into develop
+
+[33mcommit 926ad153a42bfe9587afa16df448a319edbfa3f0[m
+Author: quyet <quyetf4@gmail.com>
+Date:   Thu Sep 17 08:10:16 2020 +0700
+
+    update firebase
+
+[33mcommit 3f7bac3a9476d72f8f81626fde4aabe07b0ad048[m
+Merge: 302d7d7 456aed2
+Author: lgnvpr <lgnvpr@gmail.com>
+Date:   Thu Sep 17 08:08:50 2020 +0700
+
+    update realsse
+
+[33mcommit 302d7d72bc47993dbdfdd763ea8181f482b7b6cc[m
+Author: lgnvpr <lgnvpr@gmail.com>
+Date:   Thu Sep 17 08:00:53 2020 +0700
+
+    realse
+
+[33mcommit 456aed274b7dd54d9c278ad0fda90d142597dcc7[m
+Author: quyet <quyetf4@gmail.com>
+Date:   Thu Sep 17 07:55:37 2020 +0700
+
+    Update
+
+[33mcommit ed0daf4bc499e6ba92502e64ab6e60b0ab35ba32[m
+Merge: 84a6b6f 583670c
+Author: quyet <quyetf4@gmail.com>
+Date:   Wed Sep 16 22:04:51 2020 +0700
+
+    Merge branch 'develop' of https://github.com/quyet907/lending-app into develop
+
+[33mcommit 84a6b6f2ede3b4258228744ba063f3655f285862[m
+Author: quyet <quyetf4@gmail.com>
+Date:   Wed Sep 16 21:59:04 2020 +0700
+
+    Update
+
+[33mcommit 583670cedc9d6a1b65720ba2284b93679927de4c[m
+Merge: 49e0e63 469dd98
+Author: lgnvpr <lgnvpr@gmail.com>
+Date:   Wed Sep 16 11:12:42 2020 +0700
+
+    update list bidding
+
+[33mcommit 49e0e633323bb9eae982f57859343b37dd054260[m
+Merge: 2cc8240 1e8f4a4
+Author: lgnvpr <lgnvpr@gmail.com>
+Date:   Wed Sep 16 10:23:51 2020 +0700
+
+    udpate lisst bidding
+
+[33mcommit 469dd981550b00c445aac815e9409bfdb574d034[m
+Author: quyet <quyetf4@gmail.com>
+Date:   Wed Sep 16 10:23:16 2020 +0700
+
+    Update
+
+[33mcommit 2cc8240953058f7c4ee546a51cf55dfaea6be0e0[m
+Merge: 840b591 31629b0
+Author: lgnvpr <lgnvpr@gmail.com>
+Date:   Sat Sep 12 03:15:41 2020 +0000
+
+    update
+
+[33mcommit 1e8f4a43e41e280680fd1f1ca8be0d06880bd0fd[m
+Author: quyet <quyetf4@gmail.com>
+Date:   Sat Sep 12 10:14:25 2020 +0700
+
+    Update
+
+[33mcommit 840b591ba4f38652efce6ec5ef84e7027e6f4877[m
+Author: lgnvpr <lgnvpr@gmail.com>
+Date:   Sat Sep 12 00:45:41 2020 +0000
+
+    update
+
+[33mcommit 31629b0bd89cf1f14946b5d5f555c02d8da65348[m
+Author: quyet <quyetf4@gmail.com>
+Date:   Sat Sep 12 07:39:48 2020 +0700
+
+    Update
+
+[33mcommit 0e811958991d2af0a2c2f57310ffb0ac14025e66[m
+Author: quyet <quyetf4@gmail.com>
+Date:   Sat Sep 12 00:12:40 2020 +0700
+
+    Update
+
+[33mcommit c5919c4ebde9c4fd52b0699ba9c9300b2de5d6a0[m
+Merge: 2d65e8d 5fa5ba7
+Author: lgnvpr <lgnvpr@gmail.com>
+Date:   Fri Sep 11 01:26:58 2020 +0000
+
+    Merge branch 'develop' of https://github.com/quyet907/lending-app into develop
+
+[33mcommit 2d65e8d8a3c0fca7b5568d7cc890a585de8198b7[m
+Merge: f920c99 35bb274
+Author: lgnvpr <lgnvpr@gmail.com>
+Date:   Fri Sep 11 01:25:11 2020 +0000
+
+    update refucktor
+
+[33mcommit 5fa5ba770ab2c81f2b1d63e13f01dabf570cf733[m
+Author: quyet <quyetf4@gmail.com>
+Date:   Fri Sep 11 08:24:35 2020 +0700
+
+    Update
+
+[33mcommit f920c990b631796f836d1be99b85fa28183abd9e[m
+Author: lgnvpr <lgnvpr@gmail.com>
+Date:   Fri Sep 11 00:50:55 2020 +0000
+
+    update loading change tab
+
+[33mcommit 35bb2741c842b76b04822fd77056c3f6c9e80f2a[m
+Author: quyet <quyetf4@gmail.com>
+Date:   Fri Sep 11 07:49:13 2020 +0700
+
+    Update
+
+[33mcommit a140b938a53ec44c2b08a25c0696267ed190dccb[m
+Merge: 1ba2d23 51a56f1
+Author: lgnvpr <lgnvpr@gmail.com>
+Date:   Fri Sep 11 00:20:07 2020 +0000
+
+    Merge branch 'develop' of https://github.com/quyet907/lending-app into develop
+
+[33mcommit 1ba2d23f46b332a0f84a15f194b843a37adaf22f[m
+Author: lgnvpr <lgnvpr@gmail.com>
+Date:   Fri Sep 11 00:20:01 2020 +0000
+
+    refucktor
+
+[33mcommit 361a91ad07f588639174d6ccaebf7d8676e10f67[m
+Merge: 03d31a2 51a56f1
+Author: quyet <quyetf4@gmail.com>
+Date:   Thu Sep 10 18:09:58 2020 +0700
+
+    Merge branch 'develop' of https://github.com/quyet907/lending-app into develop
+
+[33mcommit 51a56f10cefac6c80b55ff539a145b37d95ab0d9[m
+Author: hieuflynotes <hieu@flynotes.co.uk>
+Date:   Thu Sep 10 12:09:19 2020 +0100
+
+    add listener focus tab
+
+[33mcommit 03d31a2e087d54ff013c7abaa7bc8b42b88151bb[m
+Merge: 8e82dc0 17e1f13
+Author: quyet <quyetf4@gmail.com>
+Date:   Thu Sep 10 16:06:49 2020 +0700
+
+    Merge branch 'develop' of https://github.com/quyet907/lending-app into develop
+
+[33mcommit 17e1f13e0efa6284210dd1bd694b15b1437fca87[m
+Merge: 65b2ca8 e9b0a40
+Author: lgnvpr <lgnvpr@gmail.com>
+Date:   Thu Sep 10 09:05:46 2020 +0000
+
+    Merge branch 'develop' of https://github.com/quyet907/lending-app into develop
+
+[33mcommit 65b2ca86cdddf16205152dbc7ea2c00f4d00ad14[m
+Author: lgnvpr <lgnvpr@gmail.com>
+Date:   Thu Sep 10 09:05:36 2020 +0000
+
+    release 2
+
+[33mcommit 8e82dc06ca7c013845418798280fee95ae9e69dc[m
+Merge: e9b0a40 f02ad3c
+Author: quyet <quyetf4@gmail.com>
+Date:   Thu Sep 10 16:02:21 2020 +0700
+
+    Merge branch 'release/lending_app' into develop
+
+[33mcommit e9b0a40617a23de0bbf76a84cf25fec4f80512d1[m
+Author: quyet <quyetf4@gmail.com>
+Date:   Thu Sep 10 16:00:40 2020 +0700
+
+    Fix bid statistic
+
+[33mcommit a58d3ddf783f2778f2488c73cb5b5630ba66356b[m
+Merge: 3aa05a4 6f2ebd8
+Author: lgnvpr <lgnvpr@gmail.com>
+Date:   Thu Sep 10 03:24:19 2020 +0000
+
+    release
+
+[33mcommit 3aa05a4b9a57aefd61dd169c404258b92c4738b2[m
+Author: lgnvpr <lgnvpr@gmail.com>
+Date:   Thu Sep 10 03:18:14 2020 +0000
+
+    realse
+
+[33mcommit 6f2ebd877c97f1e54ab9810398e46d4bb64a9e3d[m
+Author: quyet <quyetf4@gmail.com>
+Date:   Thu Sep 10 09:54:35 2020 +0700
+
+    Finish component Bid statistic
+
+[33mcommit 0b0bb4ed8e0cc7993f1314cba6d062c6369b451d[m
+Author: quyet <quyetf4@gmail.com>
+Date:   Thu Sep 10 09:13:19 2020 +0700
+
+    Update
+
+[33mcommit 60e3e7f80b111d0e6f1eb321b251622c141e58d6[m
+Author: quyet <quyetf4@gmail.com>
+Date:   Thu Sep 10 00:12:40 2020 +0700
+
+    Update
+
+[33mcommit f69e813fea497f389d154b4349e9012b27932f3b[m
+Author: lgnvpr <lgnvpr@gmail.com>
+Date:   Mon Sep 7 07:33:04 2020 +0700
+
+    push cho vui
+
+[33mcommit ca0911c4f91b5af6ba079c22cbb65b2e88dc47a2[m
+Merge: 67f2da9 e760a1d
+Author: quyet <quyetf4@gmail.com>
+Date:   Mon Sep 7 07:31:20 2020 +0700
+
+    update
+
+[33mcommit f02ad3cfe4df59f9a924146d47243ff1df3bd613[m[33m ([m[1;31morigin/release/lending_app[m[33m, [m[1;32mrelease/lending_app[m[33m)[m
+Author: lgnvpr <lgnvpr@gmail.com>
+Date:   Mon Sep 7 06:48:41 2020 +0700
+
+    fix chart
+
+[33mcommit e760a1d28785d651e6e9392be56230cae7e8abd8[m
+Author: lgnvpr <lgnvpr@gmail.com>
+Date:   Mon Sep 7 06:40:40 2020 +0700
+
+    update bid
+
+[33mcommit 67f2da94951554229a28d7167b8c9cd1aed3d704[m
+Merge: 5b3f796 fbadb67
+Author: quyet <quyetf4@gmail.com>
+Date:   Sun Sep 6 22:12:27 2020 +0700
+
+    update
+
+[33mcommit 5b3f7961f74e363d523d068e8593e2cca36d32cd[m
+Author: quyet <quyetf4@gmail.com>
+Date:   Thu Sep 3 08:14:48 2020 +0700
+
+    update
+
+[33mcommit fbadb6721f704423b96c74a0eddb229c1bdef9a2[m
+Author: lgnvpr <lgnvpr@gmail.com>
+Date:   Wed Sep 2 13:36:47 2020 +0700
+
+    vanluong
+
+[33mcommit 299de320eb85bfbb4dfcdb5065854c0553f157d1[m
+Author: lgnvpr <lgnvpr@gmail.com>
+Date:   Wed Sep 2 10:18:59 2020 +0700
+
+    vanluong
+
+[33mcommit 16b8d2681f7c7ad956b32e2185fa783cfcecbd52[m
+Merge: 8fa25e6 656a37c
+Author: quyet <quyetf4@gmail.com>
+Date:   Tue Sep 1 17:37:13 2020 +0700
+
+    Merge remote-tracking branch 'origin/release/lending_app' into develop
+
+[33mcommit 656a37c6700b0bbc509e38c0a1fe468b98771730[m
+Merge: 32a2c5a 23f58e2
+Author: quyet <quyetf4@gmail.com>
+Date:   Tue Sep 1 17:34:31 2020 +0700
+
+    update
+
+[33mcommit 32a2c5aaea7f8de9de8fe52693b171e50f70cd99[m
+Author: quyet <quyetf4@gmail.com>
+Date:   Tue Sep 1 08:48:12 2020 +0700
+
+    update
+
+[33mcommit 23f58e2724205da8efc406dcd1e9bb367faec1b6[m
+Merge: 584cd24 1fb374d
+Author: lgnvpr <lgnvpr@gmail.com>
+Date:   Mon Aug 31 20:17:25 2020 +0700
+
+    vanluong
+
+[33mcommit 584cd2467a4c6fe994c7b3cbce35d9330c37f3eb[m
+Author: lgnvpr <lgnvpr@gmail.com>
+Date:   Mon Aug 31 20:16:56 2020 +0700
+
+    vanluong
+
+[33mcommit 1fb374d3045a2ae32fa3a2c7d65010f16f13947a[m
+Author: quyet <quyetf4@gmail.com>
+Date:   Mon Aug 31 19:55:46 2020 +0700
+
+    update
+
+[33mcommit 71f3859138ae01005178d916b08d2a23bd0fdf02[m
+Author: quyet <quyetf4@gmail.com>
+Date:   Mon Aug 31 19:38:41 2020 +0700
+
+    update
+
+[33mcommit f20c392e7b030d6b6a3e7bac7dc8e04c956e5e91[m
+Author: quyet <quyetf4@gmail.com>
+Date:   Mon Aug 31 19:37:07 2020 +0700
+
+    update
+
+[33mcommit db3bc2ca15bbccdb32fdaea88105b6ea2dc0d2b4[m
+Merge: 5467dfe 9a67183
+Author: quyet <quyetf4@gmail.com>
+Date:   Mon Aug 31 19:11:35 2020 +0700
+
+    update
+
+[33mcommit 5467dfee5de1bdb043834cf9faf1bbe2c5871375[m
+Author: quyet <quyetf4@gmail.com>
+Date:   Mon Aug 31 19:09:57 2020 +0700
+
+    update
+
+[33mcommit 9a67183540059bcc1e2f97b49c8ea27abd3d1ff5[m
+Merge: 94844f0 aba5f50
+Author: lgnvpr <lgnvpr@gmail.com>
+Date:   Mon Aug 31 19:08:41 2020 +0700
+
+    update
+
+[33mcommit 94844f0e6093546f30dcfe04bd1463887a6a7e17[m
+Author: lgnvpr <lgnvpr@gmail.com>
+Date:   Mon Aug 31 19:05:39 2020 +0700
+
+    ahih
+
+[33mcommit aba5f50ff90eb1876e86f848b72c599e325b75cb[m
+Author: quyet <quyetf4@gmail.com>
+Date:   Mon Aug 31 19:03:27 2020 +0700
+
+    update
+
+[33mcommit 299496753abc03db4042ddc1a04e7d388ded8920[m
+Author: quyet <quyetf4@gmail.com>
+Date:   Mon Aug 31 18:57:23 2020 +0700
+
+    update
+
+[33mcommit 4314003d4d49945b726018828282d87fe78951f3[m
+Author: quyet <quyetf4@gmail.com>
+Date:   Mon Aug 31 18:45:44 2020 +0700
+
+    update
+
+[33mcommit 153ad6f796d4dbc60fcef6aace76292f1c337d5a[m
+Author: quyet <quyetf4@gmail.com>
+Date:   Mon Aug 31 18:27:50 2020 +0700
+
+    update
+
+[33mcommit 8fa25e6bf274a874d33b6a1717f8eb348a59f5c4[m
+Merge: 83d4089 422734d
+Author: quyet <quyetf4@gmail.com>
+Date:   Mon Aug 31 11:15:08 2020 +0700
+
+    Merge remote-tracking branch 'origin/release/lending_app' into develop
+
+[33mcommit 422734dc443b94f0806e404ea75c2aebb388404a[m
+Author: quyet <quyetf4@gmail.com>
+Date:   Mon Aug 31 11:04:39 2020 +0700
+
+    udpate
+
+[33mcommit b05181d06cb86bc0517d28c8589aca4b67dad7f4[m
+Merge: 59e5f89 8175f53
+Author: quyet <quyetf4@gmail.com>
+Date:   Mon Aug 31 10:28:55 2020 +0700
+
+    Merge branch 'release/lending_app' of https://github.com/quyet907/lending-app into release/lending_app
+
+[33mcommit 59e5f89f82e5177b8b367a6304d7ac5e589834a4[m
+Author: quyet <quyetf4@gmail.com>
+Date:   Mon Aug 31 10:28:43 2020 +0700
+
+    update
+
+[33mcommit 8175f53c989bc31c5edff0d46e4f7c16c472bccc[m
+Author: hieuflynotes <hieu@flynotes.co.uk>
+Date:   Mon Aug 31 03:40:14 2020 +0100
+
+    remove .vscode
+
+[33mcommit fb7549c46ea2b304e17c784e13a8831f7d6fd4fe[m
+Author: quyet <quyetf4@gmail.com>
+Date:   Mon Aug 31 09:17:39 2020 +0700
+
+    update
+
+[33mcommit 83d408916e99a6801074867995093d3168f59636[m
+Author: quyet <quyetf4@gmail.com>
+Date:   Mon Aug 31 08:22:03 2020 +0700
+
+    update
+
+[33mcommit 98d90a8f798b9d9a18e2a40bd6e0c4d66d0328cc[m
+Merge: c09d8cc c0c5617
+Author: quyet <quyetf4@gmail.com>
+Date:   Mon Aug 31 00:04:20 2020 +0700
+
+    Merge remote-tracking branch 'origin/release/lending_app' into develop
+
+[33mcommit c09d8cc66a5dcae8350ce4f1ffdfccca86e5ac7f[m
+Merge: a9eab5d 578902d
+Author: quyet <quyetf4@gmail.com>
+Date:   Sun Aug 30 23:48:53 2020 +0700
+
+    Merge branch 'release/lending_app' into develop
+
+[33mcommit c0c5617d72e7d203c148d5f3c8b46ca0906a3f77[m
+Author: quyet <quyetf4@gmail.com>
+Date:   Sun Aug 30 23:10:41 2020 +0700
+
+    fix
+
+[33mcommit bf44093ed32884d40fe7b4a5151f25329ccc2a73[m
+Author: quyet <quyetf4@gmail.com>
+Date:   Sun Aug 30 17:21:29 2020 +0700
+
+    update
+
+[33mcommit 0c83e0a3fd91b81ae334866406c3c98357d7854a[m
+Author: quyet <quyetf4@gmail.com>
+Date:   Sun Aug 30 16:26:52 2020 +0700
+
+    update
+
+[33mcommit b4549333040dbeb22387258e7f11a6eabc894444[m
+Author: quyet <quyetf4@gmail.com>
+Date:   Sun Aug 30 16:08:20 2020 +0700
+
+    fix
+
+[33mcommit 578902ddc4d5e136616819c6ba7a3754d02507e8[m
+Author: lgnvpr <lgnvpr@gmail.com>
+Date:   Sat Aug 29 09:12:18 2020 +0700
+
+    valnluong
+
+[33mcommit a9eab5d1d96c8cea8e069c9b49f282569c3661d2[m
+Author: hieuflynotes <hieu@flynotes.co.uk>
+Date:   Thu Aug 27 07:38:25 2020 +0100
+
+    add build to firebase
+
+[33mcommit de612262f79fd9f8feb6cb215b01819869e3190b[m
+Author: hieuflynotes <hieu@flynotes.co.uk>
+Date:   Wed Aug 26 17:40:02 2020 +0100
+
+    change API conf
+
+[33mcommit 515db7a7bdedc7d3c5184c7ad25c71f2915acd83[m
+Author: hieuflynotes <hieu@flynotes.co.uk>
+Date:   Wed Aug 26 17:19:11 2020 +0100
+
+    add environment
+
+[33mcommit 3833346364df879ab879996e07b03be33e4416a5[m
+Author: quyet907 <quyetf4@gmail.com>
+Date:   Wed Aug 26 11:19:16 2020 +0700
+
+    update
+
+[33mcommit 6e0468d746b52dd1e1db223d751527b2094a978b[m
+Author: quyet907 <quyetf4@gmail.com>
+Date:   Wed Aug 26 09:34:37 2020 +0700
+
+    update
+
+[33mcommit 21d44b4d51215c55364f679fba7356289621a30e[m
+Author: lgnv <lgnvpr@gmail.com>
+Date:   Wed Aug 26 09:32:42 2020 +0700
+
+    valuong
+
+[33mcommit 82b2d04f8f9ee4e8d5cc7aa59cb806c32b519876[m
+Merge: d991840 65d1e14
+Author: lgnv <lgnvpr@gmail.com>
+Date:   Wed Aug 26 08:35:10 2020 +0700
+
+    valuong
+
+[33mcommit d991840b59375309dc48bb895aab80b8ae03cd42[m
+Author: lgnv <lgnvpr@gmail.com>
+Date:   Wed Aug 26 08:33:07 2020 +0700
+
+    valuong
+
+[33mcommit 65d1e140b967bd0851be1cdef9b906175206de46[m
+Merge: 71c6be5 84e843b
+Author: quyet907 <quyetf4@gmail.com>
+Date:   Wed Aug 26 08:33:05 2020 +0700
+
+    update
+
+[33mcommit 71c6be50869022e2459e891e6628eeb3d06b3cad[m
+Author: quyet907 <quyetf4@gmail.com>
+Date:   Wed Aug 26 07:45:05 2020 +0700
+
+    update
+
+[33mcommit 84e843b725503681ee43e5f45969a22f81030513[m
+Merge: f289be9 bf618f2
+Author: lgnv <lgnvpr@gmail.com>
+Date:   Wed Aug 26 07:43:01 2020 +0700
+
+    vanluong
+
+[33mcommit f289be97453f8e249cbffa12b3991cf23c74954f[m
+Author: lgnv <lgnvpr@gmail.com>
+Date:   Wed Aug 26 07:40:35 2020 +0700
+
+    vanluong
+
+[33mcommit 773587184cf9e283941480f80f2e241de8eab912[m
+Author: quyet907 <quyetf4@gmail.com>
+Date:   Wed Aug 26 07:25:21 2020 +0700
+
+    update
+
+[33mcommit bf618f220d3b33e3d2db7268f1dd111f80d6f674[m
+Author: quyet907 <quyetf4@gmail.com>
+Date:   Tue Aug 25 18:34:28 2020 +0700
+
+    update
+
+[33mcommit 7a8522933b2b26aaa3f1af8ef006a46b32e77edd[m
+Author: quyet907 <quyetf4@gmail.com>
+Date:   Tue Aug 25 18:26:27 2020 +0700
+
+    update
+
+[33mcommit e7e9275b85e48a2513bcd81ce77016925fdab4c3[m
+Author: quyet907 <quyetf4@gmail.com>
+Date:   Tue Aug 25 18:20:38 2020 +0700
+
+    update
+
+[33mcommit 07f0a1ebec196a0b6a45984d8e28a0a98cd358e1[m
+Author: hieuflynotes <hieu@flynotes.co.uk>
+Date:   Tue Aug 25 11:14:22 2020 +0100
+
+    fix text
+
+[33mcommit cc72e79ecca8fe69beea543424050f33b548e22b[m
+Author: lgnv <lgnvpr@gmail.com>
+Date:   Tue Aug 25 16:33:04 2020 +0700
+
+    fix giao dien
+
+[33mcommit 807b21de7e0900fccc74ad39630a3efdf7d20f62[m
+Author: lgnv <lgnvpr@gmail.com>
+Date:   Tue Aug 25 11:16:38 2020 +0700
+
+    fjdskal
+
+[33mcommit fa31e6ef3c43a1c9e39e106cf6132acc04112a62[m
+Merge: 5e7d000 7d95f1e
+Author: lgnv <lgnvpr@gmail.com>
+Date:   Tue Aug 25 11:16:21 2020 +0700
+
+    Merge branch 'master' of https://github.com/quyet907/lending-app
+
+[33mcommit 5e7d000660d244c862308e1f479a733470c470c6[m
+Author: lgnv <lgnvpr@gmail.com>
+Date:   Tue Aug 25 11:10:14 2020 +0700
+
+    ahihi
+
+[33mcommit a97ac9338d23bef4ee2ebefc9611442e21c0a3f5[m
+Author: lgnv <lgnvpr@gmail.com>
+Date:   Tue Aug 25 11:07:25 2020 +0700
+
+    ahih
+
+[33mcommit 7d95f1e5d41495aa607b5efbfaf64cf70a28e6f5[m
+Merge: 1770dac 37413ef
+Author: quyet907 <quyetf4@gmail.com>
+Date:   Tue Aug 25 10:44:58 2020 +0700
+
+    update
+
+[33mcommit 1770dac1684aa2e65f191503c9f7f0233433e239[m
+Author: quyet907 <quyetf4@gmail.com>
+Date:   Tue Aug 25 10:33:34 2020 +0700
+
+    update
+
+[33mcommit 37413ef0777def6559d6d32d914445102c605454[m
+Author: lgnv <lgnvpr@gmail.com>
+Date:   Tue Aug 25 10:28:58 2020 +0700
+
+    update
+
+[33mcommit 93cfc5d16bfea4496ac11e4dfec0db421d9b6c00[m
+Merge: 5188c1e 58d58f8
+Author: quyet907 <quyetf4@gmail.com>
+Date:   Tue Aug 25 07:49:20 2020 +0700
+
+    Merge branch 'master' of https://github.com/quyet907/lending-app
+
+[33mcommit 5188c1ea454903dc2f5f683b97023c68cd283ed7[m
+Author: quyet907 <quyetf4@gmail.com>
+Date:   Tue Aug 25 07:48:47 2020 +0700
+
+    update
+
+[33mcommit 58d58f88f490f1fa913e0e018b327b48d9a00e7c[m
+Author: lgnv <lgnvpr@gmail.com>
+Date:   Tue Aug 25 07:47:32 2020 +0700
+
+    update final final of final
+
+[33mcommit 258140e1223f1732d3fe237ccc16ccb3d3c72c57[m
+Author: lgnv <lgnvpr@gmail.com>
+Date:   Mon Aug 24 13:44:29 2020 +0700
+
+    update final of final
+
+[33mcommit 37bd50c5b8344be0836d8993bf4fb6860b19f83a[m
+Merge: 219bc15 926e484
+Author: lgnv <lgnvpr@gmail.com>
+Date:   Mon Aug 24 07:39:48 2020 +0700
+
+    vannluong
+
+[33mcommit 219bc15cc0e234954eedbc4e7bf00d1ca707eb7b[m
+Author: lgnv <lgnvpr@gmail.com>
+Date:   Mon Aug 24 07:33:31 2020 +0700
+
+    logout, fixbug
+
+[33mcommit 926e484a1a298f20d14b3c8e0df734eed33e8206[m
+Merge: 869b04e 75582a6
+Author: hieuflynotes <hieu@flynotes.co.uk>
+Date:   Mon Aug 24 01:31:05 2020 +0100
+
+    Merge branch 'master' of github.com:quyet907/lending-app
+
+[33mcommit 869b04ed6b96dbdc212b200b388bc9ed8a1e5d96[m
+Author: hieuflynotes <hieu@flynotes.co.uk>
+Date:   Mon Aug 24 01:23:46 2020 +0100
+
+    add firebase
+
+[33mcommit 75582a670fc15bccdbba8df56aaeafd108f6dea8[m
+Author: lgnv <lgnvpr@gmail.com>
+Date:   Sun Aug 23 19:37:09 2020 +0700
+
+    update final
+
+[33mcommit abdff961d3e070708355e10caf9f35e905da1450[m
+Author: hieuflynotes <hieu@flynotes.co.uk>
+Date:   Sun Aug 23 09:03:50 2020 +0100
+
+    change config
+
+[33mcommit 130dcd04e74f3cbac28b32b62553c1f16b208634[m
+Author: quyet907 <quyetf4@gmail.com>
+Date:   Sat Aug 22 18:28:50 2020 +0700
+
+    update
+
+[33mcommit 8c70f03ae07bb5c8e030faa32325d4f034a913ec[m
+Author: hieuflynotes <hieu@flynotes.co.uk>
+Date:   Sat Aug 22 12:03:59 2020 +0100
+
+    add get ref
+
+[33mcommit 760084ee07f9be902ca822262ef7b7520b1b751c[m
+Merge: 7dfbae9 bf2c62d
+Author: lgnv <lgnvpr@gmail.com>
+Date:   Sat Aug 22 18:00:37 2020 +0700
+
+    vanluong
+
+[33mcommit 7dfbae951cd14eaa25a4d3aa3d7c8fe28fd2091e[m
+Author: lgnv <lgnvpr@gmail.com>
+Date:   Sat Aug 22 17:59:15 2020 +0700
+
+    valuong
+
+[33mcommit bf2c62d570e6b475edf2ae85d852bf0fe0320082[m
+Author: quyet907 <quyetf4@gmail.com>
+Date:   Sat Aug 22 17:35:18 2020 +0700
+
+    update
+
+[33mcommit 78c5e635306a6f7fa95e5fbbcb4a51beb719d48d[m
+Merge: 26c0f05 eb4246c
+Author: lgnv <lgnvpr@gmail.com>
+Date:   Sat Aug 22 17:06:49 2020 +0700
+
+    valuong
+
+[33mcommit 26c0f055a517a4950e444fb86c5b1f26f97c6307[m
+Author: lgnv <lgnvpr@gmail.com>
+Date:   Sat Aug 22 17:04:13 2020 +0700
+
+    udate
+
+[33mcommit eb4246cc27797f9c1363172d3f4b16df68fb336f[m
+Merge: 3667f10 9ffc16b
+Author: quyet907 <quyetf4@gmail.com>
+Date:   Sat Aug 22 14:40:34 2020 +0700
+
+    update
+
+[33mcommit 3667f10056e176ea42dcbad0f9e97a2fc51026cb[m
+Author: quyet907 <quyetf4@gmail.com>
+Date:   Sat Aug 22 13:50:48 2020 +0700
+
+    update
+
+[33mcommit 9ffc16b9d47f56ec44e6de4f66035f6e5bc37eba[m
+Author: lgnv <lgnvpr@gmail.com>
+Date:   Sat Aug 22 08:55:33 2020 +0700
+
+    valuon
+
+[33mcommit dfcb99ede576bd8d2888c7996973a56b36d4679b[m
+Author: lgnv <lgnvpr@gmail.com>
+Date:   Fri Aug 21 10:14:57 2020 +0700
+
+    vanluon
+
+[33mcommit f513fc9c3ffaa3306cf8fa24b406872f01769593[m
+Author: lgnv <lgnvpr@gmail.com>
+Date:   Fri Aug 21 08:03:54 2020 +0700
+
+    update
+
+[33mcommit 482841b57fbdaa7baa5296e02ca1858141bd33fb[m
+Author: quyet907 <quyetf4@gmail.com>
+Date:   Thu Aug 20 16:00:24 2020 +0700
+
+    update
+
+[33mcommit e860b97fbc80790dbdd70d1d04bbb54db80244a7[m
+Author: lgnv <lgnvpr@gmail.com>
+Date:   Thu Aug 20 15:59:40 2020 +0700
+
+    luong
+
+[33mcommit 9a32d2c93fa1628d5ee6e4aca525c4c5da1a281f[m
+Merge: 6e060e9 4ef5780
+Author: lgnv <lgnvpr@gmail.com>
+Date:   Thu Aug 20 14:56:34 2020 +0700
+
+    valulong
+
+[33mcommit 6e060e9d9d0c3d64f570def44b700e90036e16ce[m
+Merge: da21faf 56f9dd5
+Author: lgnv <lgnvpr@gmail.com>
+Date:   Thu Aug 20 14:53:37 2020 +0700
+
+    vanluong
+
+[33mcommit 4ef5780b10e9499b1faaff2634cc469eddec9d42[m
+Author: quyet907 <quyetf4@gmail.com>
+Date:   Thu Aug 20 14:53:00 2020 +0700
+
+    update
+
+[33mcommit da21faf0560a46b62817d710fa1b569cfc4664c8[m
+Author: lgnv <lgnvpr@gmail.com>
+Date:   Thu Aug 20 14:52:05 2020 +0700
+
+    luong dep trai
+
+[33mcommit 56f9dd5278ae904e589bc704449f79d371d8dcbb[m
+Merge: a2cba3d 195dceb
+Author: quyet907 <quyetf4@gmail.com>
+Date:   Thu Aug 20 14:05:35 2020 +0700
+
+    update
+
+[33mcommit a2cba3dff791cd5ea536dc767277f03841fcd493[m
+Author: quyet907 <quyetf4@gmail.com>
+Date:   Thu Aug 20 13:55:32 2020 +0700
+
+    update
+
+[33mcommit 195dcebbdee5c14d94afb27db6163b1a6ff685e3[m
+Merge: dd2aba4 fd4e179
+Author: lgnv <lgnvpr@gmail.com>
+Date:   Thu Aug 20 13:44:25 2020 +0700
+
+    Merge branch 'master' of https://github.com/quyet907/lending-app
+
+[33mcommit dd2aba4f860bc8aabbeff2eaa831edcca72859a4[m
+Author: lgnv <lgnvpr@gmail.com>
+Date:   Thu Aug 20 13:42:59 2020 +0700
+
+    luong
+
+[33mcommit fd4e17959e51357a17591be61fffacb3e3952d1d[m
+Author: quyet907 <quyetf4@gmail.com>
+Date:   Wed Aug 19 20:44:09 2020 +0700
+
+    update
+
+[33mcommit 0a984f5e20000235b4cc319fbee3da61ac8a81fb[m
+Merge: 2b1da4b 55b1da5
+Author: quyet907 <quyetf4@gmail.com>
+Date:   Wed Aug 19 15:52:57 2020 +0700
+
+    Merge branch 'master' of https://github.com/quyet907/lending-app
+
+[33mcommit 2b1da4b302891401755031e6ed1e1b8245f31882[m
+Author: quyet907 <quyetf4@gmail.com>
+Date:   Wed Aug 19 15:52:08 2020 +0700
+
+    update 15:52
+
+[33mcommit 55b1da531ea997222a75c4c30485020760f124ed[m
+Author: lgnv <lgnvpr@gmail.com>
+Date:   Wed Aug 19 15:51:48 2020 +0700
+
+    update 15:51
+
+[33mcommit 3a088432c3801a8516164a81c2b3a37a2922e81d[m
+Merge: 3d549fa ba9ee00
+Author: lgnv <lgnvpr@gmail.com>
+Date:   Wed Aug 19 14:38:44 2020 +0700
+
+    Merge branch 'master' of https://github.com/quyet907/lending-app
+
+[33mcommit 3d549fa39477b590900704fd986e6483f2d2abe2[m
+Author: lgnv <lgnvpr@gmail.com>
+Date:   Wed Aug 19 14:37:32 2020 +0700
+
+    update 14:37 19-8
+
+[33mcommit ba9ee006068148be78839f5a4ea0f305b530f2f7[m
+Author: quyet907 <quyetf4@gmail.com>
+Date:   Wed Aug 19 14:36:03 2020 +0700
+
+    update
+
+[33mcommit 9544d2fbf656490398c7a528edacf6bc4bd447de[m
+Author: lgnv <lgnvpr@gmail.com>
+Date:   Wed Aug 19 13:29:03 2020 +0700
+
+    update reducer
+
+[33mcommit 4a93b7b73507ba745f6a195208920a8fd879d565[m
+Merge: a64ce73 ff9ac82
+Author: lgnv <lgnvpr@gmail.com>
+Date:   Wed Aug 19 10:19:37 2020 +0700
+
+    fix reducer
+
+[33mcommit a64ce737e21a7b12f5f220364642a8676f6ceac6[m
+Author: lgnv <lgnvpr@gmail.com>
+Date:   Wed Aug 19 10:18:20 2020 +0700
+
+    fix reducer
+
+[33mcommit ff9ac82a824017467abfcd43df073371c41c81bb[m
+Merge: a99ffd2 3077833
+Author: quyet907 <quyetf4@gmail.com>
+Date:   Wed Aug 19 10:14:38 2020 +0700
+
+    update
+
+[33mcommit a99ffd285292006a248ac6d514fea3d3fceb1648[m
+Author: quyet907 <quyetf4@gmail.com>
+Date:   Wed Aug 19 10:08:52 2020 +0700
+
+    popup confirm 19/8
+
+[33mcommit 3077833142eeba3fe1e01160065ad849c30bb4be[m
+Author: lgnv <lgnvpr@gmail.com>
+Date:   Wed Aug 19 07:24:33 2020 +0700
+
+    update 19-8
+
+[33mcommit 1594cf73611a048385e67895e81c86519a557e68[m
+Merge: bd13196 4665d7b
+Author: lgnvpr <67831816+lgnvpr@users.noreply.github.com>
+Date:   Tue Aug 18 10:42:25 2020 +0700
+
+    Merge pull request #8 from quyet907/lgnv
+    
+    Lgnv
+
+[33mcommit 4665d7bcbacbe4999c053b4328e7c2de485cc6c3[m
+Merge: 90fa26c 37741cb
+Author: lgnv <lgnvpr@gmail.com>
+Date:   Tue Aug 18 10:40:34 2020 +0700
+
+    vanluong
+
+[33mcommit 37741cb77967a9b4523eecb3c66a885ff7eb9af5[m
+Merge: c9aa9f2 bd13196
+Author: lgnv <lgnvpr@gmail.com>
+Date:   Tue Aug 18 10:30:34 2020 +0700
+
+    Merge branch 'master' of https://github.com/quyet907/lending-app
+
+[33mcommit c9aa9f2d3965e38cc9aafa2e28ee171c56e9b734[m
+Author: lgnv <lgnvpr@gmail.com>
+Date:   Tue Aug 18 10:30:13 2020 +0700
+
+    update
+
+[33mcommit 27028406e0fd7f6ce211aaa4c996cf1b921212c6[m
+Author: lgnv <lgnvpr@gmail.com>
+Date:   Tue Aug 18 10:27:48 2020 +0700
+
+    luong
+
+[33mcommit 90fa26c33f26869b192cb0c2d4fee23eea416f68[m
+Author: lgnv <lgnvpr@gmail.com>
+Date:   Tue Aug 18 10:13:30 2020 +0700
+
+    update
+
+[33mcommit 80222564a55df84d150428704ccc16f7ef8eab37[m
+Author: lgnv <lgnvpr@gmail.com>
+Date:   Tue Aug 18 10:08:42 2020 +0700
+
+    update
+
+[33mcommit bd13196e7201315d1810d5aadd4aa84eec77d8c7[m
+Merge: 1c2793c 6690181
+Author: quyet907 <quyetf4@gmail.com>
+Date:   Tue Aug 18 07:35:31 2020 +0700
+
+    Merge branch 'master' of https://github.com/quyet907/lending-app
+
+[33mcommit 1c2793c53f3f2e4df3adfecc596a2fcecc322b16[m
+Author: quyet907 <quyetf4@gmail.com>
+Date:   Tue Aug 18 07:34:45 2020 +0700
+
+    update 18/8-quyet
+
+[33mcommit 66901817c9667e1582a38d9d2ed697090021a28b[m
+Merge: 6a8efc1 7b77117
+Author: lgnv <lgnvpr@gmail.com>
+Date:   Tue Aug 18 07:22:49 2020 +0700
+
+    update
+
+[33mcommit 6a8efc10207ed778a6bdb3b0eff712bf8b8dfd19[m
+Author: lgnv <lgnvpr@gmail.com>
+Date:   Tue Aug 18 07:21:53 2020 +0700
+
+    update
+
+[33mcommit 243b94580b2bbc2c0de7aad9501b68bb7704c32f[m
+Author: lgnv <lgnvpr@gmail.com>
+Date:   Tue Aug 18 07:17:36 2020 +0700
+
+    update 17-09
+
+[33mcommit 37c283c329d601f8d640dec6f9c0c00142584af7[m
+Author: lgnv <lgnvpr@gmail.com>
+Date:   Tue Aug 18 07:16:16 2020 +0700
+
+    update 17-08
+
+[33mcommit 7b771177e7a737b4e07f8576f03e940c772302d9[m
+Author: quyet907 <quyetf4@gmail.com>
+Date:   Mon Aug 17 08:42:31 2020 +0700
+
+    update
+
+[33mcommit 5c83e1a81d784127135e37fa92eb50ed50753c4b[m
+Author: lgnv <lgnvpr@gmail.com>
+Date:   Sun Aug 16 13:16:47 2020 +0700
+
+    update
+
+[33mcommit 3c6e61a65cd5b54f1bc624cca5202d50d20c686a[m
+Merge: 891330a 9fb12f1
+Author: quyet907 <quyetf4@gmail.com>
+Date:   Sat Aug 15 19:12:34 2020 +0700
+
+    Merge branch 'master' of https://github.com/quyet907/lending-app
+
+[33mcommit 9fb12f1fcaa14af73b3c79d556615f877e1c60c6[m
+Author: lgnv <lgnvpr@gmail.com>
+Date:   Sat Aug 15 19:12:22 2020 +0700
+
+    update service
+
+[33mcommit 891330a0e67e89ceb050e5f7087954eb5819fa3a[m
+Author: quyet907 <quyetf4@gmail.com>
+Date:   Sat Aug 15 19:12:18 2020 +0700
+
+    Services
+
+[33mcommit d998a881e77a46bc70ca52d932c94af7c77725cd[m
+Author: hieuflynotes <hieu@flynotes.co.uk>
+Date:   Sat Aug 15 13:08:10 2020 +0100
+
+    fixbug error
+
+[33mcommit 0a6ec5a2b04584963d89f037a08dd43007352654[m
+Author: lgnv <lgnvpr@gmail.com>
+Date:   Sat Aug 15 18:53:34 2020 +0700
+
+    update service
+
+[33mcommit adac01a6442a4e4723a9bf6195d59f678b0d7c1e[m
+Author: lgnv <lgnvpr@gmail.com>
+Date:   Sat Aug 15 17:58:31 2020 +0700
+
+    service
+
+[33mcommit c8f8c734d6a27a5afcffbbd868d716cc6edeb326[m
+Author: lgnv <lgnvpr@gmail.com>
+Date:   Sat Aug 15 17:16:26 2020 +0700
+
+    update 15 8
+
+[33mcommit 2687ab08a9a225c0e79637f9e52ba5bfd310276f[m
+Author: quyet907 <quyetf4@gmail.com>
+Date:   Sat Aug 15 17:11:29 2020 +0700
+
+    Fix border tag input Referral
+
+[33mcommit 087f671534a9141e9cf651519cfe22da21ca3ce0[m
+Author: quyet907 <quyetf4@gmail.com>
+Date:   Fri Aug 14 11:16:54 2020 +0700
+
+    Fix link import
+
+[33mcommit 2018d9e41282d58386d47ab55b847e32afe4a711[m
+Author: quyet907 <quyetf4@gmail.com>
+Date:   Thu Aug 13 20:45:11 2020 +0700
+
+    quyet rename folder 20:44
+
+[33mcommit 0e57d378e40cd7c9a9f2b6f06fbdfec0114105cc[m
+Merge: b956712 94da7c8
+Author: lgnv <lgnvpr@gmail.com>
+Date:   Thu Aug 13 16:53:27 2020 +0700
+
+    ahih
+
+[33mcommit b95671266b245845c736819d5a7333777a9a60a8[m
+Author: lgnv <lgnvpr@gmail.com>
+Date:   Thu Aug 13 16:51:02 2020 +0700
+
+    ahih
+
+[33mcommit 94da7c858672bf0880080c20be0e38884d850fa9[m
+Author: hieuflynotes <hieu@flynotes.co.uk>
+Date:   Thu Aug 13 09:45:43 2020 +0100
+
+    add submodule
+
+[33mcommit c7c2dc2a2cd846fe18eef590d8bf2092c30c3146[m
+Author: lgnv <lgnvpr@gmail.com>
+Date:   Thu Aug 13 13:54:39 2020 +0700
+
+    update 13:54
+
+[33mcommit a23576f98d556007942970d8eab4e456b3a8f493[m
+Merge: 9d48a07 f1e0289
+Author: quyet08 <quyetf4@gmail.com>
+Date:   Thu Aug 13 12:50:04 2020 +0700
+
+    quyet update 12:49
+
+[33mcommit f1e028955ea168b29088ade4d0d565973264120a[m
+Merge: cce9da2 c5ed83f
+Author: lgnv <lgnvpr@gmail.com>
+Date:   Thu Aug 13 10:31:33 2020 +0700
+
+    fix router
+
+[33mcommit cce9da2c4cd30c74ed8e626130664535fc2c34d6[m
+Author: lgnv <lgnvpr@gmail.com>
+Date:   Thu Aug 13 10:28:09 2020 +0700
+
+    fix roter
+
+[33mcommit 0aec0dc56e5d77e51df1316de8c2a03ee3f13528[m
+Merge: 828de53 1de53f6
+Author: Lương lgnvpr <lgnvpr@gmail.com>
+Date:   Thu Aug 13 07:40:33 2020 +0700
+
+    Merge branch 'master' of https://github.com/quyet907/LendingApp
+
+[33mcommit 1de53f63f4d03e7c074df1eb09ddf50021888e41[m
+Merge: cfe9354 215aaf1
+Author: quyet08 <quyetf4@gmail.com>
+Date:   Thu Aug 13 14:40:10 2020 +0700
+
+    Merge branch 'master' of https://github.com/quyet907/LendingApp into master
+
+[33mcommit cfe93540c674d199df2a82c13c08ba29bc6049ad[m
+Author: quyet08 <quyetf4@gmail.com>
+Date:   Thu Aug 13 14:38:42 2020 +0700
+
+    quyet update 14:38
+
+[33mcommit 828de5339ea864a198758bce3a02f27bde6dd8d4[m
+Author: Lương lgnvpr <lgnvpr@gmail.com>
+Date:   Thu Aug 13 07:40:25 2020 +0700
+
+    fix color
+
+[33mcommit 215aaf1e40d926cb7c7f0272bdb26375d776b86e[m
+Author: Lương lgnvpr <lgnvpr@gmail.com>
+Date:   Thu Aug 13 07:34:00 2020 +0700
+
+    fix color
+
+[33mcommit 5033826ea7a0a219bb24f3c41281de371a064075[m
+Merge: 019d59f c7c2dc2
+Author: Lương lgnvpr <lgnvpr@gmail.com>
+Date:   Thu Aug 13 07:03:50 2020 +0700
+
+    Merge branch 'master' of https://github.com/quyet907/LendingApp
+
+[33mcommit 019d59fb42ea37babcfc83ad8b9e82ff7a3e7a1f[m
+Author: Lương lgnvpr <lgnvpr@gmail.com>
+Date:   Thu Aug 13 07:03:39 2020 +0700
+
+    vanluong
+
+[33mcommit 9d48a072263943e20201bd4628415404c3755708[m
+Author: quyet08 <quyetf4@gmail.com>
+Date:   Thu Aug 13 00:13:09 2020 +0700
+
+    update
+
+[33mcommit c5ed83fcfdaf795207bda1a486a346dc5488bdbd[m
+Author: quyet08 <quyetf4@gmail.com>
+Date:   Wed Aug 12 15:01:49 2020 +0700
+
+    update
+
+[33mcommit dd4e2b36ebeba4faeb35454948b8be7c0f3ceb4e[m
+Merge: 94e9edc c1473aa
+Author: quyet08 <quyetf4@gmail.com>
+Date:   Wed Aug 12 14:49:40 2020 +0700
+
+    up
+
+[33mcommit c1473aac55ed8081162d6c0d9bc8d8b26a39d94b[m
+Author: lgnv <lgnvpr@gmail.com>
+Date:   Wed Aug 12 14:39:53 2020 +0700
+
+    fix giao dien
+
+[33mcommit 94e9edc07b68a6a3fcb1f75f1225bcf14b9a3c99[m
+Author: quyet08 <quyetf4@gmail.com>
+Date:   Wed Aug 12 14:38:58 2020 +0700
+
+    Lending + Ref
+
+[33mcommit 1383a39b081941b275d42555220216e31db90c53[m
+Author: lgnv <lgnvpr@gmail.com>
+Date:   Wed Aug 12 13:04:02 2020 +0700
+
+    update 12/8
+
+[33mcommit 176bcab2a8bbd46b39a0563fc2b4d8febdcc8036[m
+Author: lgnv <lgnvpr@gmail.com>
+Date:   Wed Aug 12 07:09:26 2020 +0700
+
+    update 12/8
+
+[33mcommit 15283abaa6b358a9845f71ba1c5a62892191e62c[m
+Author: Lương lgnvpr <lgnvpr@gmail.com>
+Date:   Tue Aug 11 14:17:00 2020 +0700
+
+    update 5
+
+[33mcommit 8cc9085372c063d5504771c3c2948e06b8b0b9c6[m
+Author: Lương lgnvpr <lgnvpr@gmail.com>
+Date:   Tue Aug 11 14:14:55 2020 +0700
+
+    update 4
+
+[33mcommit 085a87434563519e94c533c4ed793519d5b9684a[m
+Merge: 4d8b56f 8f67a90
+Author: lgnvpr <67831816+lgnvpr@users.noreply.github.com>
+Date:   Tue Aug 11 14:11:15 2020 +0700
+
+    Merge pull request #7 from quyet907/lgnv
+    
+    update
+
+[33mcommit 8f67a9042f0d726df5167349a2e86d66fa317bd7[m
+Author: Lương lgnvpr <lgnvpr@gmail.com>
+Date:   Tue Aug 11 14:08:39 2020 +0700
+
+    update
+
+[33mcommit 4d8b56fa9577a420a2cbd094fc7e621f4b5938d1[m
+Merge: 469c8fd 50fd62f
+Author: quyet907 <33663264+quyet907@users.noreply.github.com>
+Date:   Tue Aug 11 14:05:50 2020 +0700
+
+    Merge pull request #6 from quyet907/quyet
+    
+    test
+
+[33mcommit 50fd62f4b74ac0bab7e973b30dd304a0c40c1e8b[m
+Author: quyet08 <quyetf4@gmail.com>
+Date:   Tue Aug 11 14:03:59 2020 +0700
+
+    test
+
+[33mcommit 469c8fd2567bdc49a4f3b3f8c5725a39f38d30b2[m
+Merge: ec2b6d1 375875e
+Author: lgnvpr <67831816+lgnvpr@users.noreply.github.com>
+Date:   Tue Aug 11 13:50:15 2020 +0700
+
+    Merge pull request #5 from quyet907/lgnv
+    
+    fix folder
+
+[33mcommit 375875e8c8ea249df4cd74a332e5550a739e4e5e[m
+Author: Lương lgnvpr <lgnvpr@gmail.com>
+Date:   Tue Aug 11 13:49:27 2020 +0700
+
+    fix folder
+
+[33mcommit ec2b6d1084612f744e97aa1472440e401c2129ff[m
+Merge: 2a30c1e 65a4ea4
+Author: lgnvpr <67831816+lgnvpr@users.noreply.github.com>
+Date:   Tue Aug 11 13:46:48 2020 +0700
+
+    Merge pull request #4 from quyet907/lgnv
+    
+    update
+
+[33mcommit 65a4ea4e047b99d2f2704499fff99037b565c1ee[m
+Author: Lương lgnvpr <lgnvpr@gmail.com>
+Date:   Tue Aug 11 13:45:10 2020 +0700
+
+    update
+
+[33mcommit 2a30c1eaf677a21aa573aced2cbfaa814236e002[m
+Merge: bb529fc 8d32fc2
+Author: lgnvpr <67831816+lgnvpr@users.noreply.github.com>
+Date:   Tue Aug 11 12:57:10 2020 +0700
+
+    Merge pull request #3 from quyet907/lgnv
+    
+    update 11/8
+
+[33mcommit 8d32fc2cd21d2964a88086778ca4c5eec98497c3[m
+Author: Lương lgnvpr <lgnvpr@gmail.com>
+Date:   Tue Aug 11 12:55:36 2020 +0700
+
+    update 11/8
+
+[33mcommit bb529fca36840cae9ff82c34e8c232f711c72912[m
+Author: quyet08 <quyetf4@gmail.com>
+Date:   Mon Aug 10 20:41:05 2020 +0700
+
+    delete file rac
+
+[33mcommit d5482801c804e9d5d255cc28d22bba026e3692f5[m
+Merge: 9a6553f feb509a
+Author: quyet08 <quyetf4@gmail.com>
+Date:   Mon Aug 10 20:33:51 2020 +0700
+
+    k
+
+[33mcommit 9a6553ff2efed3b4173160709313a7bd5ee39617[m
+Author: quyet08 <quyetf4@gmail.com>
+Date:   Mon Aug 10 19:10:51 2020 +0700
+
+    Change tab color
+
+[33mcommit 108ae41cdb88fee36e171315efb4e2f46c8da9e3[m
+Author: quyet08 <quyetf4@gmail.com>
+Date:   Mon Aug 10 18:51:45 2020 +0700
+
+    Change color tabnavigator
+
+[33mcommit feb509a73a58bf8c4ac64eb8e7878495e4e49b93[m
+Merge: d5d5f6d 0da9011
+Author: lgnvpr <67831816+lgnvpr@users.noreply.github.com>
+Date:   Mon Aug 10 18:47:43 2020 +0700
+
+    Merge pull request #2 from quyet907/lgnv
+    
+    update
+
+[33mcommit 0da9011e603e04a7b448b41f296d2c50eaa1bdd6[m
+Author: lgnv <lgnvpr@gmail.com>
+Date:   Mon Aug 10 18:45:43 2020 +0700
+
+    update
+
+[33mcommit d5d5f6d255ce859642379f5c8f05e1067c5471ea[m
+Merge: 923afd9 4d5c1c7
+Author: lgnvpr <67831816+lgnvpr@users.noreply.github.com>
+Date:   Mon Aug 10 17:12:16 2020 +0700
+
+    Merge pull request #1 from quyet907/lgnv
+    
+    hop nhat code
+
+[33mcommit 4d5c1c7b58bf9e0e1b1560fec1b93a1e37321b1f[m
+Author: lgnv <lgnvpr@gmail.com>
+Date:   Mon Aug 10 17:05:11 2020 +0700
+
+    hop nhat code
+
+[33mcommit 923afd9feba4f899c0f06dfb53cbceb8d596c934[m
+Author: quyet08 <quyetf4@gmail.com>
+Date:   Mon Aug 10 15:36:14 2020 +0700
+
+    push git fisrt
+
+[33mcommit 6a18c3f4ed16b672c1a98012baa0c69e76bb31a5[m
+Author: quyet08 <quyetf4@gmail.com>
+Date:   Sun Aug 9 14:54:34 2020 +0700
+
+    Created a new Expo app
