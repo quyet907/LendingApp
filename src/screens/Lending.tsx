@@ -18,7 +18,7 @@ class Lending extends React.Component<Props, State> {
   constructor(props: any) {
     super(props);
     this.state = {
-      initialValue: 1,
+      initialValue: 100,
       wallet: 0,
       isSelected: false,
 
@@ -67,7 +67,7 @@ class Lending extends React.Component<Props, State> {
                 marginTop: 10,
               }}
             >
-              <Text style={styles.textLabel}>CHOOSE ONE PACKAGE {this.state.initialValue}</Text>
+              <Text style={styles.textLabel}>CHOOSE ONE PACKAGE</Text>
             </View>
 
             <ScrollView
@@ -263,9 +263,7 @@ class Lending extends React.Component<Props, State> {
       // });
     })
     
-    this.setState({
-      initialValue: this.state.initialValue + 1
-    })
+  
   }
 
   checkCheckbox = () => {

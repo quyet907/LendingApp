@@ -61,7 +61,7 @@ class ListBidding extends Component<Props, state> {
             
             const bidIndex = biddings.findIndex(bidding => bidding._id == change.doc.id)
             if (bidIndex >= 0){
-              biddings[bidIndex].latestBidAt = new Date(bidProductChange.latestBidAt.seconds);
+              biddings[bidIndex].latestBidAt = new Date(bidProductChange.latestBidAt.seconds * 1000);
               biddings[bidIndex].endPrice = bidProductChange.endPrice;
               console.log(biddings[bidIndex]);
             }

@@ -1,0 +1,43 @@
+import { Referal } from "@Core/model/user/Referal";
+import { Component } from "react";
+import { View } from "react-native";
+import { FlatList } from "react-native-gesture-handler";
+import HistoryDetail from "./HistoryDetail";
+
+
+export default class MyReferrals extends Component <Props, State>{
+    constructor(props: any){
+        super(props);
+
+    }
+
+    render(){
+        return (
+            <View>
+                <FlatList data={this.props.myReferrals}
+                        renderItem={({ item }) =>
+                            <HistoryDetail
+                                type={true}
+                                typeLabel='EARNED'
+                                title={item.toUser?.username}
+                                time={this.getTime(item.createdAt)}
+                                coin={1000}
+                            />}
+                        keyExtractor={(item: Referal, index: number) => item._id || index.toString()} />
+            </View>
+        )
+    }
+
+    getTime = (date: Date | undefined): String => {
+        if (date !== undefined) return date.toString().substring(0, 10)
+        else return 'null'
+    }
+}
+
+type Props = {
+    myReferrals: Referal[]
+}
+
+type State = {
+
+}

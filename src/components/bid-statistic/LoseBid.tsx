@@ -9,6 +9,7 @@ import { BidStatus } from '../../share/base-stock-afi/model/bid/BidStatus';
 import { v4 as uuidv4 } from 'uuid';
 import { useIsFocused } from '@react-navigation/native';
 import { BidProduct } from '@StockAfiCore/model/bid/BidProduct';
+import { ScreenName } from '../../screens/ScreenName';
 class LoseBid extends React.Component<Props, State> {
     constructor(props: any) {
         super(props);
@@ -19,15 +20,15 @@ class LoseBid extends React.Component<Props, State> {
 
     componentWillReceiveProps(prev: Props) {
         if (prev.isFocused) {
-          this.getDataToState();
+            this.getDataToState();
         }
-      }
+    }
 
     componentDidMount() {
         this.getDataToState();
     }
 
-     
+
 
     render() {
         return (
@@ -39,14 +40,21 @@ class LoseBid extends React.Component<Props, State> {
                         data={this.state.loseBidList}
                         renderItem={({ item }) => {
                             return (
-                                <BidDetail
-                                imgURL={item.bidProduct && item.bidProduct.product && item.bidProduct.product.thumbImagesUrl ? item.bidProduct.product.thumbImagesUrl[0] : 'null'}
-                                    name={item.bidProduct?.product?.name || "undefined"}
-                                    bidAt={this.getTime(item.bidProduct?.latestBidAt) || "undefined"}
-                                    bidClick={item.count || 0}
-                                    startPrice={item.bidProduct?.startPrice || 0}
-                                    endPrice={item.bidProduct?.endPrice || 0}
-                                />
+                                <TouchableOpacity
+                                    onPress={() => this.props.navigation.navigate(ScreenName.BidProduct, {
+                                        bidProductId: item._id
+                                    })}
+                                >
+                                    <BidDetail
+                                        imgURL={item.bidProduct && item.bidProduct.product && item.bidProduct.product.thumbImagesUrl ? item.bidProduct.product.thumbImagesUrl[0] : 'null'}
+                                        name={item.bidProduct?.product?.name || "undefined"}
+                                        bidAt={this.getTime(item.bidProduct?.latestBidAt) || "undefined"}
+                                        bidClick={item.count || 0}
+                                        startPrice={item.bidProduct?.startPrice || 0}
+                                        endPrice={item.bidProduct?.endPrice || 0}
+                                    />
+                                </TouchableOpacity>
+
                             )
                         }}
                         keyExtractor={(item: BidStatistic, index: number) => item.bidProductId || index.toString()}
@@ -59,7 +67,7 @@ class LoseBid extends React.Component<Props, State> {
         )
     }
 
-    getDataToState(){
+    getDataToState() {
         BidStatisticService.getBidStatistic().then((bidStatistics: BidStatistic[]) => {
             const bid = bidStatistics.filter(bidStatistic => bidStatistic.bidStatus == BidStatus.lose);
             this.setState({
@@ -96,7 +104,8 @@ const styles = StyleSheet.create({
 })
 
 type Props = {
-    isFocused: boolean
+    isFocused: boolean,
+    navigation: any
 }
 
 type State = {
