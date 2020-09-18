@@ -196,7 +196,6 @@ export default StyleSheet.create({
     },
     textButton: {
         textAlign: "center",
-        color: color.text_primary,
         textTransform: "uppercase",
         fontSize: 13,
     },

@@ -29,7 +29,7 @@ class Lending extends React.Component<Props, State> {
       minInvestment: 1,
       // maxInvestment: 1000,
 
-      buttonInvest: false,
+      buttonInvest: true,
       confirmModal: false,
 
       myInvest: [],
@@ -279,6 +279,11 @@ class Lending extends React.Component<Props, State> {
     LendingService.getMyInvest().then((res) => {
       this.setState({ myInvest: res.rows });
     });
+    IncomeService.getFinance().then((res) => {
+      this.setState({ wallet: res.remainAmount || 0 });
+      // });
+    })
+    
   };
 
   getTime = (date: Date | undefined): String => {
