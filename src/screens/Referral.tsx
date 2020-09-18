@@ -9,6 +9,7 @@ import { ReferralService } from '../../src/services/ReferralService';
 import { config } from '../config/Config';
 import HistoryDetail from '../components/ref/HistoryDetail';
 import { useIsFocused } from '@react-navigation/native';
+import MyReferrals from '../components/ref/MyReferrals';
 
 class Referral extends React.Component<Props, State> {
     constructor(props: any) {
@@ -97,19 +98,11 @@ class Referral extends React.Component<Props, State> {
 
 
                 </View>
-                <View style={styles.container2}>
-                    {/* <Text style={{ paddingBottom: 15, color: '#fff', fontSize: 17, fontWeight: "500" }}>My Referrals</Text> */}
-                    <FlatList data={this.state.myReferral}
-                        renderItem={({ item }) =>
-                            <HistoryDetail
-                                type={true}
-                                typeLabel='EARNED'
-                                title={item.toUser?.username}
-                                time={this.getTime(item.createdAt)}
-                                coin={1000}
-                            />}
-                        keyExtractor={(item: Referal, index: number) => item._id || index.toString()} />
-                </View>
+                {/* <View style={styles.container2}> */}
+                {/* <Text style={{ paddingBottom: 15, color: '#fff', fontSize: 17, fontWeight: "500" }}>My Referrals</Text> */}
+                <MyReferrals myReferrals={this.state.myReferral} />
+
+                {/* </View> */}
 
             </ScrollView>
         )
