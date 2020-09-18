@@ -9,6 +9,7 @@ import { ReferralService } from '../../src/services/ReferralService';
 import { config } from '../config/Config';
 import HistoryDetail from '../components/ref/HistoryDetail';
 import { useIsFocused } from '@react-navigation/native';
+import MyReferrals from '../components/ref/MyReferrals';
 
 class Referral extends React.Component<Props, State> {
     constructor(props: any) {
@@ -17,19 +18,19 @@ class Referral extends React.Component<Props, State> {
             myReferral: [],
             myID: ""
         }
-        
+
     }
 
     componentDidMount() {
         this.getDataReferal();
     }
-    componentWillReceiveProps(previousProps: Props){
-        if(previousProps.isFocused){
+    componentWillReceiveProps(previousProps: Props) {
+        if (previousProps.isFocused) {
             this.getDataReferal();
         }
     }
 
-    getDataReferal(){
+    getDataReferal() {
         ReferralService.getReferral().then(res => {
             this.setState({ myReferral: res.rows })
         })
@@ -37,7 +38,7 @@ class Referral extends React.Component<Props, State> {
             this.setState({ myID: res._id || "null" })
         })
     }
-    
+
 
     render() {
         return (
@@ -46,7 +47,7 @@ class Referral extends React.Component<Props, State> {
                 <View style={styles.container}>
                     <Text style={styles.textLabel}>REFERRAL</Text>
                     <Text style={{ textAlign: 'justify', color: '#fff' }}>
-                        The Lending game referral program is a great way to read the word of this great service and to earn even more money with your friend! Refer friends and receive 1000 COIN of their earnings for life!
+                        {'\t'}The Lending game referral program is a great way to read the word of this great service and to earn even more money with your friend! Refer friends and receive 1000 COIN of their earnings for life!
                         </Text>
                     <View style={{
                         flexDirection: 'row',
@@ -58,6 +59,7 @@ class Referral extends React.Component<Props, State> {
                             style={styles.urlRef}
                             editable={false}
                             textContentType={'URL'}
+
                         />
                         <TouchableOpacity
                             style={styles.copy}
@@ -96,19 +98,11 @@ class Referral extends React.Component<Props, State> {
 
 
                 </View>
-                <View style={styles.container2}>
-                    {/* <Text style={{ paddingBottom: 15, color: '#fff', fontSize: 17, fontWeight: "500" }}>My Referrals</Text> */}
-                    <FlatList data={this.state.myReferral}
-                        renderItem={({ item }) =>
-                            <HistoryDetail
-                                type={true}
-                                typeLabel='EARNED'
-                                title={item.toUser?.username}
-                                time={this.getTime(item.createdAt)}
-                                coin={1000}
-                            />}
-                        keyExtractor={item => item._id || 'null ID'} />
-                </View>
+                {/* <View style={styles.container2}> */}
+                {/* <Text style={{ paddingBottom: 15, color: '#fff', fontSize: 17, fontWeight: "500" }}>My Referrals</Text> */}
+                <MyReferrals myReferrals={this.state.myReferral} />
+
+                {/* </View> */}
 
             </ScrollView>
         )
@@ -160,7 +154,7 @@ const styles = StyleSheet.create({
     },
     urlRef: {
         flex: 1,
-        flexGrow: 1,
+        width: '80%',
         borderColor: '#fff',
         borderWidth: 1.5,
         // outline: 'none',
@@ -197,9 +191,10 @@ const styles = StyleSheet.create({
     },
     textLabel: {
         paddingBottom: 15,
-        color: '#fff',
-        fontSize: 17,
-        fontWeight: "500"
+        fontSize: 18,
+        textTransform: "uppercase",
+        fontWeight: "bold",
+        color: "white",
     },
     subContainer: {
         height: 50,
@@ -227,7 +222,7 @@ const styles = StyleSheet.create({
 })
 
 type Props = {
-    isFocused : boolean;
+    isFocused: boolean;
 }
 
 type State = {
@@ -237,6 +232,6 @@ type State = {
 
 export default function (props: Props) {
     const isFocused = useIsFocused();
-  
+
     return <Referral {...props} isFocused={isFocused} />;
-  }
+}

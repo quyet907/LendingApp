@@ -14,13 +14,6 @@ export default class ListBidder extends Component<props, state> {
     componentDidUpdate() {
         
     }
-
-    
-    
-
-    
-
-
     render() {
         return (
             <ScrollView style={[]}>

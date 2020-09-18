@@ -7,7 +7,7 @@ import LendingScreen from "./Lending";
 import Icon from "react-native-vector-icons/FontAwesome5";
 import Logout from "./Logout";
 import * as color from "../Color";
-import MyBid from "../components/bid-statistic/WinBid";
+import BidStatistic from "../components/bid-statistic/WinBid";
 import HistoryBidScreen from "../screens/HistoryBidScreen";
 import LogoutScreen from "./LogoutScreen";
 import PageBid from "./PageBid";
@@ -19,7 +19,7 @@ const Tab = createBottomTabNavigator();
 const tabProps = {
   ACTIVE: color.primary,
   INACTIVE: color.inactive,
-  ICONSIZE: 25,
+  ICONSIZE: 22,
   BackgroundColor: color.background_primary,
 };
 
@@ -33,14 +33,10 @@ export default class PageHome extends React.Component<Props, state> {
 
   render() {
     return (
-      <NavigationContainer
-      
-      >
-
+      <NavigationContainer     >
         <Tab.Navigator
-          
           tabBarOptions={{
-              
+
             activeTintColor: tabProps.ACTIVE,
             inactiveTintColor: tabProps.INACTIVE,
             style: {
@@ -53,10 +49,10 @@ export default class PageHome extends React.Component<Props, state> {
             name="Dashboard"
             component={Home}
             options={{
-              
+
               tabBarLabel: "Dashboard",
               tabBarIcon: ({ focused }) => (
-                
+
                 <Icon
 
                   name="home"
@@ -74,7 +70,7 @@ export default class PageHome extends React.Component<Props, state> {
               tabBarLabel: "Lending",
               tabBarIcon: ({ focused }) => (
                 <Icon
-    
+
                   name="dollar-sign"
                   size={tabProps.ICONSIZE}
                   color={focused ? tabProps.ACTIVE : tabProps.INACTIVE}

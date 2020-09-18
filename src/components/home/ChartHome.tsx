@@ -45,14 +45,9 @@ export default class ChartHome extends Component<props, state> {
         }
     }
 
-    componentDidMount(){
-        console.log(this.props.dataChart);
-        
-    }
 
 
     componentWillReceiveProps(nextProps : props){
-        console.log(nextProps.dataChart)
         dataChart.datasets[0].data = IncomeService.createDataChart(nextProps.dataChart.all);
         dataChart.datasets[1].data = IncomeService.createDataChart(nextProps.dataChart.lending);
         dataChart.datasets[2].data = IncomeService.createDataChart(nextProps.dataChart.referal);

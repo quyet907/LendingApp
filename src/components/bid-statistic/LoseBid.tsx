@@ -7,7 +7,10 @@ import { BidStatisticService } from "../../services/BidStatisticService"
 import { BidStatistic } from "@StockAfiModel/bid/BidStatistic";
 import { BidStatus } from '../../share/base-stock-afi/model/bid/BidStatus';
 import { v4 as uuidv4 } from 'uuid';
-export default class LoseBid extends React.Component<Props, State> {
+import { useIsFocused } from '@react-navigation/native';
+import { BidProduct } from '@StockAfiCore/model/bid/BidProduct';
+import { ScreenName } from '../../screens/ScreenName';
+class LoseBid extends React.Component<Props, State> {
     constructor(props: any) {
         super(props);
         this.state = {
@@ -15,17 +18,17 @@ export default class LoseBid extends React.Component<Props, State> {
         }
     }
 
-    componentDidMount() {
-        BidStatisticService.getBidStatistic().then((bidStatistics: BidStatistic[]) => {
-            const bid = bidStatistics.filter(bidStatistic => bidStatistic.bidStatus == BidStatus.lose);
-            
-            this.setState({
-                loseBidList: bid
-
-            })
-
-        })
+    componentWillReceiveProps(prev: Props) {
+        if (prev.isFocused) {
+            this.getDataToState();
+        }
     }
+
+    componentDidMount() {
+        this.getDataToState();
+    }
+
+
 
     render() {
         return (
@@ -37,17 +40,24 @@ export default class LoseBid extends React.Component<Props, State> {
                         data={this.state.loseBidList}
                         renderItem={({ item }) => {
                             return (
-                                <BidDetail
-                                imgURL={item.bidProduct && item.bidProduct.product && item.bidProduct.product.thumbImagesUrl ? item.bidProduct.product.thumbImagesUrl[0] : 'null'}
-                                    name={item.bidProduct?.product?.name || "undefined"}
-                                    bidAt={this.getTime(item.bidProduct?.latestBidAt) || "undefined"}
-                                    bidClick={item.count || 0}
-                                    startPrice={item.bidProduct?.startPrice || 0}
-                                    endPrice={item.bidProduct?.endPrice || 0}
-                                />
+                                <TouchableOpacity
+                                    onPress={() => this.props.navigation.navigate(ScreenName.BidProduct, {
+                                        bidProductId: item._id
+                                    })}
+                                >
+                                    <BidDetail
+                                        imgURL={item.bidProduct && item.bidProduct.product && item.bidProduct.product.thumbImagesUrl ? item.bidProduct.product.thumbImagesUrl[0] : 'null'}
+                                        name={item.bidProduct?.product?.name || "undefined"}
+                                        bidAt={this.getTime(item.bidProduct?.latestBidAt) || "undefined"}
+                                        bidClick={item.count || 0}
+                                        startPrice={item.bidProduct?.startPrice || 0}
+                                        endPrice={item.bidProduct?.endPrice || 0}
+                                    />
+                                </TouchableOpacity>
+
                             )
                         }}
-                        keyExtractor={(item) => item.bidProductId ? item.bidProductId : uuidv4()}
+                        keyExtractor={(item: BidStatistic, index: number) => item.bidProductId || index.toString()}
                     />
 
 
@@ -55,6 +65,15 @@ export default class LoseBid extends React.Component<Props, State> {
 
             </ScrollView>
         )
+    }
+
+    getDataToState() {
+        BidStatisticService.getLoseStatistic().then((bidStatistics: BidStatistic[]) => {
+            const bid = bidStatistics.filter(bidStatistic => bidStatistic.bidStatus == BidStatus.lose);
+            this.setState({
+                loseBidList: bid
+            })
+        })
     }
 
     getTime = (date: Date | undefined): string => {
@@ -85,10 +104,17 @@ const styles = StyleSheet.create({
 })
 
 type Props = {
-
+    isFocused: boolean,
+    navigation: any
 }
 
 type State = {
     loseBidList: BidStatistic[]
 
+}
+
+export default function (props: Props) {
+    const isFocused = useIsFocused();
+
+    return <LoseBid {...props} isFocused={isFocused} />;
 }

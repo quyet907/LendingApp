@@ -17,7 +17,7 @@ class Loadding extends Component <Props , state>{
         return (
             
             <View style={[(this.props.valueLoad>0) ? styles.frameLoadding : {display: "none"}]}>
-                <ProgressBar progress={0.5} color={Colors.red800} />
+                <ProgressBar color={"red"} indeterminate />
                 {/* <View style={styles.background}></View>
                 <View style={myStyle.fullCeter}>
                 <ActivityIndicator size="large" color="#00ff00" />

@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-import Separator from './Separator'
 import { Colors } from 'react-native/Libraries/NewAppScreen';
 
 

@@ -8,24 +8,24 @@ import { BidStatistic } from "@StockAfiModel/bid/BidStatistic";
 import { BidStatus } from '../../share/base-stock-afi/model/bid/BidStatus';
 import { v4 as uuidv4 } from 'uuid';
 import { Actions } from 'react-native-router-flux';
-export default class WinBid extends React.Component<Props, State> {
+import { useIsFocused } from '@react-navigation/native';
+import { ScreenName } from '../../screens/ScreenName';
+class WinBid extends React.Component<Props, State> {
     constructor(props: any) {
         super(props);
         this.state = {
             winBidList: []
         }
     }
+    componentWillReceiveProps(prev: Props) {
+        if (prev.isFocused) {
+            this.getDataToState();
+        }
+    }
 
     componentDidMount() {
-        BidStatisticService.getBidStatistic().then((bidStatistics: BidStatistic[]) => {
-            const bid = bidStatistics.filter(bidStatistic => bidStatistic.bidStatus == BidStatus.win);
-
-            this.setState({
-                winBidList: bid
-
-            })
-
-        })
+        this.getDataToState();
+        
     }
 
     render() {
@@ -39,7 +39,9 @@ export default class WinBid extends React.Component<Props, State> {
                         renderItem={({ item }) => {
                             return (
                                 <TouchableOpacity
-                                    onPress={() => Actions.bid(item._id)}
+                                    onPress={() => this.props.navigation.navigate(ScreenName.BidProduct, {
+                                        bidProductId: item._id
+                                    })}
                                 >
                                     <BidDetail
                                         imgURL={item.bidProduct && item.bidProduct.product && item.bidProduct.product.thumbImagesUrl ? item.bidProduct.product.thumbImagesUrl[0] : 'null'}
@@ -52,7 +54,7 @@ export default class WinBid extends React.Component<Props, State> {
                                 </TouchableOpacity>
                             )
                         }}
-                        keyExtractor={(item) => item.bidProductId ? item.bidProductId : uuidv4()}
+                        keyExtractor={(item: BidStatistic, index: number) => item.bidProductId || index.toString()}
                     />
 
 
@@ -62,8 +64,19 @@ export default class WinBid extends React.Component<Props, State> {
         )
     }
 
+    getDataToState() {
+        BidStatisticService.getWinStatistic().then((bidStatistics: BidStatistic[]) => {
+            // console.log(bidStatistics);
+
+            const bid = bidStatistics.filter(bidStatistic => bidStatistic.bidStatus == BidStatus.win);
+            this.setState({
+                winBidList: bid
+            })
+        })
+    }
+
     getTime = (date: Date | undefined): string => {
-        if (date !== undefined) return date.toString().substring(0, 10);
+        if (date) return date.toString().substring(0, 10);
         else return "null";
     };
 
@@ -90,10 +103,18 @@ const styles = StyleSheet.create({
 })
 
 type Props = {
-
+    isFocused: boolean,
+    route: any,
+    navigation: any
 }
 
 type State = {
     winBidList: BidStatistic[]
 
+}
+
+export default function (props: Props) {
+    const isFocused = useIsFocused();
+
+    return <WinBid {...props} isFocused={isFocused} />;
 }

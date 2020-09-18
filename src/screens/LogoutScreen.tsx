@@ -6,21 +6,24 @@ import HistoryBidScreen from "./HistoryBidScreen";
 import Logout from "./Logout";
 import * as color from '../Color'
 import PageBid from "./PageBid";
+import Referral from "./Referral";
+import BidStack from "./BidStack";
+import ProductBid from "../components/bid/ProductBid";
+import { ScreenName } from "./ScreenName";
+import Bid from "./Bid";
 const Stack = createStackNavigator();
 
 export default class LogoutScreen extends Component<Props, State> {
     constructor(props: any) {
         super(props);
-
-
     }
 
     render() {
         return (
             <NavigationContainer independent={true}>
-                <Stack.Navigator initialRouteName="Logout" >
-                    <Stack.Screen name="Logout" component={Logout} options={{headerShown: false}}/>
-                    <Stack.Screen name="Bid" component={PageBid} 
+                <Stack.Navigator initialRouteName={ScreenName.Logout} >
+                    <Stack.Screen name={ScreenName.Logout} component={Logout} options={{headerShown: false}}/>
+                    <Stack.Screen name={ScreenName.ListBid} component={BidStack} 
                     options={{
                         title: 'Bid', 
                         headerTintColor: '#fff',
@@ -29,15 +32,26 @@ export default class LogoutScreen extends Component<Props, State> {
                           },
                     }}
                     />
-                    <Stack.Screen name="MyBid" component={HistoryBidScreen} 
+                    <Stack.Screen name={ScreenName.BidStatistic} component={HistoryBidScreen} 
                     options={{
-                        title: 'My Bid', 
+                        title: 'Bid Statistic', 
+                        headerTintColor: '#fff',
+                        headerStyle: {
+                            backgroundColor: color.background
+                          },
+                    }}
+                    
+                    />
+                    <Stack.Screen name={ScreenName.BidProduct} component={Bid} 
+                     options={{
+                        title: 'Detail', 
                         headerTintColor: '#fff',
                         headerStyle: {
                             backgroundColor: color.background
                           },
                     }}
                     />
+
                 </Stack.Navigator>
             </NavigationContainer>
         )
