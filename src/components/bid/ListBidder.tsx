@@ -19,6 +19,7 @@ export default class ListBidder extends Component<props, state> {
             <ScrollView style={[]}>
                 <FlatList
                     data={this.props.bidders}
+                    extraData = {this.props}
                     renderItem={({ item }) => {
 
                         return (

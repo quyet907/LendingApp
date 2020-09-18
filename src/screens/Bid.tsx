@@ -41,6 +41,7 @@ class Bid extends Component<props, state>{
                 if (firebaseBidProduct) {
                     copyBidProduct.endPrice = firebaseBidProduct.endPrice;
                     let checkUniqueHistory = copyBidProduct?.listHistoryBid?.find((index) => index._id == firebaseBidProduct?.lastHistoryId)
+                    console.log("ahihi ==", checkUniqueHistory);
                     if (!checkUniqueHistory) {
                         var createObjectBidHistory: BidHistory = {};
                         var createUser: BaseUser = {
@@ -49,12 +50,12 @@ class Bid extends Component<props, state>{
                         createObjectBidHistory.user = createUser;
                         createObjectBidHistory._id = firebaseBidProduct.lastHistoryId;
                         createObjectBidHistory.bidPrice = copyBidProduct.stepPrice;
-                        copyBidProduct.listHistoryBid?.push(createObjectBidHistory);
-
+                        copyBidProduct.listHistoryBid?.unshift(createObjectBidHistory);
                     }
                     if (firebaseBidProduct.latestBidAt) {
                         copyBidProduct.latestBidAt = new Date(firebaseBidProduct.latestBidAt.seconds * 1000);
                     }
+                    console.log(copyBidProduct.listHistoryBid);
                     self.renderDataBid(copyBidProduct);
                 }
             }
@@ -65,6 +66,7 @@ class Bid extends Component<props, state>{
 
     componentDidMount() {
         BidService.getBidInfo(bidProductId).then((bidProduct: BidProduct) => {
+            bidProduct.listHistoryBid?.reverse();
             this.renderDataBid(bidProduct);
             this.listenOnChange();
         })
@@ -77,11 +79,14 @@ class Bid extends Component<props, state>{
             },
             500
         );
+
+        
     }
 
 
 
     renderDataBid(bidProduct: BidProduct) {
+        
         this.setState({
             bidProduct: bidProduct,
         })
@@ -143,7 +148,7 @@ class Bid extends Component<props, state>{
                 <View style={[myStyle.frListBidder]}>
                     <Text style={[myStyle.headerBidder]}>Bidder</Text>
                     <ListBidder
-                        bidders={this.state?.bidProduct?.listHistoryBid?.reverse() || []}
+                        bidders={this.state?.bidProduct?.listHistoryBid || []}
                     ></ListBidder>
                 </View>
 
