@@ -14,30 +14,23 @@ import { firebase } from "../../FirebaseConfig";
 import { BaseUser } from '@Core/model/user/BaseUser';
 
 // pageBid.render();
-var fireStoreFirebase = firebase.firestore();
 var timeahihi;
-
 var bidProductId = "";
 class Bid extends Component<props, state>{
     constructor(props: any) {
         super(props)
         this.state = {
-            product: {},
             bidProduct: {},
-            bidders: [],
             timeBid: 10,
-
 
         }
 
         bidProductId = this.props.route.params.bidProductId;
-        BidService.getBidInfo(bidProductId).then((bidProduct: BidProduct) => {
-            this.renderDataBid(bidProduct);
-        })
     }
 
     listenOnChange() {
         var copyBidProduct: BidProduct = this.state.bidProduct;
+        var fireStoreFirebase = firebase.firestore();
         var getBidProductFirebase = fireStoreFirebase.collection("bidProduct").doc(bidProductId);
         var self = this;
         getBidProductFirebase.onSnapshot({
@@ -47,27 +40,30 @@ class Bid extends Component<props, state>{
                 var firebaseBidProduct = doc.data();
                 if (firebaseBidProduct) {
                     copyBidProduct.endPrice = firebaseBidProduct.endPrice;
-                    var createObjectBidHistory: BidHistory = {};
-                    var createUser: BaseUser = {
-                        username: firebaseBidProduct.latestBidUser
-                    };
-                    createObjectBidHistory.user = createUser;
-                    createObjectBidHistory._id = firebaseBidProduct.lastHistoryId;
-                    createObjectBidHistory.bidPrice = copyBidProduct.stepPrice;
-                    copyBidProduct.listHistoryBid?.push(createObjectBidHistory);
-                    if (firebaseBidProduct.latestBidAt) {
-                        copyBidProduct.latestBidAt = new Date(firebaseBidProduct.latestBidAt.seconds*1000);
+                    let checkUniqueHistory = copyBidProduct?.listHistoryBid?.find((index) => index._id == firebaseBidProduct?.lastHistoryId)
+                    if (!checkUniqueHistory) {
+                        var createObjectBidHistory: BidHistory = {};
+                        var createUser: BaseUser = {
+                            username: firebaseBidProduct.latestBidUser
+                        };
+                        createObjectBidHistory.user = createUser;
+                        createObjectBidHistory._id = firebaseBidProduct.lastHistoryId;
+                        createObjectBidHistory.bidPrice = copyBidProduct.stepPrice;
+                        copyBidProduct.listHistoryBid?.push(createObjectBidHistory);
+
                     }
-                    Array.from(new Set(copyBidProduct.listHistoryBid?.map((item: BidHistory) => item._id)))
+                    if (firebaseBidProduct.latestBidAt) {
+                        copyBidProduct.latestBidAt = new Date(firebaseBidProduct.latestBidAt.seconds * 1000);
+                    }
+                    self.renderDataBid(copyBidProduct);
                 }
-                self.renderDataBid(copyBidProduct);
             }
+
         });
     }
 
 
     componentDidMount() {
-        this.listenOnChange();
         BidService.getBidInfo(bidProductId).then((bidProduct: BidProduct) => {
             this.renderDataBid(bidProduct);
             this.listenOnChange();
@@ -83,14 +79,11 @@ class Bid extends Component<props, state>{
         );
     }
 
+
+
     renderDataBid(bidProduct: BidProduct) {
         this.setState({
             bidProduct: bidProduct,
-            product: bidProduct.product || {},
-        })
-
-        this.setState({
-            bidders: bidProduct.listHistoryBid || [],
         })
     }
 
@@ -113,7 +106,7 @@ class Bid extends Component<props, state>{
                     <Carousel
                         layout={'tinder'}
                         style={[]}
-                        data={this.state.product.thumbImagesUrl}
+                        data={this.state?.bidProduct?.product?.thumbImagesUrl}
 
                         renderItem={(item: any) => {
                             return (
@@ -150,7 +143,7 @@ class Bid extends Component<props, state>{
                 <View style={[myStyle.frListBidder]}>
                     <Text style={[myStyle.headerBidder]}>Bidder</Text>
                     <ListBidder
-                        bidders={this.state.bidders.reverse()}
+                        bidders={this.state?.bidProduct?.listHistoryBid?.reverse() || []}
                     ></ListBidder>
                 </View>
 
@@ -160,9 +153,7 @@ class Bid extends Component<props, state>{
                     <TouchableOpacity
                         style={[myStyle.buttonBid]}
                         onPress={(event) => {
-                            BidService.BidAction(bidProductId).then((bidProduct: BidProduct) => {
-                                // this.renderDataBid(bidProduct);
-                            })
+                            BidService.BidAction(bidProductId)
                         }}
                     >
                         <Text
@@ -183,8 +174,6 @@ type props = {
 
 type state = {
     bidProduct: BidProduct
-    product: Product
-    bidders: BidHistory[]
     timeBid: number,
 }
 
