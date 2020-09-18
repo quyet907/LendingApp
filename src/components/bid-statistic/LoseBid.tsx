@@ -68,7 +68,7 @@ class LoseBid extends React.Component<Props, State> {
     }
 
     getDataToState() {
-        BidStatisticService.getBidStatistic().then((bidStatistics: BidStatistic[]) => {
+        BidStatisticService.getLoseStatistic().then((bidStatistics: BidStatistic[]) => {
             const bid = bidStatistics.filter(bidStatistic => bidStatistic.bidStatus == BidStatus.lose);
             this.setState({
                 loseBidList: bid
