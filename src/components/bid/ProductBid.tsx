@@ -11,7 +11,7 @@ export default class ProductBid extends Component<Props, state> {
     constructor(props: any) {
         super(props);
         this.state = {
-            
+
         };
     }
 
@@ -36,10 +36,10 @@ export default class ProductBid extends Component<Props, state> {
     //     })
     // }
 
-    
+
     render() {
         return (
-            
+
             <View style={[myStyle.productBid]}>
                 <View>
                     <View style={[myStyle.frImgAndPrice]}>
@@ -78,6 +78,5 @@ type Props = {
 type state = {
 
 };
-
 
 
