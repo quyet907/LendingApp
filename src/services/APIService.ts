@@ -5,6 +5,7 @@ import { UserService } from "./UserService";
 import * as action from "../Action/ActionPopup"
 import * as actionLoadding from "../Action/ActionLoadding"
 import { config } from "../config/Config";
+
 axios.interceptors.request.use(
     res => {
         actionLoadding.setLoad(90)
