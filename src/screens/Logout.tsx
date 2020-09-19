@@ -15,6 +15,8 @@ import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 import * as Color from "../Color";
 import { ScreenName } from "./ScreenName";
 
+const sizeIcon = 20;
+
 export default class Logout extends Component<props, state> {
   constructor(props: any) {
     super(props);
@@ -52,13 +54,16 @@ export default class Logout extends Component<props, state> {
         </View>
 
         <View style={{ marginTop: 12 }}>
+
+
+
           <TouchableOpacity
             style={[myStyle.row, styles.layoutAccout]}
             onPress={() => this.props.navigation.navigate(ScreenName.ListBid)}
 
           >
             <View style={styles.containerIcon}>
-              <FontAwesome5 name={"users"} size={21} color={"white"} />
+              <FontAwesome5 name={"users"} size={sizeIcon} color={"white"} />
             </View>
 
             <Text style={[styles.contentFuture]}>Bid</Text>
@@ -67,13 +72,30 @@ export default class Logout extends Component<props, state> {
           <TouchableOpacity style={[myStyle.row, styles.layoutAccout]}
             onPress={() => this.props.navigation.navigate(ScreenName.BidStatistic)}>
             <View style={styles.containerIcon}>
-              <FontAwesome5 name={"history"} size={23} color={"white"} />
+              <FontAwesome5 name={"history"} size={sizeIcon} color={"white"} />
             </View>
             <Text style={[styles.contentFuture]}>My Bid</Text>
           </TouchableOpacity>
+
+          <TouchableOpacity
+            style={[myStyle.row, styles.layoutAccout]}
+            onPress={() => this.props.navigation.navigate(ScreenName._Giftcode)}
+
+          >
+            <View style={styles.containerIcon}>
+              <FontAwesome5 name={"gift"} size={sizeIcon} color={"white"} />
+            </View>
+
+            <Text style={[styles.contentFuture]}>Gift</Text>
+          </TouchableOpacity>
+
+
         </View>
 
         <View style={{ marginTop: 12 }}>
+
+    
+
           <TouchableOpacity style={[myStyle.row, styles.layoutAccout]}
             onPress={() => {
               UserService.setJWT("").then(res => {
@@ -82,11 +104,12 @@ export default class Logout extends Component<props, state> {
             }}
           >
             <View style={styles.containerIcon}>
-              <FontAwesome name={"sign-out"} size={23} color={Color.primary} />
+              <FontAwesome name={"sign-out"} size={sizeIcon} color={Color.primary} />
             </View>
             <Text style={[styles.contentFuture]}>Log out</Text>
 
           </TouchableOpacity>
+
 
           {/* <TouchableOpacity style={[styles.buttonLogout]}>
             <Text style={[styles.contentButtonLogout]}>Logout</Text>
@@ -168,7 +191,7 @@ const styles = StyleSheet.create({
     resizeMode: "cover",
     borderRadius: 50,
   },
-  containerIcon: { 
-    width: 40 
+  containerIcon: {
+    width: 35
   },
 });

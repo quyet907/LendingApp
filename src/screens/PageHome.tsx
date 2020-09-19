@@ -13,6 +13,7 @@ import LogoutScreen from "./LogoutScreen";
 import PageBid from "./PageBid";
 import Bid from "./Bid";
 import Referral from "./Referral";
+import Giftcode from "./Giftcode";
 
 const Tab = createBottomTabNavigator();
 
@@ -47,7 +48,7 @@ export default class PageHome extends React.Component<Props, state> {
 
           <Tab.Screen
             name="Dashboard"
-            component={Home}
+            component={Giftcode}
             options={{
 
               tabBarLabel: "Dashboard",
