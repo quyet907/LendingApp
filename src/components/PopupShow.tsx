@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-import Separator from './Separator'
 import { Colors } from 'react-native/Libraries/NewAppScreen';
 import {connect}from "react-redux";
 import * as action from "../Action/ActionPopup"
@@ -165,7 +164,7 @@ function mapDispatchToProps(dispatch :any , props : any ){
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(PopupShow )
+export default connect(mapStateToProps, mapDispatchToProps)(PopupShow)
 
 
 

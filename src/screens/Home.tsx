@@ -6,13 +6,14 @@ import ListStatisticalBasic from "../components/home/ListStatisticalBasic";
 import ListHistoryInterest from "../components/home/ListHistoryInterest";
 import { FlatList } from "react-native-gesture-handler";
 import HistoryInterest from "../components/home/HistoryInterest";
-import { LendingProfitHistoryService } from "../services/LendingProfitHistoryService";
 import { ProfitHistory } from "@StockAfiCore/model/lending/LendingProfitHistory";
 import axios from "axios";
 import { UserService } from "../../src/services/UserService";
 import { IncomeService } from "../services/IncomeService";
 import { Finance } from "@StockAfiCore/model/lending/Finance";
 import { useIsFocused } from "@react-navigation/native";
+import Lending from "./Lending";
+import { LendingService } from "../services/LendingService";
 // import { Income } from "@StockAfiCore/model/lending/Income";
 var uuid = require('react-native-uuid');
 class Home extends Component<Props, State> {
@@ -43,10 +44,10 @@ class Home extends Component<Props, State> {
 
 
   getDataProfit() {
-    LendingProfitHistoryService.getLendingProfit().then((res) => {
+    LendingService.getLendingProfit().then((res) => {
       this.setState(
         {
-          data: res != undefined ? res.rows : [],
+          data: res.rows || [],
         }
       );
     });

@@ -48,7 +48,7 @@ export default class PageHome extends React.Component<Props, state> {
 
           <Tab.Screen
             name="Dashboard"
-            component={Giftcode}
+            component={Home}
             options={{
 
               tabBarLabel: "Dashboard",

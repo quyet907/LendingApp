@@ -1,6 +1,6 @@
-export const reload=()=>{
-    return { 
-        type : "RELOAD",
-        payload : null
+export const reload = () => {
+    return {
+        type: "RELOAD",
+        payload: null
     }
 }

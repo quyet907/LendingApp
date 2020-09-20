@@ -3,6 +3,7 @@ import { View, Text, TextInput, Image, StyleSheet, Button, KeyboardAvoidingView,
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import myStyle from '../style'
 import * as Color from '../Color'
+import { CouponService } from '../services/CouponService';
 
 export default class Giftcode extends React.Component<Props, State>{
     constructor(props: any) {
@@ -68,7 +69,7 @@ export default class Giftcode extends React.Component<Props, State>{
     }
 
     check = () => {
-
+        CouponService.postCoupon(this.state.code)
     }
 
 }

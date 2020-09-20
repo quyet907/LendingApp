@@ -1,9 +1,7 @@
 import * as React from "react";
 import { View, Text, TextInput, Image, StyleSheet } from "react-native";
 import { TouchableOpacity, ScrollView, FlatList } from "react-native-gesture-handler";
-import HistoryDetailLending from "../components/lending/HistoryLendingDetail";
 import Package from "../components/lending/lending-package/Package";
-import { LendingPackageService } from "../services/LendingPackageService";
 import { LendingPackage } from "@StockAfiCore/model/lending/LendingPackage";
 import { LendingService } from "../services/LendingService";
 import { Lending as LendingModel } from "@StockAfiCore/model/lending/Lending";
@@ -241,7 +239,7 @@ class Lending extends React.Component<Props, State> {
   }
 
   getDataToState() {
-    LendingPackageService.getLendingPackage().then(
+    LendingService.getLendingPackage().then(
       (pagingLendingPackages: Paging<LendingPackage>) => {
         if (pagingLendingPackages.rows.length > 0) {
           this.setState({
