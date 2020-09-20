@@ -13,6 +13,7 @@ import LogoutScreen from "./LogoutScreen";
 import PageBid from "./PageBid";
 import Bid from "./Bid";
 import Referral from "./Referral";
+import Giftcode from "./Giftcode";
 
 const Tab = createBottomTabNavigator();
 

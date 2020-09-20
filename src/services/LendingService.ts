@@ -5,6 +5,7 @@ import { Paging } from "@Core/controller/Paging";
 import { ProfitHistory } from "../share/base-stock-afi/model/lending/LendingProfitHistory";
 import { getAxios } from "./APIService";
 import { config } from "../config/Config";
+import { LendingPackage } from "@StockAfiCore/model/lending/LendingPackage";
 
 export class LendingService {
   public static createLending(lending: Lending): Promise<any> {
@@ -16,7 +17,7 @@ export class LendingService {
       })
         .then((res) => {
         })
-        .catch((err)=>{})
+        .catch((err) => { })
     );
   }
 
@@ -44,4 +45,33 @@ export class LendingService {
         })
     );
   }
+
+
+  public static getLendingPackage(): Promise<Paging<LendingPackage>> {
+    return getAxios().then((axios) =>
+      axios({
+        method: "GET",
+        url: `${config.api.lendingAPI}/lending_package`,
+      })
+        .then((res) => {
+          return res.data;
+        })
+        .catch((err) => console.log(err))
+    );
+    //throw new Error("this function is not implement");
+  }
+
+  public static getLendingProfit(): Promise<Paging<ProfitHistory>> {
+    return getAxios().then((axios) =>
+      axios({
+        method: "GET",
+        url: `${config.api.lendingAPI}/lending_profit`,
+      })
+        .then((res) => {
+          return res.data;
+        })
+        .catch((err) => console.log("err"))
+    );
+  }
+
 }
