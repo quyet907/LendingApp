@@ -7,7 +7,8 @@ export class CouponService {
         return getAxios().then(axios => {
             axios({
                 method: 'POST',
-                url: `${config.api.lendingAPI}/ComfirmCoupon`,
+                url: `${config.api.lendingAPI}/confirmCoupon`,
+                data: code
             })
                 .then((res) => {
                     return res.data

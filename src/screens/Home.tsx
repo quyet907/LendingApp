@@ -47,7 +47,7 @@ class Home extends Component<Props, State> {
     LendingService.getLendingProfit().then((res) => {
       this.setState(
         {
-          data: res.rows || [],
+          data: res ? res.rows : [],
         }
       );
     });
