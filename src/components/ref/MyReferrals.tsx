@@ -19,7 +19,7 @@ export default class MyReferrals extends React.Component<Props, State>{
                         <HistoryDetail
                             type={true}
                             typeLabel='EARNED'
-                            title={item.toUser?.username}
+                            title={this.hidePhoneNumber(item.toUser?.username)}
                             time={this.getTime(item.createdAt)}
                             coin={1000}
                         />}
@@ -31,6 +31,11 @@ export default class MyReferrals extends React.Component<Props, State>{
     getTime = (date: Date | undefined): String => {
         if (date !== undefined) return date.toString().substring(0, 10)
         else return 'null'
+    }
+
+    hidePhoneNumber = (phone: string | undefined) => {
+        if (phone) return 'xxxx ' + phone.slice(phone.length-3);
+        else return 'undefined'
     }
 }
 

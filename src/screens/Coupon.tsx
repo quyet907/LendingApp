@@ -13,6 +13,10 @@ export default class Giftcode extends React.Component<Props, State>{
             code: ''
         }
     }
+
+    componentDidMount() {
+        CouponService.getCouponHistories().then((res) => console.log(res.rows))
+    }
     render() {
         return (
             <KeyboardAvoidingView
