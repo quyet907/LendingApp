@@ -27,7 +27,7 @@ class Lending extends React.Component<Props, State> {
       minInvestment: 1,
       // maxInvestment: 1000,
 
-      buttonInvest: false,
+      buttonInvest: true,
       confirmModal: false,
 
       myInvest: [],
@@ -37,23 +37,17 @@ class Lending extends React.Component<Props, State> {
 
   }
 
+
+
   componentWillReceiveProps(prev: Props) {
     if (prev.isFocused) {
       this.getDataToState();
-      
     }
-    // if (prev.isFocused) {
-    //   this.getDataToState();
-    //   console.log("will");
-
-    // }
   }
 
 
   componentDidMount() {
     this.getDataToState();
-
-    this.enableButtonInvest
   }
 
   render() {
@@ -207,9 +201,9 @@ class Lending extends React.Component<Props, State> {
             historiesLending={this.state.myInvest}
           ></HistoriesLending>
           {/* <View style={styles.container2}> */}
-            {/* <Text style={styles.textLabel}>My Investsment</Text>
+          {/* <Text style={styles.textLabel}>My Investsment</Text>
             <Separator /> */}
-            {/* <FlatList
+          {/* <FlatList
               data={this.state.myInvest}
               renderItem={({ item }) => (
                 <HistoryDetailLending
@@ -264,8 +258,9 @@ class Lending extends React.Component<Props, State> {
       this.setState({ wallet: res.remainAmount || 0 });
       // });
     })
-    
-  
+
+
+
   }
 
   checkCheckbox = () => {
@@ -285,7 +280,7 @@ class Lending extends React.Component<Props, State> {
       this.setState({ wallet: res.remainAmount || 0 });
       // });
     })
-    
+
   };
 
   getTime = (date: Date | undefined): String => {

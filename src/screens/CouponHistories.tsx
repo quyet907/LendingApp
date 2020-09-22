@@ -1,23 +1,21 @@
 import * as React from 'react';
 import { View, Text, TextInput, Image, StyleSheet, Button, Clipboard } from 'react-native';
 import { TouchableOpacity, ScrollView, FlatList } from 'react-native-gesture-handler';
-import * as color from '../../Color'
-import BidDetail from './BidDetail';
-import { BidStatisticService } from "../../services/BidStatisticService"
-import { BidStatistic } from "@StockAfiModel/bid/BidStatistic";
-import { BidStatus } from '../../share/base-stock-afi/model/bid/BidStatus';
-import { v4 as uuidv4 } from 'uuid';
+import * as color from '../Color'
 import { useIsFocused } from '@react-navigation/native';
-import { BidProduct } from '@StockAfiCore/model/bid/BidProduct';
-import { ScreenName } from '../../screens/ScreenName';
-class LoseBid extends React.Component<Props, State> {
+import { ScreenName } from './ScreenName';
+import { Coupon } from '@StockAfiCore/model/user/Coupon';
+import { UserCoupon } from '@StockAfiCore/model/user/UserCoupon';
+import { CouponService } from '../services/CouponService';
+import { Paging } from '@Core/controller/Paging';
+import CouponDetail from '../components/coupon/CouponDetail';
+class CouponHistories extends React.Component<Props, State> {
     constructor(props: any) {
         super(props);
         this.state = {
-            loseBidList: []
+            coupons: []
         }
     }
-
     componentWillReceiveProps(prev: Props) {
         if (prev.isFocused) {
             this.getDataToState();
@@ -26,9 +24,8 @@ class LoseBid extends React.Component<Props, State> {
 
     componentDidMount() {
         this.getDataToState();
+
     }
-
-
 
     render() {
         return (
@@ -37,47 +34,41 @@ class LoseBid extends React.Component<Props, State> {
                     {/* <Text style={{ paddingBottom: 15,  fontSize: 17, fontWeight: "500" }}>My Bid</Text>
                     <Separator /> */}
                     <FlatList
-                        data={this.state.loseBidList}
+                        data={this.state.coupons}
                         renderItem={({ item }) => {
                             return (
                                 <TouchableOpacity
-                                    onPress={() => this.props.navigation.navigate(ScreenName.BidProduct, {
-                                        bidProductId: item._id
-                                    })}
+                                    onPress={() => this.props.navigation.navigate(ScreenName.CouponHistories)}
                                 >
-                                    <BidDetail
-                                        imgURL={item.bidProduct && item.bidProduct.product && item.bidProduct.product.thumbImagesUrl ? item.bidProduct.product.thumbImagesUrl[0] : 'null'}
-                                        name={item.bidProduct?.product?.name || "undefined"}
-                                        bidAt={this.getTime(item.bidProduct?.latestBidAt) || "undefined"}
-                                        bidClick={item.bidCount || 0}
-                                        startPrice={item.bidProduct?.startPrice || 0}
-                                        endPrice={item.bidProduct?.endPrice || 0}
+                                    <CouponDetail
+                                        title={item.coupon?.code || 'undefined'}
+                                        time={item.createdAt || 'undefined'}
+                                        coin={item.coupon?.prize || 0}
+                                        type={true}
+                                        typeLabel="PRIZE"
                                     />
                                 </TouchableOpacity>
-
                             )
                         }}
-                        keyExtractor={(item: BidStatistic, index: number) => item.bidProductId || index.toString()}
+                        keyExtractor={(item: UserCoupon, index: number) => item.userId || index.toString()}
                     />
-
-
                 </View>
-
             </ScrollView>
         )
     }
 
     getDataToState() {
-        BidStatisticService.getLoseStatistic().then((bidStatistics: BidStatistic[]) => {
-            const bid = bidStatistics.filter(bidStatistic => bidStatistic.bidStatus == BidStatus.lose);
+        CouponService.getCouponHistories().then((couponPaging: Paging<UserCoupon>) => {
+            // console.log(bidStatistics);
+            const data = couponPaging.rows;
             this.setState({
-                loseBidList: bid
+                coupons: data
             })
         })
     }
 
     getTime = (date: Date | undefined): string => {
-        if (date !== undefined) return date.toString().substring(0, 10);
+        if (date) return date.toString().substring(0, 10);
         else return "null";
     };
 
@@ -105,16 +96,17 @@ const styles = StyleSheet.create({
 
 type Props = {
     isFocused: boolean,
+    route: any,
     navigation: any
 }
 
 type State = {
-    loseBidList: BidStatistic[]
+    coupons: UserCoupon[]
 
 }
 
 export default function (props: Props) {
     const isFocused = useIsFocused();
 
-    return <LoseBid {...props} isFocused={isFocused} />;
+    return <CouponHistories {...props} isFocused={isFocused} />;
 }

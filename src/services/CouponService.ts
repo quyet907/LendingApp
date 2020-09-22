@@ -1,3 +1,4 @@
+import { Paging } from "@Core/controller/Paging";
 import { UserCoupon } from "@StockAfiCore/model/user/UserCoupon";
 import { config } from "../config/Config";
 import { getAxios } from "./APIService";
@@ -10,13 +11,19 @@ export class CouponService {
                 url: `${config.api.lendingAPI}/confirmCoupon`,
                 data: code
             })
-                .then((res) => {
-                    return res.data
-                })
-                .catch((err) => {
-                    console.log('err');
-                    return err;
-                })
+                .then(res => {return res.data})
+                .catch(err => err)
         })
+    }
+
+    public static getCouponHistories(): Promise<Paging<UserCoupon>> {
+        return getAxios().then((axios) =>
+            axios({
+                method: "GET",
+                url: `${config.api.lendingAPI}/userCoupon/getListCode`,
+            })
+                .then(res => {return res.data})
+                .catch(err => console.log(err))
+        );
     }
 }

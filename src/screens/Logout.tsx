@@ -79,7 +79,7 @@ export default class Logout extends Component<props, state> {
 
           <TouchableOpacity
             style={[myStyle.row, styles.layoutAccout]}
-            onPress={() => this.props.navigation.navigate(ScreenName._Giftcode)}
+            onPress={() => this.props.navigation.navigate(ScreenName.Coupon)}
 
           >
             <View style={styles.containerIcon}>
