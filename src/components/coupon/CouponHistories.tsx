@@ -1,26 +1,24 @@
 import * as React from 'react';
 import { View, Text, TextInput, Image, StyleSheet, Button, Clipboard } from 'react-native';
 import { TouchableOpacity, ScrollView, FlatList } from 'react-native-gesture-handler';
-import * as color from '../Color'
+import * as color from '../../Color'
 import { useIsFocused } from '@react-navigation/native';
-import { ScreenName } from './ScreenName';
+import { ScreenName } from '../../screens/ScreenName';
 import { Coupon } from '@StockAfiCore/model/user/Coupon';
 import { UserCoupon } from '@StockAfiCore/model/user/UserCoupon';
-import { CouponService } from '../services/CouponService';
+import { CouponService } from '../../services/CouponService';
 import { Paging } from '@Core/controller/Paging';
-import CouponDetail from '../components/coupon/CouponDetail';
-class CouponHistories extends React.Component<Props, State> {
+import CouponDetail from './CouponDetail';
+export default class CouponHistories extends React.Component<Props, State> {
     constructor(props: any) {
         super(props);
-        this.state = {
-            coupons: []
-        }
+       
     }
-    componentWillReceiveProps(prev: Props) {
-        if (prev.isFocused) {
-            this.getDataToState();
-        }
-    }
+    // componentWillReceiveProps(prev: Props) {
+    //     if (prev.isFocused) {
+    //         this.getDataToState();
+    //     }
+    // }
 
     componentDidMount() {
         this.getDataToState();
@@ -29,16 +27,15 @@ class CouponHistories extends React.Component<Props, State> {
 
     render() {
         return (
-            <ScrollView style={{ backgroundColor: color.background_primary }}>
                 <View style={styles.container2}>
                     {/* <Text style={{ paddingBottom: 15,  fontSize: 17, fontWeight: "500" }}>My Bid</Text>
                     <Separator /> */}
                     <FlatList
-                        data={this.state.coupons}
+                        data={this.props.couponHistories}
                         renderItem={({ item }) => {
                             return (
                                 <TouchableOpacity
-                                    onPress={() => this.props.navigation.navigate(ScreenName.CouponHistories)}
+                                    // onPress={() => }
                                 >
                                     <CouponDetail
                                         title={item.coupon?.code || 'undefined'}
@@ -53,7 +50,6 @@ class CouponHistories extends React.Component<Props, State> {
                         keyExtractor={(item: UserCoupon, index: number) => item.userId || index.toString()}
                     />
                 </View>
-            </ScrollView>
         )
     }
 
@@ -95,18 +91,11 @@ const styles = StyleSheet.create({
 })
 
 type Props = {
-    isFocused: boolean,
-    route: any,
-    navigation: any
+    couponHistories: UserCoupon[]
 }
 
 type State = {
-    coupons: UserCoupon[]
+    
 
 }
 
-export default function (props: Props) {
-    const isFocused = useIsFocused();
-
-    return <CouponHistories {...props} isFocused={isFocused} />;
-}

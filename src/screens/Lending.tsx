@@ -115,7 +115,7 @@ class Lending extends React.Component<Props, State> {
               }}
             >
               <Text style={styles.textLabel}>
-                Wallet Balance: {this.state.wallet} COIN
+                Wallet: {this.state.wallet} COIN
               </Text>
             </View>
 

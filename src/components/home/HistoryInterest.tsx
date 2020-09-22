@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, Image, ColorPropType } from "react-native"
+import { View, Text, Image, ColorPropType, StyleSheet } from "react-native"
 import myStyle from "../../style";
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
@@ -10,7 +10,7 @@ export default class HistoryInterest extends Component<props, state> {
     constructor(props: any) {
         super(props);
         this.state = {
-
+            status: false
         }
     }
 
@@ -56,10 +56,16 @@ export default class HistoryInterest extends Component<props, state> {
 
                     <View style={{ justifyContent: 'center', height: "100%" }}>
                         <TouchableOpacity
-                            style={{ backgroundColor: color.primary, paddingVertical: 7, borderRadius: 5, paddingHorizontal: 18 }}
-                            onPress={() => console.log('get')}
+                            style={this.state.status ? styles.btnGot : styles.btnGet}
+                            disabled={this.state.status}
+                            onPress={() => {
+                                this.setState({
+                                    status: true
+                                })
+                                console.log(this.props)
+                            }}
                         >
-                            <Text style={{ color: 'black' }} >Get</Text>
+                            <Text style={{ color: 'black' }} >{this.state.status ? 'Got' : 'Get'}</Text>
                         </TouchableOpacity>
                     </View>
                 </View>
@@ -67,6 +73,21 @@ export default class HistoryInterest extends Component<props, state> {
         )
     }
 }
+
+const styles = StyleSheet.create({
+    btnGet: {
+        backgroundColor: color.primary,
+        paddingVertical: 7,
+        borderRadius: 5,
+        paddingHorizontal: 18
+    },
+    btnGot: {
+        backgroundColor: '#333',
+        paddingVertical: 7,
+        borderRadius: 5,
+        paddingHorizontal: 18
+    }
+})
 
 
 type props = {
@@ -76,5 +97,5 @@ type props = {
     daysLeft: number
 }
 type state = {
-
+    status: boolean
 }

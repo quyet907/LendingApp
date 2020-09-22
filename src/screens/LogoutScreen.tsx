@@ -12,7 +12,7 @@ import ProductBid from "../components/bid/ProductBid";
 import { ScreenName } from "./ScreenName";
 import Bid from "./Bid";
 import Giftcode from "./Coupon";
-import CouponStack from "./CouponStack";
+import  Coupon  from "./Coupon";
 const Stack = createStackNavigator();
 
 export default class LogoutScreen extends Component<Props, State> {
@@ -53,7 +53,7 @@ export default class LogoutScreen extends Component<Props, State> {
                           },
                     }}
                     />
-                    <Stack.Screen name={ScreenName.Coupon} component= {CouponStack} 
+                    <Stack.Screen name={ScreenName.Coupon} component= {Coupon} 
                         options={{
                             title: 'Giftcode',
                             headerTintColor: '#fff',

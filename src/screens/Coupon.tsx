@@ -1,29 +1,35 @@
 import * as React from 'react';
 import { View, Text, TextInput, Image, StyleSheet, Button, KeyboardAvoidingView, Platform } from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
 import myStyle from '../style'
 import * as Color from '../Color'
 import { CouponService } from '../services/CouponService';
 import * as actionPopup from "../Action/ActionPopup";
-
+import { UserCoupon } from '@StockAfiCore/model/user/UserCoupon';
+import { Paging } from '@Core/controller/Paging';
+import CouponHistories from '../components/coupon/CouponHistories';
 export default class Giftcode extends React.Component<Props, State>{
     constructor(props: any) {
         super(props)
         this.state = {
-            code: ''
+            code: '',
+            couponHistories: []
         }
     }
 
     componentDidMount() {
         CouponService.getCouponHistories().then((res) => console.log(res.rows))
+
+        CouponService.getCouponHistories().then((couponPaging: Paging<UserCoupon>) => {
+            const data = couponPaging.rows;
+            this.setState({ couponHistories: data })
+        })
+
     }
     render() {
         return (
-            <KeyboardAvoidingView
-                behavior={Platform.OS == "ios" ? "padding" : "height"}
-                style={{ flex: 1, alignContent: 'center' }}
-            >
-                <View style={{ flex: 1, alignItems: 'center', paddingHorizontal: 40, paddingVertical: 20, backgroundColor: Color.background_primary, justifyContent: 'center' }}>
+            <ScrollView style={{ backgroundColor: Color.background_primary }}>
+                <View style={{ alignItems: 'center', paddingHorizontal: 40, paddingVertical: 20, backgroundColor: Color.background, justifyContent: 'center' }}>
 
                     <View style={{ flex: 0.55, width: '100%', justifyContent: 'flex-end' }}>
 
@@ -69,7 +75,10 @@ export default class Giftcode extends React.Component<Props, State>{
                         </View>
                     </View>
                 </View>
-            </KeyboardAvoidingView>
+
+                <CouponHistories
+                    couponHistories={this.state.couponHistories} />
+            </ScrollView>
         )
     }
 
@@ -122,4 +131,5 @@ type Props = {
 
 type State = {
     code: string
+    couponHistories: UserCoupon[]
 }
