@@ -8,9 +8,7 @@ export class CouponService {
             axios({
                 method: 'POST',
                 url: `${config.api.lendingAPI}/confirmCoupon`,
-                data : {
-                    code : code
-                }
+                data: code
             })
                 .then((res) => {
                     return res.data

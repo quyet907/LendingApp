@@ -27,10 +27,12 @@ class Lending extends React.Component<Props, State> {
       minInvestment: 1,
       // maxInvestment: 1000,
 
-      buttonInvest: true,
+      buttonInvest: false,
       confirmModal: false,
 
       myInvest: [],
+
+
     };
 
   }
@@ -50,6 +52,8 @@ class Lending extends React.Component<Props, State> {
 
   componentDidMount() {
     this.getDataToState();
+
+    this.enableButtonInvest
   }
 
   render() {

@@ -45,13 +45,11 @@ class Home extends Component<Props, State> {
 
   getDataProfit() {
     LendingService.getLendingProfit().then((res) => {
-      if(res){
-        this.setState(
-          {
-            data: res.rows || [],
-          }
-        );
-      }
+      this.setState(
+        {
+          data: res ? res.rows : [],
+        }
+      );
     });
   };
 
