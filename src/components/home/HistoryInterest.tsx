@@ -4,6 +4,7 @@ import myStyle from "../../style";
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import * as color from '../../Color'
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 export default class HistoryInterest extends Component<props, state> {
     constructor(props: any) {
@@ -12,7 +13,6 @@ export default class HistoryInterest extends Component<props, state> {
 
         }
     }
-
 
 
     render() {
@@ -34,8 +34,6 @@ export default class HistoryInterest extends Component<props, state> {
                             />
 
                             <Text style={[myStyle.contentHistoryInterest, { color: color.success, alignSelf: "center", justifyContent: "center", marginLeft: 10 },]}>{this.props.profits}</Text>
-
-
                         </View>
                     </View>
 
@@ -54,6 +52,15 @@ export default class HistoryInterest extends Component<props, state> {
                         <Text style={[{ color: color.secondary, fontSize: 16, }]}>
                             {this.props.daysLeft} days
                         </Text>
+                    </View>
+
+                    <View style={{ justifyContent: 'center', height: "100%" }}>
+                        <TouchableOpacity
+                            style={{ backgroundColor: color.primary, paddingVertical: 7, borderRadius: 5, paddingHorizontal: 18 }}
+                            onPress={() => console.log('get')}
+                        >
+                            <Text style={{ color: 'black' }} >Get</Text>
+                        </TouchableOpacity>
                     </View>
                 </View>
             </View>
