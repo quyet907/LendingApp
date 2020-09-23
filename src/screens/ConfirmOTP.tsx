@@ -78,9 +78,9 @@ class ConfirmOTP extends Component<props, state> {
                             // keyboardType={'numeric'}
                             value={this.state.getCodeOTP}
                             onSubmitEditing={() => this.checkOTP()}
-                            onChange={(event) => {
+                            onChangeText={(text) => {
                                 this.setState({
-                                    getCodeOTP: event.target.value
+                                    getCodeOTP: text
                                 })
 
                             }}

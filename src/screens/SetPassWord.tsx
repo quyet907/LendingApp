@@ -100,11 +100,12 @@ class setPassword extends Component<props, state> {
               selectionColor="red"
               placeholder={"Password"}
               maxLength={32}
+              onSubmitEditing={()=> this.checkSetPassword()}
               secureTextEntry={!this.state.checkbox}
               value={this.state.getPass}
-              onChange={(event) => {
+              onChangeText={(text) => {
                 this.setState({
-                  getPass: event.target.value,
+                  getPass: text
                 });
               }}
             />
@@ -117,9 +118,10 @@ class setPassword extends Component<props, state> {
               placeholder={"Confirm password"}
               secureTextEntry={!this.state.checkbox}
               maxLength={32}
-              onChange={(event) => {
+              onSubmitEditing={()=> this.checkSetPassword()}
+              onChangeText={(text) => {
                 this.setState({
-                  getAgainPass: event.target.value,
+                  getAgainPass: text
                 });
               }}
             />
