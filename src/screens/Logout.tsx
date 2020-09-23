@@ -58,7 +58,7 @@ export default class Logout extends Component<props, state> {
 
 
           <TouchableOpacity
-            style={[myStyle.row, styles.layoutAccout]}
+            style={[myStyle.row, styles.layoutFeature]}
             onPress={() => this.props.navigation.navigate(ScreenName.ListBid)}
 
           >
@@ -69,7 +69,7 @@ export default class Logout extends Component<props, state> {
             <Text style={[styles.contentFuture]}>Bid</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity style={[myStyle.row, styles.layoutAccout]}
+          <TouchableOpacity style={[myStyle.row, styles.layoutFeature]}
             onPress={() => this.props.navigation.navigate(ScreenName.BidStatistic)}>
             <View style={styles.containerIcon}>
               <FontAwesome5 name={"history"} size={sizeIcon} color={"white"} />
@@ -78,7 +78,7 @@ export default class Logout extends Component<props, state> {
           </TouchableOpacity>
 
           <TouchableOpacity
-            style={[myStyle.row, styles.layoutAccout]}
+            style={[myStyle.row, styles.layoutFeature]}
             onPress={() => this.props.navigation.navigate(ScreenName.Coupon)}
 
           >
@@ -96,7 +96,8 @@ export default class Logout extends Component<props, state> {
 
     
 
-          <TouchableOpacity style={[myStyle.row, styles.layoutAccout]}
+          <TouchableOpacity 
+          style={[myStyle.row, styles.layoutFeature]}
             onPress={() => {
               UserService.setJWT("").then(res => {
                 Actions.home()
@@ -147,10 +148,21 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     alignItems: "center",
     // justifyContent: "center",
-    borderRadius: 5,
+    // borderRadius: 5,
     backgroundColor: Color.background,
     borderBottomWidth: 1,
-    borderColor: Color.inactive,
+    // borderColor: Color.inactive,
+  },
+  layoutFeature: {
+    height: 45,
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+    alignItems: "center",
+    // justifyContent: "center",
+    // borderRadius: 5,
+    backgroundColor: Color.background,
+    borderBottomWidth: 1,
+    // borderColor: Color.inactive,
   },
   contentAccount: {
     color: "white",
@@ -192,6 +204,6 @@ const styles = StyleSheet.create({
     borderRadius: 50,
   },
   containerIcon: {
-    width: 35
+    width: 37
   },
 });

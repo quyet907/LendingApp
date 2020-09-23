@@ -14,6 +14,8 @@ import { Finance } from "@StockAfiCore/model/lending/Finance";
 import { useIsFocused } from "@react-navigation/native";
 import Lending from "./Lending";
 import { LendingService } from "../services/LendingService";
+import { Income } from "@StockAfiCore/model/lending/Income";
+import { Paging } from "@Core/controller/Paging";
 // import { Income } from "@StockAfiCore/model/lending/Income";
 var uuid = require('react-native-uuid');
 class Home extends Component<Props, State> {
@@ -29,45 +31,32 @@ class Home extends Component<Props, State> {
   }
 
   componentDidMount() {
-    this.getDataChart();
-    this.getDataFinance();
-    this.getDataProfit()
+    this.getData();
   };
 
   componentWillReceiveProps(previousProps: Props) {
     if (previousProps.isFocused) {
-      this.getDataChart();
-      this.getDataFinance();
-      this.getDataProfit()
+      this.getData();
+
     }
   }
 
 
-  getDataProfit() {
-    LendingService.getLendingProfit().then((res) => {
-      this.setState({
-        dataProfit: res ? res.rows : [],
-      }, () => console.log(this.state.dataProfit)
-      );
-    });
-  };
+  
 
-  getDataChart() {
-    IncomeService.getListCharIncome().then((incomes: any) => {
-      if (incomes != undefined) {
-        this.setState({
-          dataChart: incomes
-        })
-      }
+  async getData() {
+    let getDataFinance : Finance= await IncomeService.getFinance()
 
-    })
-  }
+    let getDataChart: any = await IncomeService.getListCharIncome()
 
-  getDataFinance() {
-    IncomeService.getFinance().then((finance: Finance) => {
-      this.setState({
-        dataFinance: finance
-      })
+    let getDataLendingProfit: Paging<ProfitHistory> = await LendingService.getLendingProfit()
+
+    this.setState({
+      dataProfit : getDataLendingProfit ? getDataLendingProfit.rows : [],
+      dataFinance : getDataFinance ? getDataFinance:{} ,
+      dataChart : getDataChart ? getDataChart :[]
+
+
     })
   };
 

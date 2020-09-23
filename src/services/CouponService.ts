@@ -1,5 +1,5 @@
 import { Paging } from "@Core/controller/Paging";
-import { UserCoupon } from "@StockAfiCore/model/user/UserCoupon";
+import { UserCoupon } from "@StockAfiCore/model/user/userCoupon";
 import { config } from "../config/Config";
 import { getAxios } from "./APIService";
 
@@ -9,7 +9,9 @@ export class CouponService {
             axios({
                 method: 'POST',
                 url: `${config.api.lendingAPI}/confirmCoupon`,
-                data: code
+                data: {
+                    code : code
+                }
             })
                 .then(res => {return res.data})
                 .catch(err => err)
