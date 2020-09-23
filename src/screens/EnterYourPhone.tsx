@@ -36,18 +36,18 @@ class EnterYourPhone extends Component<props, state> {
                 actionPopup.showMessage("Can't find your account")
             }
             else {
-                this.props.onPhone(this.state.numberPhone)
-                UserService.sendOTP(this.state.numberPhone).then((res) => {
-                    let error = UserService.checkValidatePhone(this.state.numberPhone);
-                    if (error != null) {
-                        actionPopup.showMessage(error);
-                    }
-                    else {
-                        
-                    }
-                })
-                Actions.confirmOTP()
-
+                this.props.onPhone(this.state.numberPhone);
+                let error = UserService.checkValidatePhone(this.state.numberPhone);
+                if(error) {
+                    actionPopup.showMessage(error);
+                }
+                else {
+                    UserService.sendOTP(this.state.numberPhone).then((res) => {
+                        Actions.confirmOTP()
+                    })
+                }
+                
+               
             }
 
         })
