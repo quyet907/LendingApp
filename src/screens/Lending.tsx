@@ -69,7 +69,7 @@ class Lending extends React.Component<Props, State> {
 
             <ScrollView
               horizontal
-              contentContainerStyle={{justifyContent: "center", width: "100%" }}
+              contentContainerStyle={{ justifyContent: "center", width: "100%" }}
             >
               {this.state.packages.map((item: LendingPackage) =>
                 item._id == this.state.packageID ? (
@@ -252,7 +252,7 @@ class Lending extends React.Component<Props, State> {
     );
 
     LendingService.getMyInvest().then((res) => {
-      this.setState({ myInvest: res.rows });
+      this.setState({ myInvest: res.rows.reverse() });
     });
 
     IncomeService.getFinance().then((res) => {
@@ -260,6 +260,8 @@ class Lending extends React.Component<Props, State> {
       // });
     })
 
+
+    this.enableButtonInvest();
 
 
   }
@@ -274,14 +276,14 @@ class Lending extends React.Component<Props, State> {
   };
 
   updateMyInvest = () => {
-    LendingService.getMyInvest().then((res) => {
-      this.setState({ myInvest: res.rows });
-    });
+
     IncomeService.getFinance().then((res) => {
       this.setState({ wallet: res.remainAmount || 0 });
       // });
     })
-
+    LendingService.getMyInvest().then((res) => {
+      this.setState({ myInvest: res.rows.reverse() });
+    });
   };
 
   getTime = (date: Date | undefined): String => {
