@@ -1,12 +1,12 @@
 import Giftcode from "./Coupon";
 
-const Logout = 'Logout';
-const ListBid = 'ListBid';
-const BidProduct = 'BidProduct';
-const BidStatistic = 'BidStatistic';
-const Coupon = 'GiftCode'; 
-const CouponHistories = 'CouponHistories'
+const Profile = 'Profile';
+const ListBid = 'List Bid';
+const BidProduct = 'Bid Product';
+const BidStatistic = 'Bid Statistic';
+const Coupon = 'Coupon'; 
+const CouponHistories = 'Coupon Histories'
 
 export const ScreenName = {
-    Logout, ListBid, BidProduct, BidStatistic, Coupon, CouponHistories
+    Profile, ListBid, BidProduct, BidStatistic, Coupon, CouponHistories
 }

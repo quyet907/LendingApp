@@ -55,7 +55,6 @@ export default class CouponHistories extends React.Component<Props, State> {
 
     getDataToState() {
         CouponService.getCouponHistories().then((couponPaging: Paging<UserCoupon>) => {
-            // console.log(bidStatistics);
             const data = couponPaging?.rows;
             this.setState({
                 coupons: data

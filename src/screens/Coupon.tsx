@@ -18,12 +18,10 @@ export default class Giftcode extends React.Component<Props, State>{
     }
 
     componentDidMount() {
-
         CouponService.getCouponHistories().then((couponPaging: Paging<UserCoupon>) => {
             const data = couponPaging.rows;
             this.setState({ couponHistories: data })
         })
-
     }
     render() {
         return (
@@ -44,13 +42,12 @@ export default class Giftcode extends React.Component<Props, State>{
 
                         <View style={{ height: 40, width: '100%', marginTop: 50 }}>
                             <TextInput
-                                style={{ flex: 1, borderColor: 'gray', borderBottomWidth: 3, color: '#fff' }}
+                                // style={{ flex: 1, borderColor: 'gray', borderBottomWidth: 3, color: '#fff' }}
+                                style={styles.inputLogin}
                                 defaultValue={this.state.code}
                                 onChangeText={(text) => {
                                     this.setState({
                                         code: text
-                                    }, () => {
-                                        console.log(this.state.code);
                                     })
                                 }}
                                 placeholder={"Enter giftcode"}
@@ -121,7 +118,16 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 20,
         fontWeight: 'bold'
-    }
+    },
+    inputLogin: {
+        borderColor: "#F6C400",
+        borderWidth: 1,
+        width: "100%",
+        color: Color.text,
+        fontSize: 16,
+        borderRadius: Color.borderRadius,
+        padding: 10
+    },
 });
 
 type Props = {

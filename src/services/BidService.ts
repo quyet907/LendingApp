@@ -82,7 +82,6 @@ export class BidService {
         return ""
     }
     public static getPriceBidProduct(bidProduct : BidProduct) : number{
-        // console.log(bidProduct.endPrice);
         if (bidProduct.endPrice)    return  bidProduct.endPrice;
         if(bidProduct.endPrice==0) return 0;
         if (bidProduct.startPrice)  return  bidProduct.startPrice;
@@ -124,7 +123,6 @@ export class BidService {
 
 
     public static changeTextTime(calcTime: number): string {
-        // console.log(calcTime);
         if (calcTime < 0) {
             return `Finished`
         }

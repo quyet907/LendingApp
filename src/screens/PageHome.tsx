@@ -5,15 +5,9 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Home from "../screens/Home";
 import LendingScreen from "./Lending";
 import Icon from "react-native-vector-icons/FontAwesome5";
-import Logout from "./Logout";
 import * as color from "../Color";
-import BidStatistic from "../components/bid-statistic/WinBid";
-import HistoryBidScreen from "../screens/HistoryBidScreen";
 import LogoutScreen from "./LogoutScreen";
-import PageBid from "./PageBid";
-import Bid from "./Bid";
 import Referral from "./Referral";
-import Giftcode from "./Coupon";
 
 const Tab = createBottomTabNavigator();
 
@@ -102,7 +96,6 @@ export default class PageHome extends React.Component<Props, state> {
               tabBarLabel: "Profile",
               tabBarIcon: ({ focused }) => (
                 <Icon
-
                   name="user-alt"
                   size={tabProps.ICONSIZE}
                   color={focused ? tabProps.ACTIVE : tabProps.INACTIVE}

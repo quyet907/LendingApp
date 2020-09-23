@@ -101,7 +101,7 @@ class ConfirmOTP extends Component<props, state> {
                     </View>
 
                     <View style={[myStyle.row, { marginTop: 10, justifyContent: "center" }]}>
-                        <Text style={[{ marginRight: 5, color: "white" }]}>Do you have OTP?</Text>
+                        <Text style={[{ marginRight: 5, color: "white" }]}>Didn't get a code?</Text>
                         <TouchableOpacity
                             onPress={Actions.enterPhone}
                         >

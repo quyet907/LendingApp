@@ -40,7 +40,6 @@ axios.interceptors.response.use(
         
         
         if(err.response.status == 500){
-            console.log(err.response);
             if(err.response.message){
                 action.showMessage(err.response.message)
             }

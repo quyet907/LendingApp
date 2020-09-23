@@ -91,7 +91,7 @@ class Login extends Component<props, state> {
               selectionColor="red"
               placeholder={"Mobile"}
               keyboardType={"number-pad"}
-              maxLength={15}
+              maxLength={11}
               onChangeText={(text) => {
                 this.setState({ user: text });
               }}
@@ -104,7 +104,9 @@ class Login extends Component<props, state> {
               style={[myStyle.inputLogin, {margin : 0}]}
               placeholder={"Password"}
               secureTextEntry={!this.state.showPass}
-              maxLength={60}
+              // keyboardType={"number-pad"}
+              maxLength={32}
+              onSubmitEditing={this.checkLogin}
               onChangeText={(text) => {
                 this.setState({
                   password: text,
@@ -112,14 +114,14 @@ class Login extends Component<props, state> {
               }}
             />
             <TouchableOpacity style={[myStyle.iconEyePass]}
-              onPress = {(event)=>{
-                this.setState({showPass : !this.state.showPass})
+              onPress={(event) => {
+                this.setState({ showPass: !this.state.showPass })
               }}
             >
-              <VisibilityIcon  
-                style={(this.state.showPass)? {fill: color.primary} : {display : "none"}} 
+              <VisibilityIcon
+                style={(this.state.showPass) ? { fill: color.primary } : { display: "none" }}
               ></VisibilityIcon>
-              <VisibilityOffIcon style={(this.state.showPass)? {display : "none"} : {fill: color.inactive}} ></VisibilityOffIcon>
+              <VisibilityOffIcon style={(this.state.showPass) ? { display: "none" } : { fill: color.inactive }} ></VisibilityOffIcon>
             </TouchableOpacity>
           </View>
 
@@ -132,7 +134,7 @@ class Login extends Component<props, state> {
                   Actions.enterPhone();
                 }}
               >
-                Forgot password?
+                Forgotten password?
               </Text>
             </TouchableOpacity>
           </View>
@@ -143,7 +145,7 @@ class Login extends Component<props, state> {
               activeOpacity={0.7}
               onPress={this.checkLogin}
             >
-              <Text style={[myStyle.textButton]}>Login</Text>
+              <Text style={[myStyle.textButton]}> LOG IN</Text>
             </TouchableOpacity>
           </View>
 
@@ -159,7 +161,7 @@ class Login extends Component<props, state> {
                 Actions.enterPhone();
               }}
             >
-              <Text style={[{ color: "#F8C400" }]}>Create new account</Text>
+              <Text style={[{ color: "#F8C400" }]}>Create an account</Text>
             </TouchableOpacity>
           </View>
         </View>

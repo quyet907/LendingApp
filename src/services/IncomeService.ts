@@ -26,12 +26,22 @@ export class IncomeService {
       for (let index = 0; index < listDay.length; index++) {
         let getDateString: any = listDay[index].incomeAt;
         let getDate: Date = new Date(getDateString);
-  
-        ArrayDate.push(`${getDate.getDate()}/${getDate.getMonth()+1}`);
+        let dayString:string = getDate.getDate().toString();
+        let MonthString:string = (getDate.getMonth()+1).toString();
+        if(dayString.length==1){
+          dayString = `0${dayString}`
+        }
+        if(MonthString.length==1){
+          MonthString = `0${MonthString}`
+        }
+
+        ArrayDate.push(`${dayString}/${MonthString}`);
       }
     }
     return ArrayDate;
   }
+
+  
 
   public static createDataChart(listAll: Income[]): Array<number> {
     let ArrayValue = new Array();

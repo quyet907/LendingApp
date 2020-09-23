@@ -12,7 +12,6 @@ import { Paging } from '@Core/controller/Paging';
 import { FormatService } from '../services/FormatService';
 import { firebase } from "../../FirebaseConfig";
 import { BaseUser } from '@Core/model/user/BaseUser';
-import console from 'console';
 
 // pageBid.render();
 var timeahihi;
@@ -42,7 +41,6 @@ class Bid extends Component<props, state>{
                 if (firebaseBidProduct) {
                     copyBidProduct.endPrice = firebaseBidProduct.endPrice;
                     let checkUniqueHistory = copyBidProduct?.listHistoryBid?.find((index) => index._id == firebaseBidProduct?.lastHistoryId)
-                    console.log("ahihi ==", checkUniqueHistory);
                     if (!checkUniqueHistory) {
                         var createObjectBidHistory: BidHistory = {};
                         var createUser: BaseUser = {
@@ -56,7 +54,6 @@ class Bid extends Component<props, state>{
                     if (firebaseBidProduct.latestBidAt) {
                         copyBidProduct.latestBidAt = new Date(firebaseBidProduct.latestBidAt.seconds * 1000);
                     }
-                    console.log(copyBidProduct.listHistoryBid);
                     self.renderDataBid(copyBidProduct);
                 }
             }

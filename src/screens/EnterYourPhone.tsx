@@ -107,7 +107,7 @@ class EnterYourPhone extends Component<props, state> {
                         <TouchableOpacity
                             onPress={Actions.login}
                         >
-                            <Text style={[myStyle.colorWhite, , { color: "#F8C400" }]}>Back to Login</Text>
+                            <Text style={[myStyle.colorWhite, , { color: "#F8C400" }]}>Back to Log In</Text>
                         </TouchableOpacity>
                     </View>
 

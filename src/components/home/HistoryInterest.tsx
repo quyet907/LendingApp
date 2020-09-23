@@ -60,7 +60,6 @@ export default class HistoryInterest extends Component<props, state> {
                             style={this.state.status ? styles.btnGot : styles.btnGet}
                             disabled={this.state.status}
                             onPress={() => {
-                                console.log(this.props)
                                 this.setState({
                                     status: true
                                 })

@@ -12,7 +12,7 @@ import ProductBid from "../components/bid/ProductBid";
 import { ScreenName } from "./ScreenName";
 import Bid from "./Bid";
 import Giftcode from "./Coupon";
-import  Coupon  from "./Coupon";
+import Coupon from "./Coupon";
 const Stack = createStackNavigator();
 
 export default class LogoutScreen extends Component<Props, State> {
@@ -22,49 +22,47 @@ export default class LogoutScreen extends Component<Props, State> {
 
     render() {
         return (
-            <NavigationContainer independent={true}>
-                <Stack.Navigator initialRouteName={ScreenName.Logout} >
-                    <Stack.Screen name={ScreenName.Logout} component={Logout} options={{headerShown: false}}/>
-                    <Stack.Screen name={ScreenName.ListBid} component={BidStack} 
-                    options={{
-                        title: 'Bid', 
-                        headerTintColor: '#fff',
-                        headerStyle: {
-                            backgroundColor: color.background
-                          },
-                    }}
+                <Stack.Navigator initialRouteName={ScreenName.Profile}>
+                    <Stack.Screen name={ScreenName.Profile} component={Logout} options={{ headerShown: false }} />
+                    <Stack.Screen name={ScreenName.ListBid} component={BidStack}
+                        options={{
+                            title: 'Bid',
+                            headerTintColor: '#fff',
+                            headerStyle: {
+                                backgroundColor: color.background
+                            },
+                        }}
                     />
-                    <Stack.Screen name={ScreenName.BidStatistic} component={HistoryBidScreen} 
-                    options={{
-                        title: 'Bid Statistic', 
-                        headerTintColor: '#fff',
-                        headerStyle: {
-                            backgroundColor: color.background
-                          },
-                    }}
-                    
+                    <Stack.Screen name={ScreenName.BidStatistic} component={HistoryBidScreen}
+                        options={{
+                            title: 'Bid Statistic',
+                            headerTintColor: '#fff',
+                            headerStyle: {
+                                backgroundColor: color.background
+                            },
+                        }}
+
                     />
-                    <Stack.Screen name={ScreenName.BidProduct} component={Bid} 
-                     options={{
-                        title: 'Detail', 
-                        headerTintColor: '#fff',
-                        headerStyle: {
-                            backgroundColor: color.background
-                          },
-                    }}
+                    <Stack.Screen name={ScreenName.BidProduct} component={Bid}
+                        options={{
+                            title: 'Detail',
+                            headerTintColor: '#fff',
+                            headerStyle: {
+                                backgroundColor: color.background
+                            },
+                        }}
                     />
-                    <Stack.Screen name={ScreenName.Coupon} component= {Coupon} 
+                    <Stack.Screen name={ScreenName.Coupon} component={Coupon}
                         options={{
                             title: 'Giftcode',
                             headerTintColor: '#fff',
                             headerStyle: {
                                 backgroundColor: color.background
-                              },
+                            },
                         }}
                     />
 
                 </Stack.Navigator>
-            </NavigationContainer>
         )
     }
 }
