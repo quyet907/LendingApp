@@ -2,8 +2,6 @@ import React, { Component } from 'react'
 import {View, Image, Text, ColorPropType} from "react-native";
 import myStyle from "../../style"
 import StatisticalBasic from './StatisticalBasic';
-import { Income } from '@StockAfiCore/model/lending/Income';
-import { IncomeService } from '../services/IncomeService';
 import { Finance } from '@StockAfiCore/model/lending/Finance';
 import * as color from '../../Color'
 export default class ListStatisticalBasic extends Component<Props, State> {

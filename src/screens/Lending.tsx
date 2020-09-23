@@ -55,7 +55,7 @@ class Lending extends React.Component<Props, State> {
       <View style={{ flex: 1 }}>
         <ScrollView style={{ backgroundColor: color.background_primary }}>
           <View style={styles.container}>
-            <Text style={styles.textLabel}>INVEST</Text>
+            <Text style={styles.textLabel}>Lending</Text>
             <View
               style={{
                 flexDirection: "row",
@@ -63,12 +63,12 @@ class Lending extends React.Component<Props, State> {
                 marginTop: 10,
               }}
             >
-              <Text style={styles.textLabel}>CHOOSE ONE PACKAGE</Text>
+              <Text style={styles.textLabel}>CHOOSE A PACKAGE</Text>
             </View>
 
             <ScrollView
               horizontal
-              contentContainerStyle={{ flexGrow: 1, justifyContent: "center" }}
+              contentContainerStyle={{justifyContent: "center", width: "100%" }}
             >
               {this.state.packages.map((item: LendingPackage) =>
                 item._id == this.state.packageID ? (

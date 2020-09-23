@@ -14,7 +14,7 @@ const Tab = createBottomTabNavigator();
 const tabProps = {
   ACTIVE: color.primary,
   INACTIVE: color.inactive,
-  ICONSIZE: 22,
+  ICONSIZE: 20,
   BackgroundColor: color.background_primary,
 };
 
