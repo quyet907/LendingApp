@@ -40,11 +40,12 @@ export default class Giftcode extends React.Component<Props, State>{
                             <Text style={[styles.whiteText]}></Text>
                         </View>
 
-                        <View style={{ height: 40, width: '100%', marginTop: 50 }}>
+                        <View style={{ height: 40, width: '100%', marginTop: 40 }}>
                             <TextInput
                                 // style={{ flex: 1, borderColor: 'gray', borderBottomWidth: 3, color: '#fff' }}
                                 style={styles.inputLogin}
                                 defaultValue={this.state.code}
+                                onSubmitEditing={()=> this.check()}
                                 onChangeText={(text) => {
                                     this.setState({
                                         code: text
@@ -64,6 +65,7 @@ export default class Giftcode extends React.Component<Props, State>{
                             <TouchableOpacity
                                 style={styles.btnSubmit}
                                 activeOpacity={0.7}
+                                
                                 onPress={this.check}
                             >
                                 <Text style={[myStyle.textButton]}>Submit</Text>
