@@ -6,6 +6,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import * as color from '../../Color'
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { LendingService } from '../../services/LendingService';
+import { FormatService } from '../../services/FormatService';
 
 export default class HistoryInterest extends Component<props, state> {
     constructor(props: any) {
@@ -40,13 +41,13 @@ export default class HistoryInterest extends Component<props, state> {
 
                     <View style={[myStyle.row, myStyle.centerHistoryInterest]}>
                         <Text style={[{ color: color.inactive }, myStyle.contentHistoryInterest]}>
-                            {this.props.amount}
+                            {FormatService.roundingMoney(this.props.amount)}
                         </Text>
                         <Image
                             style={[myStyle.iconHistoryInterest, { margin: 10 }]}
                             source={require("../../icons/icons8_right_26px.png")}
                         />
-                        <Text style={[{ color: color.primary, }, myStyle.contentHistoryInterest]}>{this.props.amount + this.props.profits}</Text>
+                        <Text style={[{ color: color.primary, }, myStyle.contentHistoryInterest]}>{FormatService.roundingMoney(this.props.amount + this.props.profits)}</Text>
                     </View>
 
                     <View style={[myStyle.rightHistoryInterest]}>

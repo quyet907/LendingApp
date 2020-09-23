@@ -3,6 +3,7 @@ import { Text, View, Dimensions, StyleSheet, TouchableOpacity } from 'react-nati
 import style from '../../../style';
 import { LendingPackage } from '@StockAfiCore/model/lending/LendingPackage';
 import *  as color from '../../../Color'
+import { FormatService } from '../../../services/FormatService';
 
 
 
@@ -26,12 +27,12 @@ export default class Package extends Component<Props, State> {
                     </Text>
                 </View>
                 <View style={{ backgroundColor: '#2E2D2A', alignItems: 'center', justifyContent: 'space-around', paddingVertical: 10, borderRadius: 2 }}>
-                    <Text style={styles.text}>Min {this.props.package.minInvestment}</Text>
+                    <Text style={styles.text}>Min {FormatService.roundingMoney(this.props.package.minInvestment || 0)}</Text>
                     {/* <Text style={styles.text}>Max {this.props.package.maxInvestment}</Text> */}
-                    <Text style={styles.text}>Profits {typeof this.props.package.profitPerDay == 'number' ? 
-                    Math.ceil(this.props.package.profitPerDay * 30) : 0}%</Text>
-                    <Text style={styles.text}>BackIn {typeof  this.props.package.capitalBackIn == 'number' ? 
-                    Math.ceil(this.props.package.capitalBackIn/3600/24) : 0}</Text>
+                    <Text style={styles.text}>Profits {typeof this.props.package.profitPerDay == 'number' ?
+                        Math.ceil(this.props.package.profitPerDay * 30) : 0}%</Text>
+                    <Text style={styles.text}>BackIn {typeof this.props.package.capitalBackIn == 'number' ?
+                        Math.ceil(this.props.package.capitalBackIn / 3600 / 24) : 0}</Text>
                 </View>
             </TouchableOpacity>
         );
@@ -56,7 +57,7 @@ const styles = StyleSheet.create({
         marginHorizontal: 4.5,
         width: 115,
         borderRadius: color.borderRadius
-        
+
 
     },
     itemContainerSe: {
@@ -69,10 +70,10 @@ const styles = StyleSheet.create({
         borderRadius: color.borderRadius
     },
     pakageSelected: {
-        backgroundColor: color.primary, alignItems: 'center', justifyContent: 'center', paddingVertical: 3, 
+        backgroundColor: color.primary, alignItems: 'center', justifyContent: 'center', paddingVertical: 3,
     },
     pakage: {
-        backgroundColor: '#FA801', alignItems: 'center', justifyContent: 'center', paddingVertical: 3, 
+        backgroundColor: '#FA801', alignItems: 'center', justifyContent: 'center', paddingVertical: 3,
     },
     itemLabel: {
         color: '#fff',

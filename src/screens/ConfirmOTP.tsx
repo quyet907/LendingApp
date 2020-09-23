@@ -30,8 +30,8 @@ class ConfirmOTP extends Component<props, state> {
     checkOTP() {
 
         UserService.verifyOTP(this.state.getCodeOTP, this.props.NumeberPhone).then((res) => {
-            if(res == null) {
-                if(this.props.typeAction == "login"){
+            if (res == null) {
+                if (this.props.typeAction == "login") {
                     Actions.home()
                 }
                 else {
@@ -39,7 +39,7 @@ class ConfirmOTP extends Component<props, state> {
                     Actions.password();
                 }
             }
-            else{
+            else {
                 actionPopup.showMessage(res);
             }
         })
@@ -50,7 +50,7 @@ class ConfirmOTP extends Component<props, state> {
 
     render() {
         return (
-            <KeyboardAvoidingView style={[myStyle.container,myStyle.fullCeter, { alignItems: "center" }]}>
+            <KeyboardAvoidingView style={[myStyle.container, myStyle.fullCeter, { alignItems: "center" }]}>
 
                 <View style={[]}>
                     <View style={[myStyle.frLogo]}>
@@ -77,6 +77,7 @@ class ConfirmOTP extends Component<props, state> {
                             keyboardType='numeric'
                             // keyboardType={'numeric'}
                             value={this.state.getCodeOTP}
+                            onSubmitEditing={() => this.checkOTP()}
                             onChange={(event) => {
                                 this.setState({
                                     getCodeOTP: event.target.value

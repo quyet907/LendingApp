@@ -80,6 +80,7 @@ class EnterYourPhone extends Component<props, state> {
                             selectionColor='red'
                             placeholder={"Enter your phone"}
                             value={this.state.numberPhone}
+                            onSubmitEditing={()=> this.checkPhone()}
                             onChange={(event) => {
                                 this.setState({
                                     numberPhone: event.target.value

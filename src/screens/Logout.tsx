@@ -63,7 +63,7 @@ export default class Logout extends Component<props, state> {
 
           >
             <View style={styles.containerIcon}>
-              <FontAwesome5 name={"users"} size={sizeIcon} color={"white"} />
+              <FontAwesome5 name={"users"} size={sizeIcon} color={Color.primary} />
             </View>
 
             <Text style={[styles.contentFuture]}>Bid</Text>
@@ -72,7 +72,7 @@ export default class Logout extends Component<props, state> {
           <TouchableOpacity style={[myStyle.row, styles.layoutFeature]}
             onPress={() => this.props.navigation.navigate(ScreenName.BidStatistic)}>
             <View style={styles.containerIcon}>
-              <FontAwesome5 name={"history"} size={sizeIcon} color={"white"} />
+              <FontAwesome5 name={"history"} size={sizeIcon} color={Color.primary} />
             </View>
             <Text style={[styles.contentFuture]}>My Bid</Text>
           </TouchableOpacity>
@@ -83,7 +83,7 @@ export default class Logout extends Component<props, state> {
 
           >
             <View style={styles.containerIcon}>
-              <FontAwesome5 name={"gift"} size={sizeIcon} color={"white"} />
+              <FontAwesome5 name={"gift"} size={sizeIcon} color={Color.primary} />
             </View>
 
             <Text style={[styles.contentFuture]}>Gift</Text>
