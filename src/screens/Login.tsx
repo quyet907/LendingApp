@@ -92,6 +92,7 @@ class Login extends Component<props, state> {
               placeholder={"Mobile"}
               keyboardType={"number-pad"}
               maxLength={11}
+              onSubmitEditing={this.checkLogin}
               onChangeText={(text) => {
                 this.setState({ user: text });
               }}

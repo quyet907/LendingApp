@@ -20,7 +20,7 @@ export default class StatisticalBasic extends Component<props, state>{
                 <View style={[myStyle.statisticalBasic, myStyle.row]}>
                     <View style={[myStyle.fullCeter, myStyle.row]}>
                         <View style={{ }}>
-                            <Icon name={this.props.icon} size={40} color={this.props.color} />
+                            <Icon name={this.props.icon} size={35} color={this.props.color} />
                         </View>
                         <View style={{ flex: 1, paddingLeft: 15 }}>
                             <View style={[myStyle.contentStatisticalBasic, myStyle.flex1]}>
