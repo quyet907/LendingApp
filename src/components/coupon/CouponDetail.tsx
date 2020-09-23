@@ -38,17 +38,38 @@ export default class CouponDetail extends React.Component<Props, {}>{
 
 
 
-    getTime = (date: Date | undefined): string => {
+    getTime = (date: Date | string | undefined): string => {
+
+
+
 
         if (date) {
-            date = new Date(date);
-            let datestring = date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.getFullYear() + " " + date.getHours() + ":" + date.getMinutes();
-            return datestring;
+            let dateFmt = this.formatDate(date),
+                timeFmt = this.formatTime(date);
+            return dateFmt + "  " + timeFmt;
         }
 
         // return date.toString().substring(0, 10) + date.getHours().toString() + ":" + date.getMinutes().toString;
-        else return "null";
+        else return "undefined";
     };
+
+    formatDate = (date: Date | string) => {
+        var d = new Date(date),
+            month = '' + (d.getMonth() + 1),
+            day = '' + d.getDate(),
+            year = d.getFullYear();
+
+        if (month.length < 2) month = '0' + month;
+        if (day.length < 2) day = '0' + day;
+
+        return [year, month, day].join('-');
+    }
+
+    formatTime = (date: Date | string) => {
+        var hours = new Date().getHours() > 9 ? new Date().getHours() : '0' + new Date().getHours()
+        var minutes = new Date().getMinutes() > 9 ? new Date().getMinutes() : '0' + new Date().getMinutes()
+        return hours + ':' + minutes
+    }
 }
 
 type Props = {

@@ -79,38 +79,17 @@ class Home extends Component<Props, State> {
           </View>
 
           <View>
-            <FlatList
-              data={this.state.dataProfit}
-              renderItem={({ item }) => (
-                <HistoryInterest
-                  createAt={item.createdAt?.toString().substr(0, 10) || "undefined"}
-                  profits={item.profitAmount || 0}
-                  amount={item.loanAmount || 0}
-                  daysLeft={this.getDaysLeft(
-                    item.lending ? item.lending.endAt : undefined, item.makeProfitAt
-                  )}
-                />
-              )}
-              keyExtractor={(item) => item._id || uuid.v4()}
-            />
+
+            <ListHistoryInterest
+              data={this.state.dataProfit} />
+
           </View>
         </View>
       </ScrollView>
     );
   }
 
-  getDaysLeft = (endAt: Date | undefined, makeAt: Date | undefined): number => {
-    const secondCurrent = Date.now();
 
-    if (endAt && makeAt) {
-      const leftSecond = Date.parse(endAt.toString()) - Date.parse(makeAt.toString());
-      const daysLeft = Math.ceil(
-        leftSecond / (1000 * 60 * 60 * 24)
-      );
-      return daysLeft;
-    }
-    return 0;
-  };
 }
 
 type Props = {

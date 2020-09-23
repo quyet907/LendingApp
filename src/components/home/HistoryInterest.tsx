@@ -1,18 +1,19 @@
 import React, { Component } from 'react'
-import { View, Text, Image, ColorPropType } from "react-native"
+import { View, Text, Image, ColorPropType, StyleSheet } from "react-native"
 import myStyle from "../../style";
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import * as color from '../../Color'
+import { TouchableOpacity } from 'react-native-gesture-handler';
+import { LendingService } from '../../services/LendingService';
 
 export default class HistoryInterest extends Component<props, state> {
     constructor(props: any) {
         super(props);
         this.state = {
-
+            status: false
         }
     }
-
 
 
     render() {
@@ -34,8 +35,6 @@ export default class HistoryInterest extends Component<props, state> {
                             />
 
                             <Text style={[myStyle.contentHistoryInterest, { color: color.success, alignSelf: "center", justifyContent: "center", marginLeft: 10 },]}>{this.props.profits}</Text>
-
-
                         </View>
                     </View>
 
@@ -55,19 +54,51 @@ export default class HistoryInterest extends Component<props, state> {
                             {this.props.daysLeft} days
                         </Text>
                     </View>
+
+                    <View style={{ justifyContent: 'center', height: "100%" }}>
+                        <TouchableOpacity
+                            style={this.state.status ? styles.btnGot : styles.btnGet}
+                            disabled={this.state.status}
+                            onPress={() => {
+                                console.log(this.props)
+                                this.setState({
+                                    status: true
+                                })
+                                LendingService.getConfirmReceived(this.props._id)
+                            }}
+                        >
+                            <Text style={{ color: 'black' }} >{this.state.status ? 'Got' : 'Get'}</Text>
+                        </TouchableOpacity>
+                    </View>
                 </View>
             </View>
         )
     }
 }
 
+const styles = StyleSheet.create({
+    btnGet: {
+        backgroundColor: color.primary,
+        paddingVertical: 7,
+        borderRadius: 5,
+        paddingHorizontal: 18
+    },
+    btnGot: {
+        backgroundColor: '#333',
+        paddingVertical: 7,
+        borderRadius: 5,
+        paddingHorizontal: 18
+    }
+})
+
 
 type props = {
+    _id: string,
     createAt: string,
     profits: number,
     amount: number,
     daysLeft: number
 }
 type state = {
-
+    status: boolean
 }

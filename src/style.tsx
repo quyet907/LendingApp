@@ -137,7 +137,7 @@ export default StyleSheet.create({
         resizeMode: "contain"
     },
     leftHistoryInterest: {
-        width: 100,
+        width: 90,
     },
     rightHistoryInterest: {
         width: 100,
