@@ -10,6 +10,7 @@ import { config } from '../config/Config';
 import HistoryDetail from '../components/ref/HistoryDetail';
 import { useIsFocused } from '@react-navigation/native';
 import MyReferrals from '../components/ref/MyReferrals';
+import { FormatService } from '../services/FormatService';
 
 class Referral extends React.Component<Props, State> {
     constructor(props: any) {
@@ -81,7 +82,7 @@ class Referral extends React.Component<Props, State> {
                             </View>
                             <View style={styles.subContainer}>
                                 <Text style={{ color: color.inactive, fontSize: 12 }}>Total</Text>
-                                <Text style={styles.amount}>{this.state.myReferral.length}</Text>
+                                <Text style={styles.amount}>{FormatService.roundingMoney(this.state.myReferral.length)}</Text>
                             </View>
                         </View>
 
@@ -91,7 +92,7 @@ class Referral extends React.Component<Props, State> {
                             </View>
                             <View style={styles.subContainer}>
                                 <Text style={{ color: color.inactive, fontSize: 12 }}>Reward</Text>
-                                <Text style={styles.amount}>{this.state.myReferral.length * 1000}</Text>
+                                <Text style={styles.amount}>{FormatService.roundingMoney( this.state.myReferral.length * 1000)}</Text>
                             </View>
                         </View>
                     </View>

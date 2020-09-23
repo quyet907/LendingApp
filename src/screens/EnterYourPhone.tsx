@@ -81,9 +81,9 @@ class EnterYourPhone extends Component<props, state> {
                             placeholder={"Enter your phone"}
                             value={this.state.numberPhone}
                             onSubmitEditing={()=> this.checkPhone()}
-                            onChange={(event) => {
+                            onChangeText={(text) => {
                                 this.setState({
-                                    numberPhone: event.target.value
+                                    numberPhone: text
                                 })
                             }}
 

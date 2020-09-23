@@ -61,7 +61,7 @@ export default class Giftcode extends React.Component<Props, State>{
                     <View style={{ flex: 0.45, width: '100%' }}>
 
 
-                        <View style={{ height: 40, width: '100%', marginTop: 60 }}>
+                        <View style={{ height: 40, width: '100%', marginTop: 40 }}>
                             <TouchableOpacity
                                 style={styles.btnSubmit}
                                 activeOpacity={0.7}

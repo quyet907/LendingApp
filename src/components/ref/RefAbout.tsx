@@ -15,7 +15,7 @@ export default class RefAbout extends React.Component<Props, {}>{
                     </View>
                 <View style={styles.subContainer}>
                     <Text style={{ color: '#868685', fontSize: 12 }}>{this.props.label}</Text>
-                    <Text style={styles.amount}>{this.props.amount}</Text>
+                    <Text style={styles.amount}>{FormatService.roundingMoney(this.props.amount)}</Text>
                 </View>
             </View>
         )
