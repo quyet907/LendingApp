@@ -164,13 +164,12 @@ export default StyleSheet.create({
         color: color.text,
         fontSize: 16,
         borderRadius: color.borderRadius,
-        padding: 10
-
-
+        padding: 10,
+        marginTop : 20,
     },
     frInputPass : {
         position : "relative",
-        paddingVertical : 20
+        marginTop : 20,
     },
     iconEyePass : {
         position : "absolute",

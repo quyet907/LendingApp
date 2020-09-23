@@ -30,7 +30,9 @@ class setPassword extends Component<props, state> {
       checkSuccess: false,
     };
   }
-  componentDidMount() {}
+  componentDidUpdate(){
+    console.log("on render set password");
+}
 
   checkSetPassword = () => {
     var getPass: any = this.state.getPass;
@@ -38,7 +40,7 @@ class setPassword extends Component<props, state> {
     var error = UserService.checkValidate(getPass, getAgainPass);
 
 
-    if (error != null) {
+    if (error) {
       actionPopup.showMessage(error);
       this.setState({
         checkSuccess: false,
@@ -97,8 +99,7 @@ class setPassword extends Component<props, state> {
               style={[myStyle.inputLogin]}
               selectionColor="red"
               placeholder={"Password"}
-              maxLength={60}
-              keyboardType="numeric"
+              maxLength={32}
               secureTextEntry={!this.state.checkbox}
               value={this.state.getPass}
               onChange={(event) => {
@@ -114,9 +115,8 @@ class setPassword extends Component<props, state> {
               ref={"passAgain"}
               style={[myStyle.inputLogin]}
               placeholder={"Confirm password"}
-              keyboardType="numeric"
               secureTextEntry={!this.state.checkbox}
-              maxLength={60}
+              maxLength={32}
               onChange={(event) => {
                 this.setState({
                   getAgainPass: event.target.value,

@@ -12,6 +12,7 @@ import { Paging } from '@Core/controller/Paging';
 import { FormatService } from '../services/FormatService';
 import { firebase } from "../../FirebaseConfig";
 import { BaseUser } from '@Core/model/user/BaseUser';
+import console from 'console';
 
 // pageBid.render();
 var timeahihi;
@@ -78,10 +79,10 @@ class Bid extends Component<props, state>{
                 })
             },
             500
-        );
-
-        
+        );        
     }
+
+    
 
 
 

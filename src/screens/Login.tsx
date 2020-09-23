@@ -52,15 +52,26 @@ class Login extends Component<props, state> {
   checkLogin = () => {
     var user = this.state.user;
     var password = this.state.password;
-    let getJwtToken = UserService.login(user, password).then((infoLogin) => {
-      if (infoLogin.jwt === undefined) {
-        actionPopup.showMessage("User or password is incorrect!");
-      } else {
-        UserService.setJWT(infoLogin.jwt).then((res) => {
-          Actions.home();
-        });
-      }
-    });
+    if(!user) {
+      actionPopup.showMessage("User must not be left blank");
+    }
+    else if(!password) {
+      actionPopup.showMessage("Password must not be left blank");
+    }else {
+      let getJwtToken = UserService.login(user, password).then((infoLogin) => {
+        if (!infoLogin.jwt) {
+          actionPopup.showMessage("User or password is incorrect!");
+        } else {
+          UserService.setJWT(infoLogin.jwt).then((res) => {
+            Actions.home();
+          });
+        }
+      });
+    }
+    
+
+
+    
   };
 
   render() {
@@ -90,10 +101,9 @@ class Login extends Component<props, state> {
           <View style={[myStyle.frInputPass]}>
             <TextInput
               value={this.state.password}
-              style={[myStyle.inputLogin]}
+              style={[myStyle.inputLogin, {margin : 0}]}
               placeholder={"Password"}
               secureTextEntry={!this.state.showPass}
-              keyboardType={"number-pad"}
               maxLength={60}
               onChangeText={(text) => {
                 this.setState({

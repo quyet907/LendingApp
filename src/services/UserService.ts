@@ -187,10 +187,13 @@ export class UserService {
     if (pass.length < 6) {
       return "Use 6 character or more for your password";
     }
-    var regex_Phone = /[0-9]$/;
-    if (!regex_Phone.test(pass)) {
-      return "Password contains only numbers";
+    if(pass.length >32){
+        return "Use 6 to 32 characters";
     }
+    // var regex_Phone = /[0-32]$/;
+    // if (!regex_Phone.test(pass)) {
+    //   return "Password contains only numbers";
+    // }
     return null;
   };
 

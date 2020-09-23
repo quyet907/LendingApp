@@ -1,6 +1,10 @@
 import Home from "../screens/Home"
 
 export class FormatService {
+    public static testComponet() {
+        // Home.bind();
+    }
+
 
     public static roundingMoney = (money: number): string => {
         // let moneyString: string = "";

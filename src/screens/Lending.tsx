@@ -11,6 +11,7 @@ import { IncomeService } from "../services/IncomeService";
 import { Paging } from "@Core/controller/Paging";
 import { useIsFocused } from "@react-navigation/native";
 import HistoriesLending from "../components/lending/HistoriesLending";
+import { FormatService } from "../Helper/FormatService";
 
 class Lending extends React.Component<Props, State> {
   constructor(props: any) {
@@ -115,7 +116,7 @@ class Lending extends React.Component<Props, State> {
               }}
             >
               <Text style={styles.textLabel}>
-                Wallet: {this.state.wallet} COIN
+                Wallet: {FormatService.roundingMoney(this.state.wallet)} COIN
               </Text>
             </View>
 
