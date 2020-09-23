@@ -96,7 +96,6 @@ export class BidService {
     }
 
     public static getNameUserWin(bidProduct : BidProduct) : string{
-        console.log(bidProduct.latestBidUser);
         if(bidProduct.latestBidUser && bidProduct.latestBidUser.username){
             return `User win : ${bidProduct.latestBidUser.username}`
         }
