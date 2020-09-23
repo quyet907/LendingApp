@@ -5,6 +5,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import * as color from '../../Color'
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import { LendingService } from '../../services/LendingService';
 
 export default class HistoryInterest extends Component<props, state> {
     constructor(props: any) {
@@ -59,10 +60,11 @@ export default class HistoryInterest extends Component<props, state> {
                             style={this.state.status ? styles.btnGot : styles.btnGet}
                             disabled={this.state.status}
                             onPress={() => {
+                                console.log(this.props)
                                 this.setState({
                                     status: true
                                 })
-                                console.log(this.props)
+                                LendingService.getConfirmReceived(this.props._id)
                             }}
                         >
                             <Text style={{ color: 'black' }} >{this.state.status ? 'Got' : 'Get'}</Text>
@@ -91,6 +93,7 @@ const styles = StyleSheet.create({
 
 
 type props = {
+    _id: string,
     createAt: string,
     profits: number,
     amount: number,
