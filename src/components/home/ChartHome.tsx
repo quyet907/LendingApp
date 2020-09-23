@@ -63,6 +63,7 @@ export default class ChartHome extends Component<props, state> {
             <View >
 
                 <Line
+                    height = {200}
                     data={dataChart}
                     options={
                         {
@@ -78,14 +79,9 @@ export default class ChartHome extends Component<props, state> {
                                 mode: 'index',
                                 axis: 'x'
                             },
-                            layout: {
-                                padding: {
-                                    left: 50,
-                                    right: 0,
-                                    top: 0,
-                                    bottom: 0
-                                }
-                            }
+                            responsive: true,
+                            maintainAspectRatio: true,
+                            
                         }
                     }
                 />

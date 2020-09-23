@@ -19,38 +19,32 @@ class EnterYourPhone extends Component<props, state> {
             numberPhone: ""
         }
     }
-
-    componentDidMount() {
-        
-
-    }
     checkPhone() {
-        
-
-        UserService.checkExits(this.state.numberPhone).then((res) => {
-
-            if (res && this.props.typeAction == "signUp") {
-                actionPopup.showMessage("Account has been registered")
-            }
-            else if (!res && this.props.typeAction == "forgotPassword") {
-                actionPopup.showMessage("Can't find your account")
-            }
-            else {
-                this.props.onPhone(this.state.numberPhone);
-                let error = UserService.checkValidatePhone(this.state.numberPhone);
-                if(error) {
-                    actionPopup.showMessage(error);
+        if (!this.state.numberPhone) {
+            actionPopup.showMessage("Phone number can not be left blank")
+        } else {
+            UserService.checkExits(this.state.numberPhone).then((res) => {
+                if (res && this.props.typeAction == "signUp") {
+                    actionPopup.showMessage("Account has been registered")
+                }
+                else if (!res && this.props.typeAction == "forgotPassword") {
+                    actionPopup.showMessage("Can't find your account")
                 }
                 else {
-                    UserService.sendOTP(this.state.numberPhone).then((res) => {
-                        Actions.confirmOTP()
-                    })
+                    this.props.onPhone(this.state.numberPhone);
+                    let error = UserService.checkValidatePhone(this.state.numberPhone);
+                    if (error) {
+                        actionPopup.showMessage(error);
+                    }
+                    else {
+                        UserService.sendOTP(this.state.numberPhone).then((res) => {
+                            Actions.confirmOTP()
+                        })
+                    }
                 }
-                
-               
-            }
 
-        })
+            })
+        }
     }
     render() {
 
@@ -71,7 +65,7 @@ class EnterYourPhone extends Component<props, state> {
                     </View>
                 </View>
 
-                <View style={[ myStyle.login]}>
+                <View style={[myStyle.login]}>
 
 
                     <View style={[{ marginTop: 30 }]}>
@@ -80,7 +74,7 @@ class EnterYourPhone extends Component<props, state> {
                             selectionColor='red'
                             placeholder={"Enter your phone"}
                             value={this.state.numberPhone}
-                            onSubmitEditing={()=> this.checkPhone()}
+                            onSubmitEditing={() => this.checkPhone()}
                             onChangeText={(text) => {
                                 this.setState({
                                     numberPhone: text

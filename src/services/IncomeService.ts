@@ -50,6 +50,7 @@ export class IncomeService {
         let getValue = listAll[i].amount;
         
         ArrayValue.push(getValue);
+
       }
     }
 
