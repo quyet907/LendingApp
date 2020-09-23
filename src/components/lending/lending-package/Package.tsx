@@ -31,7 +31,7 @@ export default class Package extends Component<Props, State> {
                     {/* <Text style={styles.text}>Max {this.props.package.maxInvestment}</Text> */}
                     <Text style={styles.text}>Profits {typeof this.props.package.profitPerDay == 'number' ?
                         Math.ceil(this.props.package.profitPerDay * 30) : 0}%</Text>
-                    <Text style={styles.text}>BackIn {typeof this.props.package.capitalBackIn == 'number' ?
+                    <Text style={styles.text}>Back in {typeof this.props.package.capitalBackIn == 'number' ?
                         Math.ceil(this.props.package.capitalBackIn / 3600 / 24) : 0}d</Text>
                 </View>
             </TouchableOpacity>
