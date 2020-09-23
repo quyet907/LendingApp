@@ -18,13 +18,10 @@ export default class Giftcode extends React.Component<Props, State>{
     }
 
     componentDidMount() {
-        CouponService.getCouponHistories().then((res) => console.log(res.rows))
-
         CouponService.getCouponHistories().then((couponPaging: Paging<UserCoupon>) => {
             const data = couponPaging.rows;
             this.setState({ couponHistories: data })
         })
-
     }
     render() {
         return (

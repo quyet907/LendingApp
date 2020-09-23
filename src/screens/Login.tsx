@@ -90,7 +90,7 @@ class Login extends Component<props, state> {
               placeholder={"Password"}
               secureTextEntry={true}
               keyboardType={"number-pad"}
-              maxLength={60}
+              maxLength={32}
               onChangeText={(text) => {
                 this.setState({
                   password: text,
