@@ -12,6 +12,8 @@
     "deploy-web-dev": "npm install; npm run build-web-dev; firebase deploy --token 1//0eyjOjFnoon2ECgYIARAAGA4SNwF-L9IrcIgjxQJ42B084OE6HEcDq_F9WIQirbJym8Jp37HeRFF-hUoCCiapQnS01jEZQ5ziyoI"
   },
   "dependencies": {
+    "@material-ui/core": "^4.11.0",
+    "@material-ui/icons": "^4.9.1",
     "@react-native-community/checkbox": "^0.4.2",
     "@react-native-community/masked-view": "^0.1.10",
     "@react-navigation/bottom-tabs": "^5.8.0",
@@ -27,7 +29,7 @@
     "babel-plugin-transform-inline-environment-variables": "^0.4.3",
     "chart.js": "^2.9.3",
     "dotenv": "^8.2.0",
-    "expo": "~38.0.8",
+    "expo": "^39.0.3",
     "expo-status-bar": "^1.0.2",
     "fetch-intercept": "^2.3.1",
     "firebase": "^7.21.0",
@@ -55,7 +57,7 @@
     "react-native-tab-view": "^2.15.1",
     "react-native-textinput-effects": "^0.6.1",
     "react-native-uuid": "^1.4.9",
-    "react-native-vector-icons": "^7.0.0",
+    "react-native-vector-icons": "^7.1.0",
     "react-native-web": "~0.11.7",
     "react-native-xsy-router-flux": "^0.1.7",
     "react-redux": "^7.2.1",

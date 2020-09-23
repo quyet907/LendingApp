@@ -15,7 +15,7 @@ export default class Giftcode extends React.Component<Props, State>{
     }
 
     componentDidMount() {
-        CouponService.getCouponHistories().then((res) => console.log(res.rows))
+        // CouponService.getCouponHistories().then((res) => console.log(res.rows))
     }
     render() {
         return (

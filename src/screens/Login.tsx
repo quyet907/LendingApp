@@ -20,6 +20,9 @@ import { IncomeService } from "../services/IncomeService";
 import { connect } from "react-redux";
 import * as action from "../Action/ActionLogin";
 import * as actionPopup from "../Action/ActionPopup";
+import VisibilityIcon from '@material-ui/icons/Visibility';
+import * as color from '../Color';
+import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
 
 class Login extends Component<props, state> {
   constructor(props: any) {
@@ -27,6 +30,7 @@ class Login extends Component<props, state> {
     this.state = {
       user: "",
       password: "",
+      showPass: false,
     };
   }
 
@@ -83,12 +87,12 @@ class Login extends Component<props, state> {
             />
           </View>
 
-          <View>
+          <View style={[myStyle.frInputPass]}>
             <TextInput
               value={this.state.password}
               style={[myStyle.inputLogin]}
               placeholder={"Password"}
-              secureTextEntry={true}
+              secureTextEntry={!this.state.showPass}
               keyboardType={"number-pad"}
               maxLength={60}
               onChangeText={(text) => {
@@ -97,6 +101,16 @@ class Login extends Component<props, state> {
                 });
               }}
             />
+            <TouchableOpacity style={[myStyle.iconEyePass]}
+              onPress = {(event)=>{
+                this.setState({showPass : !this.state.showPass})
+              }}
+            >
+              <VisibilityIcon  
+                style={(this.state.showPass)? {fill: color.primary} : {display : "none"}} 
+              ></VisibilityIcon>
+              <VisibilityOffIcon style={(this.state.showPass)? {display : "none"} : {fill: color.inactive}} ></VisibilityOffIcon>
+            </TouchableOpacity>
           </View>
 
           <View style={[myStyle.frFotgotPassword]}>
@@ -153,6 +167,7 @@ type props = {
 type state = {
   user: any;
   password: any;
+  showPass: boolean
 };
 
 function mapDispatchProps(dispatch: any, props: any) {

@@ -14,13 +14,15 @@ import { Finance } from "@StockAfiCore/model/lending/Finance";
 import { useIsFocused } from "@react-navigation/native";
 import Lending from "./Lending";
 import { LendingService } from "../services/LendingService";
+import { Income } from "@StockAfiCore/model/lending/Income";
+import { Paging } from "@Core/controller/Paging";
 // import { Income } from "@StockAfiCore/model/lending/Income";
 var uuid = require('react-native-uuid');
 class Home extends Component<Props, State> {
   constructor(props: any) {
     super(props);
     this.state = {
-      data: [],
+      dataProfit: [],
       index: 0,
       dataChart: [],
       dataFinance: {}
@@ -29,47 +31,32 @@ class Home extends Component<Props, State> {
   }
 
   componentDidMount() {
-    this.getDataChart();
-      this.getDataFinance();
-      this.getDataProfit()
+    this.getData();
   };
 
   componentWillReceiveProps(previousProps: Props) {
     if (previousProps.isFocused) {
-      this.getDataChart();
-      this.getDataFinance();
-      this.getDataProfit()
+      this.getData();
+
     }
   }
 
 
-  getDataProfit() {
-    LendingService.getLendingProfit().then((res) => {
-      this.setState(
-        {
-          data: res ? res.rows : [],
-        }
-      );
-    });
-  };
+  
 
-  getDataChart() {
-    IncomeService.getListCharIncome().then((incomes: any) => {
-      if (incomes != undefined) {
+  async getData() {
+    let getDataFinance : Finance= await IncomeService.getFinance()
 
-        this.setState({
-          dataChart: incomes
-        })
-      }
+    let getDataChart: any = await IncomeService.getListCharIncome()
 
-    })
-  }
+    let getDataLendingProfit: Paging<ProfitHistory> = await LendingService.getLendingProfit()
 
-  getDataFinance() {
-    IncomeService.getFinance().then((finance: Finance) => {
-      this.setState({
-        dataFinance: finance
-      })
+    this.setState({
+      dataProfit : getDataLendingProfit ? getDataLendingProfit.rows : [],
+      dataFinance : getDataFinance ? getDataFinance:{} ,
+      dataChart : getDataChart ? getDataChart :[]
+
+
     })
   };
 
@@ -93,7 +80,7 @@ class Home extends Component<Props, State> {
 
           <View>
             <FlatList
-              data={this.state.data}
+              data={this.state.dataProfit}
               renderItem={({ item }) => (
                 <HistoryInterest
                   createAt={item.createdAt?.toString().substr(0, 10) || "undefined"}
@@ -131,7 +118,7 @@ type Props = {
 
 };
 type State = {
-  data: ProfitHistory[],
+  dataProfit: ProfitHistory[],
   index: number,
   dataChart: any,
   dataFinance: Finance

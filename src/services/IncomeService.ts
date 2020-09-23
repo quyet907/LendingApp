@@ -27,7 +27,7 @@ export class IncomeService {
         let getDateString: any = listDay[index].incomeAt;
         let getDate: Date = new Date(getDateString);
   
-        ArrayDate.push(`${getDate.getDate()}/${getDate.getMonth()}`);
+        ArrayDate.push(`${getDate.getDate()}/${getDate.getMonth()+1}`);
       }
     }
     return ArrayDate;

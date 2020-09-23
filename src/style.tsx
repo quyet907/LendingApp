@@ -1,3 +1,4 @@
+import { relative } from "path";
 import { StyleSheet, ColorPropType } from "react-native";
 
 // const primary = "#f6c400";
@@ -160,13 +161,25 @@ export default StyleSheet.create({
         borderColor: "#F6C400",
         borderWidth: 1,
         width: "100%",
-        marginTop: 20,
         color: color.text,
         fontSize: 16,
         borderRadius: color.borderRadius,
         padding: 10
 
 
+    },
+    frInputPass : {
+        position : "relative",
+        paddingVertical : 20
+    },
+    iconEyePass : {
+        position : "absolute",
+        bottom : 0,
+        height : "100%",
+        right : 20,
+        display : "flex",
+        justifyContent : "center"
+        
     },
     frbuttonLogin: {
         marginTop: 20,
