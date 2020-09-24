@@ -41,17 +41,18 @@ export default class ListStatisticalBasic extends Component<Props, State> {
 
                 </View>
                 <View style={[myStyle.row, {width: "100%"}]}>
-                    <StatisticalBasic
-                        icon = "star"
-                        color = "#4FC3F7"
-                        content = {"Remaining"}
-                        money = {this.props.dataFinance.referalIncomeAmout || 0}
-                    ></StatisticalBasic>
+                   
                     <StatisticalBasic
                        icon = "wallet"
                         color = "#FC3135"
-                        content = {"Referral"}
+                        content = {"Remaining"}
                         money = {this.props.dataFinance.remainAmount || 0}
+                    ></StatisticalBasic>
+                     <StatisticalBasic
+                        icon = "star"
+                        color = "#4FC3F7"
+                        content = {"Referral"}
+                        money = {this.props.dataFinance.referalIncomeAmout || 0}
                     ></StatisticalBasic>
                 </View>
 

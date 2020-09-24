@@ -82,6 +82,7 @@ export default StyleSheet.create({
         width: "100%",
         backgroundColor: color.background,
         padding: 10,
+        paddingTop: 0,
         marginTop: 10,
         justifyContent: "center",
         // alignItems: "center"
@@ -89,9 +90,7 @@ export default StyleSheet.create({
     },
     statisticalBasic: {
         width: '100%',
-
         padding: 10,
-
     },
     frImgStatisticalBasic: {
         justifyContent: 'flex-start',
@@ -440,6 +439,10 @@ export default StyleSheet.create({
     textPriceBidderItem :{
         color : color.primary,
         fontWeight : "bold",
+    },
+    financeCoin: {
+        fontSize: 16,
+        fontWeight: "500"
     }
 
 

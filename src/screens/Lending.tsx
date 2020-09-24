@@ -133,7 +133,7 @@ class Lending extends React.Component<Props, State> {
                 value={this.state.initialValue.toString()}
                 keyboardType={"number-pad"}
                 style={styles.inputCoin}
-           
+
                 onChangeText={(text) => {
                   this.setState(
                     {
@@ -241,19 +241,28 @@ class Lending extends React.Component<Props, State> {
   }
 
   getDataToState(type: string) {
-   
-    LendingService.getLendingPackage().then(
-      (pagingLendingPackages: Paging<LendingPackage>) => {
-        if (pagingLendingPackages.rows.length > 0) {
-          this.setState({
-            packages: pagingLendingPackages.rows,
-            packageID: pagingLendingPackages.rows[0]._id,
-            minInvestment: pagingLendingPackages.rows[0].minInvestment || 0,
-            initialValue: type === "first" ? pagingLendingPackages.rows[0].minInvestment || 0 : this.state.initialValue
-            // maxInvestment: pagingLendingPackages.rows[0].maxInvestment || 0,
-          });
-        }
-      }
+
+    LendingService.getLendingPackage().then((pagingLendingPackages: Paging<LendingPackage>) => {
+      IncomeService.getFinance().then((res) => {
+        this.setState({ wallet: res.remainAmount || 0 }, () => {
+          if (pagingLendingPackages.rows.length > 0) {
+            this.setState({
+              packages: pagingLendingPackages.rows,
+              packageID: type === "first" ? pagingLendingPackages.rows[0]._id : this.state.packageID,
+              minInvestment: type === "first" ? pagingLendingPackages.rows[0].minInvestment || 0 : this.state.minInvestment,
+              initialValue: type === "first" ? pagingLendingPackages.rows[0].minInvestment || 0 : this.state.initialValue
+              // maxInvestment: pagingLendingPackages.rows[0].maxInvestment || 0,
+            }, () => this.enableButtonInvest())
+          }
+
+        });
+
+
+
+
+      })
+
+    }
     );
 
 
@@ -262,13 +271,12 @@ class Lending extends React.Component<Props, State> {
       this.setState({ myInvest: res.rows.reverse() });
     });
 
-    IncomeService.getFinance().then((res) => {
-      this.setState({ wallet: res.remainAmount || 0 });
-      // });
-    })
+
+    // });
 
 
-    this.enableButtonInvest();
+
+
 
 
   }
@@ -344,7 +352,7 @@ class Lending extends React.Component<Props, State> {
   onChangeText = (text: any) => { };
 
   enableButtonInvest = (): void => {
-    // console.log(this.state);
+    console.log(this.state);
     this.setState({
       buttonInvest:
         this.state.initialValue >= this.state.minInvestment &&
