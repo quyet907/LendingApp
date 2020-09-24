@@ -29,9 +29,9 @@ export default class Package extends Component<Props, State> {
                 <View style={{ backgroundColor: '#2E2D2A', alignItems: 'center', justifyContent: 'space-around', paddingVertical: 10, borderRadius: 2 }}>
                     <Text style={styles.text}>Min {FormatService.roundingMoney(this.props.package.minInvestment || 0)}</Text>
                     {/* <Text style={styles.text}>Max {this.props.package.maxInvestment}</Text> */}
-                    <Text style={styles.text}>Profits {typeof this.props.package.profitPerDay == 'number' ?
+                    <Text style={styles.text}>Interest rate {typeof this.props.package.profitPerDay == 'number' ?
                         Math.ceil(this.props.package.profitPerDay * 30) : 0}%</Text>
-                    <Text style={styles.text}>Back in {typeof this.props.package.capitalBackIn == 'number' ?
+                    <Text style={styles.text}>Mature in {typeof this.props.package.capitalBackIn == 'number' ?
                         Math.ceil(this.props.package.capitalBackIn / 3600 / 24) : 0}d</Text>
                 </View>
             </TouchableOpacity>

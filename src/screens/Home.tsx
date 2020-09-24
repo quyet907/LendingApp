@@ -34,6 +34,7 @@ class Home extends Component<Props, State> {
 
   componentDidMount() {
     this.getData();
+
   };
 
   componentWillReceiveProps(nextProps: Props) {
@@ -44,19 +45,19 @@ class Home extends Component<Props, State> {
   }
 
 
-  
+
 
   async getData() {
-    let getDataFinance : Finance= await IncomeService.getFinance()
+    let getDataFinance: Finance = await IncomeService.getFinance()
 
     let getDataChart: any = await IncomeService.getListCharIncome()
 
     let getDataLendingProfit: Paging<ProfitHistory> = await LendingService.getLendingProfit()
 
     this.setState({
-      dataProfit : getDataLendingProfit ? getDataLendingProfit.rows : [],
-      dataFinance : getDataFinance ? getDataFinance:{} ,
-      dataChart : getDataChart ? getDataChart :[]
+      dataProfit: getDataLendingProfit ? getDataLendingProfit.rows : [],
+      dataFinance: getDataFinance ? getDataFinance : {},
+      dataChart: getDataChart ? getDataChart : []
 
 
     })
@@ -109,9 +110,7 @@ type State = {
 
 
 const home = function (props: Props) {
-  // const store = useStore()
-  // const getStore = store.getState();
-  // const getConfirmReload : boolean = getStore.Allreducer.reload
+
   const isFocused = useIsFocused();
   
   return <Home {...props} isFocused={isFocused} confirmReload = {props.confirmReload} />;
@@ -123,11 +122,7 @@ const mapStateToProps = (state : any, Props : any ) => {
   }
 }
 
-const mapDispatchToProps = (dispatch : any , ownProps:any) => {
-  return {
-    
-  }
-}
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(home)
+
+export default connect(mapStateToProps, null)(home)

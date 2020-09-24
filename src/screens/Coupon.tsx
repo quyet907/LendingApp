@@ -128,7 +128,8 @@ const styles = StyleSheet.create({
         color: Color.text,
         fontSize: 16,
         borderRadius: Color.borderRadius,
-        padding: 10
+        padding: 10,
+        outlineWidth: 0
     },
 });
 
