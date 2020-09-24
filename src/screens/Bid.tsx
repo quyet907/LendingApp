@@ -76,15 +76,15 @@ class Bid extends Component<props, state>{
                 })
             },
             500
-        );        
+        );
     }
 
-    
+
 
 
 
     renderDataBid(bidProduct: BidProduct) {
-        
+
         this.setState({
             bidProduct: bidProduct,
         })
@@ -133,7 +133,7 @@ class Bid extends Component<props, state>{
                         <View style={[myStyle.childFrPriceAndTimePageBid]}>
                             <Text style={{ color: color.text_primary, fontWeight: "bold", fontSize: 20, }}>
                                 {FormatService.roundingMoney(BidService.getPriceBidProduct(this.state.bidProduct))}</Text>
-                            <Text style={{ color: color.inactive }}>Price bid</Text>
+                            <Text style={{ color: color.inactive, textDecorationLine : "line-through" }}>{FormatService.roundingMoney(this.state.bidProduct.startPrice||0)}</Text>
                         </View>
                     </View>
                 </View>
@@ -151,14 +151,14 @@ class Bid extends Component<props, state>{
                 </View>
 
                 <View
-                    style={ [myStyle.frButtonBid] }
+                    style={[myStyle.frButtonBid]}
                 >
                     <TouchableOpacity
-                        style={BidService.checkBidding(this.state.timeBid) ?  [myStyle.buttonBid] :[myStyle.buttonBid, myStyle.ButtonBidDisabled] }
+                        style={BidService.checkBidding(this.state.timeBid) ? [myStyle.buttonBid] : [myStyle.buttonBid, myStyle.ButtonBidDisabled]}
                         onPress={(event) => {
                             BidService.BidAction(bidProductId)
                         }}
-                        disabled ={!BidService.checkBidding(this.state.timeBid) }
+                        disabled={!BidService.checkBidding(this.state.timeBid)}
                     >
                         <Text
                             style={[myStyle.btnSmall]}

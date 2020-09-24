@@ -144,7 +144,7 @@ export class BidService {
         if (calcTime > config.api.timeLimit) {
             return "Upcoming"
         }
-        return "Happing";
+        return "Happening";
     }
 
     public static getTimeStart(calcTime: number): string {
