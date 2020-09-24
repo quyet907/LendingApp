@@ -27,7 +27,7 @@ export default class StatisticalBasic extends Component<props, state>{
                                 <Text style={[{ color: color.inactive, fontSize: 12 }]}>{this.props.content}</Text>
                             </View>
                             <View style={[myStyle.contentStatisticalBasic, myStyle.flex1]}>
-                                <Text style={[myStyle.colorWhite]}>{FormatService.roundingMoney(this.props.money)} COIN</Text>
+                                <Text style={[myStyle.colorWhite, myStyle.financeCoin]}>{FormatService.roundingMoney(this.props.money)}</Text>
                             </View>
 
                         </View>
