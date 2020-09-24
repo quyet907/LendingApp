@@ -3,6 +3,7 @@ import { getAxios } from "./APIService";
 import { config } from "../config/Config";
 import { Paging } from "@Core/controller/Paging";
 import { BidProduct } from "@StockAfiModel/bid/BidProduct";
+import { FormatService } from "./FormatService";
 
 export class BidService {
     public static getBidInfo(id: string): Promise<BidProduct> {
@@ -117,14 +118,9 @@ export class BidService {
         return Time <= config.api.timeLimit && Time >= 0 ? true : false;
     }
 
-    public static changeTextButton(calcTime: number): string {
-        if (calcTime < 0) {
-            return `Finished`
-        }
-        if (calcTime > config.api.timeLimit) {
-            return "Upcoming"
-        }
-        return `Place A Bid`;
+    public static changeTextButton(bidProduct: BidProduct): string {
+        let getStepPrice = bidProduct.stepPrice ||0
+        return `Bid with ${FormatService.roundingMoney(getStepPrice) } COIN`
     }
 
 

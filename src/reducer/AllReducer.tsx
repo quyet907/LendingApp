@@ -1,9 +1,11 @@
 const initAll = {
-    reload: true
+    reload: true,
+    finance : {
+        lendingProfitReceived : 300
+    }
 }
 
 const all = (state: any = initAll, action: any) => {
-    
     switch (action.type) {
 
         case "RELOAD": {
@@ -11,6 +13,9 @@ const all = (state: any = initAll, action: any) => {
             return {
                 ...state
             }
+        }
+        case "FINANCE": {
+            return {...state}
         }
         default : {
             return {...state}

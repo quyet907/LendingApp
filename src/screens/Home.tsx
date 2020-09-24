@@ -16,6 +16,8 @@ import Lending from "./Lending";
 import { LendingService } from "../services/LendingService";
 import { Income } from "@StockAfiCore/model/lending/Income";
 import { Paging } from "@Core/controller/Paging";
+import { connect, useStore } from 'react-redux'
+
 // import { Income } from "@StockAfiCore/model/lending/Income";
 var uuid = require('react-native-uuid');
 class Home extends Component<Props, State> {
@@ -34,10 +36,10 @@ class Home extends Component<Props, State> {
     this.getData();
   };
 
-  componentWillReceiveProps(previousProps: Props) {
-    if (previousProps.isFocused) {
+  componentWillReceiveProps(nextProps: Props) {
+    
+    if(this.props.confirmReload != nextProps.confirmReload || nextProps.isFocused){
       this.getData();
-
     }
   }
 
@@ -93,19 +95,39 @@ class Home extends Component<Props, State> {
 }
 
 type Props = {
-  isFocused: boolean
+  isFocused: boolean,
+  Finance : Finance,
+  confirmReload : any
 
 };
 type State = {
   dataProfit: ProfitHistory[],
   index: number,
   dataChart: any,
-  dataFinance: Finance
+  dataFinance : Finance
 };
 
 
-export default function (props: Props) {
+const home = function (props: Props) {
+  // const store = useStore()
+  // const getStore = store.getState();
+  // const getConfirmReload : boolean = getStore.Allreducer.reload
   const isFocused = useIsFocused();
-
-  return <Home {...props} isFocused={isFocused} />;
+  
+  return <Home {...props} isFocused={isFocused} confirmReload = {props.confirmReload} />;
 }
+
+const mapStateToProps = (state : any, Props : any ) => {
+  return {
+      confirmReload : state.Allreducer.reload
+  }
+}
+
+const mapDispatchToProps = (dispatch : any , ownProps:any) => {
+  return {
+    
+  }
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(home)

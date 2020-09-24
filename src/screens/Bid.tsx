@@ -151,17 +151,18 @@ class Bid extends Component<props, state>{
                 </View>
 
                 <View
-                    style={BidService.checkBidding(this.state.timeBid) ? [myStyle.frButtonBid] : { display: "none" }}
+                    style={ [myStyle.frButtonBid] }
                 >
                     <TouchableOpacity
-                        style={[myStyle.buttonBid]}
+                        style={BidService.checkBidding(this.state.timeBid) ?  [myStyle.buttonBid] :[myStyle.buttonBid, myStyle.ButtonBidDisabled] }
                         onPress={(event) => {
                             BidService.BidAction(bidProductId)
                         }}
+                        disabled ={!BidService.checkBidding(this.state.timeBid) }
                     >
                         <Text
                             style={[myStyle.btnSmall]}
-                        >{BidService.changeTextButton(this.state.timeBid)}
+                        >{BidService.changeTextButton(this.state.bidProduct)}
                         </Text>
                     </TouchableOpacity>
                 </View>

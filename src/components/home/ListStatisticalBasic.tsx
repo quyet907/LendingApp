@@ -35,7 +35,7 @@ export default class ListStatisticalBasic extends Component<Props, State> {
                     <StatisticalBasic
                         icon = "piggy-bank"
                         color = {color.success}
-                        content = {"Invested"}
+                        content = {"Lending"}
                         money = {this.props.dataFinance.investedAmout || 0}
                     ></StatisticalBasic>
 
@@ -44,13 +44,13 @@ export default class ListStatisticalBasic extends Component<Props, State> {
                     <StatisticalBasic
                         icon = "star"
                         color = "#4FC3F7"
-                        content = {"Referal Income"}
+                        content = {"Remaining"}
                         money = {this.props.dataFinance.referalIncomeAmout || 0}
                     ></StatisticalBasic>
                     <StatisticalBasic
                        icon = "wallet"
                         color = "#FC3135"
-                        content = {"Remain"}
+                        content = {"Referral"}
                         money = {this.props.dataFinance.remainAmount || 0}
                     ></StatisticalBasic>
                 </View>

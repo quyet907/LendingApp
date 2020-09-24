@@ -404,18 +404,21 @@ export default StyleSheet.create({
     frButtonBid : {
         backgroundColor : color.background_primary,
         alignItems : "center",
-        padding : 10
+        padding : 5
     },
+    
     buttonBid : {
-        margin: 20,
+        margin: 10,
         backgroundColor: color.primary,
         justifyContent: "center",
         borderWidth: 1,
         width: "100%",
-
         padding: 10,
         borderRadius: color.borderRadius,
         alignItems: "center",
+    },
+    ButtonBidDisabled : {
+        backgroundColor : color.inactive,
     },
     avtBidder : {
         height : 30,

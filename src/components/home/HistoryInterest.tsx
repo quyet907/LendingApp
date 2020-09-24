@@ -7,8 +7,10 @@ import * as color from '../../Color'
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { LendingService } from '../../services/LendingService';
 import { FormatService } from '../../services/FormatService';
-
-export default class HistoryInterest extends Component<props, state> {
+import { connect } from "react-redux";
+import  * as  actionAll from "../../Action/ActionAll"
+import { Finance } from '@StockAfiCore/model/lending/Finance';
+ class HistoryInterest extends Component<props, state> {
     constructor(props: any) {
         super(props);
         this.state = {
@@ -64,7 +66,8 @@ export default class HistoryInterest extends Component<props, state> {
                                 this.setState({
                                     status: true
                                 })
-                                LendingService.getConfirmReceived(this.props._id)
+                                LendingService.getConfirmReceived(this.props._id).then((res)=> this.props.onReload())
+
                             }}
                         >
                             <Text style={{ color: 'black' }} >{this.state.status ? 'Got' : 'Get'}</Text>
@@ -97,8 +100,23 @@ type props = {
     createAt: string,
     profits: number,
     amount: number,
-    daysLeft: number
+    daysLeft: number,
+    onReload() : void
 }
 type state = {
     status: boolean
 }
+
+function mapStateToProps(state: any , props: any){
+    
+}
+
+function mapDispatchToProps(dispatch : any , props : any ) {
+    return {
+        onReload(finance : Finance) {
+            dispatch(actionAll.reload())
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(HistoryInterest)

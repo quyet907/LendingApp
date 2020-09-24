@@ -256,13 +256,12 @@ class Lending extends React.Component<Props, State> {
     });
 
     IncomeService.getFinance().then((res) => {
-      this.setState({ wallet: res.remainAmount || 0 }, () => this.enableButtonInvest());
+      this.setState({ wallet: res.remainAmount || 0 });
       // });
     })
 
 
-
-
+    this.enableButtonInvest();
 
 
   }
@@ -338,11 +337,10 @@ class Lending extends React.Component<Props, State> {
   onChangeText = (text: any) => { };
 
   enableButtonInvest = (): void => {
-    console.log(this.state);
     this.setState({
       buttonInvest:
-        parseInt(this.state.initialValue) >= this.state.minInvestment &&
-        parseInt(this.state.initialValue) <= this.state.wallet,
+        this.state.initialValue >= this.state.minInvestment &&
+        this.state.initialValue <= this.state.wallet,
       // &&         this.state.initialValue <= this.state.maxInvestment
       //  &&           this.state.isSelected == true,
     });

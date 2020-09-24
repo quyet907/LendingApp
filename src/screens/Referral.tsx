@@ -35,6 +35,7 @@ class Referral extends React.Component<Props, State> {
         ReferralService.getReferral().then(res => {
             this.setState({ myReferral: res.rows })
         })
+
         ReferralService.getMe().then(res => {
             this.setState({ myID: res._id || "null" })
         })
@@ -92,7 +93,7 @@ class Referral extends React.Component<Props, State> {
                             </View>
                             <View style={styles.subContainer}>
                                 <Text style={{ color: color.inactive, fontSize: 12 }}>Reward</Text>
-                                <Text style={styles.amount}>{FormatService.roundingMoney( this.state.myReferral.length * 1000)}</Text>
+                                <Text style={styles.amount}>{FormatService.roundingMoney(this.state.myReferral.length * 1000)}</Text>
                             </View>
                         </View>
                     </View>
