@@ -28,7 +28,7 @@ class Lending extends React.Component<Props, State> {
       minInvestment: 1,
       // maxInvestment: 1000,
 
-      buttonInvest: true,
+      buttonInvest: false,
       confirmModal: false,
 
       myInvest: [],
@@ -42,13 +42,13 @@ class Lending extends React.Component<Props, State> {
 
   componentWillReceiveProps(prev: Props) {
     if (prev.isFocused) {
-      this.getDataToState();
+      this.getDataToState("reload");
     }
   }
 
 
   componentDidMount() {
-    this.getDataToState();
+    this.getDataToState("first");
   }
 
   render() {
@@ -61,7 +61,7 @@ class Lending extends React.Component<Props, State> {
               style={{
                 flexDirection: "row",
                 justifyContent: "center",
-                marginTop: 10,
+                marginBottom: 7,
               }}
             >
               <Text style={styles.textLabel}>CHOOSE A PACKAGE</Text>
@@ -69,7 +69,7 @@ class Lending extends React.Component<Props, State> {
 
             <ScrollView
               horizontal
-              contentContainerStyle={{ justifyContent: "center", width: "100%" }}
+              contentContainerStyle={{ justifyContent: "space-between", width: "100%" }}
             >
               {this.state.packages.map((item: LendingPackage) =>
                 item._id == this.state.packageID ? (
@@ -81,7 +81,7 @@ class Lending extends React.Component<Props, State> {
                       this.setState(
                         {
                           packageSelected: this.state.packageSelected,
-                          minInvestment: item.minInvestment || 0,
+                          minInvestment: item.minInvestment || 404,
                         },
                         this.enableButtonInvest
                       );
@@ -133,6 +133,7 @@ class Lending extends React.Component<Props, State> {
                 value={this.state.initialValue.toString()}
                 keyboardType={"number-pad"}
                 style={styles.inputCoin}
+           
                 onChangeText={(text) => {
                   this.setState(
                     {
@@ -192,7 +193,7 @@ class Lending extends React.Component<Props, State> {
                     fontWeight: "700",
                   }}
                 >
-                  INVEST
+                  LEND
                 </Text>
               </TouchableOpacity>
             </View>
@@ -223,6 +224,8 @@ class Lending extends React.Component<Props, State> {
         <PopupConfirm
           confirmModal={this.state.confirmModal}
           hideBtnCancel={true}
+          textButtonLeft={'NO'}
+          textButtonRight={'YES'}
           buttonOK={() => {
             this.invest();
             this.setState({ confirmModal: false });
@@ -231,13 +234,14 @@ class Lending extends React.Component<Props, State> {
             this.setState({ confirmModal: false });
           }}
           title="Confirm"
-          message="Are you sure want to invest?"
+          message="Are you sure want to lending?"
         />
       </View>
     );
   }
 
-  getDataToState() {
+  getDataToState(type: string) {
+   
     LendingService.getLendingPackage().then(
       (pagingLendingPackages: Paging<LendingPackage>) => {
         if (pagingLendingPackages.rows.length > 0) {
@@ -245,11 +249,14 @@ class Lending extends React.Component<Props, State> {
             packages: pagingLendingPackages.rows,
             packageID: pagingLendingPackages.rows[0]._id,
             minInvestment: pagingLendingPackages.rows[0].minInvestment || 0,
+            initialValue: type === "first" ? pagingLendingPackages.rows[0].minInvestment || 0 : this.state.initialValue
             // maxInvestment: pagingLendingPackages.rows[0].maxInvestment || 0,
           });
         }
       }
     );
+
+
 
     LendingService.getMyInvest().then((res) => {
       this.setState({ myInvest: res.rows.reverse() });
@@ -338,7 +345,7 @@ class Lending extends React.Component<Props, State> {
   onChangeText = (text: any) => { };
 
   enableButtonInvest = (): void => {
-    console.log(this.state);
+    // console.log(this.state);
     this.setState({
       buttonInvest:
         parseInt(this.state.initialValue) >= this.state.minInvestment &&
@@ -373,6 +380,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     paddingVertical: 5,
     fontWeight: "500",
+    outlineWidth: 0
   },
   copy: {
     paddingHorizontal: 15,
@@ -435,7 +443,7 @@ const styles = StyleSheet.create({
     backgroundColor: color.primary,
     borderTopRightRadius: 3,
     borderBottomRightRadius: 3,
-    paddingHorizontal: 15,
+    paddingHorizontal: 18,
     height: "100%",
     alignItems: "center",
     justifyContent: "center",

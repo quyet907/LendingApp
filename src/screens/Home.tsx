@@ -16,6 +16,7 @@ import Lending from "./Lending";
 import { LendingService } from "../services/LendingService";
 import { Income } from "@StockAfiCore/model/lending/Income";
 import { Paging } from "@Core/controller/Paging";
+import { connect, useSelector } from "react-redux";
 // import { Income } from "@StockAfiCore/model/lending/Income";
 var uuid = require('react-native-uuid');
 class Home extends Component<Props, State> {
@@ -32,6 +33,7 @@ class Home extends Component<Props, State> {
 
   componentDidMount() {
     this.getData();
+
   };
 
   componentWillReceiveProps(previousProps: Props) {
@@ -42,19 +44,19 @@ class Home extends Component<Props, State> {
   }
 
 
-  
+
 
   async getData() {
-    let getDataFinance : Finance= await IncomeService.getFinance()
+    let getDataFinance: Finance = await IncomeService.getFinance()
 
     let getDataChart: any = await IncomeService.getListCharIncome()
 
     let getDataLendingProfit: Paging<ProfitHistory> = await LendingService.getLendingProfit()
 
     this.setState({
-      dataProfit : getDataLendingProfit ? getDataLendingProfit.rows : [],
-      dataFinance : getDataFinance ? getDataFinance:{} ,
-      dataChart : getDataChart ? getDataChart :[]
+      dataProfit: getDataLendingProfit ? getDataLendingProfit.rows : [],
+      dataFinance: getDataFinance ? getDataFinance : {},
+      dataChart: getDataChart ? getDataChart : []
 
 
     })
@@ -93,8 +95,7 @@ class Home extends Component<Props, State> {
 }
 
 type Props = {
-  isFocused: boolean
-
+  isFocused: boolean,
 };
 type State = {
   dataProfit: ProfitHistory[],
@@ -104,8 +105,15 @@ type State = {
 };
 
 
+import { useStore } from 'react-redux'
+
+
 export default function (props: Props) {
   const isFocused = useIsFocused();
-
+  const store = useStore();
+  console.log(store.getState().FinanceReducer);
+  // const counter = useSelector(state => state)
+  // console.log(counter);
+  
   return <Home {...props} isFocused={isFocused} />;
 }

@@ -49,7 +49,7 @@ class LoseBid extends React.Component<Props, State> {
                                         imgURL={item.bidProduct && item.bidProduct.product && item.bidProduct.product.thumbImagesUrl ? item.bidProduct.product.thumbImagesUrl[0] : 'null'}
                                         name={item.bidProduct?.product?.name || "undefined"}
                                         bidAt={this.getTime(item.bidProduct?.latestBidAt) || "undefined"}
-                                        bidClick={item.bidCount || 0}
+                                        bidClick={item.bidCount || 999999}
                                         startPrice={item.bidProduct?.startPrice || 0}
                                         endPrice={item.bidProduct?.endPrice || 0}
                                     />

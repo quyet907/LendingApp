@@ -25,7 +25,7 @@ class WinBid extends React.Component<Props, State> {
 
     componentDidMount() {
         this.getDataToState();
-        
+
     }
 
     render() {
@@ -47,7 +47,7 @@ class WinBid extends React.Component<Props, State> {
                                         imgURL={item.bidProduct && item.bidProduct.product && item.bidProduct.product.thumbImagesUrl ? item.bidProduct.product.thumbImagesUrl[0] : 'null'}
                                         name={item.bidProduct?.product?.name || "undefined"}
                                         bidAt={this.getTime(item.bidProduct?.latestBidAt) || "undefined"}
-                                        bidClick={item.count || 0}
+                                        bidClick={item.bidCount || 99999}
                                         startPrice={item.bidProduct?.startPrice || 0}
                                         endPrice={item.bidProduct?.endPrice || 0}
                                     />
@@ -66,10 +66,13 @@ class WinBid extends React.Component<Props, State> {
 
     getDataToState() {
         BidStatisticService.getWinStatistic().then((bidStatistics: BidStatistic[]) => {
-            const bid = bidStatistics.filter(bidStatistic => bidStatistic.bidStatus == BidStatus.win);
-            this.setState({
-                winBidList: bid
-            })
+            if (bidStatistics.length > 0) {
+                const bid = bidStatistics.filter(bidStatistic => bidStatistic.bidStatus == BidStatus.win);
+                this.setState({
+                    winBidList: bid
+                })
+            }
+
         })
     }
 
