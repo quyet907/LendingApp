@@ -1,10 +1,10 @@
 import { Paging } from "@Core/controller/Paging";
-import { UserCoupon } from "@StockAfiCore/model/user/userCoupon";
+import { UserCoupon } from "@StockAfiCore/model/user/UserCoupon";
 import { config } from "../config/Config";
 import { getAxios } from "./APIService";
 
 export class CouponService {
-    public static postCoupon(code: string): any {
+    public static postCoupon(code: string): Promise<any> {
         return getAxios().then(axios => {
             axios({
                 method: 'POST',

@@ -21,7 +21,7 @@ export default class CouponHistories extends React.Component<Props, State> {
     // }
 
     componentDidMount() {
-        this.getDataToState();
+        // this.getDataToState();
 
     }
 
@@ -39,7 +39,7 @@ export default class CouponHistories extends React.Component<Props, State> {
                                 >
                                     <CouponDetail
                                         title={item.coupon?.code || 'undefined'}
-                                        time={item.createdAt || 'undefined'}
+                                        time={item.receiveAt || 'undefined'}
                                         coin={item.coupon?.prize || 0}
                                         type={true}
                                         typeLabel="PRIZE"
@@ -47,20 +47,20 @@ export default class CouponHistories extends React.Component<Props, State> {
                                 </TouchableOpacity>
                             )
                         }}
-                        keyExtractor={(item: UserCoupon, index: number) => item.userId || index.toString()}
+                        keyExtractor={(item: UserCoupon, index: number) => item._id || index.toString()}
                     />
                 </View>
         )
     }
 
-    getDataToState() {
-        CouponService.getCouponHistories().then((couponPaging: Paging<UserCoupon>) => {
-            const data = couponPaging?.rows;
-            this.setState({
-                coupons: data
-            })
-        })
-    }
+    // getDataToState() {
+    //     CouponService.getCouponHistories().then((couponPaging: Paging<UserCoupon>) => {
+    //         const data = couponPaging?.rows;
+    //         this.setState({
+    //             coupons: data
+    //         })
+    //     })
+    // }
 
     getTime = (date: Date | undefined): string => {
         if (date) return date.toString().substring(0, 10);

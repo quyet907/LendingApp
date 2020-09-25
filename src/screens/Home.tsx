@@ -38,8 +38,8 @@ class Home extends Component<Props, State> {
   };
 
   componentWillReceiveProps(nextProps: Props) {
-    
-    if(this.props.confirmReload != nextProps.confirmReload || nextProps.isFocused){
+
+    if (this.props.confirmReload != nextProps.confirmReload || nextProps.isFocused) {
       this.getData();
     }
   }
@@ -55,12 +55,12 @@ class Home extends Component<Props, State> {
     let getDataLendingProfit: Paging<ProfitHistory> = await LendingService.getLendingProfit()
 
     this.setState({
-      dataProfit: getDataLendingProfit ? getDataLendingProfit.rows : [],
       dataFinance: getDataFinance ? getDataFinance : {},
-      dataChart: getDataChart ? getDataChart : []
+      dataChart: getDataChart ? getDataChart : [],
+      dataProfit: getDataLendingProfit ? getDataLendingProfit.rows : [],
 
 
-    })
+    }, () => console.log(this.state))
   };
 
   render() {
@@ -97,28 +97,26 @@ class Home extends Component<Props, State> {
 
 type Props = {
   isFocused: boolean,
-  Finance : Finance,
-  confirmReload : any
+  Finance: Finance,
+  confirmReload: any
 
 };
 type State = {
   dataProfit: ProfitHistory[],
   index: number,
   dataChart: any,
-  dataFinance : Finance
+  dataFinance: Finance
 };
 
 
 const home = function (props: Props) {
-
   const isFocused = useIsFocused();
-  
-  return <Home {...props} isFocused={isFocused} confirmReload = {props.confirmReload} />;
+  return <Home {...props} isFocused={isFocused} confirmReload={props.confirmReload} />;
 }
 
-const mapStateToProps = (state : any, Props : any ) => {
+const mapStateToProps = (state: any, Props: any) => {
   return {
-      confirmReload : state.Allreducer.reload
+    confirmReload: state.Allreducer.reload
   }
 }
 

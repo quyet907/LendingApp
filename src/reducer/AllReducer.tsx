@@ -1,7 +1,7 @@
 const initAll = {
     reload: true,
-    finance : {
-        lendingProfitReceived : 300
+    finance: {
+        lendingProfitReceived: 300
     }
 }
 
@@ -15,10 +15,10 @@ const all = (state: any = initAll, action: any) => {
             }
         }
         case "FINANCE": {
-            return {...state}
+            return { ...state }
         }
-        default : {
-            return {...state}
+        default: {
+            return { ...state }
         }
     }
 }

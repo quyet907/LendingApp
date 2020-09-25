@@ -42,7 +42,7 @@ class Lending extends React.Component<Props, State> {
 
   componentWillReceiveProps(prev: Props) {
     if (prev.isFocused) {
-      this.getDataToState("reload");
+      this.getDataToState();
     }
   }
 
@@ -240,7 +240,7 @@ class Lending extends React.Component<Props, State> {
     );
   }
 
-  getDataToState(type: string) {
+  getDataToState(type?: string) {
 
     LendingService.getLendingPackage().then((pagingLendingPackages: Paging<LendingPackage>) => {
       IncomeService.getFinance().then((res) => {
@@ -256,9 +256,6 @@ class Lending extends React.Component<Props, State> {
           }
 
         });
-
-
-
 
       })
 
