@@ -4,7 +4,7 @@ import { config } from "../config/Config";
 import { Paging } from "@Core/controller/Paging";
 import { BidProduct } from "@StockAfiModel/bid/BidProduct";
 import { FormatService } from "./FormatService";
-
+import * as actionAll from "../Action/ActionAll"
 export class BidService {
     public static getBidInfo(id: string): Promise<BidProduct> {
         return getAxios().then((axios) =>
@@ -108,19 +108,24 @@ export class BidService {
     public static calcTime(Time: Date | undefined): number {
         if (Time) {
             Time = new Date(Time);
-            let Calc: number = (Time.getTime() + config.api.timeLimit * 1000) - (new Date().getTime());
+            let Calc: number = (Time.getTime() + actionAll.getConfig().timeBid * 1000) - (new Date().getTime());
             return Math.round(Calc / 1000);
         }
         return 0;
     }
 
     public static checkBidding(Time: number): boolean {
-        return Time <= config.api.timeLimit && Time >= 0 ? true : false;
+        return Time <= actionAll.getConfig().timeBid && Time >= 0 ? true : false;
     }
 
     public static changeTextButton(bidProduct: BidProduct): string {
         let getStepPrice = bidProduct.stepPrice ||0
         return `Bid with ${FormatService.roundingMoney(getStepPrice) } COIN`
+    }
+
+    public static checkComming(bidProduct: BidProduct) : boolean {
+        let getTimeCount =  BidService.getTimeCountBid(bidProduct);
+         return (getTimeCount > actionAll.getConfig().timeBid)
     }
 
 
@@ -129,7 +134,7 @@ export class BidService {
         if (calcTime < 0) {
             return `Finished`
         }
-        if (calcTime > config.api.timeLimit) {
+        if (calcTime > actionAll.getConfig().timeBid) {
             return `${BidService.getTimeStart(calcTime)}`
         }
         return `${calcTime}S`;
@@ -141,14 +146,14 @@ export class BidService {
         if (calcTime < 0) {
             return `${BidService.getTimeFinsh(Math.abs(calcTime))}`
         }
-        if (calcTime > config.api.timeLimit) {
+        if (calcTime > actionAll.getConfig().timeBid) {
             return "Upcoming"
         }
         return "Happening";
     }
 
     public static getTimeStart(calcTime: number): string {
-        calcTime -= config.api.timeLimit;
+        calcTime -= actionAll.getConfig().timeBid;
         const minutes = 60;
         const hours = minutes * 60;
         const day = hours * 24;

@@ -30,9 +30,7 @@ class setPassword extends Component<props, state> {
       checkSuccess: false,
     };
   }
-  componentDidUpdate(){
-    console.log("on render set password");
-}
+  
 
   checkSetPassword = () => {
     var getPass: any = this.state.getPass;

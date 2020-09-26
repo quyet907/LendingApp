@@ -21,7 +21,6 @@ export default class MyReferrals extends React.Component<Props, State>{
                             typeLabel='EARNED'
                             title={this.hidePhoneNumber(item.toUser?.username)}
                             time={this.getTime(item.createdAt)}
-                            coin={1000}
                         />}
                     keyExtractor={(item: Referal, index: number) => item._id || index.toString()} />
             </View>

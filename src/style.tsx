@@ -166,6 +166,16 @@ export default StyleSheet.create({
         padding: 10,
         marginTop : 20,
     },
+    inputPass: {
+        borderColor: "#F6C400",
+        borderWidth: 1,
+        width: "100%",
+        color: color.text,
+        fontSize: 16,
+        borderRadius: color.borderRadius,
+        padding: 10,
+        marginTop : 0,
+    },
     frInputPass : {
         position : "relative",
         marginTop : 20,

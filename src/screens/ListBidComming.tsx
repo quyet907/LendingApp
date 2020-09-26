@@ -66,7 +66,7 @@ var autoReload: any;
           extraData = {this.state.reload}
           contentContainerStyle={myStyle.ListBidProduct}
           renderItem={({ item }) => {
-            if (BidService.getTimeCountBid(item)  > config.api.timeLimit) {
+            if (BidService.checkComming(item)) {
               return (
                 <TouchableOpacity
                   onPress={() => {

@@ -76,7 +76,7 @@ export class LendingService {
 
   public static getConfirmReceived(idProfit: string): Promise<any> {
     return getAxios().then(axios => {
-      axios({
+      return axios({
         method: "POST",
         url: `${config.api.lendingAPI}/lending_profit/confirmReceived`,
         data: {

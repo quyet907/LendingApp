@@ -79,8 +79,16 @@ export default class Giftcode extends React.Component<Props, State>{
 
     check = () => {
         if (this.state.code) {
-            CouponService.postCoupon(this.state.code)
-            this.getDataToState()
+            CouponService.postCoupon(this.state.code).then((userCoupon: UserCoupon)=>{
+                if(userCoupon && userCoupon.coupon && userCoupon.coupon.prize){
+                    actionPopup.showMessage(`You got ${ userCoupon.coupon.prize} points!`)
+                }
+                const getHistories = this.state.couponHistories;
+                getHistories.push(userCoupon);
+                this.setState({
+                    couponHistories : getHistories
+                })
+            })
         } else {
             actionPopup.showMessage("Please enter giftcode!")
         }
@@ -88,7 +96,9 @@ export default class Giftcode extends React.Component<Props, State>{
     getDataToState = () => {
         CouponService.getCouponHistories().then((couponPaging: Paging<UserCoupon>) => {
             const data = couponPaging.rows;
-            this.setState({ couponHistories: data })
+            this.setState({
+                couponHistories : couponPaging.rows
+            })
         })
     }
 

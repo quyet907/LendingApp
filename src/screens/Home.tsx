@@ -34,11 +34,11 @@ class Home extends Component<Props, State> {
 
   componentDidMount() {
     this.getData();
+    
 
   };
 
   componentWillReceiveProps(nextProps: Props) {
-    
     if(this.props.confirmReload != nextProps.confirmReload || nextProps.isFocused){
       this.getData();
     }
@@ -54,12 +54,11 @@ class Home extends Component<Props, State> {
 
     let getDataLendingProfit: Paging<ProfitHistory> = await LendingService.getLendingProfit()
 
+
     this.setState({
       dataProfit: getDataLendingProfit ? getDataLendingProfit.rows : [],
       dataFinance: getDataFinance ? getDataFinance : {},
       dataChart: getDataChart ? getDataChart : []
-
-
     })
   };
 
@@ -98,7 +97,7 @@ class Home extends Component<Props, State> {
 type Props = {
   isFocused: boolean,
   Finance : Finance,
-  confirmReload : any
+  confirmReload : boolean,
 
 };
 type State = {
@@ -118,7 +117,7 @@ const home = function (props: Props) {
 
 const mapStateToProps = (state : any, Props : any ) => {
   return {
-      confirmReload : state.Allreducer.reload
+      confirmReload : state.Allreducer.reloadPageHome
   }
 }
 

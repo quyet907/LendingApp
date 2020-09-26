@@ -101,7 +101,7 @@ class Login extends Component<props, state> {
           <View style={[myStyle.frInputPass]}>
             <TextInput
               value={this.state.password}
-              style={[myStyle.inputLogin, {margin : 0}]}
+              style={[myStyle.inputPass]}
               placeholder={"Password"}
               secureTextEntry={!this.state.showPass}
               maxLength={32}

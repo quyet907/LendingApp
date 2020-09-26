@@ -18,6 +18,7 @@ import PopupShow from "./src/components/PopupShow";
 import Loadding from "./src/screens/Loadding";
 import Bid from "./src/screens/Bid";
 import { config } from "./src/config/Config";
+import { ConfigService } from "./src/services/ConfigService";
 
 
 
@@ -50,9 +51,11 @@ const tabProps = {
 export default class App extends React.Component<Props, {}> {
   constructor(props: any) {
     super(props);
-    console.log(`env is ${process.env.EXPO_NODE_ENV}`)
+    // console.log(`env is ${process.env.EXPO_NODE_ENV}`)
   }
-
+  componentDidMount(){
+    ConfigService.getConfig();
+  }
   render() {
 
     return (

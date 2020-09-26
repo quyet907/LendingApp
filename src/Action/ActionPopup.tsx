@@ -2,16 +2,12 @@ import store from "../reducer/store";
 
 export const showMessage = (content: string) => {
     store.dispatch(showPopup(true));
-
     store.dispatch(Content(content));
-
     store.dispatch(typeConfirm(false));
-
 }
 
 export const showConfirm = (content: string) => {
     store.dispatch(showPopup(true));
-
     store.dispatch(Content(content));
     store.dispatch(typeConfirm(true))
 }

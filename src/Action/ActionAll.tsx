@@ -9,11 +9,25 @@ export const reload = () => {
     }
 }
 
-export const setFinance = (finance  : Finance)=>{
+export const reloadPageHome = ()=>{
     return {
-        type : "FINANCE",
-        payload : finance = {
-            
-        }
+        type : "RELOADPAGEHOME",
+        payload : null
+    }
+}
+
+export const setConfig= (config : any)=>{
+    store.dispatch(Config(config));
+
+}
+
+export const getConfig = ()=>{
+    return store.getState().Allreducer.config;
+}
+
+export const Config=(config : any)=>{
+    return {
+        type : "SETCONFIG",
+        payload : config
     }
 }

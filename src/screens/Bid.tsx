@@ -81,10 +81,7 @@ class Bid extends Component<props, state>{
 
 
 
-
-
     renderDataBid(bidProduct: BidProduct) {
-
         this.setState({
             bidProduct: bidProduct,
         })

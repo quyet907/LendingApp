@@ -42,7 +42,7 @@ import { Finance } from '@StockAfiCore/model/lending/Finance';
                     </View>
 
                     <View style={[myStyle.row, myStyle.centerHistoryInterest]}>
-                        <Text style={[{ color: color.inactive }, myStyle.contentHistoryInterest]}>
+                        {/* <Text style={[{ color: color.inactive }, myStyle.contentHistoryInterest]}>
                             {FormatService.roundingMoney(this.props.amount)}
                         </Text>
                         <Image
@@ -50,6 +50,7 @@ import { Finance } from '@StockAfiCore/model/lending/Finance';
                             source={require("../../icons/icons8_right_26px.png")}
                         />
                         <Text style={[{ color: color.primary, }, myStyle.contentHistoryInterest]}>{FormatService.roundingMoney(this.props.amount + this.props.profits)}</Text>
+                     */}
                     </View>
 
                     <View style={[myStyle.rightHistoryInterest]}>
@@ -114,7 +115,7 @@ function mapStateToProps(state: any , props: any){
 function mapDispatchToProps(dispatch : any , props : any ) {
     return {
         onReload(finance : Finance) {
-            dispatch(actionAll.reload())
+            dispatch(actionAll.reloadPageHome())
         }
     }
 }

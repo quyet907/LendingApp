@@ -5,7 +5,7 @@ import { Paging } from "@Core/controller/Paging";
 import { UserService } from "./UserService";
 import { getAxios } from "./APIService";
 import { config } from "../config/Config";
-
+import * as actionAll from "../Action/ActionAll"
 export class ReferralService {
   public static getReferral(): Promise<Paging<Referal>> {
     return getAxios().then((axios) =>
@@ -33,5 +33,10 @@ export class ReferralService {
         .catch((err) => console.log(err))
     );
     //throw new Error("this function is not implement");
+  }
+
+  public static calcMoneyReferral(countPeople  : number ) : number{
+      let configIncomReFerral : number = actionAll.getConfig().incomeFromReferal;
+      return countPeople * configIncomReFerral;
   }
 }
