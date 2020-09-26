@@ -10,6 +10,9 @@ import { FormatService } from '../../services/FormatService';
 import { connect } from "react-redux";
 import * as  actionAll from "../../Action/ActionAll"
 import { Finance } from '@StockAfiCore/model/lending/Finance';
+import I18n from '../../i18n/i18n';
+
+
 class HistoryInterest extends Component<props, state> {
     constructor(props: any) {
         super(props);
@@ -54,7 +57,7 @@ class HistoryInterest extends Component<props, state> {
 
                     <View style={[myStyle.rightHistoryInterest]}>
                         <Text style={[{ color: color.secondary, fontSize: 16, }]}>
-                            {this.props.daysLeft} days
+                            {this.props.daysLeft} {I18n.t('remainDays')}
                         </Text>
                     </View>
 
@@ -75,7 +78,7 @@ class HistoryInterest extends Component<props, state> {
 
                             }}
                         >
-                            <Text style={{ color: 'black' }} >{this.state.status ? 'Got' : 'Get'}</Text>
+                            <Text style={{ color: 'black' }} >{this.state.status ? I18n.t('gotButton') : I18n.t('getButton')}</Text>
                         </TouchableOpacity>
                     </View>
                 </View>

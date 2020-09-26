@@ -9,6 +9,8 @@ import { UserCoupon } from '@StockAfiCore/model/user/UserCoupon';
 import { CouponService } from '../../services/CouponService';
 import { Paging } from '@Core/controller/Paging';
 import CouponDetail from './CouponDetail';
+import I18n from "../../i18n/i18n";
+
 export default class CouponHistories extends React.Component<Props, State> {
     constructor(props: any) {
         super(props);
@@ -42,7 +44,7 @@ export default class CouponHistories extends React.Component<Props, State> {
                                         time={item.receiveAt || 'undefined'}
                                         coin={item.coupon?.prize || 0}
                                         type={true}
-                                        typeLabel="PRIZE"
+                                        typeLabel={I18n.t('prize')}
                                     />
                                 </TouchableOpacity>
                             )

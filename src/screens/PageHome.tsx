@@ -8,6 +8,7 @@ import Icon from "react-native-vector-icons/FontAwesome5";
 import * as color from "../Color";
 import LogoutScreen from "./LogoutScreen";
 import Referral from "./Referral";
+import I18n from "../i18n/i18n";
 
 const Tab = createBottomTabNavigator();
 
@@ -45,7 +46,7 @@ export default class PageHome extends React.Component<Props, state> {
             component={Home}
             options={{
 
-              tabBarLabel: "Dashboard",
+              tabBarLabel: I18n.t('dashboardLabel'),
               tabBarIcon: ({ focused }) => (
 
                 <Icon
@@ -62,7 +63,7 @@ export default class PageHome extends React.Component<Props, state> {
             name="Lending"
             component={LendingScreen}
             options={{
-              tabBarLabel: "Lending",
+              tabBarLabel: I18n.t("lendingLabel"),
               tabBarIcon: ({ focused }) => (
                 <Icon
 
@@ -78,7 +79,7 @@ export default class PageHome extends React.Component<Props, state> {
             name="Referral"
             component={Referral}
             options={{
-              tabBarLabel: "Referral",
+              tabBarLabel: I18n.t("refLabel"),
               tabBarIcon: ({ focused }) => (
                 <Icon
 
@@ -93,7 +94,7 @@ export default class PageHome extends React.Component<Props, state> {
             name="Profile"
             component={LogoutScreen}
             options={{
-              tabBarLabel: "Profile",
+              tabBarLabel: I18n.t("profileLabel"),
               tabBarIcon: ({ focused }) => (
                 <Icon
                   name="user-alt"

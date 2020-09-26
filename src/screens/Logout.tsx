@@ -14,6 +14,7 @@ import FontAwesome from "react-native-vector-icons/FontAwesome";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 import * as Color from "../Color";
 import { ScreenName } from "./ScreenName";
+import I18n from "../i18n/i18n";
 
 const sizeIcon = 20;
 
@@ -38,7 +39,7 @@ export default class Logout extends Component<props, state> {
     return (
       <View style={[myStyle.container]}>
         <View style={[styles.header]}>
-          <Text style={[styles.contentHeader]}>Account</Text>
+    <Text style={[styles.contentHeader]}>{I18n.t('accountTitle')}</Text>
         </View>
 
         <View style={[myStyle.row, styles.layoutAccout]}>
@@ -66,7 +67,7 @@ export default class Logout extends Component<props, state> {
               <FontAwesome5 name={"users"} size={sizeIcon} color={Color.primary} />
             </View>
 
-            <Text style={[styles.contentFuture]}>Bid</Text>
+          <Text style={[styles.contentFuture]}>{I18n.t('bid')}</Text>
           </TouchableOpacity>
 
           <TouchableOpacity style={[myStyle.row, styles.layoutFeature]}
@@ -74,7 +75,7 @@ export default class Logout extends Component<props, state> {
             <View style={styles.containerIcon}>
               <FontAwesome5 name={"history"} size={sizeIcon} color={Color.primary} />
             </View>
-            <Text style={[styles.contentFuture]}>My Bid</Text>
+          <Text style={[styles.contentFuture]}>{I18n.t('bidHistories')}</Text>
           </TouchableOpacity>
 
           <TouchableOpacity
@@ -86,7 +87,7 @@ export default class Logout extends Component<props, state> {
               <FontAwesome5 name={"gift"} size={sizeIcon} color={Color.primary} />
             </View>
 
-            <Text style={[styles.contentFuture]}>Gift</Text>
+          <Text style={[styles.contentFuture]}>{I18n.t('coupon')}</Text>
           </TouchableOpacity>
 
 
@@ -107,7 +108,7 @@ export default class Logout extends Component<props, state> {
             <View style={styles.containerIcon}>
               <FontAwesome name={"sign-out"} size={sizeIcon} color={Color.primary} />
             </View>
-            <Text style={[styles.contentFuture]}>Log out</Text>
+          <Text style={[styles.contentFuture]}>{I18n.t('logout')}</Text>
 
           </TouchableOpacity>
 

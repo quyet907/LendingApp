@@ -16,7 +16,8 @@ import Lending from "./Lending";
 import { LendingService } from "../services/LendingService";
 import { Income } from "@StockAfiCore/model/lending/Income";
 import { Paging } from "@Core/controller/Paging";
-import { connect, useStore } from 'react-redux'
+import { connect, useStore } from 'react-redux';
+import I18n from "../i18n/i18n";
 
 // import { Income } from "@StockAfiCore/model/lending/Income";
 var uuid = require('react-native-uuid');

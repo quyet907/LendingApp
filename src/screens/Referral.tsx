@@ -11,6 +11,7 @@ import HistoryDetail from '../components/ref/HistoryDetail';
 import { useIsFocused } from '@react-navigation/native';
 import MyReferrals from '../components/ref/MyReferrals';
 import { FormatService } from '../services/FormatService';
+import I18n from "../i18n/i18n";
 
 class Referral extends React.Component<Props, State> {
     constructor(props: any) {
@@ -47,10 +48,10 @@ class Referral extends React.Component<Props, State> {
             <ScrollView style={{ backgroundColor: color.background_primary }}>
                 <FlashMessage position="center" />
                 <View style={styles.container}>
-                    <Text style={styles.textLabel}>REFERRAL</Text>
+                    <Text style={styles.textLabel}>{I18n.t('refTitle')}</Text>
                     <Text style={{ textAlign: 'justify', color: '#fff' }}>
-                        {'\t'}The Lending game referral program is a great way to read the word of this great service and to earn even more money with your friend! Refer friends and receive 1000 COIN of their earnings for life!
-                        </Text>
+                        {'\t'}{I18n.t('introText')}
+                    </Text>
                     <View style={{
                         flexDirection: 'row',
                         padding: 20,
@@ -67,7 +68,7 @@ class Referral extends React.Component<Props, State> {
                             style={styles.copy}
                             onPress={() => this.copyToClipboard()}
                         >
-                            <Text style={styles.copyText}>Copy</Text>
+                            <Text style={styles.copyText}>{I18n.t('copyButton')}</Text>
                         </TouchableOpacity >
                     </View>
 
@@ -82,7 +83,7 @@ class Referral extends React.Component<Props, State> {
                                 <FontAwesome5 name='user-friends' size={40} color='#00C4F8' />
                             </View>
                             <View style={styles.subContainer}>
-                                <Text style={{ color: color.inactive, fontSize: 12 }}>Total</Text>
+                                <Text style={{ color: color.inactive, fontSize: 12 }}>{I18n.t('totalRefTitle')}</Text>
                                 <Text style={styles.amount}>{FormatService.roundingMoney(this.state.myReferral.length)}</Text>
                             </View>
                         </View>
@@ -92,7 +93,7 @@ class Referral extends React.Component<Props, State> {
                                 <FontAwesome5 name='coins' size={40} color={color.primary} />
                             </View>
                             <View style={styles.subContainer}>
-                                <Text style={{ color: color.inactive, fontSize: 12 }}>Reward</Text>
+                                <Text style={{ color: color.inactive, fontSize: 12 }}>{I18n.t('rewardRefTitle')}</Text>
                                 <Text style={styles.amount}>{FormatService.roundingMoney(this.state.myReferral.length * 1000)}</Text>
                             </View>
                         </View>

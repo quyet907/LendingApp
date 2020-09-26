@@ -27,7 +27,7 @@ export default class HistoryLendingDetail extends React.Component<Props, {}>{
                         <Text style={styles.time}>{this.props.typeLabel}</Text>
                         <View style={{ flexDirection: 'row', alignItems: 'center', flex: 1 }}>
                             <Text style={this.props.type ? styles.coinGreen : styles.coinRed}>
-                                {this.props.type && this.props.typeLabel != 'AMOUNT' ? '+' : (this.props.typeLabel == 'AMOUNT' ? '' : '-')}{FormatService.roundingMoney(this.props.coin)} COIN</Text>
+                               {FormatService.roundingMoney(this.props.coin)} COIN</Text>
                         </View>
                     </View>
 
@@ -83,7 +83,8 @@ const styles = StyleSheet.create({
     time: {
         color: '#868685',
         fontSize: 10,
-        marginLeft: 3
+        marginLeft: 3,
+        textTransform: 'uppercase'
     },
     coinGreen: {
         fontSize: 15,

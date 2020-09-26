@@ -3,7 +3,7 @@ import { View } from "react-native";
 import { LineChart } from "react-native-chart-kit";
 import { Line } from "react-chartjs-2";
 import { IncomeService } from '../../services/IncomeService';
-
+import I18n from "../../i18n/i18n";
 
 const dataChart: any = {
     labels: [],
@@ -53,9 +53,9 @@ export default class ChartHome extends Component<props, state> {
         dataChart.datasets[2].data = IncomeService.createDataChart(nextProps.dataChart.referal);
 
         dataChart.labels = IncomeService.getDayDataChar(nextProps.dataChart.all);
-        dataChart.datasets[0].label = "Total Amount";
-        dataChart.datasets[1].label = "Lending Amount";
-        dataChart.datasets[2].label = "Referral Amount";
+        dataChart.datasets[0].label = I18n.t("totalAmount");
+        dataChart.datasets[1].label = I18n.t("lendingAmount");
+        dataChart.datasets[2].label = I18n.t("referralAmount");
     }
 
     render() {

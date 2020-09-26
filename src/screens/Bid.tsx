@@ -12,6 +12,7 @@ import { Paging } from '@Core/controller/Paging';
 import { FormatService } from '../services/FormatService';
 import { firebase } from "../../FirebaseConfig";
 import { BaseUser } from '@Core/model/user/BaseUser';
+import I18n from "../i18n/i18n";
 
 // pageBid.render();
 var timeahihi;
@@ -144,7 +145,7 @@ class Bid extends Component<props, state>{
 
 
                 <View style={[myStyle.frListBidder]}>
-                    <Text style={[myStyle.headerBidder]}>Bidder</Text>
+                    <Text style={[myStyle.headerBidder]}>{I18n.t('bidderTitle')}</Text>
                     <ListBidder
                         bidders={this.state?.bidProduct?.listHistoryBid || []}
                     ></ListBidder>
