@@ -6,6 +6,7 @@ import axios from "axios";
 import { AsyncStorage } from "react-native";
 import { Actions } from "react-native-router-flux";
 import { config } from "../config/Config";
+import I18n from '../i18n/i18n'
 
 export class UserService {
     
@@ -113,11 +114,11 @@ export class UserService {
                     return null;
                 }
                 else {
-                    return "OTP is insuccess";
+                    return I18n.t('insuccessOTPMessage');
                 }
             })
             .catch(err => {
-                return "error with server"
+                return I18n.t('errServer')
             })
     }
 
@@ -201,14 +202,14 @@ export class UserService {
   public static checkValidatePhone = (phone: string): string | null => {
     phone.trim();
     if (phone.length == 0) {
-      return "Mobile can't be blank";
+      return I18n.t('passwordBlankMessage');
     }
     if (phone.length < 10 || phone.length > 11) {
-      return "Mobile is not valid";
+      return I18n.t('invalidMobileMessage');
     }
     var regex_Phone = /[0-9]$/;
     if (!regex_Phone.test(phone)) {
-      return "Incorrect phone number format";
+      return I18n.t('incorredPhoneFormatMessage');
     }
     return null;
   };

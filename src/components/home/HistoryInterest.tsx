@@ -8,9 +8,12 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import { LendingService } from '../../services/LendingService';
 import { FormatService } from '../../services/FormatService';
 import { connect } from "react-redux";
-import  * as  actionAll from "../../Action/ActionAll"
+import * as  actionAll from "../../Action/ActionAll"
 import { Finance } from '@StockAfiCore/model/lending/Finance';
- class HistoryInterest extends Component<props, state> {
+import I18n from '../../i18n/i18n';
+
+
+class HistoryInterest extends Component<props, state> {
     constructor(props: any) {
         super(props);
         this.state = {
@@ -55,7 +58,7 @@ import { Finance } from '@StockAfiCore/model/lending/Finance';
 
                     <View style={[myStyle.rightHistoryInterest]}>
                         <Text style={[{ color: color.secondary, fontSize: 16, }]}>
-                            {this.props.daysLeft} days
+                            {this.props.daysLeft} {I18n.t('remainDays')}
                         </Text>
                     </View>
 
@@ -67,11 +70,16 @@ import { Finance } from '@StockAfiCore/model/lending/Finance';
                                 this.setState({
                                     status: true
                                 })
-                                LendingService.getConfirmReceived(this.props._id).then((res)=> this.props.onReload())
+                                LendingService.getConfirmReceived(this.props._id).then((res) => {
+                                    console.log(this.props._id);
+                                    this.props.onReload()
+                                }
+
+                                )
 
                             }}
                         >
-                            <Text style={{ color: 'black' }} >{this.state.status ? 'Got' : 'Get'}</Text>
+                            <Text style={{ color: 'black' }} >{this.state.status ? I18n.t('gotButton') : I18n.t('getButton')}</Text>
                         </TouchableOpacity>
                     </View>
                 </View>
@@ -102,17 +110,17 @@ type props = {
     profits: number,
     amount: number,
     daysLeft: number,
-    onReload() : void
+    onReload(): void
 }
 type state = {
     status: boolean
 }
 
-function mapStateToProps(state: any , props: any){
-    
+function mapStateToProps(state: any, props: any) {
+
 }
 
-function mapDispatchToProps(dispatch : any , props : any ) {
+function mapDispatchToProps(dispatch: any, props: any) {
     return {
         onReload(finance : Finance) {
             dispatch(actionAll.reloadPageHome())

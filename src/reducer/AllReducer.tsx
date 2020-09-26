@@ -24,8 +24,8 @@ const all = (state: any = initAll, action: any) => {
             getState.config = action.payload
             return {...getState}
         }
-        default : {
-            return {...state}
+        default: {
+            return { ...state }
         }
     }
 }

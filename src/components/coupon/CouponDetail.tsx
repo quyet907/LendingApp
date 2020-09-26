@@ -18,13 +18,13 @@ export default class CouponDetail extends React.Component<Props, {}>{
                         <FontAwesome5 name='gift' size={35} color={color.success} />
                     </View>
 
-                    <View style={{ flexDirection: 'column', justifyContent: 'space-between', height: 42 }}>
+                    <View style={{ flexDirection: 'column', justifyContent: 'space-between', height: '100%' }}>
                         <Text style={styles.title}>{this.props.title}</Text>
                         <View style={{ flexDirection: 'row', alignItems: 'center', flex: 1 }}>
                             {timeIcon}<Text style={styles.time}>{this.getTime(this.props.time)}</Text>
                         </View>
                     </View>
-                    <View style={{ alignItems: 'flex-end', flex: 1 }}>
+                    <View style={{alignItems: 'flex-end', justifyContent: 'space-evenly', height: '100%', flex: 1 , paddingTop: 3}}>
                         <Text style={styles.time}>{this.props.typeLabel}</Text>
                         <View style={{ flexDirection: 'row', alignItems: 'center', flex: 1 }}>
                             <Text style={this.props.type ? styles.coinGreen : styles.coinRed}>
@@ -39,18 +39,16 @@ export default class CouponDetail extends React.Component<Props, {}>{
 
 
 
+    // getTime = (date: Date | undefined): string => {
+    //     if (date) return date.toString().substring(0, 10);
+    //     else return "null";
+    // };
     getTime = (date: Date | string | undefined): string => {
-
-
-
-
         if (date) {
             let dateFmt = this.formatDate(date),
                 timeFmt = this.formatTime(date);
             return dateFmt + "  " + timeFmt;
         }
-
-        // return date.toString().substring(0, 10) + date.getHours().toString() + ":" + date.getMinutes().toString;
         else return "undefined";
     };
 

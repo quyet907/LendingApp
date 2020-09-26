@@ -4,7 +4,11 @@ import { config } from "../config/Config";
 import { getAxios } from "./APIService";
 
 export class CouponService {
+<<<<<<< HEAD
     public static postCoupon(code: string): Promise<UserCoupon> {
+=======
+    public static postCoupon(code: string): Promise<any> {
+>>>>>>> 306b3425613c92d8403a8c24e55ea2e335ec69e3
         return getAxios().then(axios => {
             return axios({
                 method: 'POST',

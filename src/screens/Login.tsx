@@ -23,6 +23,7 @@ import * as actionPopup from "../Action/ActionPopup";
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import * as color from '../Color';
 import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
+import I18n from "../i18n/i18n"
 
 class Login extends Component<props, state> {
   constructor(props: any) {
@@ -89,7 +90,7 @@ class Login extends Component<props, state> {
               value={this.state.user}
               style={[myStyle.inputLogin]}
               selectionColor="red"
-              placeholder={"Mobile"}
+              placeholder={I18n.t('mobileInputPlaceholder')}
               keyboardType={"number-pad"}
               maxLength={11}
               onChangeText={(text) => {
@@ -102,7 +103,7 @@ class Login extends Component<props, state> {
             <TextInput
               value={this.state.password}
               style={[myStyle.inputPass]}
-              placeholder={"Password"}
+              placeholder={I18n.t("passwordInputPlaceholder")}
               secureTextEntry={!this.state.showPass}
               maxLength={32}
               onSubmitEditing={this.checkLogin}
@@ -133,7 +134,7 @@ class Login extends Component<props, state> {
                   Actions.enterPhone();
                 }}
               >
-                Forgotten password?
+                {I18n.t('forgetPasswordText')}
               </Text>
             </TouchableOpacity>
           </View>
@@ -144,7 +145,7 @@ class Login extends Component<props, state> {
               activeOpacity={0.7}
               onPress={this.checkLogin}
             >
-              <Text style={[myStyle.textButton]}> LOG IN</Text>
+              <Text style={[myStyle.textButton]}>{I18n.t('loginButtonText')}</Text>
             </TouchableOpacity>
           </View>
 
@@ -152,7 +153,7 @@ class Login extends Component<props, state> {
             style={[myStyle.row, { marginTop: 10, justifyContent: "center" }]}
           >
             <Text style={[{ marginRight: 10, color: "white" }]}>
-              You haven't account?
+              {I18n.t('haventAccount')}
             </Text>
             <TouchableOpacity
               onPress={(event) => {
@@ -160,7 +161,7 @@ class Login extends Component<props, state> {
                 Actions.enterPhone();
               }}
             >
-              <Text style={[{ color: "#F8C400" }]}>Create an account</Text>
+              <Text style={[{ color: "#F8C400" }]}>{I18n.t('createAccount')}</Text>
             </TouchableOpacity>
           </View>
         </View>

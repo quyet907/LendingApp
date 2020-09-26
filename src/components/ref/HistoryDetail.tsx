@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
         color: '#fff',
         fontSize: 15,
         fontWeight: "600",
-
+        textTransform: 'uppercase'
     },
     time: {
         color: color.inactive,

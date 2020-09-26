@@ -16,7 +16,8 @@ import Lending from "./Lending";
 import { LendingService } from "../services/LendingService";
 import { Income } from "@StockAfiCore/model/lending/Income";
 import { Paging } from "@Core/controller/Paging";
-import { connect, useStore } from 'react-redux'
+import { connect, useStore } from 'react-redux';
+import I18n from "../i18n/i18n";
 
 // import { Income } from "@StockAfiCore/model/lending/Income";
 var uuid = require('react-native-uuid');
@@ -56,9 +57,9 @@ class Home extends Component<Props, State> {
 
 
     this.setState({
-      dataProfit: getDataLendingProfit ? getDataLendingProfit.rows : [],
       dataFinance: getDataFinance ? getDataFinance : {},
-      dataChart: getDataChart ? getDataChart : []
+      dataChart: getDataChart ? getDataChart : [],
+      dataProfit: getDataLendingProfit ? getDataLendingProfit.rows : [],
     })
   };
 
@@ -104,18 +105,16 @@ type State = {
   dataProfit: ProfitHistory[],
   index: number,
   dataChart: any,
-  dataFinance : Finance
+  dataFinance: Finance
 };
 
 
 const home = function (props: Props) {
-
   const isFocused = useIsFocused();
-  
-  return <Home {...props} isFocused={isFocused} confirmReload = {props.confirmReload} />;
+  return <Home {...props} isFocused={isFocused} confirmReload={props.confirmReload} />;
 }
 
-const mapStateToProps = (state : any, Props : any ) => {
+const mapStateToProps = (state: any, Props: any) => {
   return {
       confirmReload : state.Allreducer.reloadPageHome
   }

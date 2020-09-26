@@ -2,7 +2,7 @@ import { Lending } from "@StockAfiCore/model/lending/Lending";
 import * as React from "react";
 import { FlatList, StyleSheet, View } from "react-native";
 import HistoryLendingDetail from "./HistoryLendingDetail";
-
+import I18n from '../../i18n/i18n';
 
 export default class HistoriesLending extends React.Component<Props, State> {
     constructor(props: any) {
@@ -20,7 +20,7 @@ export default class HistoriesLending extends React.Component<Props, State> {
                         <HistoryLendingDetail
                             title={item.lendingPackage?.name || "undefined"}
                             type={true}
-                            typeLabel="AMOUNT"
+                            typeLabel={I18n.t('amount')}
                             time={this.getTime(item.createdAt)}
                             coin={item.loanAmount || 0}
                         />

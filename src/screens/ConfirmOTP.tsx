@@ -10,7 +10,7 @@ import * as action from "../Action/ActionLogin"
 import PopupConfirm from '../components/PopupConfirm';
 
 import * as actionPopup from "../Action/ActionPopup"
-
+import I18n from '../i18n/i18n';
 
 class ConfirmOTP extends Component<props, state> {
     constructor(props: any) {
@@ -61,7 +61,7 @@ class ConfirmOTP extends Component<props, state> {
                                 alignItems: "center",
                             }]}
                         >
-                            <Text style={[myStyle.headerSignUp]}>Enter OTP code</Text>
+                            <Text style={[myStyle.headerSignUp]}>{I18n.t('enterOTPTitle')}</Text>
                         </View>
                     </View>
                 </View>
@@ -73,7 +73,7 @@ class ConfirmOTP extends Component<props, state> {
                         <TextInput
                             style={[myStyle.inputLogin, { marginTop: 30 }]}
                             selectionColor='red'
-                            placeholder={"Enter OTP"}
+                            placeholder={I18n.t('enterOTPInputPlaceholder')}
                             keyboardType='numeric'
                             // keyboardType={'numeric'}
                             value={this.state.getCodeOTP}
@@ -95,18 +95,18 @@ class ConfirmOTP extends Component<props, state> {
                             }}
                         >
                             <Text style={[myStyle.textButton]}>
-                                Confirm
+                                {I18n.t('confirmButtonText')}
                             </Text>
                         </TouchableOpacity>
 
                     </View>
 
                     <View style={[myStyle.row, { marginTop: 10, justifyContent: "center" }]}>
-                        <Text style={[{ marginRight: 5, color: "white" }]}>Didn't get a code?</Text>
+                        <Text style={[{ marginRight: 5, color: "white" }]}>{I18n.t('dontGetOTPCode')}</Text>
                         <TouchableOpacity
                             onPress={Actions.enterPhone}
                         >
-                            <Text style={[myStyle.colorWhite, , { color: "#F8C400" }]}>Enter my phone again</Text>
+                            <Text style={[myStyle.colorWhite, , { color: "#F8C400" }]}>{I18n.t('enterPhoneAgain')}</Text>
                         </TouchableOpacity>
                     </View>
 

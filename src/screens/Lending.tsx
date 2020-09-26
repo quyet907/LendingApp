@@ -12,6 +12,7 @@ import { Paging } from "@Core/controller/Paging";
 import { useIsFocused } from "@react-navigation/native";
 import HistoriesLending from "../components/lending/HistoriesLending";
 import { FormatService } from "../Helper/FormatService";
+import I18n from '../i18n/i18n';
 
 class Lending extends React.Component<Props, State> {
   constructor(props: any) {
@@ -42,7 +43,7 @@ class Lending extends React.Component<Props, State> {
 
   componentWillReceiveProps(prev: Props) {
     if (prev.isFocused) {
-      this.getDataToState("reload");
+      this.getDataToState();
     }
   }
 
@@ -56,7 +57,7 @@ class Lending extends React.Component<Props, State> {
       <View style={{ flex: 1 }}>
         <ScrollView style={{ backgroundColor: color.background_primary }}>
           <View style={styles.container}>
-            <Text style={styles.textLabel}>Lending</Text>
+            <Text style={styles.textLabel}>{I18n.t('lendingTitle')}</Text>
             <View
               style={{
                 flexDirection: "row",
@@ -64,7 +65,7 @@ class Lending extends React.Component<Props, State> {
                 marginBottom: 7,
               }}
             >
-              <Text style={styles.textLabel}>CHOOSE A PACKAGE</Text>
+              <Text style={styles.textLabel}>{I18n.t('chooseTitle')}</Text>
             </View>
 
             <ScrollView
@@ -116,7 +117,7 @@ class Lending extends React.Component<Props, State> {
               }}
             >
               <Text style={styles.textLabel}>
-                Wallet: {FormatService.roundingMoney(this.state.wallet)} COIN
+                {I18n.t('walletTitle')}: {FormatService.roundingMoney(this.state.wallet)} COIN
               </Text>
             </View>
 
@@ -127,7 +128,7 @@ class Lending extends React.Component<Props, State> {
               }}
             >
               <View style={styles.lblCoin}>
-                <Text style={styles.copyText}>COIN</Text>
+                <Text style={styles.copyText}>{I18n.t('coinInputLabel')}</Text>
               </View>
               <TextInput
                 value={this.state.initialValue.toString()}
@@ -147,7 +148,7 @@ class Lending extends React.Component<Props, State> {
                 style={styles.btnAll}
                 onPress={() => this.allCoin()}
               >
-                <Text style={styles.copyText}>ALL</Text>
+                <Text style={styles.copyText}>{I18n.t('allButton')}</Text>
               </TouchableOpacity>
             </View>
 
@@ -193,7 +194,7 @@ class Lending extends React.Component<Props, State> {
                     fontWeight: "700",
                   }}
                 >
-                  LEND
+                  {I18n.t('lendButton')}
                 </Text>
               </TouchableOpacity>
             </View>
@@ -240,7 +241,7 @@ class Lending extends React.Component<Props, State> {
     );
   }
 
-  getDataToState(type: string) {
+  getDataToState(type?: string) {
 
     LendingService.getLendingPackage().then((pagingLendingPackages: Paging<LendingPackage>) => {
       IncomeService.getFinance().then((res) => {
@@ -256,9 +257,6 @@ class Lending extends React.Component<Props, State> {
           }
 
         });
-
-
-
 
       })
 
@@ -403,6 +401,7 @@ const styles = StyleSheet.create({
   copyText: {
     fontSize: 16,
     fontWeight: "700",
+    textTransform: 'uppercase'
   },
   refAbout: {
     flexDirection: "row",

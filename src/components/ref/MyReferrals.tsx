@@ -3,6 +3,7 @@ import * as React from "react";
 import { StyleSheet, View } from "react-native";
 import { FlatList } from "react-native-gesture-handler";
 import HistoryDetail from "./HistoryDetail";
+import I18n from "../../i18n/i18n";
 
 
 export default class MyReferrals extends React.Component<Props, State>{
@@ -18,7 +19,7 @@ export default class MyReferrals extends React.Component<Props, State>{
                     renderItem={({ item }) =>
                         <HistoryDetail
                             type={true}
-                            typeLabel='EARNED'
+                            typeLabel={I18n.t('earnedTitle')}
                             title={this.hidePhoneNumber(item.toUser?.username)}
                             time={this.getTime(item.createdAt)}
                         />}
