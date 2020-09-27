@@ -29,4 +29,9 @@ export class FormatService {
         return money.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.")
         // return `$${moneyString}`;
     }
+
+    public static getTime = (date: Date | undefined): string => {
+        if (date !== undefined) return date.toString().substring(0, 10);
+        else return "null";
+    };
 }

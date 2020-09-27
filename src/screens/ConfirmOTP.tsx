@@ -61,7 +61,7 @@ class ConfirmOTP extends Component<props, state> {
                                 alignItems: "center",
                             }]}
                         >
-                            <Text style={[myStyle.headerSignUp]}>{I18n.t('enterOTPTitle')}</Text>
+                            <Text style={[myStyle.headerSignUp]}>{I18n.t('screens.enterOTP.enterOTPTitle')}</Text>
                         </View>
                     </View>
                 </View>
@@ -71,9 +71,10 @@ class ConfirmOTP extends Component<props, state> {
 
                     <View style={[]}>
                         <TextInput
+                            autoFocus={true}
                             style={[myStyle.inputLogin, { marginTop: 30 }]}
                             selectionColor='red'
-                            placeholder={I18n.t('enterOTPInputPlaceholder')}
+                            placeholder={I18n.t('screens.enterOTP.enterOTPInputPlaceholder')}
                             keyboardType='numeric'
                             // keyboardType={'numeric'}
                             value={this.state.getCodeOTP}
@@ -95,18 +96,18 @@ class ConfirmOTP extends Component<props, state> {
                             }}
                         >
                             <Text style={[myStyle.textButton]}>
-                                {I18n.t('confirmButtonText')}
+                                {I18n.t('screens.enterOTP.confirmButtonText')}
                             </Text>
                         </TouchableOpacity>
 
                     </View>
 
                     <View style={[myStyle.row, { marginTop: 10, justifyContent: "center" }]}>
-                        <Text style={[{ marginRight: 5, color: "white" }]}>{I18n.t('dontGetOTPCode')}</Text>
+                        <Text style={[{ marginRight: 5, color: "white" }]}>{I18n.t('screens.enterOTP.dontGetOTPCode')}</Text>
                         <TouchableOpacity
                             onPress={Actions.enterPhone}
                         >
-                            <Text style={[myStyle.colorWhite, , { color: "#F8C400" }]}>{I18n.t('enterPhoneAgain')}</Text>
+                            <Text style={[myStyle.colorWhite, , { color: "#F8C400" }]}>{I18n.t('screens.enterOTP.enterPhoneAgain')}</Text>
                         </TouchableOpacity>
                     </View>
 

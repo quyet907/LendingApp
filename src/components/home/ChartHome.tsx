@@ -53,9 +53,9 @@ export default class ChartHome extends Component<props, state> {
         dataChart.datasets[2].data = IncomeService.createDataChart(nextProps.dataChart.referal);
 
         dataChart.labels = IncomeService.getDayDataChar(nextProps.dataChart.all);
-        dataChart.datasets[0].label = I18n.t("totalAmount");
-        dataChart.datasets[1].label = I18n.t("lendingAmount");
-        dataChart.datasets[2].label = I18n.t("referralAmount");
+        dataChart.datasets[0].label = I18n.t("screens.dashboard.chart.totalAmount");
+        dataChart.datasets[1].label = I18n.t("screens.dashboard.chart.lendingAmount");
+        dataChart.datasets[2].label = I18n.t("screens.dashboard.chart.referralAmount");
     }
 
     render() {
@@ -69,7 +69,7 @@ export default class ChartHome extends Component<props, state> {
                         {
                             title: {
                                 display: true,
-                                text: "Chart",
+                                text: I18n.t("screens.dashboard.chart.title"),
                                 color: "white"
                             },
                             animation: {

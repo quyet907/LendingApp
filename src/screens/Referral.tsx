@@ -25,7 +25,7 @@ class Referral extends React.Component<Props, State> {
 
     componentDidMount() {
         this.getDataReferal();
-        
+
     }
     componentWillReceiveProps(previousProps: Props) {
         if (previousProps.isFocused) {
@@ -49,9 +49,9 @@ class Referral extends React.Component<Props, State> {
             <ScrollView style={{ backgroundColor: color.background_primary }}>
                 <FlashMessage position="center" />
                 <View style={styles.container}>
-                    <Text style={styles.textLabel}>{I18n.t('refTitle')}</Text>
+                    <Text style={styles.textLabel}>{I18n.t('screens.referral.refTitle')}</Text>
                     <Text style={{ textAlign: 'justify', color: '#fff' }}>
-                        {'\t'}{I18n.t('introText')}
+                        {'\t'}{I18n.t('screens.referral.introText')}
                     </Text>
                     <View style={{
                         flexDirection: 'row',
@@ -69,7 +69,7 @@ class Referral extends React.Component<Props, State> {
                             style={styles.copy}
                             onPress={() => this.copyToClipboard()}
                         >
-                            <Text style={styles.copyText}>{I18n.t('copyButton')}</Text>
+                            <Text style={styles.copyText}>{I18n.t('screens.referral.copyButton')}</Text>
                         </TouchableOpacity >
                     </View>
 
@@ -79,22 +79,22 @@ class Referral extends React.Component<Props, State> {
 
 
                     <View style={styles.refAbout}>
-                        <View style={{ flexDirection: 'row', justifyContent: 'center', flex: 1 }}>
+                        <View style={{ flexDirection: 'row' , paddingRight: 10}}>
                             <View style={styles.containerIcon}>
-                                <FontAwesome5 name='user-friends' size={40} color='#00C4F8' />
+                                <FontAwesome5 name='user-friends' size={35} color='#00C4F8' />
                             </View>
                             <View style={styles.subContainer}>
-                                <Text style={{ color: color.inactive, fontSize: 12 }}>{I18n.t('totalRefTitle')}</Text>
+                                <Text style={{ color: color.inactive, fontSize: 12 }}>{I18n.t('screens.referral.totalRefTitle')}</Text>
                                 <Text style={styles.amount}>{FormatService.roundingMoney(this.state.myReferral.length)}</Text>
                             </View>
                         </View>
 
-                        <View style={{ flexDirection: 'row', flex: 1 }}>
+                        <View style={{ flexDirection: 'row' , paddingLeft: 10}}>
                             <View style={styles.containerIcon}>
-                                <FontAwesome5 name='coins' size={40} color={color.primary} />
+                                <FontAwesome5 name='coins' size={35} color={color.primary} />
                             </View>
                             <View style={styles.subContainer}>
-                                <Text style={{ color: color.inactive, fontSize: 12 }}>{I18n.t('rewardRefTitle')}</Text>
+                                <Text style={{ color: color.inactive, fontSize: 12 }}>{I18n.t('screens.referral.rewardRefTitle')}</Text>
                                 <Text style={styles.amount}>{FormatService.roundingMoney(ReferralService.calcMoneyReferral(this.state.myReferral.length))} </Text>
                             </View>
                         </View>
@@ -189,7 +189,7 @@ const styles = StyleSheet.create({
     },
     refAbout: {
         flexDirection: 'row',
-        // justifyContent: 'center',
+        justifyContent: 'center',
         paddingVertical: 20
 
     },
@@ -203,7 +203,7 @@ const styles = StyleSheet.create({
     subContainer: {
         height: 50,
         flexDirection: 'column',
-        justifyContent: 'space-between'
+        justifyContent: 'space-evenly'
     },
     logoRef: {
         width: 50,
@@ -212,7 +212,7 @@ const styles = StyleSheet.create({
         marginRight: 10
     },
     amount: {
-        fontSize: 26,
+        fontSize: 23,
         fontWeight: "600",
         color: '#fff'
     },

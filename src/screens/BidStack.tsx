@@ -23,8 +23,8 @@ export default class BidStack extends React.Component {
                     activeTintColor: '#fff',
                     style: { backgroundColor: color.background }
                 }}>
-                <Tab.Screen name='Doing' component={ListBidding} options={{ tabBarLabel: I18n.t('doingTabName') }} />
-                <Tab.Screen name='Coming' component={ListBidComming} options={{ tabBarLabel: I18n.t('comingTabName') }} />
+                <Tab.Screen name='Doing' component={ListBidding} options={{ tabBarLabel: I18n.t('screens.listBidding.tabName.doingTabName') }} />
+                <Tab.Screen name='Coming' component={ListBidComming} options={{ tabBarLabel: I18n.t('screens.listBidding.tabName.comingTabName') }} />
                 
             </Tab.Navigator>
 

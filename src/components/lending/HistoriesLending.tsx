@@ -3,6 +3,7 @@ import * as React from "react";
 import { FlatList, StyleSheet, View } from "react-native";
 import HistoryLendingDetail from "./HistoryLendingDetail";
 import I18n from '../../i18n/i18n';
+import { FormatService } from "../../Helper/FormatService";
 
 export default class HistoriesLending extends React.Component<Props, State> {
     constructor(props: any) {
@@ -20,8 +21,8 @@ export default class HistoriesLending extends React.Component<Props, State> {
                         <HistoryLendingDetail
                             title={item.lendingPackage?.name || "undefined"}
                             type={true}
-                            typeLabel={I18n.t('amount')}
-                            time={this.getTime(item.createdAt)}
+                            typeLabel={I18n.t('screens.lending.lendingHistories.amount')}
+                            time={FormatService.getTime(item.createdAt)}
                             coin={item.loanAmount || 0}
                         />
                     )}
@@ -31,17 +32,6 @@ export default class HistoriesLending extends React.Component<Props, State> {
         )
     }
 
-
-
-
-
-
-
-
-    getTime = (date: Date | undefined): String => {
-        if (date !== undefined) return date.toString().substring(0, 10);
-        else return "null";
-    };
 }
 const styles = StyleSheet.create({
     container2: {

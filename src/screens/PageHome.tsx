@@ -46,7 +46,7 @@ export default class PageHome extends React.Component<Props, state> {
             component={Home}
             options={{
 
-              tabBarLabel: I18n.t('dashboardLabel'),
+              tabBarLabel: I18n.t('screens.dashboard.dashboardTabName'),
               tabBarIcon: ({ focused }) => (
 
                 <Icon
@@ -63,7 +63,7 @@ export default class PageHome extends React.Component<Props, state> {
             name="Lending"
             component={LendingScreen}
             options={{
-              tabBarLabel: I18n.t("lendingLabel"),
+              tabBarLabel: I18n.t("screens.lending.lendingTabName"),
               tabBarIcon: ({ focused }) => (
                 <Icon
 
@@ -79,7 +79,7 @@ export default class PageHome extends React.Component<Props, state> {
             name="Referral"
             component={Referral}
             options={{
-              tabBarLabel: I18n.t("refLabel"),
+              tabBarLabel: I18n.t("screens.referral.refTabName"),
               tabBarIcon: ({ focused }) => (
                 <Icon
 
@@ -94,7 +94,7 @@ export default class PageHome extends React.Component<Props, state> {
             name="Profile"
             component={LogoutScreen}
             options={{
-              tabBarLabel: I18n.t("profileLabel"),
+              tabBarLabel: I18n.t("screens.profile.profileTabName"),
               tabBarIcon: ({ focused }) => (
                 <Icon
                   name="user-alt"

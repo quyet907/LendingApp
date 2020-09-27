@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { View, StyleSheet, Text, Image } from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import { FormatService } from '../../Helper/FormatService';
 import * as color from '../../Color'
 export default class RefAbout extends React.Component<Props, {}>{
     constructor(props: any) {
@@ -9,7 +10,7 @@ export default class RefAbout extends React.Component<Props, {}>{
 
     render() {
         return (
-            <View style={{ flexDirection: 'row' }}>
+            <View style={{flexDirection: 'row'}}>
                   <View>
                         <FontAwesome5 name='user-friends' size={35} color={color.success}/>
                     </View>

@@ -22,14 +22,14 @@ class EnterYourPhone extends Component<props, state> {
     }
     checkPhone() {
         if (!this.state.numberPhone) {
-            actionPopup.showMessage(I18n.t('passwordBlankMessage'))
+            actionPopup.showMessage(I18n.t('error.password.passwordBlank'))
         } else {
             UserService.checkExits(this.state.numberPhone).then((res) => {
                 if (res && this.props.typeAction == "signUp") {
-                    actionPopup.showMessage(I18n.t('accountHasBeenRegisteredMessage'))
+                    actionPopup.showMessage(I18n.t('error.password.accountHasBeenRegistered'))
                 }
                 else if (!res && this.props.typeAction == "forgotPassword") {
-                    actionPopup.showMessage(I18n.t('cantFindAccountMessage'))
+                    actionPopup.showMessage(I18n.t('error.password.cantFindAccount'))
                 }
                 else {
                     this.props.onPhone(this.state.numberPhone);
@@ -61,7 +61,7 @@ class EnterYourPhone extends Component<props, state> {
                                 alignItems: "center",
                             }]}
                         >
-                            <Text style={[myStyle.headerSignUp]}>{I18n.t('enterYourPhoneTitle')}</Text>
+                            <Text style={[myStyle.headerSignUp]}>{I18n.t('screens.enterYourPhone.enterYourPhoneTitle')}</Text>
                         </View>
                     </View>
                 </View>
@@ -71,9 +71,10 @@ class EnterYourPhone extends Component<props, state> {
 
                     <View style={[{ marginTop: 30 }]}>
                         <TextInput
+                            autoFocus={true}
                             style={[myStyle.inputLogin]}
                             selectionColor='red'
-                            placeholder={I18n.t('enterYourPhonePlaceholder')}
+                            placeholder={I18n.t('screens.enterYourPhone.enterYourPhonePlaceholder')}
                             value={this.state.numberPhone}
                             onSubmitEditing={() => this.checkPhone()}
                             onChangeText={(text) => {
@@ -93,7 +94,7 @@ class EnterYourPhone extends Component<props, state> {
                             }}
                         >
                             <Text style={[myStyle.textButton]}>
-                                {I18n.t('submitButtonText')}
+                                {I18n.t('screens.enterYourPhone.submitButtonText')}
                             </Text>
                         </TouchableOpacity>
 
@@ -103,7 +104,7 @@ class EnterYourPhone extends Component<props, state> {
                         <TouchableOpacity
                             onPress={Actions.login}
                         >
-                            <Text style={[myStyle.colorWhite, , { color: "#F8C400" }]}>{I18n.t('backToLogIn')}</Text>
+                            <Text style={[myStyle.colorWhite, , { color: "#F8C400" }]}>{I18n.t('screens.enterYourPhone.backToLogIn')}</Text>
                         </TouchableOpacity>
                     </View>
 

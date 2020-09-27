@@ -142,7 +142,7 @@ class Bid extends Component<props, state>{
 
 
                 <View style={[myStyle.frListBidder]}>
-                    <Text style={[myStyle.headerBidder]}>{I18n.t('bidderTitle')}</Text>
+                    <Text style={[myStyle.headerBidder]}>{I18n.t('screens.bidDetail.bidderTitle')}</Text>
                     <ListBidder
                         bidders={this.state?.bidProduct?.listHistoryBid || []}
                     ></ListBidder>

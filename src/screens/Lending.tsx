@@ -57,7 +57,7 @@ class Lending extends React.Component<Props, State> {
       <View style={{ flex: 1 }}>
         <ScrollView style={{ backgroundColor: color.background_primary }}>
           <View style={styles.container}>
-            <Text style={styles.textLabel}>{I18n.t('lendingTitle')}</Text>
+            <Text style={styles.textLabel}>{I18n.t('screens.lending.lendingTitle')}</Text>
             <View
               style={{
                 flexDirection: "row",
@@ -65,7 +65,7 @@ class Lending extends React.Component<Props, State> {
                 marginBottom: 7,
               }}
             >
-              <Text style={styles.textLabel}>{I18n.t('chooseTitle')}</Text>
+              <Text style={styles.textLabel}>{I18n.t('screens.lending.chooseTitle')}</Text>
             </View>
 
             <ScrollView
@@ -117,7 +117,7 @@ class Lending extends React.Component<Props, State> {
               }}
             >
               <Text style={styles.textLabel}>
-                {I18n.t('walletTitle')}: {FormatService.roundingMoney(this.state.wallet)} COIN
+                {I18n.t('screens.lending.walletTitle')}: {FormatService.roundingMoney(this.state.wallet)} COIN
               </Text>
             </View>
 
@@ -128,7 +128,7 @@ class Lending extends React.Component<Props, State> {
               }}
             >
               <View style={styles.lblCoin}>
-                <Text style={styles.copyText}>{I18n.t('coinInputLabel')}</Text>
+                <Text style={styles.copyText}>{I18n.t('screens.lending.coinInputLabel')}</Text>
               </View>
               <TextInput
                 value={this.state.initialValue.toString()}
@@ -148,7 +148,7 @@ class Lending extends React.Component<Props, State> {
                 style={styles.btnAll}
                 onPress={() => this.allCoin()}
               >
-                <Text style={styles.copyText}>{I18n.t('allButton')}</Text>
+                <Text style={styles.copyText}>{I18n.t('screens.lending.allButton')}</Text>
               </TouchableOpacity>
             </View>
 
@@ -194,7 +194,7 @@ class Lending extends React.Component<Props, State> {
                     fontWeight: "700",
                   }}
                 >
-                  {I18n.t('lendButton')}
+                  {I18n.t('screens.lending.lendButton')}
                 </Text>
               </TouchableOpacity>
             </View>
@@ -225,8 +225,8 @@ class Lending extends React.Component<Props, State> {
         <PopupConfirm
           confirmModal={this.state.confirmModal}
           hideBtnCancel={true}
-          textButtonLeft={'NO'}
-          textButtonRight={'YES'}
+          textButtonLeft={I18n.t('popup.yesNo.no')}
+          textButtonRight={I18n.t('popup.yesNo.yes')}
           buttonOK={() => {
             this.invest();
             this.setState({ confirmModal: false });
@@ -235,7 +235,7 @@ class Lending extends React.Component<Props, State> {
             this.setState({ confirmModal: false });
           }}
           title="Confirm"
-          message="Are you sure want to lending?"
+          message= {I18n.t('popup.message.confirmLending')}
         />
       </View>
     );
@@ -298,11 +298,7 @@ class Lending extends React.Component<Props, State> {
       this.setState({ myInvest: res.rows.reverse() });
     });
   };
-
-  getTime = (date: Date | undefined): String => {
-    if (date !== undefined) return date.toString().substring(0, 10);
-    else return "null";
-  };
+  
 
   getDaysLeft = (endAt: Date | undefined): number => {
     const currentDate: Date = new Date();
@@ -350,7 +346,6 @@ class Lending extends React.Component<Props, State> {
   onChangeText = (text: any) => { };
 
   enableButtonInvest = (): void => {
-    console.log(this.state);
     this.setState({
       buttonInvest:
         this.state.initialValue >= this.state.minInvestment &&

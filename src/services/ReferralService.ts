@@ -14,7 +14,7 @@ export class ReferralService {
         url: `${config.api.lendingAPI}/referal?page=1&pageSize=30`,
       })
         .then((res) => {
-          console.log(res.data);
+          // console.log(res.data);
           return res.data;
         })
     );

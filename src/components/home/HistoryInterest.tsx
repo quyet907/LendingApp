@@ -58,7 +58,7 @@ class HistoryInterest extends Component<props, state> {
 
                     <View style={[myStyle.rightHistoryInterest]}>
                         <Text style={[{ color: color.secondary, fontSize: 16, }]}>
-                            {this.props.daysLeft} {I18n.t('remainDays')}
+                            {this.props.daysLeft} {I18n.t('screens.dashboard.interestRateHistories.remainDays')}
                         </Text>
                     </View>
 
@@ -71,7 +71,7 @@ class HistoryInterest extends Component<props, state> {
                                     status: true
                                 })
                                 LendingService.getConfirmReceived(this.props._id).then((res) => {
-                                    console.log(this.props._id);
+                                    // console.log(this.props._id);
                                     this.props.onReload()
                                 }
 
@@ -79,7 +79,7 @@ class HistoryInterest extends Component<props, state> {
 
                             }}
                         >
-                            <Text style={{ color: 'black' }} >{this.state.status ? I18n.t('gotButton') : I18n.t('getButton')}</Text>
+                            <Text style={{ color: 'black', textTransform: 'uppercase' }} >{this.state.status ? I18n.t('screens.dashboard.interestRateHistories.gotButton') : I18n.t('screens.dashboard.interestRateHistories.getButton')}</Text>
                         </TouchableOpacity>
                     </View>
                 </View>
