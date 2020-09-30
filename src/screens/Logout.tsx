@@ -15,6 +15,8 @@ import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 import * as Color from "../Color";
 import { ScreenName } from "./ScreenName";
 import I18n from "../i18n/i18n";
+import { BaseUserWithJwt } from '@Core/model/user/BaseUser';
+
 
 const sizeIcon = 20;
 
@@ -22,14 +24,16 @@ export default class Logout extends Component<props, state> {
   constructor(props: any) {
     super(props);
     this.state = {
-      getPhone: "",
+      thisUser: {},
     };
   }
   componentDidMount() {
     UserService.getMe().then((res) => {
       if (res != null) {
         if (res.username != null) {
-          this.setState({ getPhone: res.username || "" });
+          this.setState({ thisUser: res }, () => console.log(this.state.thisUser));
+          console.log(res);
+          
         }
       }
     });
@@ -50,7 +54,7 @@ export default class Logout extends Component<props, state> {
             /> */}
           </View>
           <View style={{ justifyContent: "space-around", height: "100%" }}>
-            <Text style={[styles.contentAccount]}>{this.state.getPhone}</Text>
+            <Text style={[styles.contentAccount]}>{this.state.thisUser.username}</Text>
           </View>
         </View>
 
@@ -59,7 +63,7 @@ export default class Logout extends Component<props, state> {
           <TouchableOpacity
             style={[myStyle.row, styles.layoutFeature]}
             onPress={() => this.props.navigation.navigate(ScreenName.EditProfile, {
-              phoneNumber: this.state.getPhone
+              thisUser: this.state.thisUser
             })}
 
           >
@@ -141,7 +145,7 @@ type props = {
 };
 
 type state = {
-  getPhone: string;
+  thisUser: BaseUserWithJwt;
 };
 
 const styles = StyleSheet.create({

@@ -6,12 +6,24 @@ import myStyle from '../style'
 import * as ImagePicker from 'expo-image-picker';
 import Constants from 'expo-constants';
 import { uploadService } from '../services/UploadService';
+import { User } from '@StockAfiCore/model/user/User';
+import { Address } from '@Core/model/Address';
+import { UserService } from '../services/UserService';
+import * as action from "../Action/ActionLogin";
+import { connect } from 'react-redux';
+import * as actionPopup from "../Action/ActionPopup";
+import I18n from '../i18n/i18n'
 
-export default class Profile extends React.Component<Props, State> {
+
+
+class Profile extends React.Component<Props, State> {
+    thisUser = this.props.route.params.thisUser;
+    avtDefault = 'https://i.picsum.photos/id/199/1000/500.jpg?hmac=FK68A1s1J9x0AXSbNfbsgWwUe80fJDlvGRQ5J0IvMAU';
+
     constructor(props: any) {
         super(props)
         this.state = {
-            avtURL: 'https://i.picsum.photos/id/199/1000/500.jpg?hmac=FK68A1s1J9x0AXSbNfbsgWwUe80fJDlvGRQ5J0IvMAU',
+            avtURL: this.avtDefault,
             name: '',
             address: '',
             identityCard: '',
@@ -21,7 +33,7 @@ export default class Profile extends React.Component<Props, State> {
         }
     }
 
-    userId = this.props.route.params.phoneNumber;
+
 
     componentDidMount() {
         (async () => {
@@ -32,14 +44,27 @@ export default class Profile extends React.Component<Props, State> {
                 //alert('Sorry, we need camera roll permissions to make this work!');
             }
         })
-        console.log(this.userId);
+        // console.log(this.thisUser);
+
+        UserService.getMe().then(res => {
+            if (res) {
+                this.setState({
+                    avtURL: res.avatar || this.avtDefault,
+                    name: res.fullName || '',
+                    address: res.address?.address || '',
+                    identityCard: res.identityCard || '',
+                    frontIdCard: res.imgIdentityCards ? res.imgIdentityCards[0] : '',
+                    backIdCard: res.imgIdentityCards ? res.imgIdentityCards[1] : '',
+                })
+            }
+        })
 
 
     }
 
 
 
-    pickImage = async (asideIdCard:string) => {
+    pickImage = async (asideIdCard: string) => {
         let result = await ImagePicker.launchImageLibraryAsync({
             mediaTypes: ImagePicker.MediaTypeOptions.Images,
             allowsEditing: true,
@@ -53,7 +78,8 @@ export default class Profile extends React.Component<Props, State> {
             this.uploadImage(result.uri, asideIdCard)
                 .then(url => {
                     if (asideIdCard === 'front') this.setState({ frontIdCard: url })
-                    else this.setState({ backIdCard: url })
+                    else if (asideIdCard === 'back') this.setState({ backIdCard: url })
+                    else this.setState({ avtURL: url })
                 })
             // this.uploadImage(result.uri)
             //     .then(url => console.log(url))
@@ -64,7 +90,7 @@ export default class Profile extends React.Component<Props, State> {
     uploadImage = async (uri: string, asideIdCard: string) => {
         const response = await fetch(uri);
         const blob = await response.blob();
-        const url = await uploadService.upload("idCards", `${this.userId}-${asideIdCard}IdCard`, blob);
+        const url = await uploadService.upload("idCards", `${this.thisUser.username}-${asideIdCard}IdCard`, blob);
         return url
     }
 
@@ -79,9 +105,12 @@ export default class Profile extends React.Component<Props, State> {
                                 style={styles.tinyLogo}
                                 source={{ uri: this.state.avtURL }}
                             />
-                            <View style={{ padding: 10, position: 'absolute', right: 5, bottom: 5, borderRadius: 50, backgroundColor: Color.primary }}>
+                            <TouchableOpacity
+                                style={{ padding: 10, position: 'absolute', right: 5, bottom: 5, borderRadius: 50, backgroundColor: Color.primary }}
+                                onPress={() => this.pickImage('avt')}
+                            >
                                 <FontAwesome5 name={"camera"} size={15} color={'#000'} />
-                            </View>
+                            </TouchableOpacity>
                         </View>
 
 
@@ -90,7 +119,7 @@ export default class Profile extends React.Component<Props, State> {
                 </View>
 
                 <View style={{ marginTop: 70, justifyContent: 'center', alignItems: 'center' }}>
-                    <Text style={{ color: '#fff', fontSize: 20, fontWeight: '600' }}>{this.state.nameDefault}</Text>
+                    <Text style={{ color: '#fff', fontSize: 20, fontWeight: '600' }}>{this.state.name ? this.state.name : this.state.nameDefault}</Text>
                 </View>
 
                 <View style={{ marginTop: 30, paddingHorizontal: 27 }}>
@@ -119,7 +148,7 @@ export default class Profile extends React.Component<Props, State> {
                             <TextInput
                                 style={styles.input}
                                 onChangeText={text => this.setState({ address: text })}
-                                value={this.state.address}
+                                value={typeof this.state.address === 'string' ? this.state.address : ''}
                                 maxLength={35}
                                 placeholder={'Enter your address'}
                             />
@@ -136,7 +165,8 @@ export default class Profile extends React.Component<Props, State> {
                                 onChangeText={text => this.setState({ identityCard: text })}
                                 value={this.state.identityCard}
                                 maxLength={35}
-                                placeholder={''}
+                                keyboardType={'number-pad'}
+                                placeholder={'Enter ID Card'}
                             />
                         </View>
                     </View>
@@ -193,8 +223,7 @@ export default class Profile extends React.Component<Props, State> {
                         <TouchableOpacity
                             style={[myStyle.buttonLogin]}
                             activeOpacity={0.7}
-                            onPress={() => console.warn('click')
-                            }
+                            onPress={this.updateInfo}
                         >
                             <Text style={[myStyle.textButton]}>UPDATE</Text>
                         </TouchableOpacity>
@@ -208,6 +237,48 @@ export default class Profile extends React.Component<Props, State> {
             </ScrollView>
 
         )
+    }
+
+    updateInfo = () => {
+        if (this.validationInfo()) {
+            let imgIdentityCards = [this.state.frontIdCard, this.state.backIdCard];
+            let address: Address = {
+                address: typeof this.state.address === 'string' ? this.state.address : 'Type address is not string'
+            }
+            let user: User = {
+                avatar: this.state.avtURL !== this.avtDefault ? this.state.avtURL : '',
+                fullName: this.state.name,
+                address: address,
+                identityCard: this.state.identityCard,
+                imgIdentityCards: imgIdentityCards
+            }
+            UserService.updateInfoUser(user)
+                .then(res => {
+                    console.log(res.data)
+                    actionPopup.showMessage(I18n.t('success.updateProfile'));
+                })
+
+        } else {
+            actionPopup.showMessage(I18n.t('error.profile.fillOutAll'));
+        }
+
+
+
+
+
+        // console.log(user);
+
+
+
+    }
+
+    validationInfo = (): boolean => {
+        let fullName = this.state.name,
+            address = this.state.address,
+            identityCard = this.state.identityCard,
+            frontIdCard = this.state.frontIdCard,
+            backIdCard = this.state.backIdCard;
+        return (fullName && address && identityCard && frontIdCard && backIdCard) ? true : false
     }
 
 }
@@ -273,9 +344,12 @@ type Props = {
 type State = {
     avtURL: string,
     name: string,
-    address: string,
+    address: string | Address,
     identityCard: string,
     nameDefault: string,
     frontIdCard: string,
     backIdCard: string,
 }
+
+
+export default Profile

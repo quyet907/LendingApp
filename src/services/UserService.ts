@@ -1,18 +1,20 @@
 import {
-  BaseUser,
-  BaseUserWithJwt,
+    BaseUser,
+    BaseUserWithJwt,
 } from "../share/base-ale/model/user/BaseUser";
 import axios from "axios";
 import { AsyncStorage } from "react-native";
 import { Actions } from "react-native-router-flux";
 import { config } from "../config/Config";
 import I18n from '../i18n/i18n'
+import { User } from "@StockAfiCore/model/user/User";
+import { getAxios } from "./APIService";
 
 export class UserService {
-    
-    
+
+
     public static login(user: string, pass: string): Promise<BaseUserWithJwt> {
-    
+
         // let getJWT: any = UserService.getJWT();
         let typeLogin: "phonenumber";
 
@@ -80,7 +82,7 @@ export class UserService {
 
 
     public static getJWT = (): Promise<string | null> => {
-        return AsyncStorage.getItem('jwt').then(jwt => { return jwt; });
+        return AsyncStorage.getItem('jwt').then(jwt => jwt)
     }
 
 
@@ -122,7 +124,7 @@ export class UserService {
             })
     }
 
-    public static getMe(): Promise<BaseUserWithJwt| null> {
+    public static getMe(): Promise<User | null> {
         return axios.get(`${config.api.userAPI}/user/me`,)
             .then(res => {
                 return res.data
@@ -139,7 +141,7 @@ export class UserService {
                 username: phone
             }
         }).then(res => {
- 
+
             if (res.data.isExist) {
                 return true
             }
@@ -177,40 +179,54 @@ export class UserService {
 
 
 
-  //check validate of password
-  public static checkValidate = (
-    pass: string,
-    AgainPass: string
-  ): string | null => {
-    if (pass != AgainPass) {
-      return I18n.t('error.password.repeatPasswordDontMatch');
-    }
-    if (pass.length < 6) {
-      return I18n.t('error.password.passwordLessThan6Characters');
-    }
-    if(pass.length >32){
-        return I18n.t('error.password.passwordMoreThan32Characters');
-    }
-    // var regex_Phone = /[0-32]$/;
-    // if (!regex_Phone.test(pass)) {
-    //   return "Password contains only numbers";
-    // }
-    return null;
-  };
+    //check validate of password
+    public static checkValidate = (
+        pass: string,
+        AgainPass: string
+    ): string | null => {
+        if (pass != AgainPass) {
+            return I18n.t('error.password.repeatPasswordDontMatch');
+        }
+        if (pass.length < 6) {
+            return I18n.t('error.password.passwordLessThan6Characters');
+        }
+        if (pass.length > 32) {
+            return I18n.t('error.password.passwordMoreThan32Characters');
+        }
+        // var regex_Phone = /[0-32]$/;
+        // if (!regex_Phone.test(pass)) {
+        //   return "Password contains only numbers";
+        // }
+        return null;
+    };
 
-  //check validate phone
-  public static checkValidatePhone = (phone: string): string | null => {
-    phone.trim();
-    if (phone.length == 0) {
-      return I18n.t('error.password.passwordBlank');
+    //check validate phone
+    public static checkValidatePhone = (phone: string): string | null => {
+        phone.trim();
+        if (phone.length == 0) {
+            return I18n.t('error.password.passwordBlank');
+        }
+        if (phone.length < 10 || phone.length > 11) {
+            return I18n.t('error.numberPhone.invalidMobile');
+        }
+        var regex_Phone = /[0-9]$/;
+        if (!regex_Phone.test(phone)) {
+            return I18n.t('error.numberPhone.incorredPhoneFormat');
+        }
+        return null;
+    };
+
+
+    public static updateInfoUser = (user: User): Promise<any> => {
+        return getAxios().then((axios) =>
+            axios({
+                method: "POST",
+                url: `${config.api.lendingAPI}/user/infoUser`,
+                data: user,
+            })
+                .then((res) => res)
+                .catch((err) => err)
+        );
+
     }
-    if (phone.length < 10 || phone.length > 11) {
-      return I18n.t('error.numberPhone.invalidMobile');
-    }
-    var regex_Phone = /[0-9]$/;
-    if (!regex_Phone.test(phone)) {
-      return I18n.t('error.numberPhone.incorredPhoneFormat');
-    }
-    return null;
-  };
 }

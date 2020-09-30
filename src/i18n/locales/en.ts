@@ -1,4 +1,7 @@
 export default {
+    success: {
+        "updateProfile": "Update successful!"
+    },
     popup: {
         yesNo: {
             "yes": "YES",
@@ -35,6 +38,9 @@ export default {
         },
         giftcode: {
             "giftcodeBlank": "Please enter giftcode!"
+        },
+        profile: {
+            "fillOutAll": "Please fill out all the information!"
         }
     },
     screens: {

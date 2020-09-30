@@ -22,16 +22,16 @@ export class IncomeService {
 
   public static getDayDataChar(listDay: Income[]): Array<string> {
     let ArrayDate = new Array();
-    if(listDay){
+    if (listDay) {
       for (let index = 0; index < listDay.length; index++) {
         let getDateString: any = listDay[index].incomeAt;
         let getDate: Date = new Date(getDateString);
-        let dayString:string = getDate.getDate().toString();
-        let MonthString:string = (getDate.getMonth()+1).toString();
-        if(dayString.length==1){
+        let dayString: string = getDate.getDate().toString();
+        let MonthString: string = (getDate.getMonth() + 1).toString();
+        if (dayString.length == 1) {
           dayString = `0${dayString}`
         }
-        if(MonthString.length==1){
+        if (MonthString.length == 1) {
           MonthString = `0${MonthString}`
         }
 
@@ -41,14 +41,14 @@ export class IncomeService {
     return ArrayDate;
   }
 
-  
+
 
   public static createDataChart(listAll: Income[]): Array<number> {
     let ArrayValue = new Array();
-    if(listAll){
+    if (listAll) {
       for (let i = 0; i < listAll.length; i++) {
         let getValue = listAll[i].amount;
-        
+
         ArrayValue.push(getValue);
 
       }

@@ -1,5 +1,5 @@
 import "firebase/storage";
-import {firebase} from "../config/FirebaseConfig";
+import { firebase } from "../config/FirebaseConfig";
 
 const storage = firebase.storage();
 
@@ -30,5 +30,7 @@ class UploadService {
   ): Promise<string> {
     return this.upload(pathFolder, new Date().getTime().toString(), file);
   }
+
+  
 }
 export const uploadService = new UploadService();

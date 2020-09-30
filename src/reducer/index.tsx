@@ -3,7 +3,6 @@ import Allreducer from "./AllReducer"
 import PopupReducer from "./PopupReducer"
 import LoadingReducer from "./LoaddingReducer"
 import {combineReducers} from "redux"
-import FinanceReducer from "./FinanceReducer"
 
 const rootReducer = combineReducers({
     
@@ -11,7 +10,6 @@ const rootReducer = combineReducers({
     Allreducer : Allreducer,
     PopupReducer : PopupReducer,
     LoadingReducer : LoadingReducer,
-    FinanceReducer: FinanceReducer,
 })
 
 

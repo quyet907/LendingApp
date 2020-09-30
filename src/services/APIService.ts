@@ -38,13 +38,13 @@ axios.interceptors.response.use(
             })
             return Promise.reject(err);
         }
-        
-        
-        if(err.response.status == 500){
-            if(err.response.message){
+
+
+        if (err.response.status == 500) {
+            if (err.response.message) {
                 action.showMessage(err.response.message)
             }
-            if(err.response.data && err.response.data.message){
+            if (err.response.data && err.response.data.message) {
                 action.showMessage(err.response.data.message)
             }
             else {
