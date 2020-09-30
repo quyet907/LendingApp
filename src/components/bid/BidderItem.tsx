@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { View, Image, Text } from 'react-native'
 import myStyle from "../../style"
 import { BidHistory } from '@StockAfiCore/model/bid/BidHistory'
-import { FormatService } from '../../Helper/FormatService';
+import { MyFormat } from '../../Helper/MyFormat';
 import EmojiEmotionsIcon from '@material-ui/icons/EmojiEmotions';
 import Icon from "react-native-vector-icons/FontAwesome5"
 import * as color from "../../Color";
@@ -31,7 +31,7 @@ export default class BidderItem extends Component <props , state> {
                 </View>
 
                 <View style={[myStyle.priceBidderItem]}>
-            <Text style={[myStyle.textPriceBidderItem]}>{FormatService.roundingMoney(this.props.bidder.bidPrice||0)}</Text>
+            <Text style={[myStyle.textPriceBidderItem]}>{MyFormat.roundingMoney(this.props.bidder.bidPrice||0)}</Text>
                 </View>
             </View>
         )

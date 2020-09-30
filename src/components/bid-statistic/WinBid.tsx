@@ -10,7 +10,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { Actions } from 'react-native-router-flux';
 import { useIsFocused } from '@react-navigation/native';
 import { ScreenName } from '../../screens/ScreenName';
-import { FormatService } from '../../Helper/FormatService';
+import { MyFormat } from '../../Helper/MyFormat';
 class WinBid extends React.Component<Props, State> {
     constructor(props: any) {
         super(props);
@@ -47,7 +47,7 @@ class WinBid extends React.Component<Props, State> {
                                     <BidDetail
                                         imgURL={item.bidProduct && item.bidProduct.product && item.bidProduct.product.thumbImagesUrl ? item.bidProduct.product.thumbImagesUrl[0] : 'null'}
                                         name={item.bidProduct?.product?.name || "undefined"}
-                                        bidAt={FormatService.getTime(item.bidProduct?.latestBidAt) || "undefined"}
+                                        bidAt={MyFormat.getTime(item.bidProduct?.latestBidAt) || "undefined"}
                                         bidClick={item.bidCount || 99999}
                                         startPrice={item.bidProduct?.startPrice || 0}
                                         endPrice={item.bidProduct?.endPrice || 0}

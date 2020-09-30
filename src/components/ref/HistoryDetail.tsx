@@ -3,7 +3,7 @@ import { View, StyleSheet, Text, Image } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import * as color from '../../Color'
-import { FormatService } from '../../services/FormatService';
+import { MyFormat } from '../../Helper/MyFormat';
 import { ReferralService } from '../../services/ReferralService';
 const timeIcon = <Icon name="access-time" size={12} color='#868685' />;
 export default class HistoryDetail extends React.Component<Props, {}>{
@@ -28,7 +28,7 @@ export default class HistoryDetail extends React.Component<Props, {}>{
                         <Text style={styles.time}>{this.props.typeLabel}</Text>
                         <View style={{ flexDirection: 'row', alignItems: 'center', flex: 1 }}>
                             <Text style={this.props.type ? styles.coinGreen : styles.coinRed}>
-                                {this.props.type && this.props.typeLabel != 'AMOUNT' ? '+' : (this.props.typeLabel == 'AMOUNT' ? '' : '-')}{FormatService.roundingMoney(ReferralService.calcMoneyReferral(1))} COIN</Text>
+                                {this.props.type && this.props.typeLabel != 'AMOUNT' ? '+' : (this.props.typeLabel == 'AMOUNT' ? '' : '-')}{MyFormat.roundingMoney(ReferralService.calcMoneyReferral(1))} COIN</Text>
                         </View>
                     </View>
 

@@ -6,7 +6,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import * as color from '../../Color'
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { LendingService } from '../../services/LendingService';
-import { FormatService } from '../../services/FormatService';
+import { MyFormat } from '../../Helper/MyFormat';
 import { connect } from "react-redux";
 import * as  actionAll from "../../Action/ActionAll"
 import { Finance } from '@StockAfiCore/model/lending/Finance';
@@ -46,13 +46,13 @@ class HistoryInterest extends Component<props, state> {
 
                     <View style={[myStyle.row, myStyle.centerHistoryInterest]}>
                         {/* <Text style={[{ color: color.inactive }, myStyle.contentHistoryInterest]}>
-                            {FormatService.roundingMoney(this.props.amount)}
+                            {MyFormat.roundingMoney(this.props.amount)}
                         </Text>
                         <Image
                             style={[myStyle.iconHistoryInterest, { margin: 10 }]}
                             source={require("../../icons/icons8_right_26px.png")}
                         />
-                        <Text style={[{ color: color.primary, }, myStyle.contentHistoryInterest]}>{FormatService.roundingMoney(this.props.amount + this.props.profits)}</Text>
+                        <Text style={[{ color: color.primary, }, myStyle.contentHistoryInterest]}>{MyFormat.roundingMoney(this.props.amount + this.props.profits)}</Text>
                      */}
                     </View>
 
@@ -127,5 +127,4 @@ function mapDispatchToProps(dispatch: any, props: any) {
         }
     }
 }
-
 export default connect(mapStateToProps, mapDispatchToProps)(HistoryInterest)

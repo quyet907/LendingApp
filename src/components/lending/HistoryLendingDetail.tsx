@@ -3,7 +3,7 @@ import { View, StyleSheet, Text, Image } from 'react-native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import * as color from '../../Color'
-import { FormatService } from '../../services/FormatService';
+import { MyFormat } from '../../Helper/MyFormat';
 const timeIcon = <MaterialIcons name="access-time" size={12} color={color.inactive} />;
 export default class HistoryLendingDetail extends React.Component<Props, {}>{
     constructor(props: any) {
@@ -27,7 +27,7 @@ export default class HistoryLendingDetail extends React.Component<Props, {}>{
                         <Text style={styles.time}>{this.props.typeLabel}</Text>
                         <View style={{ flexDirection: 'row', alignItems: 'center', flex: 1 }}>
                             <Text style={this.props.type ? styles.coinGreen : styles.coinRed}>
-                               {FormatService.roundingMoney(this.props.coin)} COIN</Text>
+                               {MyFormat.roundingMoney(this.props.coin)} COIN</Text>
                         </View>
                     </View>
 

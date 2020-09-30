@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { View, StyleSheet, Text, Image } from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
-import { FormatService } from '../../Helper/FormatService';
+import { MyFormat } from '../../Helper/MyFormat';
 import * as color from '../../Color'
 export default class RefAbout extends React.Component<Props, {}>{
     constructor(props: any) {
@@ -16,7 +16,7 @@ export default class RefAbout extends React.Component<Props, {}>{
                     </View>
                 <View style={styles.subContainer}>
                     <Text style={{ color: '#868685', fontSize: 12 }}>{this.props.label}</Text>
-                    <Text style={styles.amount}>{FormatService.roundingMoney(this.props.amount)}</Text>
+                    <Text style={styles.amount}>{MyFormat.roundingMoney(this.props.amount)}</Text>
                 </View>
             </View>
         )

@@ -10,7 +10,7 @@ import { config } from '../config/Config';
 import HistoryDetail from '../components/ref/HistoryDetail';
 import { useIsFocused } from '@react-navigation/native';
 import MyReferrals from '../components/ref/MyReferrals';
-import { FormatService } from '../services/FormatService';
+import { MyFormat } from '../Helper/MyFormat';
 import I18n from "../i18n/i18n";
 
 class Referral extends React.Component<Props, State> {
@@ -39,7 +39,7 @@ class Referral extends React.Component<Props, State> {
         })
 
         ReferralService.getMe().then(res => {
-            this.setState({ myID: res._id || "null" })
+            this.setState({ myID: (res) ?  res._id || "null" : "null" })
         })
     }
 
@@ -85,7 +85,7 @@ class Referral extends React.Component<Props, State> {
                             </View>
                             <View style={styles.subContainer}>
                                 <Text style={{ color: color.inactive, fontSize: 12 }}>{I18n.t('screens.referral.totalRefTitle')}</Text>
-                                <Text style={styles.amount}>{FormatService.roundingMoney(this.state.myReferral.length)}</Text>
+                                <Text style={styles.amount}>{MyFormat.roundingMoney(this.state.myReferral.length)}</Text>
                             </View>
                         </View>
 
@@ -95,7 +95,7 @@ class Referral extends React.Component<Props, State> {
                             </View>
                             <View style={styles.subContainer}>
                                 <Text style={{ color: color.inactive, fontSize: 12 }}>{I18n.t('screens.referral.rewardRefTitle')}</Text>
-                                <Text style={styles.amount}>{FormatService.roundingMoney(ReferralService.calcMoneyReferral(this.state.myReferral.length))} </Text>
+                                <Text style={styles.amount}>{MyFormat.roundingMoney(ReferralService.calcMoneyReferral(this.state.myReferral.length))} </Text>
                             </View>
                         </View>
                     </View>

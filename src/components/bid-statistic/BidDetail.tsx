@@ -2,7 +2,7 @@ import * as React from 'react';
 import { View, StyleSheet, Text, Image, ImageProps } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import * as color from '../../Color'
-import { FormatService } from '../../services/FormatService';
+import { MyFormat } from '../../Helper/MyFormat';
 const timeIcon = <Icon name="access-time" size={13} color='#868685' />;
 export default class BidDetail extends React.Component<Props, {}>{
     constructor(props: any) {
@@ -25,8 +25,8 @@ export default class BidDetail extends React.Component<Props, {}>{
                                 <Text style={[styles.times, styles.fontWhiteColor]}>{`${this.props.bidClick} clicks`}</Text>
                             </View>
                             <View style={{ justifyContent: 'flex-end', alignItems: 'flex-end' }}>
-                                <Text style={{ color: color.inactive, textDecorationLine: 'line-through' }}>{FormatService.roundingMoney(this.props.startPrice)}</Text>
-                                <Text style={[styles.price]}>{FormatService.roundingMoney(this.props.endPrice)}</Text>
+                                <Text style={{ color: color.inactive, textDecorationLine: 'line-through' }}>{MyFormat.roundingMoney(this.props.startPrice)}</Text>
+                                <Text style={[styles.price]}>{MyFormat.roundingMoney(this.props.endPrice)}</Text>
                             </View>
 
                         </View>

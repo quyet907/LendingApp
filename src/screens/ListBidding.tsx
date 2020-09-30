@@ -6,7 +6,7 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 import { Actions } from "react-native-router-flux"
 import { BidService } from "../services/BidService";
 import { BidProduct } from "@StockAfiCore/model/bid/BidProduct";
-import { FormatService } from "../services/FormatService";
+import { MyFormat } from "../Helper/MyFormat";
 import { ScreenName } from "./ScreenName";
 import { firebase } from "../config/FirebaseConfig";
 import { useIsFocused } from "@react-navigation/native";

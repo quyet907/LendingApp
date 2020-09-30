@@ -4,7 +4,7 @@ import { config } from "../config/Config";
 import { getAxios } from "./APIService";
 
 export class CouponService {
-    public static postCoupon(code: string): Promise<any> {
+    public static postCoupon(code: string): Promise<UserCoupon> {
         return getAxios().then(axios => {
             return axios({
                 method: 'POST',
@@ -13,8 +13,8 @@ export class CouponService {
                     code: code
                 }
             })
-                .then(res => { return res.data })
-                .catch(err => err)
+                .then(res => res ?  res.data : null)
+                .catch(err => null)
         })
     }
 

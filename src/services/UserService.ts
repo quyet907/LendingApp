@@ -9,6 +9,7 @@ import { config } from "../config/Config";
 import I18n from '../i18n/i18n'
 import { User } from "@StockAfiCore/model/user/User";
 import { getAxios } from "./APIService";
+import { BankUser } from "@StockAfiCore/model/user/BankUser";
 
 export class UserService {
 
@@ -67,7 +68,7 @@ export class UserService {
                 "Authorization": `Bearer ${jwt}`
             }
         })
-            .then(res => {
+            .then((res: any) => {
                 if (res && res.message) {
                     return false;
                 }
@@ -82,7 +83,8 @@ export class UserService {
 
 
     public static getJWT = (): Promise<string | null> => {
-        return AsyncStorage.getItem('jwt').then(jwt => jwt)
+        return AsyncStorage.getItem('jwt').then(jwt => { console.log("jwt"); return (jwt) ? jwt : "" })
+            .catch(err => { console.log("lỗi"); return null });
     }
 
 
@@ -124,7 +126,7 @@ export class UserService {
             })
     }
 
-    public static getMe(): Promise<User | null> {
+    public static getMe(): Promise<BaseUserWithJwt | null> {
         return axios.get(`${config.api.userAPI}/user/me`,)
             .then(res => {
                 return res.data
@@ -227,6 +229,26 @@ export class UserService {
                 .then((res) => res)
                 .catch((err) => err)
         );
+    }
+    public static getInfoBank(): Promise<BankUser[]> {
+        return getAxios().then((axios) => {
+            return axios({
+                method: "GET",
+                url: `${config.api.lendingAPI}/user_bank`,
+            }).then(res => { return res ? res.data : [] })
+                .catch(err => console.error(err))
+        })
+    }
 
+    public static updateInfoBank(bankInfo: BankUser): Promise<BankUser> {
+        return getAxios().then((axios) => {
+            return axios({
+                method: "POST",
+                url: `${config.api.lendingAPI}/user_bank`,
+                data: { banks: bankInfo }
+            })
+                .then(res => res ? res.data : null)
+                .catch(err => null)
+        })
     }
 }

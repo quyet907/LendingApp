@@ -3,7 +3,7 @@ import { Text, View, Dimensions, StyleSheet, TouchableOpacity } from 'react-nati
 import style from '../../../style';
 import { LendingPackage } from '@StockAfiCore/model/lending/LendingPackage';
 import *  as color from '../../../Color'
-import { FormatService } from '../../../Helper/FormatService';
+import { MyFormat } from '../../../Helper/MyFormat';
 import I18n from '../../../i18n/i18n'
 
 
@@ -27,7 +27,7 @@ export default class Package extends Component<Props, State> {
                     </Text>
                 </View>
                 <View style={{ backgroundColor: '#2E2D2A', alignItems: 'center', justifyContent: 'space-around', paddingVertical: 10, borderRadius: 2 }}>
-                    <Text style={styles.text}>{I18n.t('screens.lending.lendingPackage.minInvest')} {FormatService.roundingMoney(this.props.package.minInvestment || 0)}</Text>
+                    <Text style={styles.text}>{I18n.t('screens.lending.lendingPackage.minInvest')} {MyFormat.roundingMoney(this.props.package.minInvestment || 0)}</Text>
                     {/* <Text style={styles.text}>Max {this.props.package.maxInvestment}</Text> */}
                     <Text style={styles.text}>{I18n.t('screens.lending.lendingPackage.interestRate')} {typeof this.props.package.profitPerDay == 'number' ?
                         Math.ceil(this.props.package.profitPerDay * 30) : 0}%</Text>
