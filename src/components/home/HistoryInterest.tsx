@@ -127,5 +127,4 @@ function mapDispatchToProps(dispatch: any, props: any) {
         }
     }
 }
-
 export default connect(mapStateToProps, mapDispatchToProps)(HistoryInterest)
