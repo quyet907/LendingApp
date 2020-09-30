@@ -19,6 +19,7 @@ import Loadding from "./src/screens/Loadding";
 import Bid from "./src/screens/Bid";
 import { config } from "./src/config/Config";
 import { ConfigService } from "./src/services/ConfigService";
+import InfoBank from "./src/screens/InfoBank";
 
 
 
@@ -30,6 +31,7 @@ const MyTransitionSpec = {
 
 const scenes = Actions.create(
   <Scene key="root" duration={4}>
+    <Scene key= "infoBank" component={InfoBank} hideNavBar={true} />
     <Scene key="login" component={Login} hideNavBar={true} />
     <Scene key="home" component={PageHome} hideNavBar={true}/>
     <Scene key="enterPhone" component={EnterYourPhone} hideNavBar={true} />

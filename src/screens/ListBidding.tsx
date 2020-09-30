@@ -8,7 +8,7 @@ import { BidService } from "../services/BidService";
 import { BidProduct } from "@StockAfiCore/model/bid/BidProduct";
 import { MyFormat } from "../Helper/MyFormat";
 import { ScreenName } from "./ScreenName";
-import { firebase } from "../../FirebaseConfig";
+import { firebase } from "../config/FirebaseConfig";
 import { useIsFocused } from "@react-navigation/native";
 
 

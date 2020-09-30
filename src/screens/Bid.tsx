@@ -10,7 +10,7 @@ import { Product } from '@StockAfiCore/model/product/Product';
 import { BidHistory } from '@StockAfiCore/model/bid/BidHistory';
 import { Paging } from '@Core/controller/Paging';
 import { MyFormat } from '../Helper/MyFormat';
-import { firebase } from "../../FirebaseConfig";
+import { firebase } from "../config/FirebaseConfig";
 import { BaseUser } from '@Core/model/user/BaseUser';
 import I18n from "../i18n/i18n";
 import { User } from '@StockAfiCore/model/user/User';

@@ -35,7 +35,7 @@ export class MyFormat {
         let dayString = getDate.getDay();
         let monthString = getDate.getMonth() + 1;
         let yearString = getDate.getFullYear();
-        return `${getDate.getHours} : ${getDate.getMinutes()} ${getDate.getDay()}/${getDate.getMonth()}/${getDate.getMonth}`;
+        return `${getDate.getHours()} : ${getDate.getMinutes()} ${getDate.getDay()}/${getDate.getMonth() + 1}/${getDate.getFullYear()}`;
     }
 
     public static getTime = (date: Date | undefined): string => {

@@ -61,8 +61,10 @@ export class IncomeService {
   public static getFinance(): Promise<Finance> {
     return getAxios().then((axios) =>
       axios.get(`${config.api.userAPI}/user/finance`).then((res) => {
-        return res.data;
+        console.log(res)
+        return (res) ?  res.data : null;
       })
+      .catch(err => null)
     );
   }
 }

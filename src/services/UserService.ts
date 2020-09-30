@@ -1,18 +1,20 @@
 import {
-  BaseUser,
-  BaseUserWithJwt,
+    BaseUser,
+    BaseUserWithJwt,
 } from "../share/base-ale/model/user/BaseUser";
 import axios from "axios";
 import { AsyncStorage } from "react-native";
 import { Actions } from "react-native-router-flux";
 import { config } from "../config/Config";
 import I18n from '../i18n/i18n'
+import { BankUser } from "@StockAfiCore/model/user/BankUser";
+import { getAxios } from "./APIService";
 
 export class UserService {
-    
-    
+
+
     public static login(user: string, pass: string): Promise<BaseUserWithJwt> {
-    
+
         // let getJWT: any = UserService.getJWT();
         let typeLogin: "phonenumber";
 
@@ -65,7 +67,7 @@ export class UserService {
                 "Authorization": `Bearer ${jwt}`
             }
         })
-            .then(res => {
+            .then((res : any) => {
                 if (res && res.message) {
                     return false;
                 }
@@ -80,7 +82,8 @@ export class UserService {
 
 
     public static getJWT = (): Promise<string | null> => {
-        return AsyncStorage.getItem('jwt').then(jwt => { return jwt; });
+        return AsyncStorage.getItem('jwt').then(jwt => { console.log("jwt"); return (jwt) ? jwt : ""})
+        .catch(err => {console.log("lỗi");return null});
     }
 
 
@@ -122,7 +125,7 @@ export class UserService {
             })
     }
 
-    public static getMe(): Promise<BaseUserWithJwt| null> {
+    public static getMe(): Promise<BaseUserWithJwt | null> {
         return axios.get(`${config.api.userAPI}/user/me`,)
             .then(res => {
                 return res.data
@@ -139,7 +142,7 @@ export class UserService {
                 username: phone
             }
         }).then(res => {
- 
+
             if (res.data.isExist) {
                 return true
             }
@@ -177,40 +180,62 @@ export class UserService {
 
 
 
-  //check validate of password
-  public static checkValidate = (
-    pass: string,
-    AgainPass: string
-  ): string | null => {
-    if (pass != AgainPass) {
-      return I18n.t('error.password.repeatPasswordDontMatch');
-    }
-    if (pass.length < 6) {
-      return I18n.t('error.password.passwordLessThan6Characters');
-    }
-    if(pass.length >32){
-        return I18n.t('error.password.passwordMoreThan32Characters');
-    }
-    // var regex_Phone = /[0-32]$/;
-    // if (!regex_Phone.test(pass)) {
-    //   return "Password contains only numbers";
-    // }
-    return null;
-  };
+    //check validate of password
+    public static checkValidate = (
+        pass: string,
+        AgainPass: string
+    ): string | null => {
+        if (pass != AgainPass) {
+            return I18n.t('error.password.repeatPasswordDontMatch');
+        }
+        if (pass.length < 6) {
+            return I18n.t('error.password.passwordLessThan6Characters');
+        }
+        if (pass.length > 32) {
+            return I18n.t('error.password.passwordMoreThan32Characters');
+        }
+        // var regex_Phone = /[0-32]$/;
+        // if (!regex_Phone.test(pass)) {
+        //   return "Password contains only numbers";
+        // }
+        return null;
+    };
 
-  //check validate phone
-  public static checkValidatePhone = (phone: string): string | null => {
-    phone.trim();
-    if (phone.length == 0) {
-      return I18n.t('error.password.passwordBlank');
+    //check validate phone
+    public static checkValidatePhone = (phone: string): string | null => {
+        phone.trim();
+        if (phone.length == 0) {
+            return I18n.t('error.password.passwordBlank');
+        }
+        if (phone.length < 10 || phone.length > 11) {
+            return I18n.t('error.numberPhone.invalidMobile');
+        }
+        var regex_Phone = /[0-9]$/;
+        if (!regex_Phone.test(phone)) {
+            return I18n.t('error.numberPhone.incorredPhoneFormat');
+        }
+        return null;
+    };
+
+    public static getInfoBank(): Promise<BankUser[]> {
+        return getAxios().then((axios) => {
+            return axios({
+                method: "GET",
+                url: `${config.api.lendingAPI}/user_bank`,
+            }).then(res => {return res ? res.data : []})
+                .catch(err => console.error(err))
+        })
     }
-    if (phone.length < 10 || phone.length > 11) {
-      return I18n.t('error.numberPhone.invalidMobile');
+
+    public static updateInfoBank(bankInfo : BankUser) : Promise<BankUser> {
+        return getAxios().then((axios)=>{
+            return axios({
+                method : "POST",
+                url : `${config.api.lendingAPI}/user_bank`,
+                data : {banks : bankInfo}
+            })
+            .then(res => res ? res.data : null)
+            .catch(err=> null)
+        })
     }
-    var regex_Phone = /[0-9]$/;
-    if (!regex_Phone.test(phone)) {
-      return I18n.t('error.numberPhone.incorredPhoneFormat');
-    }
-    return null;
-  };
 }

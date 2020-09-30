@@ -7,9 +7,9 @@ let dataFinance: f = {
     referalIncomeAmout: 0
 }
 
-IncomeService.getFinance().then(res => {
-    dataFinance = { ...res }
-})
+// IncomeService.getFinance().then(res => {
+//     dataFinance = { ...res }
+// })
 
 
 
