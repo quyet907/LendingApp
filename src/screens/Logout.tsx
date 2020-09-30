@@ -58,7 +58,9 @@ export default class Logout extends Component<props, state> {
 
           <TouchableOpacity
             style={[myStyle.row, styles.layoutFeature]}
-            onPress={() => this.props.navigation.navigate(ScreenName.EditProfile)}
+            onPress={() => this.props.navigation.navigate(ScreenName.EditProfile, {
+              phoneNumber: this.state.getPhone
+            })}
 
           >
             <View style={styles.containerIcon}>

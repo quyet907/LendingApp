@@ -1,29 +1,83 @@
 import * as React from 'react';
-import { ScrollView, StyleSheet, Text, TextInput, View, Image, ImageBackground, TouchableOpacity } from 'react-native';
+import { ScrollView, StyleSheet, Text, TextInput, View, Image, ImageBackground, TouchableOpacity, Platform } from 'react-native';
 import * as Color from '../Color'
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import myStyle from '../style'
-
+import * as ImagePicker from 'expo-image-picker';
+import Constants from 'expo-constants';
+import { uploadService } from '../services/UploadService';
 
 export default class Profile extends React.Component<Props, State> {
     constructor(props: any) {
         super(props)
         this.state = {
-            imageURL: 'https://i.picsum.photos/id/199/1000/500.jpg?hmac=FK68A1s1J9x0AXSbNfbsgWwUe80fJDlvGRQ5J0IvMAU',
+            avtURL: 'https://i.picsum.photos/id/199/1000/500.jpg?hmac=FK68A1s1J9x0AXSbNfbsgWwUe80fJDlvGRQ5J0IvMAU',
             name: '',
+            address: '',
+            identityCard: '',
+            frontIdCard: '',
+            backIdCard: '',
             nameDefault: 'Enter your name',
         }
     }
+
+    userId = this.props.route.params.phoneNumber;
+
+    componentDidMount() {
+        (async () => {
+            if (Platform.OS !== 'web') {
+                const { status } = await ImagePicker.requestCameraRollPermissionsAsync();
+            }
+            if (status !== 'granted') {
+                //alert('Sorry, we need camera roll permissions to make this work!');
+            }
+        })
+        console.log(this.userId);
+
+
+    }
+
+
+
+    pickImage = async (asideIdCard:string) => {
+        let result = await ImagePicker.launchImageLibraryAsync({
+            mediaTypes: ImagePicker.MediaTypeOptions.Images,
+            allowsEditing: true,
+            aspect: [4, 3],
+            quality: 1,
+        });
+
+
+        if (!result.cancelled) {
+            console.log(result);
+            this.uploadImage(result.uri, asideIdCard)
+                .then(url => {
+                    if (asideIdCard === 'front') this.setState({ frontIdCard: url })
+                    else this.setState({ backIdCard: url })
+                })
+            // this.uploadImage(result.uri)
+            //     .then(url => console.log(url))
+            // console.log(typeof result.type);
+        }
+    };
+
+    uploadImage = async (uri: string, asideIdCard: string) => {
+        const response = await fetch(uri);
+        const blob = await response.blob();
+        const url = await uploadService.upload("idCards", `${this.userId}-${asideIdCard}IdCard`, blob);
+        return url
+    }
+
 
     render() {
         return (
             <ScrollView style={{ backgroundColor: Color.background_primary }}>
                 <View style={{ height: 170, display: 'flex', justifyContent: 'center', position: 'relative' }}>
-                    <ImageBackground source={{ uri: this.state.imageURL }} style={styles.image}>
+                    <ImageBackground source={{ uri: this.state.avtURL }} style={styles.image}>
                         <View style={{ position: 'absolute', top: 95 }}>
                             <Image
                                 style={styles.tinyLogo}
-                                source={{ uri: this.state.imageURL }}
+                                source={{ uri: this.state.avtURL }}
                             />
                             <View style={{ padding: 10, position: 'absolute', right: 5, bottom: 5, borderRadius: 50, backgroundColor: Color.primary }}>
                                 <FontAwesome5 name={"camera"} size={15} color={'#000'} />
@@ -55,7 +109,7 @@ export default class Profile extends React.Component<Props, State> {
                         </View>
                     </View>
 
-                   
+
 
                     <View style={styles.info}>
                         <View>
@@ -64,8 +118,8 @@ export default class Profile extends React.Component<Props, State> {
                         <View style={{ flex: 1 }}>
                             <TextInput
                                 style={styles.input}
-                                onChangeText={text => this.setState({ name: text })}
-                                value={this.state.name}
+                                onChangeText={text => this.setState({ address: text })}
+                                value={this.state.address}
                                 maxLength={35}
                                 placeholder={'Enter your address'}
                             />
@@ -74,16 +128,57 @@ export default class Profile extends React.Component<Props, State> {
 
                     <View style={styles.info}>
                         <View>
-                            <Text style={styles.title}>Bank Account Number</Text>
+                            <Text style={styles.title}>Identity Number</Text>
                         </View>
                         <View style={{ flex: 1 }}>
                             <TextInput
                                 style={styles.input}
-                                onChangeText={text => this.setState({ name: text })}
-                                value={this.state.name}
+                                onChangeText={text => this.setState({ identityCard: text })}
+                                value={this.state.identityCard}
                                 maxLength={35}
-                                placeholder={'xxx xxx xxx xxx'}
+                                placeholder={''}
                             />
+                        </View>
+                    </View>
+
+                    <View style={styles.info}>
+                        <View>
+                            <Text style={styles.title}>Front ID Card</Text>
+                        </View>
+                        <View style={{ flex: 1, alignItems: 'flex-end', paddingLeft: 30 }}>
+                            <TouchableOpacity
+                                onPress={() => this.pickImage('front')}
+                                style={{ flexDirection: 'row' }}
+                            >
+                                <View style={{ width: 30, height: "100%", paddingRight: 10 }}>
+                                    <Image
+                                        style={styles.imageIdCard}
+                                        source={{ uri: this.state.frontIdCard }}
+                                    />
+                                </View>
+                                <Text style={{ color: Color.primary, fontWeight: '500', fontSize: 16 }}>{this.state.frontIdCard ? 'Edit' : 'Add photo'} </Text>
+                            </TouchableOpacity>
+                        </View>
+                    </View>
+
+
+                    <View style={styles.info}>
+                        <View>
+                            <Text style={styles.title}>Back ID Card</Text>
+                        </View>
+                        <View style={{ flex: 1, alignItems: 'flex-end', paddingLeft: 30 }}>
+                            <TouchableOpacity
+                                onPress={() => this.pickImage('back')}
+                                style={{ flexDirection: 'row' }}
+                            >
+                                <View style={{ width: 30, height: "100%", paddingRight: 10 }}>
+                                    <Image
+                                        style={styles.imageIdCard}
+                                        source={{ uri: this.state.backIdCard }}
+                                    />
+                                </View>
+                                <Text style={{ color: Color.primary, fontWeight: '500', fontSize: 16 }}>{this.state.backIdCard ? 'Edit' : 'Add photo'} </Text>
+                            </TouchableOpacity>
                         </View>
                     </View>
 
@@ -92,20 +187,20 @@ export default class Profile extends React.Component<Props, State> {
                 </View>
 
 
-                <View style={{ paddingHorizontal: 25, marginTop: 10 , marginBottom: 50}}>
+                <View style={{ paddingHorizontal: 25, marginTop: 10, marginBottom: 50 }}>
 
                     <View style={[myStyle.frbuttonLogin]}>
-                        <TouchableOpacity                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
+                        <TouchableOpacity
                             style={[myStyle.buttonLogin]}
                             activeOpacity={0.7}
                             onPress={() => console.warn('click')
-                            }                                                                                                                                                                                                                                                                                                                                                                   
+                            }
                         >
-                            <Text style={[myStyle.textButton]}>UPDATE</Text>                                                                                                                                                                                                                                                                                                                                                                                                                                                            
+                            <Text style={[myStyle.textButton]}>UPDATE</Text>
                         </TouchableOpacity>
                     </View>
 
-                </View>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
+                </View>
 
 
 
@@ -126,15 +221,29 @@ const styles = StyleSheet.create({
         borderColor: Color.background_primary
 
     },
+    idCard: {
+        width: 20,
+        height: 30,
+
+        // borderWidth: 5,
+        // borderColor: Color.background_primary
+
+    },
     image: {
         flex: 1,
         resizeMode: "cover",
         justifyContent: "center",
         alignItems: 'center'
     },
+    imageIdCard: {
+        flex: 1,
+        resizeMode: "contain",
+        justifyContent: "center",
+        alignItems: 'center'
+    },
     input: {
         padding: 0,
-        paddingLeft: 10,
+        paddingLeft: 30,
         outlineWidth: 0,
         textAlign: 'right',
         flex: 1,
@@ -146,7 +255,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         flexDirection: 'row',
         paddingVertical: 20,
-        borderBottomColor: 'rgba(153,153,153, 0.4)  '      ,
+        borderBottomColor: 'rgba(153,153,153, 0.4)  ',
         borderBottomWidth: 1
     },
     title: {
@@ -158,11 +267,15 @@ const styles = StyleSheet.create({
 
 
 type Props = {
-
+    route: any;
 }
 
 type State = {
-    imageURL: string,
+    avtURL: string,
     name: string,
+    address: string,
+    identityCard: string,
     nameDefault: string,
+    frontIdCard: string,
+    backIdCard: string,
 }
