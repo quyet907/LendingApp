@@ -39,7 +39,7 @@ export default class Logout extends Component<props, state> {
     return (
       <View style={[myStyle.container]}>
         <View style={[styles.header]}>
-    <Text style={[styles.contentHeader]}>{I18n.t('screens.profile.profileTitle')}</Text>
+          <Text style={[styles.contentHeader]}>{I18n.t('screens.profile.profileTitle')}</Text>
         </View>
 
         <View style={[myStyle.row, styles.layoutAccout]}>
@@ -56,7 +56,17 @@ export default class Logout extends Component<props, state> {
 
         <View style={{ marginTop: 12 }}>
 
+          <TouchableOpacity
+            style={[myStyle.row, styles.layoutFeature]}
+            onPress={() => this.props.navigation.navigate(ScreenName.EditProfile)}
 
+          >
+            <View style={styles.containerIcon}>
+              <FontAwesome5 name={"gift"} size={sizeIcon} color={Color.primary} />
+            </View>
+
+            <Text style={[styles.contentFuture]}>Profile</Text>
+          </TouchableOpacity>
 
           <TouchableOpacity
             style={[myStyle.row, styles.layoutFeature]}
@@ -67,7 +77,7 @@ export default class Logout extends Component<props, state> {
               <FontAwesome5 name={"users"} size={sizeIcon} color={Color.primary} />
             </View>
 
-          <Text style={[styles.contentFuture]}>{I18n.t('screens.profile.bid')}</Text>
+            <Text style={[styles.contentFuture]}>{I18n.t('screens.profile.bid')}</Text>
           </TouchableOpacity>
 
           <TouchableOpacity style={[myStyle.row, styles.layoutFeature]}
@@ -75,7 +85,7 @@ export default class Logout extends Component<props, state> {
             <View style={styles.containerIcon}>
               <FontAwesome5 name={"history"} size={sizeIcon} color={Color.primary} />
             </View>
-          <Text style={[styles.contentFuture]}>{I18n.t('screens.profile.bidHistories')}</Text>
+            <Text style={[styles.contentFuture]}>{I18n.t('screens.profile.bidHistories')}</Text>
           </TouchableOpacity>
 
           <TouchableOpacity
@@ -87,18 +97,20 @@ export default class Logout extends Component<props, state> {
               <FontAwesome5 name={"gift"} size={sizeIcon} color={Color.primary} />
             </View>
 
-          <Text style={[styles.contentFuture]}>{I18n.t('screens.profile.coupon')}</Text>
+            <Text style={[styles.contentFuture]}>{I18n.t('screens.profile.coupon')}</Text>
           </TouchableOpacity>
+
+
 
 
         </View>
 
         <View style={{ marginTop: 12 }}>
 
-    
 
-          <TouchableOpacity 
-          style={[myStyle.row, styles.layoutFeature]}
+
+          <TouchableOpacity
+            style={[myStyle.row, styles.layoutFeature]}
             onPress={() => {
               UserService.setJWT("").then(res => {
                 Actions.home()
@@ -108,7 +120,7 @@ export default class Logout extends Component<props, state> {
             <View style={styles.containerIcon}>
               <FontAwesome name={"sign-out"} size={sizeIcon} color={Color.primary} />
             </View>
-          <Text style={[styles.contentFuture]}>{I18n.t('screens.profile.logout')}</Text>
+            <Text style={[styles.contentFuture]}>{I18n.t('screens.profile.logout')}</Text>
 
           </TouchableOpacity>
 

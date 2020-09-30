@@ -13,6 +13,7 @@ import { ScreenName } from "./ScreenName";
 import Bid from "./Bid";
 import Giftcode from "./Coupon";
 import Coupon from "./Coupon";
+import Profile from "./Profile";
 const Stack = createStackNavigator();
 
 export default class LogoutScreen extends Component<Props, State> {
@@ -24,6 +25,15 @@ export default class LogoutScreen extends Component<Props, State> {
         return (
                 <Stack.Navigator initialRouteName={ScreenName.Profile}>
                     <Stack.Screen name={ScreenName.Profile} component={Logout} options={{ headerShown: false }} />
+                    <Stack.Screen name={ScreenName.EditProfile} component={Profile}
+                        options={{
+                            title: 'Profile',
+                            headerTintColor: '#fff',
+                            headerStyle: {
+                                backgroundColor: color.background
+                            },
+                        }}
+                    />
                     <Stack.Screen name={ScreenName.ListBid} component={BidStack}
                         options={{
                             title: 'Bid',
