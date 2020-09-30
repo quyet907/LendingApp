@@ -8,6 +8,7 @@ import * as actionPopup from "../Action/ActionPopup";
 import { UserCoupon } from '@StockAfiCore/model/user/UserCoupon';
 import { Paging } from '@Core/controller/Paging';
 import CouponHistories from '../components/coupon/CouponHistories';
+import I18n from '../i18n/i18n';
 export default class Giftcode extends React.Component<Props, State>{
     constructor(props: any) {
         super(props)
@@ -33,7 +34,7 @@ export default class Giftcode extends React.Component<Props, State>{
                                 style={styles.tinyLogo}
                                 source={require('../icons/gift-box.svg')}
                             />
-                            <Text style={[styles.whiteText, styles.title]}>Enter the Giftcode</Text>
+                            <Text style={[styles.whiteText, styles.title]}>{I18n.t('screens.coupon.giftTitle')}</Text>
                             <Text style={[styles.whiteText]}></Text>
                         </View>
 
@@ -48,7 +49,7 @@ export default class Giftcode extends React.Component<Props, State>{
                                         code: text
                                     })
                                 }}
-                                placeholder={"Enter giftcode"}
+                                placeholder={I18n.t('screens.coupon.placeholderText')}
 
                             />
                         </View>
@@ -65,7 +66,7 @@ export default class Giftcode extends React.Component<Props, State>{
 
                                 onPress={this.check}
                             >
-                                <Text style={[myStyle.textButton]}>Submit</Text>
+                                <Text style={[myStyle.textButton]}>{I18n.t('screens.coupon.submitButton')}</Text>
                             </TouchableOpacity>
                         </View>
                     </View>
@@ -79,25 +80,26 @@ export default class Giftcode extends React.Component<Props, State>{
 
     check = () => {
         if (this.state.code) {
-            CouponService.postCoupon(this.state.code).then((userCoupon: UserCoupon)=>{
-                if(userCoupon && userCoupon.coupon && userCoupon.coupon.prize){
-                    actionPopup.showMessage(`You got ${ userCoupon.coupon.prize} points!`)
+            CouponService.postCoupon(this.state.code).then((userCoupon: UserCoupon) => {
+                if (userCoupon && userCoupon.coupon && userCoupon.coupon.prize) {
+                    actionPopup.showMessage(`You got ${userCoupon.coupon.prize} points!`)
                 }
                 const getHistories = this.state.couponHistories;
-                getHistories.push(userCoupon);
+                console.log(userCoupon);
+                if(userCoupon)getHistories.push(userCoupon);
                 this.setState({
-                    couponHistories : getHistories
+                    couponHistories: getHistories
                 })
             })
         } else {
-            actionPopup.showMessage("Please enter giftcode!")
+            actionPopup.showMessage(I18n.t('error.giftcode.giftcodeBlank'))
         }
     }
     getDataToState = () => {
         CouponService.getCouponHistories().then((couponPaging: Paging<UserCoupon>) => {
             const data = couponPaging.rows;
             this.setState({
-                couponHistories : couponPaging.rows
+                couponHistories: couponPaging.rows
             })
         })
     }

@@ -54,14 +54,14 @@ class Login extends Component<props, state> {
     var user = this.state.user;
     var password = this.state.password;
     if(!user) {
-      actionPopup.showMessage("User must not be left blank");
+      actionPopup.showMessage(I18n.t('error.numberPhone.phoneBlank'));
     }
     else if(!password) {
-      actionPopup.showMessage("Password must not be left blank");
+      actionPopup.showMessage(I18n.t('error.password.passwordBlank'));
     }else {
       let getJwtToken = UserService.login(user, password).then((infoLogin) => {
         if (!infoLogin.jwt) {
-          actionPopup.showMessage("User or password is incorrect!");
+          actionPopup.showMessage(I18n.t('error.numberPhone.loginIncorrect'));
         } else {
           UserService.setJWT(infoLogin.jwt).then((res) => {
             Actions.home();
@@ -87,10 +87,11 @@ class Login extends Component<props, state> {
         <View style={[myStyle.flex4, myStyle.login]}>
           <View style={[]}>
             <TextInput
+            autoFocus={true}
               value={this.state.user}
               style={[myStyle.inputLogin]}
               selectionColor="red"
-              placeholder={I18n.t('mobileInputPlaceholder')}
+              placeholder={I18n.t('screens.login.mobileInputPlaceholder')}
               keyboardType={"number-pad"}
               maxLength={11}
               onChangeText={(text) => {
@@ -103,7 +104,7 @@ class Login extends Component<props, state> {
             <TextInput
               value={this.state.password}
               style={[myStyle.inputPass]}
-              placeholder={I18n.t("passwordInputPlaceholder")}
+              placeholder={I18n.t("screens.login.passwordInputPlaceholder")}
               secureTextEntry={!this.state.showPass}
               maxLength={32}
               onSubmitEditing={this.checkLogin}
@@ -134,7 +135,7 @@ class Login extends Component<props, state> {
                   Actions.enterPhone();
                 }}
               >
-                {I18n.t('forgetPasswordText')}
+                {I18n.t('screens.login.forgetPasswordText')}
               </Text>
             </TouchableOpacity>
           </View>
@@ -145,7 +146,7 @@ class Login extends Component<props, state> {
               activeOpacity={0.7}
               onPress={this.checkLogin}
             >
-              <Text style={[myStyle.textButton]}>{I18n.t('loginButtonText')}</Text>
+              <Text style={[myStyle.textButton]}>{I18n.t('screens.login.loginButtonText')}</Text>
             </TouchableOpacity>
           </View>
 
@@ -153,7 +154,7 @@ class Login extends Component<props, state> {
             style={[myStyle.row, { marginTop: 10, justifyContent: "center" }]}
           >
             <Text style={[{ marginRight: 10, color: "white" }]}>
-              {I18n.t('haventAccount')}
+              {I18n.t('screens.login.haventAccount')}
             </Text>
             <TouchableOpacity
               onPress={(event) => {
@@ -161,7 +162,7 @@ class Login extends Component<props, state> {
                 Actions.enterPhone();
               }}
             >
-              <Text style={[{ color: "#F8C400" }]}>{I18n.t('createAccount')}</Text>
+              <Text style={[{ color: "#F8C400" }]}>{I18n.t('screens.login.createAccount')}</Text>
             </TouchableOpacity>
           </View>
         </View>

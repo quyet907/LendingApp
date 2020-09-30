@@ -3,8 +3,11 @@ import { getAxios } from "./APIService";
 import { config } from "../config/Config";
 import { Paging } from "@Core/controller/Paging";
 import { BidProduct } from "@StockAfiModel/bid/BidProduct";
-import { FormatService } from "./FormatService";
+import { MyFormat } from "../Helper/MyFormat";
 import * as actionAll from "../Action/ActionAll"
+import { UserService } from "./UserService";
+import { isBuffer } from "util";
+import { BaseUser } from "@Core/model/user/BaseUser";
 export class BidService {
     public static getBidInfo(id: string): Promise<BidProduct> {
         return getAxios().then((axios) =>
@@ -32,6 +35,22 @@ export class BidService {
                 })
                 .catch(err => {
                     return err;
+                })
+        })
+    }
+
+    public static receiveReward(id: string): Promise<BidProduct> {
+        return getAxios().then((axios) => {
+            return axios({
+                method: "POST",
+                url: `${config.api.lendingAPI}/bid_product/receiveBid`,
+                data: { bidProductId: id }
+            })
+                .then((res) => {
+                    return res.data
+                })
+                .catch(err => {
+                    return null;
                 })
         })
     }
@@ -118,10 +137,10 @@ export class BidService {
         return Time <= actionAll.getConfig().timeBid && Time >= 0 ? true : false;
     }
 
-    public static changeTextButton(bidProduct: BidProduct): string {
-        let getStepPrice = bidProduct.stepPrice ||0
-        return `Bid with ${FormatService.roundingMoney(getStepPrice) } COIN`
-    }
+    // public static changeTextButton(bidProduct: BidProduct): string {
+    //     let getStepPrice = bidProduct.stepPrice ||0
+    //     return `Bid with ${MyFormat.roundingMoney(getStepPrice) } COIN`
+    // }
 
     public static checkComming(bidProduct: BidProduct) : boolean {
         let getTimeCount =  BidService.getTimeCountBid(bidProduct);
@@ -194,4 +213,57 @@ export class BidService {
         }
         return "ông cố nội mày"
     }
+
+    //check biddig and revreceive reward
+    public static checkButtonBid(bidProduct : BidProduct) : boolean {
+        let getTime = BidService.getTimeCountBid(bidProduct);
+        if(getTime <0 ){
+            return true;
+        }
+        if(getTime > actionAll.getConfig().timeBid){
+            return false;
+        }
+        return true;
+    }
+
+    public static  changTextButtonBid(bidProduct : BidProduct, user  : BaseUser) : string {
+        let getStepPrice = bidProduct.stepPrice ||0
+        let getTime = BidService.getTimeCountBid(bidProduct);
+        if(getTime <0 ){
+            if(user && user._id && bidProduct){
+                if(user._id == bidProduct.latestBidUserId){
+                    return (bidProduct.receivedAt) ? `Đã nhận lúc ${MyFormat.formatDate(bidProduct.receivedAt)}` : "Nhận thưởng" 
+                }
+                return "Finished"
+            }
+            return "Finished"/// không tìm thấy thông tin
+        }   
+        if(getTime > actionAll.getConfig().timeBid){
+            return "UpComming";
+        }
+        return `Bid with ${MyFormat.roundingMoney(getStepPrice) } COIN`;
+    }
+
+
+    public static checkMeWin(bidProduct : BidProduct, user  : BaseUser) : boolean {
+        if(user && user._id && bidProduct)
+            return  (user._id == bidProduct.latestBidUserId) ? true : false;
+        return false;
+    }
+
+    public static checkReceive(bidProduct : BidProduct) : boolean {
+        return (bidProduct && bidProduct.receivedAt) ? true : false;
+    }
+
+    public static checkButton(bidProduct : BidProduct, user: BaseUser) : boolean {
+        return (BidService.checkMeWin(bidProduct, user) && !BidService.checkReceive(bidProduct))
+    }
+
+    
+    // public static checkWin(userWinId  : string) : Promise<boolean>{
+    //     return  UserService.getMe().then((me : any )=>{
+    //         return me._id == userWinId ? true : false;
+    //     })
+    // }
 }
+

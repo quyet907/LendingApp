@@ -1,6 +1,6 @@
 import Home from "../screens/Home"
 
-export class FormatService {
+export class MyFormat {
     public static testComponet() {
         // Home.bind();
     }
@@ -29,4 +29,17 @@ export class FormatService {
         return money.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.")
         // return `$${moneyString}`;
     }
+
+    public static formatDate(date : Date) : string{
+        let getDate = new Date();
+        let dayString = getDate.getDay();
+        let monthString = getDate.getMonth() + 1;
+        let yearString = getDate.getFullYear();
+        return `${getDate.getHours} : ${getDate.getMinutes()} ${getDate.getDay()}/${getDate.getMonth()}/${getDate.getMonth}`;
+    }
+
+    public static getTime = (date: Date | undefined): string => {
+        if (date !== undefined) return date.toString().substring(0, 10);
+        else return "null";
+    };
 }

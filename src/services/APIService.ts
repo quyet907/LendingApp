@@ -5,6 +5,7 @@ import { UserService } from "./UserService";
 import * as action from "../Action/ActionPopup"
 import * as actionLoadding from "../Action/ActionLoadding"
 import { config } from "../config/Config";
+import I18n from '../i18n/i18n';
 
 axios.interceptors.request.use(
     res => {
@@ -24,10 +25,10 @@ axios.interceptors.response.use(
         actionLoadding.setLoad(0)
 
         if (err.message == "Network Error") {
-            action.showMessage("Network Error");
+            action.showMessage(I18n.t('error.server.networkError'));
         }
         if (err.response.status == 404) {
-            action.showMessage("Have error when processing")
+            action.showMessage(I18n.t('error.OTP.processError'))
         }
         if (err.response.status == 401) {
             // UserService.getJWT().then(res => {
@@ -47,7 +48,7 @@ axios.interceptors.response.use(
                 action.showMessage(err.response.data.message)
             }
             else {
-                action.showMessage("Have error when processing")
+                action.showMessage(I18n.t('error.server.processError'))
             }
         }
     }

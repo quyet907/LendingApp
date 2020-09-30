@@ -114,11 +114,11 @@ export class UserService {
                     return null;
                 }
                 else {
-                    return I18n.t('insuccessOTPMessage');
+                    return I18n.t('error.OTP.insuccessOTP');
                 }
             })
             .catch(err => {
-                return I18n.t('errServer')
+                return I18n.t('error.OTP.errServer')
             })
     }
 
@@ -183,13 +183,13 @@ export class UserService {
     AgainPass: string
   ): string | null => {
     if (pass != AgainPass) {
-      return "Those passwords didn't match";
+      return I18n.t('error.password.repeatPasswordDontMatch');
     }
     if (pass.length < 6) {
-      return "Use 6 character or more for your password";
+      return I18n.t('error.password.passwordLessThan6Characters');
     }
     if(pass.length >32){
-        return "Use 6 to 32 characters";
+        return I18n.t('error.password.passwordMoreThan32Characters');
     }
     // var regex_Phone = /[0-32]$/;
     // if (!regex_Phone.test(pass)) {
@@ -202,14 +202,14 @@ export class UserService {
   public static checkValidatePhone = (phone: string): string | null => {
     phone.trim();
     if (phone.length == 0) {
-      return I18n.t('passwordBlankMessage');
+      return I18n.t('error.password.passwordBlank');
     }
     if (phone.length < 10 || phone.length > 11) {
-      return I18n.t('invalidMobileMessage');
+      return I18n.t('error.numberPhone.invalidMobile');
     }
     var regex_Phone = /[0-9]$/;
     if (!regex_Phone.test(phone)) {
-      return I18n.t('incorredPhoneFormatMessage');
+      return I18n.t('error.numberPhone.incorredPhoneFormat');
     }
     return null;
   };

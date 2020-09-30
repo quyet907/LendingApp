@@ -4,7 +4,7 @@ import myStyle from "../../style";
 import * as color from "../../Color"
 import { BidProduct } from "@StockAfiCore/model/bid/BidProduct";
 import { BidService } from "../../services/BidService";
-import { FormatService } from "../../services/FormatService";
+import { MyFormat } from "../../Helper/MyFormat";
 
 
 export default class ProductBid extends Component<Props, state> {
@@ -59,7 +59,7 @@ export default class ProductBid extends Component<Props, state> {
                                 </View>
                             </View>
                             <View>
-                                <Text style={[myStyle.priceProductBid]}>{FormatService.roundingMoney(BidService.getPriceBidProduct(this.props.bidProduct))}</Text>
+                                <Text style={[myStyle.priceProductBid]}>{MyFormat.roundingMoney(BidService.getPriceBidProduct(this.props.bidProduct))}</Text>
                             </View>
                         </View>
                     </View>

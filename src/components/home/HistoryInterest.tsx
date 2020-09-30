@@ -6,7 +6,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import * as color from '../../Color'
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { LendingService } from '../../services/LendingService';
-import { FormatService } from '../../services/FormatService';
+import { MyFormat } from '../../Helper/MyFormat';
 import { connect } from "react-redux";
 import * as  actionAll from "../../Action/ActionAll"
 import { Finance } from '@StockAfiCore/model/lending/Finance';
@@ -46,19 +46,19 @@ class HistoryInterest extends Component<props, state> {
 
                     <View style={[myStyle.row, myStyle.centerHistoryInterest]}>
                         {/* <Text style={[{ color: color.inactive }, myStyle.contentHistoryInterest]}>
-                            {FormatService.roundingMoney(this.props.amount)}
+                            {MyFormat.roundingMoney(this.props.amount)}
                         </Text>
                         <Image
                             style={[myStyle.iconHistoryInterest, { margin: 10 }]}
                             source={require("../../icons/icons8_right_26px.png")}
                         />
-                        <Text style={[{ color: color.primary, }, myStyle.contentHistoryInterest]}>{FormatService.roundingMoney(this.props.amount + this.props.profits)}</Text>
+                        <Text style={[{ color: color.primary, }, myStyle.contentHistoryInterest]}>{MyFormat.roundingMoney(this.props.amount + this.props.profits)}</Text>
                      */}
                     </View>
 
                     <View style={[myStyle.rightHistoryInterest]}>
                         <Text style={[{ color: color.secondary, fontSize: 16, }]}>
-                            {this.props.daysLeft} {I18n.t('remainDays')}
+                            {this.props.daysLeft} {I18n.t('screens.dashboard.interestRateHistories.remainDays')}
                         </Text>
                     </View>
 
@@ -71,7 +71,7 @@ class HistoryInterest extends Component<props, state> {
                                     status: true
                                 })
                                 LendingService.getConfirmReceived(this.props._id).then((res) => {
-                                    console.log(this.props._id);
+                                    // console.log(this.props._id);
                                     this.props.onReload()
                                 }
 
@@ -79,7 +79,7 @@ class HistoryInterest extends Component<props, state> {
 
                             }}
                         >
-                            <Text style={{ color: 'black' }} >{this.state.status ? I18n.t('gotButton') : I18n.t('getButton')}</Text>
+                            <Text style={{ color: 'black', textTransform: 'uppercase' }} >{this.state.status ? I18n.t('screens.dashboard.interestRateHistories.gotButton') : I18n.t('screens.dashboard.interestRateHistories.getButton')}</Text>
                         </TouchableOpacity>
                     </View>
                 </View>

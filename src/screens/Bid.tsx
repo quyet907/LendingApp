@@ -9,10 +9,12 @@ import { BidService } from '../services/BidService';
 import { Product } from '@StockAfiCore/model/product/Product';
 import { BidHistory } from '@StockAfiCore/model/bid/BidHistory';
 import { Paging } from '@Core/controller/Paging';
-import { FormatService } from '../services/FormatService';
+import { MyFormat } from '../Helper/MyFormat';
 import { firebase } from "../../FirebaseConfig";
 import { BaseUser } from '@Core/model/user/BaseUser';
 import I18n from "../i18n/i18n";
+import { User } from '@StockAfiCore/model/user/User';
+import { UserService } from '../services/UserService';
 
 // pageBid.render();
 var timeahihi;
@@ -23,6 +25,7 @@ class Bid extends Component<props, state>{
         this.state = {
             bidProduct: {},
             timeBid: 10,
+            me : {}
 
         }
 
@@ -61,6 +64,7 @@ class Bid extends Component<props, state>{
 
         });
     }
+    
 
 
     componentDidMount() {
@@ -69,6 +73,10 @@ class Bid extends Component<props, state>{
             this.renderDataBid(bidProduct);
             this.listenOnChange();
         })
+
+        UserService.getMe().then((getMe) => {
+            this.setState({me : (getMe) ? getMe : {}})
+        }) 
 
         timeahihi = setInterval(
             () => {
@@ -82,9 +90,10 @@ class Bid extends Component<props, state>{
 
 
 
-    renderDataBid(bidProduct: BidProduct) {
+     renderDataBid(bidProduct: BidProduct) {
+        
         this.setState({
-            bidProduct: bidProduct,
+            bidProduct: bidProduct
         })
     }
 
@@ -130,8 +139,8 @@ class Bid extends Component<props, state>{
                         </View>
                         <View style={[myStyle.childFrPriceAndTimePageBid]}>
                             <Text style={{ color: color.text_primary, fontWeight: "bold", fontSize: 20, }}>
-                                {FormatService.roundingMoney(BidService.getPriceBidProduct(this.state.bidProduct))}</Text>
-                            <Text style={{ color: color.inactive, textDecorationLine : "line-through" }}>{FormatService.roundingMoney(this.state.bidProduct.startPrice||0)}</Text>
+                                {MyFormat.roundingMoney(BidService.getPriceBidProduct(this.state.bidProduct))}</Text>
+                            <Text style={{ color: color.inactive, textDecorationLine : "line-through" }}>{MyFormat.roundingMoney(this.state.bidProduct.startPrice||0)}</Text>
                         </View>
                     </View>
                 </View>
@@ -142,7 +151,7 @@ class Bid extends Component<props, state>{
 
 
                 <View style={[myStyle.frListBidder]}>
-                    <Text style={[myStyle.headerBidder]}>{I18n.t('bidderTitle')}</Text>
+                    <Text style={[myStyle.headerBidder]}>{I18n.t('screens.bidDetail.bidderTitle')}</Text>
                     <ListBidder
                         bidders={this.state?.bidProduct?.listHistoryBid || []}
                     ></ListBidder>
@@ -152,15 +161,25 @@ class Bid extends Component<props, state>{
                     style={[myStyle.frButtonBid]}
                 >
                     <TouchableOpacity
-                        style={BidService.checkBidding(this.state.timeBid) ? [myStyle.buttonBid] : [myStyle.buttonBid, myStyle.ButtonBidDisabled]}
+                        style={BidService.checkButton(this.state.bidProduct, this.state.me) ? [myStyle.buttonBid] : [myStyle.buttonBid, myStyle.ButtonBidDisabled]}
                         onPress={(event) => {
-                            BidService.BidAction(bidProductId)
+                            if(BidService.checkButton(this.state.bidProduct, this.state.me)){
+                                BidService.receiveReward(bidProductId).then((bidProduct : BidProduct)=>{
+                                    if(bidProduct){
+                                        this.setState({
+                                            bidProduct : bidProduct
+                                        })
+                                    }
+                                })
+                            }else {
+                                BidService.BidAction(bidProductId);
+                            }
                         }}
-                        disabled={!BidService.checkBidding(this.state.timeBid)}
+                        disabled={!BidService.checkButton(this.state.bidProduct, this.state.me)}
                     >
                         <Text
                             style={[myStyle.btnSmall]}
-                        >{BidService.changeTextButton(this.state.bidProduct)}
+                        >{BidService.changTextButtonBid(this.state.bidProduct, this.state.me)}
                         </Text>
                     </TouchableOpacity>
                 </View>
@@ -177,6 +196,7 @@ type props = {
 type state = {
     bidProduct: BidProduct
     timeBid: number,
+    me : BaseUser
 }
 
 export default function (props: any) {

@@ -13,8 +13,8 @@ export class CouponService {
                     code: code
                 }
             })
-                .then(res => { return res.data })
-                .catch(err => err)
+                .then(res => res ?  res.data : null)
+                .catch(err => null)
         })
     }
 

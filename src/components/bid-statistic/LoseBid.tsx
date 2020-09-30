@@ -10,6 +10,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { useIsFocused } from '@react-navigation/native';
 import { BidProduct } from '@StockAfiCore/model/bid/BidProduct';
 import { ScreenName } from '../../screens/ScreenName';
+import { MyFormat } from '../../Helper/MyFormat';
 class LoseBid extends React.Component<Props, State> {
     constructor(props: any) {
         super(props);
@@ -48,7 +49,7 @@ class LoseBid extends React.Component<Props, State> {
                                     <BidDetail
                                         imgURL={item.bidProduct && item.bidProduct.product && item.bidProduct.product.thumbImagesUrl ? item.bidProduct.product.thumbImagesUrl[0] : 'null'}
                                         name={item.bidProduct?.product?.name || "undefined"}
-                                        bidAt={this.getTime(item.bidProduct?.latestBidAt) || "undefined"}
+                                        bidAt={MyFormat.getTime(item.bidProduct?.latestBidAt) || "undefined"}
                                         bidClick={item.bidCount || 999999}
                                         startPrice={item.bidProduct?.startPrice || 0}
                                         endPrice={item.bidProduct?.endPrice || 0}
@@ -76,10 +77,6 @@ class LoseBid extends React.Component<Props, State> {
         })
     }
 
-    getTime = (date: Date | undefined): string => {
-        if (date !== undefined) return date.toString().substring(0, 10);
-        else return "null";
-    };
 
 }
 
