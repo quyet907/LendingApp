@@ -29,7 +29,7 @@ export default class PageHome extends React.Component<Props, state> {
 
   render() {
     return (
-      <NavigationContainer     >
+      <NavigationContainer>
         <Tab.Navigator
           tabBarOptions={{
 

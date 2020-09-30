@@ -87,7 +87,6 @@ export default class InfoBank extends React.Component<Props, State> {
                             <TextInput
                                 style={styles.input}
                                 onChangeText={(text: any) => {
-
                                     if (!isNaN(text)) {
                                         this.setState({ infoBank: { ...this.state.infoBank, bankCode: text } })
                                     }

@@ -126,7 +126,7 @@ export class UserService {
             })
     }
 
-    public static getMe(): Promise<BaseUserWithJwt | null> {
+    public static getMe(): Promise<User | null> {
         return axios.get(`${config.api.userAPI}/user/me`,)
             .then(res => {
                 return res.data

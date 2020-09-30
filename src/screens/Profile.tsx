@@ -25,7 +25,7 @@ class Profile extends React.Component<Props, State> {
         this.state = {
             avtURL: this.avtDefault,
             name: '',
-            address: '',
+            address: {},
             identityCard: '',
             frontIdCard: '',
             backIdCard: '',
@@ -51,7 +51,7 @@ class Profile extends React.Component<Props, State> {
                 this.setState({
                     avtURL: res.avatar || this.avtDefault,
                     name: res.fullName || '',
-                    address: res.address?.address || '',
+                    address: res.address || {},
                     identityCard: res.identityCard || '',
                     frontIdCard: res.imgIdentityCards ? res.imgIdentityCards[0] : '',
                     backIdCard: res.imgIdentityCards ? res.imgIdentityCards[1] : '',
@@ -90,8 +90,14 @@ class Profile extends React.Component<Props, State> {
     uploadImage = async (uri: string, asideIdCard: string) => {
         const response = await fetch(uri);
         const blob = await response.blob();
-        const url = await uploadService.upload("idCards", `${this.thisUser.username}-${asideIdCard}IdCard`, blob);
-        return url
+        if (asideIdCard === 'avt') {
+            const url = await uploadService.upload("avatars", `${this.thisUser.username}-Avatar`, blob);
+            return url
+        } else {
+            const url = await uploadService.upload("idCards", `${this.thisUser.username}-${asideIdCard}IdCard`, blob);
+            return url
+        }
+
     }
 
 
@@ -147,8 +153,8 @@ class Profile extends React.Component<Props, State> {
                         <View style={{ flex: 1 }}>
                             <TextInput
                                 style={styles.input}
-                                onChangeText={text => this.setState({ address: text })}
-                                value={typeof this.state.address === 'string' ? this.state.address : ''}
+                                onChangeText={text => this.setState({ address: { ...this.state.address, address: text } })}
+                                value={this.state.address.address || ''}
                                 maxLength={35}
                                 placeholder={'Enter your address'}
                             />
@@ -162,9 +168,11 @@ class Profile extends React.Component<Props, State> {
                         <View style={{ flex: 1 }}>
                             <TextInput
                                 style={styles.input}
-                                onChangeText={text => this.setState({ identityCard: text })}
+                                onChangeText={text => {
+                                    this.setState({ identityCard: text })
+                                }}
                                 value={this.state.identityCard}
-                                maxLength={35}
+                                maxLength={15}
                                 keyboardType={'number-pad'}
                                 placeholder={'Enter ID Card'}
                             />
@@ -242,13 +250,12 @@ class Profile extends React.Component<Props, State> {
     updateInfo = () => {
         if (this.validationInfo()) {
             let imgIdentityCards = [this.state.frontIdCard, this.state.backIdCard];
-            let address: Address = {
-                address: typeof this.state.address === 'string' ? this.state.address : 'Type address is not string'
-            }
+            console.log(this.state.avtURL);
+            
             let user: User = {
-                avatar: this.state.avtURL !== this.avtDefault ? this.state.avtURL : '',
+                avatar: this.state.avtURL,
                 fullName: this.state.name,
-                address: address,
+                address: { ...this.state.address },
                 identityCard: this.state.identityCard,
                 imgIdentityCards: imgIdentityCards
             }
@@ -344,7 +351,7 @@ type Props = {
 type State = {
     avtURL: string,
     name: string,
-    address: string | Address,
+    address: Address,
     identityCard: string,
     nameDefault: string,
     frontIdCard: string,
