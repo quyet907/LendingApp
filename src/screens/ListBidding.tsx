@@ -97,7 +97,8 @@ class ListBidding extends Component<Props, state> {
                 <TouchableOpacity
                   onPress={() => {
                     this.props.navigation.navigate(ScreenName.BidProduct, {
-                      bidProductId: item._id
+                      bidProductId: item._id,
+                      bidProductName: item.product?.name
                     });
                   }}
                 >

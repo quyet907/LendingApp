@@ -16,11 +16,12 @@ import * as Color from "../Color";
 import { ScreenName } from "./ScreenName";
 import I18n from "../i18n/i18n";
 import { BaseUserWithJwt } from '@Core/model/user/BaseUser';
+import { useIsFocused } from "@react-navigation/native";
 
 
 const sizeIcon = 20;
 
-export default class Logout extends Component<props, state> {
+class Logout extends Component<Props, State> {
   avtDefault = 'https://i.picsum.photos/id/199/1000/500.jpg?hmac=FK68A1s1J9x0AXSbNfbsgWwUe80fJDlvGRQ5J0IvMAU';
   constructor(props: any) {
     super(props);
@@ -29,19 +30,15 @@ export default class Logout extends Component<props, state> {
       avtURL: ''
     }
   }
-  componentDidMount() {
-    UserService.getMe().then((res) => {
-      if (res != null) {
-        if (res.username != null) {
-          this.setState({ 
-            thisUser: res ,
-            avtURL: res.avatar || ''
-          }, () => console.log(this.state.thisUser));
-          console.log(res);
 
-        }
-      }
-    });
+  componentWillReceiveProps(prev: Props) {
+    if (prev.isFocused) {
+      this.getDataToState();
+    }
+  }
+
+  componentDidMount() {
+    this.getDataToState()
   }
 
   render() {
@@ -55,7 +52,7 @@ export default class Logout extends Component<props, state> {
           <View style={[styles.containerAvt]}>
             <Image
               style={[styles.imgAvt]}
-              source={{uri: this.state.avtURL}}
+              source={{ uri: this.state.avtURL }}
             />
           </View>
           <View style={{ justifyContent: "space-around", height: "100%" }}>
@@ -76,7 +73,19 @@ export default class Logout extends Component<props, state> {
               <FontAwesome5 name={"gift"} size={sizeIcon} color={Color.primary} />
             </View>
 
-            <Text style={[styles.contentFuture]}>Profile</Text>
+            <Text style={[styles.contentFuture]}>{I18n.t('screens.profile.profileTabName')}</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={[myStyle.row, styles.layoutFeature]}
+            onPress={() => this.props.navigation.navigate(ScreenName.infoBank)}
+
+          >
+            <View style={styles.containerIcon}>
+              <FontAwesome5 name={"gift"} size={sizeIcon} color={Color.primary} />
+            </View>
+
+            <Text style={[styles.contentFuture]}>{I18n.t('screens.profile.bankInfo')}</Text>
           </TouchableOpacity>
 
           <TouchableOpacity
@@ -144,15 +153,21 @@ export default class Logout extends Component<props, state> {
       </View>
     );
   }
-}
-type props = {
-  navigation: any
-};
 
-type state = {
-  thisUser: BaseUserWithJwt,
-  avtURL: string,
-};
+  getDataToState = () => {
+    UserService.getMe().then((res) => {
+      if (res != null) {
+        if (res.username != null) {
+          this.setState({
+            thisUser: res,
+            avtURL: res.avatar || ''
+          });
+        }
+      }
+    });
+  }
+}
+
 
 const styles = StyleSheet.create({
   header: {
@@ -196,6 +211,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold'
   },
   contentFuture: {
+    textTransform: 'capitalize',
     color: "white",
     // paddingLeft: 17,
     fontSize: 16,
@@ -233,3 +249,20 @@ const styles = StyleSheet.create({
     width: 37
   },
 });
+
+
+type Props = {
+  navigation: any,
+  isFocused: boolean
+};
+
+type State = {
+  thisUser: BaseUserWithJwt,
+  avtURL: string,
+};
+
+export default function (props: Props) {
+  const isFocused = useIsFocused();
+
+  return <Logout {...props} isFocused={isFocused} />;
+}

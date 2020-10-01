@@ -8,6 +8,8 @@ import Constants from 'expo-constants';
 import { uploadService } from '../services/UploadService';
 import { BankUser } from '@StockAfiCore/model/user/BankUser';
 import { UserService } from '../services/UserService';
+import * as actionPopup from "../Action/ActionPopup";
+import I18n from '../i18n/i18n';
 
 export default class InfoBank extends React.Component<Props, State> {
     constructor(props: any) {
@@ -37,7 +39,8 @@ export default class InfoBank extends React.Component<Props, State> {
 
     async updateInfoBank() {
         UserService.updateInfoBank(this.state.infoBank).then((infoBank: BankUser) => {
-            if(infoBank){
+            if (infoBank) {
+                actionPopup.showMessage(I18n.t('success.updateProfile'))
                 this.setState({ infoBank: infoBank })
             }
         })
@@ -48,20 +51,20 @@ export default class InfoBank extends React.Component<Props, State> {
 
     render() {
         return (
-            <ScrollView style={{ backgroundColor: Color.background_primary }}>
-                <View style={{ height: 170, display: 'flex', justifyContent: 'center', position: 'relative' }}>
+            <View style={{ backgroundColor: Color.background_primary, flex: 1, alignItems: 'center', justifyContent: "center" }}>
+                {/* <View style={{ height: 170, display: 'flex', justifyContent: 'center', position: 'relative' }}>
 
 
-                </View>
+                </View> */}
 
                 <View style={{ marginTop: 70, justifyContent: 'center', alignItems: 'center' }}>
-                    <Text style={{ color: '#fff', fontSize: 20, fontWeight: '600' }}>INFO BANK</Text>
+                    <Text style={{ color: '#fff', fontSize: 20, fontWeight: '600', textTransform: 'uppercase' }}>{I18n.t('screens.bankInfo.bankInfoTitle')}</Text>
                 </View>
 
                 <View style={{ marginTop: 30, paddingHorizontal: 27 }}>
                     <View style={styles.info}>
                         <View>
-                            <Text style={styles.title}>Bank Name</Text>
+                            <Text style={styles.title}>{I18n.t('screens.bankInfo.bankNameLabel')}</Text>
                         </View>
                         <View style={{ flex: 1 }}>
                             <TextInput
@@ -72,7 +75,7 @@ export default class InfoBank extends React.Component<Props, State> {
                                 }}
                                 value={this.state.infoBank.bankName}
                                 maxLength={35}
-                                placeholder={'Enter your name'}
+                                placeholder={I18n.t('screens.bankInfo.bankNamePlaceHolder')}
                             />
                         </View>
                     </View>
@@ -81,7 +84,7 @@ export default class InfoBank extends React.Component<Props, State> {
 
                     <View style={styles.info}>
                         <View>
-                            <Text style={styles.title}>Number Bank</Text>
+                            <Text style={styles.title}>{I18n.t('screens.bankInfo.bankNumberLabel')}</Text>
                         </View>
                         <View style={{ flex: 1 }}>
                             <TextInput
@@ -93,14 +96,14 @@ export default class InfoBank extends React.Component<Props, State> {
                                 }}
                                 value={this.state.infoBank.bankCode}
                                 maxLength={35}
-                                placeholder={'Enter your address'}
+                                placeholder={I18n.t('screens.bankInfo.bankNumberPlaceHolder')}
                             />
                         </View>
                     </View>
 
                     <View style={styles.info}>
                         <View>
-                            <Text style={styles.title}>Brach</Text>
+                            <Text style={styles.title}>{I18n.t('screens.bankInfo.bankBranchLabel')}</Text>
                         </View>
                         <View style={{ flex: 1 }}>
                             <TextInput
@@ -110,7 +113,7 @@ export default class InfoBank extends React.Component<Props, State> {
                                 }}
                                 value={this.state.infoBank.bankBrand}
                                 maxLength={35}
-                                placeholder={'Enter branch bank'}
+                                placeholder={I18n.t('screens.bankInfo.bankBranchPlaceHolder')}
                             />
                         </View>
                     </View>
@@ -127,10 +130,9 @@ export default class InfoBank extends React.Component<Props, State> {
                             activeOpacity={0.7}
                             onPress={(event) => {
                                 this.updateInfoBank()
-                            }
-                            }
+                            }}
                         >
-                            <Text style={[myStyle.textButton]}>UPDATE</Text>
+                            <Text style={[myStyle.textButton]}>{I18n.t('screens.editProfile.updateButton')}</Text>
                         </TouchableOpacity>
                     </View>
                 </View>
@@ -138,7 +140,8 @@ export default class InfoBank extends React.Component<Props, State> {
 
 
 
-            </ScrollView>
+
+            </View>
 
         )
     }
@@ -203,6 +206,7 @@ const styles = StyleSheet.create({
         borderBottomWidth: 1
     },
     title: {
+        textTransform: 'uppercase',
         color: '#999',
         fontSize: 16,
         flex: 1

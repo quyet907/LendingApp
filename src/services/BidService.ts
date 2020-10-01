@@ -118,9 +118,9 @@ export class BidService {
 
     public static getNameUserWin(bidProduct: BidProduct): string {
         if (bidProduct.latestBidUser && bidProduct.latestBidUser.username) {
-            return `User win: ${bidProduct.latestBidUser.username}`
+            return `${I18n.t('screens.listBidding.winner')}: ${bidProduct.latestBidUser.username}`
         }
-        return "No one has won yet"
+        return I18n.t('screens.listBidding.noOneHasWon')
     }
 
 
@@ -152,7 +152,7 @@ export class BidService {
 
     public static changeTextTime(calcTime: number): string {
         if (calcTime < 0) {
-            return `Finished`
+            return I18n.t('screens.bidDetail.finish')
         }
         if (calcTime > actionAll.getConfig().timeBid) {
             return `${BidService.getTimeStart(calcTime)}`
@@ -167,9 +167,9 @@ export class BidService {
             return `${BidService.getTimeFinsh(Math.abs(calcTime))}`
         }
         if (calcTime > actionAll.getConfig().timeBid) {
-            return "Upcoming"
+            return I18n.t('screens.listBidding.upcoming')
         }
-        return "Happening";
+        return I18n.t('screens.listBidding.happening');
     }
 
     public static getTimeStart(calcTime: number): string {
@@ -201,18 +201,18 @@ export class BidService {
     public static getTimeFinsh(calcTime: number): string {
         if (calcTime < 60) {
             // return `${Math.round(calcTime)} second ago`
-            return "Few seconds ago"
+            return I18n.t('screens.listBidding.fewSecondsAgo')
         }
         else if (calcTime < 60 * 60) {
-            return `${Math.floor(calcTime / 60)} minute ago`
+            return `${Math.floor(calcTime / 60)} ${I18n.t('screens.listBidding.minuteAgo')}`
         }
         else if (calcTime <= 60 * 60 * 24) {
-            return `${Math.floor(calcTime / (60 * 60))} hour ago`
+            return `${Math.floor(calcTime / (60 * 60))} ${I18n.t('screens.listBidding.hourAgo')}`
         }
         else if (calcTime > 60 * 60 * 24) {
-            return `${Math.floor(calcTime / (60 * 60 * 24))} day ago`
+            return `${Math.floor(calcTime / (60 * 60 * 24))} ${I18n.t('screens.listBidding.dayAgo')}`
         }
-        return "ông cố nội mày"
+        return "getTimeFinish() error"
     }
 
     //check biddig and revreceive reward
@@ -235,14 +235,14 @@ export class BidService {
                 if (user._id == bidProduct.latestBidUserId) {
                     return (bidProduct.receivedAt) ? `${I18n.t('screens.editProfile.editButton')} ${MyFormat.formatDate(bidProduct.receivedAt)}` : "Nhận thưởng"
                 }
-                return "Finished"
+                return I18n.t('screens.bitDetail.finish')
             }
-            return "Finished"/// không tìm thấy thông tin
+            return I18n.t('screens.bitDetail.finish')/// không tìm thấy thông tin
         }
         if (getTime > actionAll.getConfig().timeBid) {
-            return "UpComming";
+            return I18n.t('screens.listBidding.upcoming');
         }
-        return `Bid with ${MyFormat.roundingMoney(getStepPrice)} COIN`;
+        return `${I18n.t('screens.bidDetail.bidWith')} ${MyFormat.roundingMoney(getStepPrice)} COIN`;
     }
 
 
@@ -256,8 +256,16 @@ export class BidService {
         return (bidProduct && bidProduct.receivedAt) ? true : false;
     }
 
-    public static checkButton(bidProduct: BidProduct, user: BaseUser): boolean {
-        return (BidService.checkMeWin(bidProduct, user) && !BidService.checkReceive(bidProduct))
+    public static checkButton(bidProduct : BidProduct, user: BaseUser) : boolean {
+        let getTime = BidService.getTimeCountBid(bidProduct);
+        if(getTime > actionAll.getConfig().timeBid){
+            return false;
+        }
+        if(getTime < 0){
+            return (BidService.checkMeWin(bidProduct, user) && !BidService.checkReceive(bidProduct))
+        }
+        return true;
+        
     }
 
 

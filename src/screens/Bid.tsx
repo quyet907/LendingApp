@@ -20,7 +20,7 @@ import { UserService } from '../services/UserService';
 var timeahihi;
 var bidProductId = "";
 class Bid extends Component<props, state>{
-    constructor(props: any) {
+       constructor(props: any) {
         super(props)
         this.state = {
             bidProduct: {},
@@ -135,7 +135,7 @@ class Bid extends Component<props, state>{
                     <View style={[myStyle.frPriceAndTimePageBid]}>
                         <View style={[myStyle.childFrPriceAndTimePageBid]}>
                             <Text style={{ color: color.warning, fontWeight: "bold", fontSize: 20, }}>{BidService.changeTextTime(this.state.timeBid)}</Text>
-                            <Text style={{ color: color.inactive }}>{BidService.changeTextStatus(this.state.timeBid)}</Text>
+                            <Text style={{ color: color.inactive, textTransform: 'capitalize' }}>{BidService.changeTextStatus(this.state.timeBid)}</Text>
                         </View>
                         <View style={[myStyle.childFrPriceAndTimePageBid]}>
                             <Text style={{ color: color.text_primary, fontWeight: "bold", fontSize: 20, }}>
@@ -163,7 +163,7 @@ class Bid extends Component<props, state>{
                     <TouchableOpacity
                         style={BidService.checkButton(this.state.bidProduct, this.state.me) ? [myStyle.buttonBid] : [myStyle.buttonBid, myStyle.ButtonBidDisabled]}
                         onPress={(event) => {
-                            if(BidService.checkButton(this.state.bidProduct, this.state.me)){
+                            if(BidService.getTimeCountBid(this.state.bidProduct) < 0){
                                 BidService.receiveReward(bidProductId).then((bidProduct : BidProduct)=>{
                                     if(bidProduct){
                                         this.setState({
