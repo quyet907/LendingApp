@@ -42,7 +42,7 @@ class HistoryInterest extends Component<props, state> {
                         </View>
                     </View>
 
-                    <View style={{ flexBasis: 77 }}>
+                    <View style={{ flexBasis: 80 }}>
                         <Text style={[{ color: color.secondary, fontSize: 16 }]}>
                             {this.props.daysLeft} {I18n.t('screens.dashboard.interestRateHistories.remainDays')}
                         </Text>
@@ -143,7 +143,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         flex: 1,
         paddingVertical: 12,
-        paddingHorizontal: 20,
+        paddingHorizontal: 25,
         borderRadius: 5,
         marginBottom: 10,
         backgroundColor: color.background

@@ -81,7 +81,7 @@ class Home extends Component<Props, State> {
             ></ListStatisticalBasic>
           </View>
 
-          <View>
+          <View style={{paddingTop: 10}}>
 
             <ListHistoryInterest
               data={this.state.dataProfit} />
