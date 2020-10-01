@@ -29,7 +29,7 @@ class Profile extends React.Component<Props, State> {
             identityCard: '',
             frontIdCard: '',
             backIdCard: '',
-            nameDefault: 'Enter your name',
+            nameDefault: I18n.t('screens.editProfile.namePlaceholder'),
         }
     }
 
@@ -131,7 +131,7 @@ class Profile extends React.Component<Props, State> {
                 <View style={{ marginTop: 30, paddingHorizontal: 27 }}>
                     <View style={styles.info}>
                         <View>
-                            <Text style={styles.title}>Name</Text>
+                            <Text style={styles.title}>{I18n.t('screens.editProfile.nameLabel')}</Text>
                         </View>
                         <View style={{ flex: 1 }}>
                             <TextInput
@@ -139,7 +139,7 @@ class Profile extends React.Component<Props, State> {
                                 onChangeText={text => this.setState({ name: text })}
                                 value={this.state.name}
                                 maxLength={35}
-                                placeholder={'Enter your name'}
+                                placeholder={I18n.t('screens.editProfile.namePlaceholder')}
                             />
                         </View>
                     </View>
@@ -148,7 +148,7 @@ class Profile extends React.Component<Props, State> {
 
                     <View style={styles.info}>
                         <View>
-                            <Text style={styles.title}>Address</Text>
+                            <Text style={styles.title}>{I18n.t('screens.editProfile.addressLabel')}</Text>
                         </View>
                         <View style={{ flex: 1 }}>
                             <TextInput
@@ -156,14 +156,14 @@ class Profile extends React.Component<Props, State> {
                                 onChangeText={text => this.setState({ address: { ...this.state.address, address: text } })}
                                 value={this.state.address.address || ''}
                                 maxLength={35}
-                                placeholder={'Enter your address'}
+                                placeholder={I18n.t('screens.editProfile.addressPlaceholder')}
                             />
                         </View>
                     </View>
 
                     <View style={styles.info}>
                         <View>
-                            <Text style={styles.title}>Identity Number</Text>
+                            <Text style={styles.title}>{I18n.t('screens.editProfile.identityNumberLabel')}</Text>
                         </View>
                         <View style={{ flex: 1 }}>
                             <TextInput
@@ -174,14 +174,14 @@ class Profile extends React.Component<Props, State> {
                                 value={this.state.identityCard}
                                 maxLength={15}
                                 keyboardType={'number-pad'}
-                                placeholder={'Enter ID Card'}
+                                placeholder={I18n.t('screens.editProfile.idNumberPlaceholder')}
                             />
                         </View>
                     </View>
 
                     <View style={styles.info}>
                         <View>
-                            <Text style={styles.title}>Front ID Card</Text>
+                            <Text style={styles.title}>{I18n.t('screens.editProfile.frontIdCardLabel')}</Text>
                         </View>
                         <View style={{ flex: 1, alignItems: 'flex-end', paddingLeft: 30 }}>
                             <TouchableOpacity
@@ -194,7 +194,9 @@ class Profile extends React.Component<Props, State> {
                                         source={{ uri: this.state.frontIdCard }}
                                     />
                                 </View>
-                                <Text style={{ color: Color.primary, fontWeight: '500', fontSize: 16 }}>{this.state.frontIdCard ? 'Edit' : 'Add photo'} </Text>
+                                <Text style={{ color: Color.primary, fontWeight: '500', fontSize: 16, textTransform: 'capitalize' }}>
+                                    {this.state.frontIdCard ? I18n.t('screens.editProfile.editButton') : I18n.t('screens.editProfile.addPhotoButton') } 
+                                    </Text>
                             </TouchableOpacity>
                         </View>
                     </View>
@@ -202,7 +204,7 @@ class Profile extends React.Component<Props, State> {
 
                     <View style={styles.info}>
                         <View>
-                            <Text style={styles.title}>Back ID Card</Text>
+                            <Text style={styles.title}>{I18n.t('screens.editProfile.backIdCardLabel')}</Text>
                         </View>
                         <View style={{ flex: 1, alignItems: 'flex-end', paddingLeft: 30 }}>
                             <TouchableOpacity
@@ -233,7 +235,7 @@ class Profile extends React.Component<Props, State> {
                             activeOpacity={0.7}
                             onPress={this.updateInfo}
                         >
-                            <Text style={[myStyle.textButton]}>UPDATE</Text>
+                            <Text style={[myStyle.textButton]}>{I18n.t('screens.editProfile.updateButton')}</Text>
                         </TouchableOpacity>
                     </View>
 
@@ -281,7 +283,7 @@ class Profile extends React.Component<Props, State> {
 
     validationInfo = (): boolean => {
         let fullName = this.state.name,
-            address = this.state.address,
+            address = this.state.address.address,
             identityCard = this.state.identityCard,
             frontIdCard = this.state.frontIdCard,
             backIdCard = this.state.backIdCard;
@@ -337,6 +339,7 @@ const styles = StyleSheet.create({
         borderBottomWidth: 1
     },
     title: {
+        textTransform: 'capitalize',
         color: '#999',
         fontSize: 16,
         flex: 1

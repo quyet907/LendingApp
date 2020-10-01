@@ -67,7 +67,7 @@ export default class ProductBid extends Component<Props, state> {
                 <View>
                     <View style={[myStyle.frNameandDetailProductBid]}>
                         <Text style={[myStyle.nameProductBid]}>{BidService.getNameBidProduct(this.props.bidProduct)}</Text>
-                        <Text style={{ color: color.inactive }}>{BidService.getNameUserWin(this.props.bidProduct)}</Text>
+                        <Text style={{ color: color.inactive, textTransform:'capitalize' }}>{BidService.getNameUserWin(this.props.bidProduct)}</Text>
                     </View>
                 </View>
             </View>

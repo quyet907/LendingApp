@@ -94,21 +94,67 @@ export default {
             }
         },
         profile: {
-            "profileTabName": "Profile",
             "profileTitle": "PROFILE",
+            "profileTabName": "Profile",
+            "bankInfo": "Bank Info",
             "bid": "Bid",
             "bidHistories": "My Bid",
             "coupon": "Gift",
             "logout": "Logout",
         },
+        editProfile: {
+            //Label
+            "nameLabel": "Name",
+            "addressLabel": "Address",
+            "identityNumberLabel": "Identity Number",
+            "frontIdCardLabel":"Front ID Card",
+            "backIdCardLabel":"Back ID Card",
+            
+            //Place Holder
+            "namePlaceholder": "Enter your name",
+            "addressPlaceholder": "Enter your address",
+            "idNumberPlaceholder": "Enter ID Number",
+
+            //Button
+            "updateButton": "UPDATE",
+            "editButton": "Edit",
+            "addPhotoButton": "Add Photo",
+        }, 
+        bankInfo: {
+            "bankInfoTitle": "BANK INFORMATION",
+            "bankNameLabel": "Bank Name",
+            "bankNumberLabel": "Number Bank",
+            "bankBranchLabel": "Branch",
+
+            "bankNamePlaceHolder": "Enter bank name",
+            "bankNumberPlaceHolder": "Enter bank number",
+            "bankBranchPlaceHolder": "Enter bank branch",
+
+        },
         bidDetail: {
             "bidderTitle": "Bidder",
+            "finish": "Finish",
+            "bidWith": "Bid with",
         },
         listBidding: {
             tabName: {
                 "doingTabName": "DOING",
                 "comingTabName": "COMING",
-            }
+            },
+            "winner": "Winner",
+            "noOneHasWon": "No one has won yet",
+            "upcoming": "Upcoming",
+            "happening": "Happening",
+
+            "fewSecondsAgo": "Few seconds ago",
+            "minuteAgo": "minute ago",
+            "hourAgo": "hour ago",
+            "dayAgo": "day ago"
+
+
+            
+
+
         },
         myBid: {
             tabName: {
