@@ -101,6 +101,25 @@ export default {
             "coupon": "Gift",
             "logout": "Logout",
         },
+        editProfile: {
+            //Label
+            "nameLabel": "Name",
+            "addressLabel": "Address",
+            "identityNumberLabel": "Identity Number",
+            "frontIdCardLabel":"Front ID Card",
+            "backIdCardLabel":"Back ID Card",
+            
+            //Place Holder
+            "namePlaceholder": "Enter your name",
+            "addressPlaceholder": "Enter your address",
+            "idNumberPlaceholder": "Enter ID Number",
+
+            //Button
+            "updateButton": "UPDATE",
+            "editButton": "Edit",
+            "addPhotoButton": "Add Photo",
+        }, 
+
         bidDetail: {
             "bidderTitle": "Bidder",
         },

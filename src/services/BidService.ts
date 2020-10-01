@@ -8,6 +8,7 @@ import * as actionAll from "../Action/ActionAll"
 import { UserService } from "./UserService";
 import { isBuffer } from "util";
 import { BaseUser } from "@Core/model/user/BaseUser";
+import I18n from '../i18n/i18n'
 export class BidService {
     public static getBidInfo(id: string): Promise<BidProduct> {
         return getAxios().then((axios) =>
@@ -89,35 +90,35 @@ export class BidService {
         let calcTime: number = 0;
         if (bidProduct.latestBidAt) {
             calcTime = BidService.calcTime(bidProduct.latestBidAt)
-            
+
         } else if (bidProduct.startBidAt) {
             calcTime = BidService.calcTime(bidProduct.startBidAt)
         }
         return calcTime;
     }
 
-    public static getImgFirtBidProduct(bidProduct : BidProduct) : string{
+    public static getImgFirtBidProduct(bidProduct: BidProduct): string {
         if (bidProduct.product && bidProduct.product.thumbImagesUrl)
             return bidProduct.product.thumbImagesUrl[0];
         return ""
     }
-    public static getPriceBidProduct(bidProduct : BidProduct) : number{
-        if (bidProduct.endPrice)    return  bidProduct.endPrice;
-        if(bidProduct.endPrice==0) return 0;
-        if (bidProduct.startPrice)  return  bidProduct.startPrice;
+    public static getPriceBidProduct(bidProduct: BidProduct): number {
+        if (bidProduct.endPrice) return bidProduct.endPrice;
+        if (bidProduct.endPrice == 0) return 0;
+        if (bidProduct.startPrice) return bidProduct.startPrice;
         return 0;
     }
 
-    public static getNameBidProduct(bidProduct : BidProduct) : string{
-        if(bidProduct.product && bidProduct.product.name)
+    public static getNameBidProduct(bidProduct: BidProduct): string {
+        if (bidProduct.product && bidProduct.product.name)
             return bidProduct.product.name
         return "Product of Afi"
-        
+
     }
 
-    public static getNameUserWin(bidProduct : BidProduct) : string{
-        if(bidProduct.latestBidUser && bidProduct.latestBidUser.username){
-            return `User win : ${bidProduct.latestBidUser.username}`
+    public static getNameUserWin(bidProduct: BidProduct): string {
+        if (bidProduct.latestBidUser && bidProduct.latestBidUser.username) {
+            return `User win: ${bidProduct.latestBidUser.username}`
         }
         return "No one has won yet"
     }
@@ -142,9 +143,9 @@ export class BidService {
     //     return `Bid with ${MyFormat.roundingMoney(getStepPrice) } COIN`
     // }
 
-    public static checkComming(bidProduct: BidProduct) : boolean {
-        let getTimeCount =  BidService.getTimeCountBid(bidProduct);
-         return (getTimeCount > actionAll.getConfig().timeBid)
+    public static checkComming(bidProduct: BidProduct): boolean {
+        let getTimeCount = BidService.getTimeCountBid(bidProduct);
+        return (getTimeCount > actionAll.getConfig().timeBid)
     }
 
 
@@ -215,51 +216,51 @@ export class BidService {
     }
 
     //check biddig and revreceive reward
-    public static checkButtonBid(bidProduct : BidProduct) : boolean {
+    public static checkButtonBid(bidProduct: BidProduct): boolean {
         let getTime = BidService.getTimeCountBid(bidProduct);
-        if(getTime <0 ){
+        if (getTime < 0) {
             return true;
         }
-        if(getTime > actionAll.getConfig().timeBid){
+        if (getTime > actionAll.getConfig().timeBid) {
             return false;
         }
         return true;
     }
 
-    public static  changTextButtonBid(bidProduct : BidProduct, user  : BaseUser) : string {
-        let getStepPrice = bidProduct.stepPrice ||0
+    public static changTextButtonBid(bidProduct: BidProduct, user: BaseUser): string {
+        let getStepPrice = bidProduct.stepPrice || 0
         let getTime = BidService.getTimeCountBid(bidProduct);
-        if(getTime <0 ){
-            if(user && user._id && bidProduct){
-                if(user._id == bidProduct.latestBidUserId){
-                    return (bidProduct.receivedAt) ? `Đã nhận lúc ${MyFormat.formatDate(bidProduct.receivedAt)}` : "Nhận thưởng" 
+        if (getTime < 0) {
+            if (user && user._id && bidProduct) {
+                if (user._id == bidProduct.latestBidUserId) {
+                    return (bidProduct.receivedAt) ? `${I18n.t('screens.editProfile.editButton')} ${MyFormat.formatDate(bidProduct.receivedAt)}` : "Nhận thưởng"
                 }
                 return "Finished"
             }
             return "Finished"/// không tìm thấy thông tin
-        }   
-        if(getTime > actionAll.getConfig().timeBid){
+        }
+        if (getTime > actionAll.getConfig().timeBid) {
             return "UpComming";
         }
-        return `Bid with ${MyFormat.roundingMoney(getStepPrice) } COIN`;
+        return `Bid with ${MyFormat.roundingMoney(getStepPrice)} COIN`;
     }
 
 
-    public static checkMeWin(bidProduct : BidProduct, user  : BaseUser) : boolean {
-        if(user && user._id && bidProduct)
-            return  (user._id == bidProduct.latestBidUserId) ? true : false;
+    public static checkMeWin(bidProduct: BidProduct, user: BaseUser): boolean {
+        if (user && user._id && bidProduct)
+            return (user._id == bidProduct.latestBidUserId) ? true : false;
         return false;
     }
 
-    public static checkReceive(bidProduct : BidProduct) : boolean {
+    public static checkReceive(bidProduct: BidProduct): boolean {
         return (bidProduct && bidProduct.receivedAt) ? true : false;
     }
 
-    public static checkButton(bidProduct : BidProduct, user: BaseUser) : boolean {
+    public static checkButton(bidProduct: BidProduct, user: BaseUser): boolean {
         return (BidService.checkMeWin(bidProduct, user) && !BidService.checkReceive(bidProduct))
     }
 
-    
+
     // public static checkWin(userWinId  : string) : Promise<boolean>{
     //     return  UserService.getMe().then((me : any )=>{
     //         return me._id == userWinId ? true : false;

@@ -21,19 +21,24 @@ import { BaseUserWithJwt } from '@Core/model/user/BaseUser';
 const sizeIcon = 20;
 
 export default class Logout extends Component<props, state> {
+  avtDefault = 'https://i.picsum.photos/id/199/1000/500.jpg?hmac=FK68A1s1J9x0AXSbNfbsgWwUe80fJDlvGRQ5J0IvMAU';
   constructor(props: any) {
     super(props);
     this.state = {
       thisUser: {},
-    };
+      avtURL: ''
+    }
   }
   componentDidMount() {
     UserService.getMe().then((res) => {
       if (res != null) {
         if (res.username != null) {
-          this.setState({ thisUser: res }, () => console.log(this.state.thisUser));
+          this.setState({ 
+            thisUser: res ,
+            avtURL: res.avatar || ''
+          }, () => console.log(this.state.thisUser));
           console.log(res);
-          
+
         }
       }
     });
@@ -48,10 +53,10 @@ export default class Logout extends Component<props, state> {
 
         <View style={[myStyle.row, styles.layoutAccout]}>
           <View style={[styles.containerAvt]}>
-            {/* <Image
+            <Image
               style={[styles.imgAvt]}
-              source={require("../icons/05-your-face-is-rad-san-diego-headshot-and-business-branding-photographer-gallery.jpg")}
-            /> */}
+              source={{uri: this.state.avtURL}}
+            />
           </View>
           <View style={{ justifyContent: "space-around", height: "100%" }}>
             <Text style={[styles.contentAccount]}>{this.state.thisUser.username}</Text>
@@ -145,7 +150,8 @@ type props = {
 };
 
 type state = {
-  thisUser: BaseUserWithJwt;
+  thisUser: BaseUserWithJwt,
+  avtURL: string,
 };
 
 const styles = StyleSheet.create({
@@ -209,10 +215,11 @@ const styles = StyleSheet.create({
     textTransform: "uppercase",
   },
   containerAvt: {
-    backgroundColor: 'gray',
     borderRadius: 50,
     width: 55,
     height: 55,
+    borderWidth: 2,
+    borderColor: Color.primary,
     justifyContent: "center",
     alignItems: "center",
   },
