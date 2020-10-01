@@ -232,7 +232,7 @@ export class BidService {
         if(getTime <0 ){
             if(user && user._id && bidProduct){
                 if(user._id == bidProduct.latestBidUserId){
-                    return (bidProduct.receivedAt) ? `Đã nhận lúc ${MyFormat.formatDate(bidProduct.receivedAt)}` : "Nhận thưởng" 
+                    return (bidProduct.receiveiddAt) ? `Đã nhận lúc ${MyFormat.formatDate(bidProduct.receivedAt)}` : "Nhận thưởng" 
                 }
                 return "Finished"
             }
