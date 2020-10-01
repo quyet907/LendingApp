@@ -33,16 +33,16 @@ class HistoryInterest extends Component<props, state> {
                         <FontAwesome5 name='coins' size={35} color={color.success} />
                     </View>
 
-                    <View style={{ justifyContent: 'space-between', height: '100%', flexBasis: 100 }}>
+                    <View style={{ justifyContent: 'space-between', height: '100%', flex: 1  }}>
                         <Text style={styles.title}>
-                            <FontAwesome5 name='caret-up' size={16} color={color.success} style={{ paddingTop: 4 }} /> {this.props.profits} COIN
+                            <FontAwesome5 name='caret-up' size={16} color={color.success} style={{ paddingTop: 4 }} /> {MyFormat.roundingMoney(this.props.profits)} COIN
                             </Text>
                         <View style={{ flexDirection: 'row', alignItems: 'center', flex: 1 }}>
                             {timeIcon}<Text style={styles.time}>{this.props.createAt}</Text>
                         </View>
                     </View>
 
-                    <View style={{ flex: 1, alignItems: 'center' }}>
+                    <View style={{ flexBasis: 77 }}>
                         <Text style={[{ color: color.secondary, fontSize: 16 }]}>
                             {this.props.daysLeft} {I18n.t('screens.dashboard.interestRateHistories.remainDays')}
                         </Text>
@@ -143,7 +143,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         flex: 1,
         paddingVertical: 12,
-        paddingHorizontal: 25,
+        paddingHorizontal: 20,
         borderRadius: 5,
         marginBottom: 10,
         backgroundColor: color.background
