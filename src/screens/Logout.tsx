@@ -33,7 +33,7 @@ export default class Logout extends Component<props, state> {
         if (res.username != null) {
           this.setState({ thisUser: res }, () => console.log(this.state.thisUser));
           console.log(res);
-          
+
         }
       }
     });
@@ -72,6 +72,18 @@ export default class Logout extends Component<props, state> {
             </View>
 
             <Text style={[styles.contentFuture]}>Profile</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={[myStyle.row, styles.layoutFeature]}
+            onPress={() => this.props.navigation.navigate(ScreenName.infoBank)}
+
+          >
+            <View style={styles.containerIcon}>
+              <FontAwesome5 name={"gift"} size={sizeIcon} color={Color.primary} />
+            </View>
+
+            <Text style={[styles.contentFuture]}>Bank Info</Text>
           </TouchableOpacity>
 
           <TouchableOpacity

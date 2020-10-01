@@ -14,6 +14,7 @@ import Bid from "./Bid";
 import Giftcode from "./Coupon";
 import Coupon from "./Coupon";
 import Profile from "./Profile";
+import InfoBank from "./InfoBank";
 const Stack = createStackNavigator();
 
 export default class LogoutScreen extends Component<Props, State> {
@@ -35,6 +36,15 @@ export default class LogoutScreen extends Component<Props, State> {
                         }}
                     />
                     <Stack.Screen name={ScreenName.ListBid} component={BidStack}
+                        options={{
+                            title: 'Bid',
+                            headerTintColor: '#fff',
+                            headerStyle: {
+                                backgroundColor: color.background
+                            },
+                        }}
+                    />
+                    <Stack.Screen name={ScreenName.infoBank} component={InfoBank}
                         options={{
                             title: 'Bid',
                             headerTintColor: '#fff',

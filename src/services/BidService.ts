@@ -256,7 +256,15 @@ export class BidService {
     }
 
     public static checkButton(bidProduct : BidProduct, user: BaseUser) : boolean {
-        return (BidService.checkMeWin(bidProduct, user) && !BidService.checkReceive(bidProduct))
+        let getTime = BidService.getTimeCountBid(bidProduct);
+        if(getTime > actionAll.getConfig().timeBid){
+            return false;
+        }
+        if(getTime < 0){
+            return (BidService.checkMeWin(bidProduct, user) && !BidService.checkReceive(bidProduct))
+        }
+        return true;
+        
     }
 
     

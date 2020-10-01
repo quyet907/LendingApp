@@ -163,7 +163,7 @@ class Bid extends Component<props, state>{
                     <TouchableOpacity
                         style={BidService.checkButton(this.state.bidProduct, this.state.me) ? [myStyle.buttonBid] : [myStyle.buttonBid, myStyle.ButtonBidDisabled]}
                         onPress={(event) => {
-                            if(BidService.checkButton(this.state.bidProduct, this.state.me)){
+                            if(BidService.getTimeCountBid(this.state.bidProduct) < 0){
                                 BidService.receiveReward(bidProductId).then((bidProduct : BidProduct)=>{
                                     if(bidProduct){
                                         this.setState({

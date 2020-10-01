@@ -8,6 +8,7 @@ import Constants from 'expo-constants';
 import { uploadService } from '../services/UploadService';
 import { BankUser } from '@StockAfiCore/model/user/BankUser';
 import { UserService } from '../services/UserService';
+import * as actionPopup from "../Action/ActionPopup";
 
 export default class InfoBank extends React.Component<Props, State> {
     constructor(props: any) {
@@ -37,7 +38,8 @@ export default class InfoBank extends React.Component<Props, State> {
 
     async updateInfoBank() {
         UserService.updateInfoBank(this.state.infoBank).then((infoBank: BankUser) => {
-            if(infoBank){
+            if (infoBank) {
+                actionPopup.showMessage("Update Update successful")
                 this.setState({ infoBank: infoBank })
             }
         })
@@ -48,97 +50,99 @@ export default class InfoBank extends React.Component<Props, State> {
 
     render() {
         return (
-            <ScrollView style={{ backgroundColor: Color.background_primary }}>
-                <View style={{ height: 170, display: 'flex', justifyContent: 'center', position: 'relative' }}>
+            <View style={{ backgroundColor: Color.background_primary , flex  :1,alignItems: 'center', justifyContent: "center"}}>
+                {/* <View style={{ height: 170, display: 'flex', justifyContent: 'center', position: 'relative' }}>
 
 
-                </View>
+                </View> */}
 
-                <View style={{ marginTop: 70, justifyContent: 'center', alignItems: 'center' }}>
-                    <Text style={{ color: '#fff', fontSize: 20, fontWeight: '600' }}>INFO BANK</Text>
-                </View>
+                
+                    <View style={{ marginTop: 70, justifyContent: 'center', alignItems: 'center' }}>
+                        <Text style={{ color: '#fff', fontSize: 20, fontWeight: '600' }}>INFO BANK</Text>
+                    </View>
 
-                <View style={{ marginTop: 30, paddingHorizontal: 27 }}>
-                    <View style={styles.info}>
-                        <View>
-                            <Text style={styles.title}>Bank Name</Text>
+                    <View style={{ marginTop: 30, paddingHorizontal: 27 }}>
+                        <View style={styles.info}>
+                            <View>
+                                <Text style={styles.title}>Bank Name</Text>
+                            </View>
+                            <View style={{ flex: 1 }}>
+                                <TextInput
+                                    style={styles.input}
+                                    onChangeText={(text) => {
+                                        console.log(this.state.infoBank)
+                                        this.setState({ infoBank: { ...this.state.infoBank, bankName: text } })
+                                    }}
+                                    value={this.state.infoBank.bankName}
+                                    maxLength={35}
+                                    placeholder={'Enter your name'}
+                                />
+                            </View>
                         </View>
-                        <View style={{ flex: 1 }}>
-                            <TextInput
-                                style={styles.input}
-                                onChangeText={(text) => {
-                                    console.log(this.state.infoBank)
-                                    this.setState({ infoBank: { ...this.state.infoBank, bankName: text } })
-                                }}
-                                value={this.state.infoBank.bankName}
-                                maxLength={35}
-                                placeholder={'Enter your name'}
-                            />
+
+
+
+                        <View style={styles.info}>
+                            <View>
+                                <Text style={styles.title}>Number Bank</Text>
+                            </View>
+                            <View style={{ flex: 1 }}>
+                                <TextInput
+                                    style={styles.input}
+                                    onChangeText={(text: any) => {
+                                        if (!isNaN(text)) {
+                                            this.setState({ infoBank: { ...this.state.infoBank, bankCode: text } })
+                                        }
+                                    }}
+                                    value={this.state.infoBank.bankCode}
+                                    maxLength={35}
+                                    placeholder={'Enter your address'}
+                                />
+                            </View>
                         </View>
+
+                        <View style={styles.info}>
+                            <View>
+                                <Text style={styles.title}>Brach</Text>
+                            </View>
+                            <View style={{ flex: 1 }}>
+                                <TextInput
+                                    style={styles.input}
+                                    onChangeText={(text: any) => {
+                                        this.setState({ infoBank: { ...this.state.infoBank, bankBrand: text } })
+                                    }}
+                                    value={this.state.infoBank.bankBrand}
+                                    maxLength={35}
+                                    placeholder={'Enter branch bank'}
+                                />
+                            </View>
+                        </View>
+
+
                     </View>
 
 
+                    <View style={{ paddingHorizontal: 25, marginTop: 10, marginBottom: 50 }}>
 
-                    <View style={styles.info}>
-                        <View>
-                            <Text style={styles.title}>Number Bank</Text>
-                        </View>
-                        <View style={{ flex: 1 }}>
-                            <TextInput
-                                style={styles.input}
-                                onChangeText={(text: any) => {
-                                    if (!isNaN(text)) {
-                                        this.setState({ infoBank: { ...this.state.infoBank, bankCode: text } })
-                                    }
-                                }}
-                                value={this.state.infoBank.bankCode}
-                                maxLength={35}
-                                placeholder={'Enter your address'}
-                            />
+                        <View style={[myStyle.frbuttonLogin]}>
+                            <TouchableOpacity
+                                style={[myStyle.buttonLogin]}
+                                activeOpacity={0.7}
+                                onPress={(event) => {
+                                    this.updateInfoBank()
+                                }
+                                }
+                            >
+                                <Text style={[myStyle.textButton]}>UPDATE</Text>
+                            </TouchableOpacity>
                         </View>
                     </View>
-
-                    <View style={styles.info}>
-                        <View>
-                            <Text style={styles.title}>Brach</Text>
-                        </View>
-                        <View style={{ flex: 1 }}>
-                            <TextInput
-                                style={styles.input}
-                                onChangeText={(text: any) => {
-                                    this.setState({ infoBank: { ...this.state.infoBank, bankBrand: text } })
-                                }}
-                                value={this.state.infoBank.bankBrand}
-                                maxLength={35}
-                                placeholder={'Enter branch bank'}
-                            />
-                        </View>
-                    </View>
-
-
-                </View>
-
-
-                <View style={{ paddingHorizontal: 25, marginTop: 10, marginBottom: 50 }}>
-
-                    <View style={[myStyle.frbuttonLogin]}>
-                        <TouchableOpacity
-                            style={[myStyle.buttonLogin]}
-                            activeOpacity={0.7}
-                            onPress={(event) => {
-                                this.updateInfoBank()
-                            }
-                            }
-                        >
-                            <Text style={[myStyle.textButton]}>UPDATE</Text>
-                        </TouchableOpacity>
-                    </View>
-                </View>
+                
 
 
 
 
-            </ScrollView>
+            </View>
 
         )
     }
