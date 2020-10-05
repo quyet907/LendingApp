@@ -5,6 +5,8 @@ import { UserService } from "./UserService";
 import * as action from "../Action/ActionPopup"
 import * as actionLoadding from "../Action/ActionLoadding"
 import { config } from "../config/Config";
+import I18n from '../i18n/i18n';
+
 axios.interceptors.request.use(
     res => {
         actionLoadding.setLoad(90)
@@ -23,10 +25,10 @@ axios.interceptors.response.use(
         actionLoadding.setLoad(0)
 
         if (err.message == "Network Error") {
-            action.showMessage("Network Error");
+            action.showMessage(I18n.t('error.server.networkError'));
         }
         if (err.response.status == 404) {
-            action.showMessage("Have error when processing")
+            action.showMessage(I18n.t('error.OTP.processError'))
         }
         if (err.response.status == 401) {
             // UserService.getJWT().then(res => {
@@ -36,20 +38,23 @@ axios.interceptors.response.use(
             })
             return Promise.reject(err);
         }
-        if(err.response.status == 500){
-            if(err.response.message){
+
+
+        if (err.response.status == 500) {
+            if (err.response.message) {
                 action.showMessage(err.response.message)
             }
-            if(err.response.data && err.response.data.message){
+            if (err.response.data && err.response.data.message) {
                 action.showMessage(err.response.data.message)
             }
             else {
-                action.showMessage("Have error when processing")
+                action.showMessage(I18n.t('error.server.processError'))
             }
         }
     }
 )
 export const getAxios = async () => {
+    
     var jwt = await UserService.getJWT();
     axios.defaults.headers.common["Authorization"] = `Bearer ${jwt}`
     return axios;
@@ -91,4 +96,4 @@ export const getAxios = async () => {
 
 
 
-export default getAxios();
+// export default getAxios();

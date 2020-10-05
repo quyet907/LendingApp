@@ -1,9 +1,7 @@
 import * as React from "react";
 import { View, Text, TextInput, Image, StyleSheet } from "react-native";
 import { TouchableOpacity, ScrollView, FlatList } from "react-native-gesture-handler";
-import HistoryDetailLending from "../components/lending/HistoryLendingDetail";
 import Package from "../components/lending/lending-package/Package";
-import { LendingPackageService } from "../services/LendingPackageService";
 import { LendingPackage } from "@StockAfiCore/model/lending/LendingPackage";
 import { LendingService } from "../services/LendingService";
 import { Lending as LendingModel } from "@StockAfiCore/model/lending/Lending";
@@ -13,6 +11,8 @@ import { IncomeService } from "../services/IncomeService";
 import { Paging } from "@Core/controller/Paging";
 import { useIsFocused } from "@react-navigation/native";
 import HistoriesLending from "../components/lending/HistoriesLending";
+import { MyFormat } from "../Helper/MyFormat";
+import I18n from '../i18n/i18n';
 
 class Lending extends React.Component<Props, State> {
   constructor(props: any) {
@@ -33,25 +33,23 @@ class Lending extends React.Component<Props, State> {
       confirmModal: false,
 
       myInvest: [],
+
+
     };
 
   }
 
+
+
   componentWillReceiveProps(prev: Props) {
     if (prev.isFocused) {
       this.getDataToState();
-      
     }
-    // if (prev.isFocused) {
-    //   this.getDataToState();
-    //   console.log("will");
-
-    // }
   }
 
 
   componentDidMount() {
-    this.getDataToState();
+    this.getDataToState("first");
   }
 
   render() {
@@ -59,20 +57,20 @@ class Lending extends React.Component<Props, State> {
       <View style={{ flex: 1 }}>
         <ScrollView style={{ backgroundColor: color.background_primary }}>
           <View style={styles.container}>
-            <Text style={styles.textLabel}>INVEST</Text>
+            <Text style={styles.textLabel}>{I18n.t('screens.lending.lendingTitle')}</Text>
             <View
               style={{
                 flexDirection: "row",
                 justifyContent: "center",
-                marginTop: 10,
+                marginBottom: 7,
               }}
             >
-              <Text style={styles.textLabel}>CHOOSE ONE PACKAGE</Text>
+              <Text style={styles.textLabel}>{I18n.t('screens.lending.chooseTitle')}</Text>
             </View>
 
             <ScrollView
               horizontal
-              contentContainerStyle={{ flexGrow: 1, justifyContent: "center" }}
+              contentContainerStyle={{ justifyContent: "space-between", width: "100%" }}
             >
               {this.state.packages.map((item: LendingPackage) =>
                 item._id == this.state.packageID ? (
@@ -84,7 +82,7 @@ class Lending extends React.Component<Props, State> {
                       this.setState(
                         {
                           packageSelected: this.state.packageSelected,
-                          minInvestment: item.minInvestment || 0,
+                          minInvestment: item.minInvestment || 404,
                         },
                         this.enableButtonInvest
                       );
@@ -119,7 +117,7 @@ class Lending extends React.Component<Props, State> {
               }}
             >
               <Text style={styles.textLabel}>
-                Wallet Balance: {this.state.wallet} COIN
+                {I18n.t('screens.lending.walletTitle')}: {MyFormat.roundingMoney(this.state.wallet)} COIN
               </Text>
             </View>
 
@@ -130,12 +128,13 @@ class Lending extends React.Component<Props, State> {
               }}
             >
               <View style={styles.lblCoin}>
-                <Text style={styles.copyText}>COIN</Text>
+                <Text style={styles.copyText}>{I18n.t('screens.lending.coinInputLabel')}</Text>
               </View>
               <TextInput
                 value={this.state.initialValue.toString()}
                 keyboardType={"number-pad"}
                 style={styles.inputCoin}
+
                 onChangeText={(text) => {
                   this.setState(
                     {
@@ -149,7 +148,7 @@ class Lending extends React.Component<Props, State> {
                 style={styles.btnAll}
                 onPress={() => this.allCoin()}
               >
-                <Text style={styles.copyText}>ALL</Text>
+                <Text style={styles.copyText}>{I18n.t('screens.lending.allButton')}</Text>
               </TouchableOpacity>
             </View>
 
@@ -195,7 +194,7 @@ class Lending extends React.Component<Props, State> {
                     fontWeight: "700",
                   }}
                 >
-                  INVEST
+                  {I18n.t('screens.lending.lendButton')}
                 </Text>
               </TouchableOpacity>
             </View>
@@ -205,9 +204,9 @@ class Lending extends React.Component<Props, State> {
             historiesLending={this.state.myInvest}
           ></HistoriesLending>
           {/* <View style={styles.container2}> */}
-            {/* <Text style={styles.textLabel}>My Investsment</Text>
+          {/* <Text style={styles.textLabel}>My Investsment</Text>
             <Separator /> */}
-            {/* <FlatList
+          {/* <FlatList
               data={this.state.myInvest}
               renderItem={({ item }) => (
                 <HistoryDetailLending
@@ -226,6 +225,8 @@ class Lending extends React.Component<Props, State> {
         <PopupConfirm
           confirmModal={this.state.confirmModal}
           hideBtnCancel={true}
+          textButtonLeft={I18n.t('popup.yesNo.no')}
+          textButtonRight={I18n.t('popup.yesNo.yes')}
           buttonOK={() => {
             this.invest();
             this.setState({ confirmModal: false });
@@ -234,36 +235,48 @@ class Lending extends React.Component<Props, State> {
             this.setState({ confirmModal: false });
           }}
           title="Confirm"
-          message="Are you sure want to invest?"
+          message= {I18n.t('popup.message.confirmLending')}
         />
       </View>
     );
   }
 
-  getDataToState() {
-    LendingPackageService.getLendingPackage().then(
-      (pagingLendingPackages: Paging<LendingPackage>) => {
-        if (pagingLendingPackages.rows.length > 0) {
-          this.setState({
-            packages: pagingLendingPackages.rows,
-            packageID: pagingLendingPackages.rows[0]._id,
-            minInvestment: pagingLendingPackages.rows[0].minInvestment || 0,
-            // maxInvestment: pagingLendingPackages.rows[0].maxInvestment || 0,
-          });
-        }
-      }
+  getDataToState(type?: string) {
+
+    LendingService.getLendingPackage().then((pagingLendingPackages: Paging<LendingPackage>) => {
+      IncomeService.getFinance().then((res) => {
+        this.setState({ wallet: res.remainAmount || 0 }, () => {
+          if (pagingLendingPackages.rows.length > 0) {
+            this.setState({
+              packages: pagingLendingPackages.rows,
+              packageID: type === "first" ? pagingLendingPackages.rows[0]._id : this.state.packageID,
+              minInvestment: type === "first" ? pagingLendingPackages.rows[0].minInvestment || 0 : this.state.minInvestment,
+              initialValue: type === "first" ? pagingLendingPackages.rows[0].minInvestment || 0 : this.state.initialValue
+              // maxInvestment: pagingLendingPackages.rows[0].maxInvestment || 0,
+            }, () => this.enableButtonInvest())
+          }
+
+        });
+
+      })
+
+    }
     );
 
+
+
     LendingService.getMyInvest().then((res) => {
-      this.setState({ myInvest: res.rows });
+      this.setState({ myInvest: res.rows.reverse() });
     });
 
-    IncomeService.getFinance().then((res) => {
-      this.setState({ wallet: res.remainAmount || 0 });
-      // });
-    })
-    
-  
+
+    // });
+
+
+
+
+
+
   }
 
   checkCheckbox = () => {
@@ -276,15 +289,16 @@ class Lending extends React.Component<Props, State> {
   };
 
   updateMyInvest = () => {
+
+    IncomeService.getFinance().then((res) => {
+      this.setState({ wallet: res.remainAmount || 0 });
+      // });
+    })
     LendingService.getMyInvest().then((res) => {
-      this.setState({ myInvest: res.rows });
+      this.setState({ myInvest: res.rows.reverse() });
     });
   };
-
-  getTime = (date: Date | undefined): String => {
-    if (date !== undefined) return date.toString().substring(0, 10);
-    else return "null";
-  };
+  
 
   getDaysLeft = (endAt: Date | undefined): number => {
     const currentDate: Date = new Date();
@@ -366,6 +380,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     paddingVertical: 5,
     fontWeight: "500",
+    outlineWidth: 0
   },
   copy: {
     paddingHorizontal: 15,
@@ -381,6 +396,7 @@ const styles = StyleSheet.create({
   copyText: {
     fontSize: 16,
     fontWeight: "700",
+    textTransform: 'uppercase'
   },
   refAbout: {
     flexDirection: "row",
@@ -428,7 +444,7 @@ const styles = StyleSheet.create({
     backgroundColor: color.primary,
     borderTopRightRadius: 3,
     borderBottomRightRadius: 3,
-    paddingHorizontal: 15,
+    paddingHorizontal: 18,
     height: "100%",
     alignItems: "center",
     justifyContent: "center",

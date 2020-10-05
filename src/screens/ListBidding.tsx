@@ -6,9 +6,9 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 import { Actions } from "react-native-router-flux"
 import { BidService } from "../services/BidService";
 import { BidProduct } from "@StockAfiCore/model/bid/BidProduct";
-import { FormatService } from "../services/FormatService";
+import { MyFormat } from "../Helper/MyFormat";
 import { ScreenName } from "./ScreenName";
-import { firebase } from "../../FirebaseConfig";
+import { firebase } from "../config/FirebaseConfig";
 import { useIsFocused } from "@react-navigation/native";
 
 
@@ -24,17 +24,6 @@ class ListBidding extends Component<Props, state> {
     };
     getThis = this;
 
-    this.getListBidding();
-
-    // firebase.firestore().collection("bidProduct").orderBy("timestamp", "desc").limit(1)
-    //   .onSnapshot((querySnapshot) => {
-    //     querySnapshot.forEach((doc) => {
-    //       let bidProduct = doc.data();
-    //       bidProduct.id = doc.id;
-    //       let getListBidding = getThis.state.bidding;
-    //     });
-    //   });
-
 
   }
 
@@ -49,11 +38,8 @@ class ListBidding extends Component<Props, state> {
 
         snapshot.docChanges().forEach((change) => {
           if (change.type === "added" || change.type === "modified") {
-            // console.log("New: ", change.doc.data());
             const bidProductChange = change.doc.data();
             let biddings = this.state.biddings;
-
-
             const bidIndex = biddings.findIndex(bidding => bidding._id == change.doc.id)
             if (bidIndex >= 0) {
               biddings[bidIndex].latestBidAt = new Date(bidProductChange.latestBidAt.seconds*1000);
@@ -63,15 +49,8 @@ class ListBidding extends Component<Props, state> {
             this.setState({
               biddings: biddings
             })
-
-
-
-            // let newList = listBidding.map
-            // this.setState({biddings: this.state.biddings.map(bd)})
           }
-          // if (change.type === "removed") {
-          //     console.log("Removed: ", change.doc.data());
-          // }
+
         });
       });
       this.getListBidding();
@@ -101,20 +80,7 @@ class ListBidding extends Component<Props, state> {
 
     })
   }
-  // onChangeProduct(product: BidProduct) {
 
-  //   var getBiddingChange: BidProduct[] = getThis.state.biddings;
-  //   getBiddingChange.map((bidProduct: BidProduct) => {
-  //     if (bidProduct._id == product._id) {
-  //       console.log("ahihi======");
-  //       bidProduct = product;
-  //     }
-  //     return bidProduct;
-  //   })
-  //   getThis.setState({
-  //     biddings: getBiddingChange
-  //   })
-  // }
 
   render() {
     return (
@@ -131,7 +97,8 @@ class ListBidding extends Component<Props, state> {
                 <TouchableOpacity
                   onPress={() => {
                     this.props.navigation.navigate(ScreenName.BidProduct, {
-                      bidProductId: item._id
+                      bidProductId: item._id,
+                      bidProductName: item.product?.name
                     });
                   }}
                 >

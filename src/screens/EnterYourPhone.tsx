@@ -11,6 +11,7 @@ import * as action from "../Action/ActionLogin"
 import * as actionPopup from "../Action/ActionPopup";
 import PopupConfirm from '../components/PopupConfirm';
 import store from "../reducer/store"
+import I18n from "../i18n/i18n";
 
 class EnterYourPhone extends Component<props, state> {
     constructor(props: any) {
@@ -19,38 +20,32 @@ class EnterYourPhone extends Component<props, state> {
             numberPhone: ""
         }
     }
-
-    componentDidMount() {
-        
-
-    }
     checkPhone() {
-        
-
-        UserService.checkExits(this.state.numberPhone).then((res) => {
-
-            if (res && this.props.typeAction == "signUp") {
-                actionPopup.showMessage("Account has been registered")
-            }
-            else if (!res && this.props.typeAction == "forgotPassword") {
-                actionPopup.showMessage("Can't find your account")
-            }
-            else {
-                this.props.onPhone(this.state.numberPhone)
-                UserService.sendOTP(this.state.numberPhone).then((res) => {
+        if (!this.state.numberPhone) {
+            actionPopup.showMessage(I18n.t('error.password.passwordBlank'))
+        } else {
+            UserService.checkExits(this.state.numberPhone).then((res) => {
+                if (res && this.props.typeAction == "signUp") {
+                    actionPopup.showMessage(I18n.t('error.password.accountHasBeenRegistered'))
+                }
+                else if (!res && this.props.typeAction == "forgotPassword") {
+                    actionPopup.showMessage(I18n.t('error.password.cantFindAccount'))
+                }
+                else {
+                    this.props.onPhone(this.state.numberPhone);
                     let error = UserService.checkValidatePhone(this.state.numberPhone);
-                    if (error != null) {
+                    if (error) {
                         actionPopup.showMessage(error);
                     }
                     else {
-                        
+                        UserService.sendOTP(this.state.numberPhone).then((res) => {
+                            Actions.confirmOTP()
+                        })
                     }
-                })
-                Actions.confirmOTP()
+                }
 
-            }
-
-        })
+            })
+        }
     }
     render() {
 
@@ -66,23 +61,25 @@ class EnterYourPhone extends Component<props, state> {
                                 alignItems: "center",
                             }]}
                         >
-                            <Text style={[myStyle.headerSignUp]}>Enter your phone</Text>
+                            <Text style={[myStyle.headerSignUp]}>{I18n.t('screens.enterYourPhone.enterYourPhoneTitle')}</Text>
                         </View>
                     </View>
                 </View>
 
-                <View style={[ myStyle.login]}>
+                <View style={[myStyle.login]}>
 
 
                     <View style={[{ marginTop: 30 }]}>
                         <TextInput
+                            autoFocus={true}
                             style={[myStyle.inputLogin]}
                             selectionColor='red'
-                            placeholder={"Enter your phone"}
+                            placeholder={I18n.t('screens.enterYourPhone.enterYourPhonePlaceholder')}
                             value={this.state.numberPhone}
-                            onChange={(event) => {
+                            onSubmitEditing={() => this.checkPhone()}
+                            onChangeText={(text) => {
                                 this.setState({
-                                    numberPhone: event.target.value
+                                    numberPhone: text
                                 })
                             }}
 
@@ -97,7 +94,7 @@ class EnterYourPhone extends Component<props, state> {
                             }}
                         >
                             <Text style={[myStyle.textButton]}>
-                                submit
+                                {I18n.t('screens.enterYourPhone.submitButtonText')}
                             </Text>
                         </TouchableOpacity>
 
@@ -107,7 +104,7 @@ class EnterYourPhone extends Component<props, state> {
                         <TouchableOpacity
                             onPress={Actions.login}
                         >
-                            <Text style={[myStyle.colorWhite, , { color: "#F8C400" }]}>Back to Login</Text>
+                            <Text style={[myStyle.colorWhite, , { color: "#F8C400" }]}>{I18n.t('screens.enterYourPhone.backToLogIn')}</Text>
                         </TouchableOpacity>
                     </View>
 

@@ -14,67 +14,123 @@ import FontAwesome from "react-native-vector-icons/FontAwesome";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 import * as Color from "../Color";
 import { ScreenName } from "./ScreenName";
+import I18n from "../i18n/i18n";
+import { BaseUserWithJwt } from '@Core/model/user/BaseUser';
+import { useIsFocused } from "@react-navigation/native";
 
-export default class Logout extends Component<props, state> {
+
+const sizeIcon = 20;
+
+class Logout extends Component<Props, State> {
+  avtDefault = 'https://i.picsum.photos/id/199/1000/500.jpg?hmac=FK68A1s1J9x0AXSbNfbsgWwUe80fJDlvGRQ5J0IvMAU';
   constructor(props: any) {
     super(props);
     this.state = {
-      getPhone: "",
-    };
+      thisUser: {},
+      avtURL: ''
+    }
   }
+
+  componentWillReceiveProps(prev: Props) {
+    if (prev.isFocused) {
+      this.getDataToState();
+    }
+  }
+
   componentDidMount() {
-    UserService.getMe().then((res) => {
-      if (res != null) {
-        if (res.username != null) {
-          this.setState({ getPhone: res.username || "" });
-        }
-      }
-    });
+    this.getDataToState()
   }
 
   render() {
     return (
       <View style={[myStyle.container]}>
         <View style={[styles.header]}>
-          <Text style={[styles.contentHeader]}>Account</Text>
+          <Text style={[styles.contentHeader]}>{I18n.t('screens.profile.profileTitle')}</Text>
         </View>
 
         <View style={[myStyle.row, styles.layoutAccout]}>
           <View style={[styles.containerAvt]}>
-            {/* <Image
+            <Image
               style={[styles.imgAvt]}
-              source={require("../icons/05-your-face-is-rad-san-diego-headshot-and-business-branding-photographer-gallery.jpg")}
-            /> */}
+              source={{ uri: this.state.avtURL }}
+            />
           </View>
           <View style={{ justifyContent: "space-around", height: "100%" }}>
-            <Text style={[styles.contentAccount]}>{this.state.getPhone}</Text>
+            <Text style={[styles.contentAccount]}>{this.state.thisUser.username}</Text>
           </View>
         </View>
 
         <View style={{ marginTop: 12 }}>
+
           <TouchableOpacity
-            style={[myStyle.row, styles.layoutAccout]}
+            style={[myStyle.row, styles.layoutFeature]}
+            onPress={() => this.props.navigation.navigate(ScreenName.EditProfile, {
+              thisUser: this.state.thisUser
+            })}
+
+          >
+            <View style={styles.containerIcon}>
+              <FontAwesome5 name={"gift"} size={sizeIcon} color={Color.primary} />
+            </View>
+
+            <Text style={[styles.contentFuture]}>{I18n.t('screens.profile.profileTabName')}</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={[myStyle.row, styles.layoutFeature]}
+            onPress={() => this.props.navigation.navigate(ScreenName.infoBank)}
+
+          >
+            <View style={styles.containerIcon}>
+              <FontAwesome5 name={"gift"} size={sizeIcon} color={Color.primary} />
+            </View>
+
+            <Text style={[styles.contentFuture]}>{I18n.t('screens.profile.bankInfo')}</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={[myStyle.row, styles.layoutFeature]}
             onPress={() => this.props.navigation.navigate(ScreenName.ListBid)}
 
           >
             <View style={styles.containerIcon}>
-              <FontAwesome5 name={"users"} size={21} color={"white"} />
+              <FontAwesome5 name={"users"} size={sizeIcon} color={Color.primary} />
             </View>
 
-            <Text style={[styles.contentFuture]}>Bid</Text>
+            <Text style={[styles.contentFuture]}>{I18n.t('screens.profile.bid')}</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity style={[myStyle.row, styles.layoutAccout]}
+          <TouchableOpacity style={[myStyle.row, styles.layoutFeature]}
             onPress={() => this.props.navigation.navigate(ScreenName.BidStatistic)}>
             <View style={styles.containerIcon}>
-              <FontAwesome5 name={"history"} size={23} color={"white"} />
+              <FontAwesome5 name={"history"} size={sizeIcon} color={Color.primary} />
             </View>
-            <Text style={[styles.contentFuture]}>My Bid</Text>
+            <Text style={[styles.contentFuture]}>{I18n.t('screens.profile.bidHistories')}</Text>
           </TouchableOpacity>
+
+          <TouchableOpacity
+            style={[myStyle.row, styles.layoutFeature]}
+            onPress={() => this.props.navigation.navigate(ScreenName.Coupon)}
+
+          >
+            <View style={styles.containerIcon}>
+              <FontAwesome5 name={"gift"} size={sizeIcon} color={Color.primary} />
+            </View>
+
+            <Text style={[styles.contentFuture]}>{I18n.t('screens.profile.coupon')}</Text>
+          </TouchableOpacity>
+
+
+
+
         </View>
 
         <View style={{ marginTop: 12 }}>
-          <TouchableOpacity style={[myStyle.row, styles.layoutAccout]}
+
+
+
+          <TouchableOpacity
+            style={[myStyle.row, styles.layoutFeature]}
             onPress={() => {
               UserService.setJWT("").then(res => {
                 Actions.home()
@@ -82,11 +138,12 @@ export default class Logout extends Component<props, state> {
             }}
           >
             <View style={styles.containerIcon}>
-              <FontAwesome name={"sign-out"} size={23} color={Color.primary} />
+              <FontAwesome name={"sign-out"} size={sizeIcon} color={Color.primary} />
             </View>
-            <Text style={[styles.contentFuture]}>Log out</Text>
+            <Text style={[styles.contentFuture]}>{I18n.t('screens.profile.logout')}</Text>
 
           </TouchableOpacity>
+
 
           {/* <TouchableOpacity style={[styles.buttonLogout]}>
             <Text style={[styles.contentButtonLogout]}>Logout</Text>
@@ -96,14 +153,21 @@ export default class Logout extends Component<props, state> {
       </View>
     );
   }
-}
-type props = {
-  navigation: any
-};
 
-type state = {
-  getPhone: string;
-};
+  getDataToState = () => {
+    UserService.getMe().then((res) => {
+      if (res != null) {
+        if (res.username != null) {
+          this.setState({
+            thisUser: res,
+            avtURL: res.avatar || ''
+          });
+        }
+      }
+    });
+  }
+}
+
 
 const styles = StyleSheet.create({
   header: {
@@ -124,10 +188,21 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     alignItems: "center",
     // justifyContent: "center",
-    borderRadius: 5,
+    // borderRadius: 5,
     backgroundColor: Color.background,
     borderBottomWidth: 1,
-    borderColor: Color.inactive,
+    // borderColor: Color.inactive,
+  },
+  layoutFeature: {
+    height: 45,
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+    alignItems: "center",
+    // justifyContent: "center",
+    // borderRadius: 5,
+    backgroundColor: Color.background,
+    borderBottomWidth: 1,
+    // borderColor: Color.inactive,
   },
   contentAccount: {
     color: "white",
@@ -136,6 +211,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold'
   },
   contentFuture: {
+    textTransform: 'capitalize',
     color: "white",
     // paddingLeft: 17,
     fontSize: 16,
@@ -155,10 +231,11 @@ const styles = StyleSheet.create({
     textTransform: "uppercase",
   },
   containerAvt: {
-    backgroundColor: 'gray',
     borderRadius: 50,
     width: 55,
     height: 55,
+    borderWidth: 2,
+    borderColor: Color.primary,
     justifyContent: "center",
     alignItems: "center",
   },
@@ -168,7 +245,24 @@ const styles = StyleSheet.create({
     resizeMode: "cover",
     borderRadius: 50,
   },
-  containerIcon: { 
-    width: 40 
+  containerIcon: {
+    width: 37
   },
 });
+
+
+type Props = {
+  navigation: any,
+  isFocused: boolean
+};
+
+type State = {
+  thisUser: BaseUserWithJwt,
+  avtURL: string,
+};
+
+export default function (props: Props) {
+  const isFocused = useIsFocused();
+
+  return <Logout {...props} isFocused={isFocused} />;
+}

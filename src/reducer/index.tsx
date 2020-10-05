@@ -9,7 +9,7 @@ const rootReducer = combineReducers({
     LoginReducer : LoginReducer,
     Allreducer : Allreducer,
     PopupReducer : PopupReducer,
-    LoadingReducer : LoadingReducer
+    LoadingReducer : LoadingReducer,
 })
 
 

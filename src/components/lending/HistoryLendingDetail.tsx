@@ -3,6 +3,7 @@ import { View, StyleSheet, Text, Image } from 'react-native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import * as color from '../../Color'
+import { MyFormat } from '../../Helper/MyFormat';
 const timeIcon = <MaterialIcons name="access-time" size={12} color={color.inactive} />;
 export default class HistoryLendingDetail extends React.Component<Props, {}>{
     constructor(props: any) {
@@ -16,17 +17,17 @@ export default class HistoryLendingDetail extends React.Component<Props, {}>{
                         <FontAwesome5 name='money-bill-alt' size={35} color={color.success}/>
                     </View>
 
-                    <View style={{ flexDirection: 'column', justifyContent: 'space-between', height: 42 }}>
+                    <View style={{justifyContent: 'space-between', height: '100%' }}>
                         <Text style={styles.title}>{this.props.title}</Text>
                         <View style={{ flexDirection: 'row', alignItems: 'center', flex: 1 }}>
                             {timeIcon}<Text style={styles.time}>{this.props.time}</Text>
                         </View>
                     </View>
-                    <View style={{alignItems: 'flex-end', flex: 1 }}>
+                    <View style={{alignItems: 'flex-end', justifyContent: 'space-evenly', height: '100%', flex: 1 , paddingTop: 3}}>
                         <Text style={styles.time}>{this.props.typeLabel}</Text>
                         <View style={{ flexDirection: 'row', alignItems: 'center', flex: 1 }}>
                             <Text style={this.props.type ? styles.coinGreen : styles.coinRed}>
-                                {this.props.type && this.props.typeLabel != 'AMOUNT' ? '+' : (this.props.typeLabel == 'AMOUNT' ? '' : '-')}{this.props.coin} COIN</Text>
+                               {MyFormat.roundingMoney(this.props.coin)} COIN</Text>
                         </View>
                     </View>
 
@@ -82,7 +83,8 @@ const styles = StyleSheet.create({
     time: {
         color: '#868685',
         fontSize: 10,
-        marginLeft: 3
+        marginLeft: 3,
+        textTransform: 'uppercase'
     },
     coinGreen: {
         fontSize: 15,

@@ -1,42 +1,42 @@
-const  initPopupConfirm = {
-    typeCofirm : false,
-    showPopup : false,
-    contentShow : "Hello Luong",
-    result : true
+const initPopupConfirm = {
+    typeCofirm: false,
+    showPopup: false,
+    contentShow: "Hello Luong",
+    result: true
 }
 
-const Popup =(state : any = initPopupConfirm , action : any)=>{
+const Popup = (state: any = initPopupConfirm, action: any) => {
 
-    switch(action.type){
-        case "TYPE_COMFIRM" :{
-            return  {
-                ...state,
-                typePopup : action.payload,
-            }
-        }
-        case "CONTENT_POPUP" : {
+    switch (action.type) {
+        case "TYPE_COMFIRM": {
             return {
                 ...state,
-                contentShow : action.payload
+                typePopup: action.payload,
             }
         }
-
-        case "SHOW_POPUP" : {
+        case "CONTENT_POPUP": {
             return {
                 ...state,
-                showPopup : action.payload
+                contentShow: action.payload
             }
         }
 
-        case  "SET_RESULT" : {
+        case "SHOW_POPUP": {
             return {
                 ...state,
-                result : action.payload
+                showPopup: action.payload
             }
         }
 
-        default : {
-            return {...state}
+        case "SET_RESULT": {
+            return {
+                ...state,
+                result: action.payload
+            }
+        }
+
+        default: {
+            return { ...state }
         }
     }
 }

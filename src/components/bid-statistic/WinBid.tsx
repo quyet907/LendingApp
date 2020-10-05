@@ -10,6 +10,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { Actions } from 'react-native-router-flux';
 import { useIsFocused } from '@react-navigation/native';
 import { ScreenName } from '../../screens/ScreenName';
+import { MyFormat } from '../../Helper/MyFormat';
 class WinBid extends React.Component<Props, State> {
     constructor(props: any) {
         super(props);
@@ -25,7 +26,7 @@ class WinBid extends React.Component<Props, State> {
 
     componentDidMount() {
         this.getDataToState();
-        
+
     }
 
     render() {
@@ -46,8 +47,8 @@ class WinBid extends React.Component<Props, State> {
                                     <BidDetail
                                         imgURL={item.bidProduct && item.bidProduct.product && item.bidProduct.product.thumbImagesUrl ? item.bidProduct.product.thumbImagesUrl[0] : 'null'}
                                         name={item.bidProduct?.product?.name || "undefined"}
-                                        bidAt={this.getTime(item.bidProduct?.latestBidAt) || "undefined"}
-                                        bidClick={item.count || 0}
+                                        bidAt={MyFormat.getTime(item.bidProduct?.latestBidAt) || "undefined"}
+                                        bidClick={item.bidCount || 99999}
                                         startPrice={item.bidProduct?.startPrice || 0}
                                         endPrice={item.bidProduct?.endPrice || 0}
                                     />
@@ -66,19 +67,16 @@ class WinBid extends React.Component<Props, State> {
 
     getDataToState() {
         BidStatisticService.getWinStatistic().then((bidStatistics: BidStatistic[]) => {
-            // console.log(bidStatistics);
+            if (bidStatistics.length > 0) {
+                const bid = bidStatistics.filter(bidStatistic => bidStatistic.bidStatus == BidStatus.win);
+                this.setState({
+                    winBidList: bid
+                })
+            }
 
-            const bid = bidStatistics.filter(bidStatistic => bidStatistic.bidStatus == BidStatus.win);
-            this.setState({
-                winBidList: bid
-            })
         })
     }
 
-    getTime = (date: Date | undefined): string => {
-        if (date) return date.toString().substring(0, 10);
-        else return "null";
-    };
 
 }
 

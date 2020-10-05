@@ -10,6 +10,8 @@ import { config } from '../config/Config';
 import HistoryDetail from '../components/ref/HistoryDetail';
 import { useIsFocused } from '@react-navigation/native';
 import MyReferrals from '../components/ref/MyReferrals';
+import { MyFormat } from '../Helper/MyFormat';
+import I18n from "../i18n/i18n";
 
 class Referral extends React.Component<Props, State> {
     constructor(props: any) {
@@ -23,6 +25,7 @@ class Referral extends React.Component<Props, State> {
 
     componentDidMount() {
         this.getDataReferal();
+
     }
     componentWillReceiveProps(previousProps: Props) {
         if (previousProps.isFocused) {
@@ -34,8 +37,9 @@ class Referral extends React.Component<Props, State> {
         ReferralService.getReferral().then(res => {
             this.setState({ myReferral: res.rows })
         })
+
         ReferralService.getMe().then(res => {
-            this.setState({ myID: res._id || "null" })
+            this.setState({ myID: (res) ?  res._id || "null" : "null" })
         })
     }
 
@@ -45,10 +49,10 @@ class Referral extends React.Component<Props, State> {
             <ScrollView style={{ backgroundColor: color.background_primary }}>
                 <FlashMessage position="center" />
                 <View style={styles.container}>
-                    <Text style={styles.textLabel}>REFERRAL</Text>
+                    <Text style={styles.textLabel}>{I18n.t('screens.referral.refTitle')}</Text>
                     <Text style={{ textAlign: 'justify', color: '#fff' }}>
-                        {'\t'}The Lending game referral program is a great way to read the word of this great service and to earn even more money with your friend! Refer friends and receive 1000 COIN of their earnings for life!
-                        </Text>
+                        {'\t'}{I18n.t('screens.referral.introText')}
+                    </Text>
                     <View style={{
                         flexDirection: 'row',
                         padding: 20,
@@ -65,7 +69,7 @@ class Referral extends React.Component<Props, State> {
                             style={styles.copy}
                             onPress={() => this.copyToClipboard()}
                         >
-                            <Text style={styles.copyText}>Copy</Text>
+                            <Text style={styles.copyText}>{I18n.t('screens.referral.copyButton')}</Text>
                         </TouchableOpacity >
                     </View>
 
@@ -75,23 +79,23 @@ class Referral extends React.Component<Props, State> {
 
 
                     <View style={styles.refAbout}>
-                        <View style={{ flexDirection: 'row', justifyContent: 'center', flex: 1 }}>
+                        <View style={{ flexDirection: 'row' , paddingRight: 10}}>
                             <View style={styles.containerIcon}>
-                                <FontAwesome5 name='user-friends' size={40} color='#00C4F8' />
+                                <FontAwesome5 name='user-friends' size={35} color='#00C4F8' />
                             </View>
                             <View style={styles.subContainer}>
-                                <Text style={{ color: color.inactive, fontSize: 12 }}>Total</Text>
-                                <Text style={styles.amount}>{this.state.myReferral.length}</Text>
+                                <Text style={{ color: color.inactive, fontSize: 12 }}>{I18n.t('screens.referral.totalRefTitle')}</Text>
+                                <Text style={styles.amount}>{MyFormat.roundingMoney(this.state.myReferral.length)}</Text>
                             </View>
                         </View>
 
-                        <View style={{ flexDirection: 'row', flex: 1 }}>
+                        <View style={{ flexDirection: 'row' , paddingLeft: 10}}>
                             <View style={styles.containerIcon}>
-                                <FontAwesome5 name='coins' size={40} color={color.primary} />
+                                <FontAwesome5 name='coins' size={35} color={color.primary} />
                             </View>
                             <View style={styles.subContainer}>
-                                <Text style={{ color: color.inactive, fontSize: 12 }}>Reward</Text>
-                                <Text style={styles.amount}>{this.state.myReferral.length * 1000}</Text>
+                                <Text style={{ color: color.inactive, fontSize: 12 }}>{I18n.t('screens.referral.rewardRefTitle')}</Text>
+                                <Text style={styles.amount}>{MyFormat.roundingMoney(ReferralService.calcMoneyReferral(this.state.myReferral.length))} </Text>
                             </View>
                         </View>
                     </View>
@@ -185,7 +189,7 @@ const styles = StyleSheet.create({
     },
     refAbout: {
         flexDirection: 'row',
-        // justifyContent: 'center',
+        justifyContent: 'center',
         paddingVertical: 20
 
     },
@@ -199,7 +203,7 @@ const styles = StyleSheet.create({
     subContainer: {
         height: 50,
         flexDirection: 'column',
-        justifyContent: 'space-between'
+        justifyContent: 'space-evenly'
     },
     logoRef: {
         width: 50,
@@ -208,7 +212,7 @@ const styles = StyleSheet.create({
         marginRight: 10
     },
     amount: {
-        fontSize: 26,
+        fontSize: 23,
         fontWeight: "600",
         color: '#fff'
     },

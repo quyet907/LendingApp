@@ -1,3 +1,4 @@
+import { relative } from "path";
 import { StyleSheet, ColorPropType } from "react-native";
 
 // const primary = "#f6c400";
@@ -81,6 +82,7 @@ export default StyleSheet.create({
         width: "100%",
         backgroundColor: color.background,
         padding: 10,
+        paddingTop: 0,
         marginTop: 10,
         justifyContent: "center",
         // alignItems: "center"
@@ -88,9 +90,7 @@ export default StyleSheet.create({
     },
     statisticalBasic: {
         width: '100%',
-
         padding: 10,
-
     },
     frImgStatisticalBasic: {
         justifyContent: 'flex-start',
@@ -136,7 +136,7 @@ export default StyleSheet.create({
         resizeMode: "contain"
     },
     leftHistoryInterest: {
-        width: 100,
+        width: 90,
     },
     rightHistoryInterest: {
         width: 100,
@@ -160,13 +160,34 @@ export default StyleSheet.create({
         borderColor: "#F6C400",
         borderWidth: 1,
         width: "100%",
-        marginTop: 20,
         color: color.text,
         fontSize: 16,
         borderRadius: color.borderRadius,
-        padding: 10
-
-
+        padding: 10,
+        marginTop : 20,
+    },
+    inputPass: {
+        borderColor: "#F6C400",
+        borderWidth: 1,
+        width: "100%",
+        color: color.text,
+        fontSize: 16,
+        borderRadius: color.borderRadius,
+        padding: 10,
+        marginTop : 0,
+    },
+    frInputPass : {
+        position : "relative",
+        marginTop : 20,
+    },
+    iconEyePass : {
+        position : "absolute",
+        bottom : 0,
+        height : "100%",
+        right : 20,
+        display : "flex",
+        justifyContent : "center"
+        
     },
     frbuttonLogin: {
         marginTop: 20,
@@ -196,7 +217,6 @@ export default StyleSheet.create({
     },
     textButton: {
         textAlign: "center",
-        color: color.text_primary,
         textTransform: "uppercase",
         fontSize: 13,
     },
@@ -393,18 +413,21 @@ export default StyleSheet.create({
     frButtonBid : {
         backgroundColor : color.background_primary,
         alignItems : "center",
-        padding : 10
+        padding : 5
     },
+    
     buttonBid : {
-        margin: 20,
+        margin: 10,
         backgroundColor: color.primary,
         justifyContent: "center",
         borderWidth: 1,
         width: "100%",
-
         padding: 10,
         borderRadius: color.borderRadius,
         alignItems: "center",
+    },
+    ButtonBidDisabled : {
+        backgroundColor : color.inactive,
     },
     avtBidder : {
         height : 30,
@@ -426,6 +449,10 @@ export default StyleSheet.create({
     textPriceBidderItem :{
         color : color.primary,
         fontWeight : "bold",
+    },
+    financeCoin: {
+        fontSize: 16,
+        fontWeight: "500"
     }
 
 

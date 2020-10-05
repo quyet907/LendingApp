@@ -3,6 +3,8 @@ import * as React from "react";
 import { StyleSheet, View } from "react-native";
 import { FlatList } from "react-native-gesture-handler";
 import HistoryDetail from "./HistoryDetail";
+import I18n from "../../i18n/i18n";
+import { MyFormat } from "../../Helper/MyFormat";
 
 
 export default class MyReferrals extends React.Component<Props, State>{
@@ -18,19 +20,20 @@ export default class MyReferrals extends React.Component<Props, State>{
                     renderItem={({ item }) =>
                         <HistoryDetail
                             type={true}
-                            typeLabel='EARNED'
-                            title={item.toUser?.username}
-                            time={this.getTime(item.createdAt)}
-                            coin={1000}
+                            typeLabel={I18n.t('screens.referral.refHistories.earnedTitle')}
+                            title={this.hidePhoneNumber(item.toUser?.username)}
+                            time={MyFormat.getTime(item.createdAt)}
                         />}
                     keyExtractor={(item: Referal, index: number) => item._id || index.toString()} />
             </View>
         )
     }
 
-    getTime = (date: Date | undefined): String => {
-        if (date !== undefined) return date.toString().substring(0, 10)
-        else return 'null'
+  
+
+    hidePhoneNumber = (phone: string | undefined) => {
+        if (phone) return 'xxxx ' + phone.slice(phone.length-3);
+        else return 'undefined'
     }
 }
 

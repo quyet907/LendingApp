@@ -19,6 +19,7 @@ import { connect } from "react-redux";
 import { UserService } from "../services/UserService";
 import PopupConfirm from "../components/PopupConfirm";
 import * as actionPopup from "../Action/ActionPopup";
+import I18n from "../i18n/i18n";
 
 class setPassword extends Component<props, state> {
   constructor(props: any) {
@@ -30,7 +31,7 @@ class setPassword extends Component<props, state> {
       checkSuccess: false,
     };
   }
-  componentDidMount() {}
+
 
   checkSetPassword = () => {
     var getPass: any = this.state.getPass;
@@ -38,7 +39,7 @@ class setPassword extends Component<props, state> {
     var error = UserService.checkValidate(getPass, getAgainPass);
 
 
-    if (error != null) {
+    if (error) {
       actionPopup.showMessage(error);
       this.setState({
         checkSuccess: false,
@@ -85,7 +86,7 @@ class setPassword extends Component<props, state> {
                 },
               ]}
             >
-              <Text style={[myStyle.headerSignUp]}>Enter your password</Text>
+              <Text style={[myStyle.headerSignUp]}>{I18n.t('screens.enterYourPassword.enterYourPasswordTitle')}</Text>
             </View>
           </View>
         </View>
@@ -93,17 +94,18 @@ class setPassword extends Component<props, state> {
         <View style={[, myStyle.login]}>
           <View style={[]}>
             <TextInput
+              autoFocus={true}
               ref={"pass"}
               style={[myStyle.inputLogin]}
               selectionColor="red"
-              placeholder={"Password"}
-              maxLength={60}
-              keyboardType="numeric"
+              placeholder={I18n.t('screens.login.passwordInputPlaceholder')}
+              maxLength={32}
+              onSubmitEditing={() => this.checkSetPassword()}
               secureTextEntry={!this.state.checkbox}
               value={this.state.getPass}
-              onChange={(event) => {
+              onChangeText={(text) => {
                 this.setState({
-                  getPass: event.target.value,
+                  getPass: text
                 });
               }}
             />
@@ -113,13 +115,13 @@ class setPassword extends Component<props, state> {
             <TextInput
               ref={"passAgain"}
               style={[myStyle.inputLogin]}
-              placeholder={"Confirm password"}
-              keyboardType="numeric"
+              placeholder={I18n.t('screens.enterYourPassword.confirmPasswordPlaceHolder')}
               secureTextEntry={!this.state.checkbox}
-              maxLength={60}
-              onChange={(event) => {
+              maxLength={32}
+              onSubmitEditing={() => this.checkSetPassword()}
+              onChangeText={(text) => {
                 this.setState({
-                  getAgainPass: event.target.value,
+                  getAgainPass: text
                 });
               }}
             />
@@ -138,7 +140,7 @@ class setPassword extends Component<props, state> {
                 this.setState({ checkbox: !this.state.checkbox });
               }}
             >
-              Show password
+              {I18n.t('screens.enterYourPassword.showPassword')}
             </Text>
           </View>
 
@@ -150,7 +152,7 @@ class setPassword extends Component<props, state> {
                 this.checkSetPassword();
               }}
             >
-              <Text style={[myStyle.textButton]}>Confirm</Text>
+              <Text style={[myStyle.textButton]}>{I18n.t('screens.enterOTP.confirmButtonText')}</Text>
             </TouchableOpacity>
           </View>
         </View>

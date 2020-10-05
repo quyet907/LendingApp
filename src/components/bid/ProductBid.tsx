@@ -4,14 +4,14 @@ import myStyle from "../../style";
 import * as color from "../../Color"
 import { BidProduct } from "@StockAfiCore/model/bid/BidProduct";
 import { BidService } from "../../services/BidService";
-import { FormatService } from "../../services/FormatService";
+import { MyFormat } from "../../Helper/MyFormat";
 
 
 export default class ProductBid extends Component<Props, state> {
     constructor(props: any) {
         super(props);
         this.state = {
-            
+
         };
     }
 
@@ -37,9 +37,11 @@ export default class ProductBid extends Component<Props, state> {
     // }
 
     
+
+
     render() {
         return (
-            
+
             <View style={[myStyle.productBid]}>
                 <View>
                     <View style={[myStyle.frImgAndPrice]}>
@@ -57,7 +59,7 @@ export default class ProductBid extends Component<Props, state> {
                                 </View>
                             </View>
                             <View>
-                                <Text style={[myStyle.priceProductBid]}>{FormatService.roundingMoney(BidService.getPriceBidProduct(this.props.bidProduct))}</Text>
+                                <Text style={[myStyle.priceProductBid]}>{MyFormat.roundingMoney(BidService.getPriceBidProduct(this.props.bidProduct))}</Text>
                             </View>
                         </View>
                     </View>
@@ -65,7 +67,7 @@ export default class ProductBid extends Component<Props, state> {
                 <View>
                     <View style={[myStyle.frNameandDetailProductBid]}>
                         <Text style={[myStyle.nameProductBid]}>{BidService.getNameBidProduct(this.props.bidProduct)}</Text>
-                        <Text style={{ color: color.inactive }}>This is a monkey beautifull</Text>
+                        <Text style={{ color: color.inactive, textTransform:'capitalize' }}>{BidService.getNameUserWin(this.props.bidProduct)}</Text>
                     </View>
                 </View>
             </View>
@@ -78,6 +80,5 @@ type Props = {
 type state = {
 
 };
-
 
 

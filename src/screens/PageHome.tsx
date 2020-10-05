@@ -5,21 +5,17 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Home from "../screens/Home";
 import LendingScreen from "./Lending";
 import Icon from "react-native-vector-icons/FontAwesome5";
-import Logout from "./Logout";
 import * as color from "../Color";
-import BidStatistic from "../components/bid-statistic/WinBid";
-import HistoryBidScreen from "../screens/HistoryBidScreen";
 import LogoutScreen from "./LogoutScreen";
-import PageBid from "./PageBid";
-import Bid from "./Bid";
 import Referral from "./Referral";
+import I18n from "../i18n/i18n";
 
 const Tab = createBottomTabNavigator();
 
 const tabProps = {
   ACTIVE: color.primary,
   INACTIVE: color.inactive,
-  ICONSIZE: 22,
+  ICONSIZE: 20,
   BackgroundColor: color.background_primary,
 };
 
@@ -33,7 +29,7 @@ export default class PageHome extends React.Component<Props, state> {
 
   render() {
     return (
-      <NavigationContainer     >
+      <NavigationContainer>
         <Tab.Navigator
           tabBarOptions={{
 
@@ -50,7 +46,7 @@ export default class PageHome extends React.Component<Props, state> {
             component={Home}
             options={{
 
-              tabBarLabel: "Dashboard",
+              tabBarLabel: I18n.t('screens.dashboard.dashboardTabName'),
               tabBarIcon: ({ focused }) => (
 
                 <Icon
@@ -67,7 +63,7 @@ export default class PageHome extends React.Component<Props, state> {
             name="Lending"
             component={LendingScreen}
             options={{
-              tabBarLabel: "Lending",
+              tabBarLabel: I18n.t("screens.lending.lendingTabName"),
               tabBarIcon: ({ focused }) => (
                 <Icon
 
@@ -83,7 +79,7 @@ export default class PageHome extends React.Component<Props, state> {
             name="Referral"
             component={Referral}
             options={{
-              tabBarLabel: "Referral",
+              tabBarLabel: I18n.t("screens.referral.refTabName"),
               tabBarIcon: ({ focused }) => (
                 <Icon
 
@@ -98,10 +94,9 @@ export default class PageHome extends React.Component<Props, state> {
             name="Profile"
             component={LogoutScreen}
             options={{
-              tabBarLabel: "Profile",
+              tabBarLabel: I18n.t("screens.profile.profileTabName"),
               tabBarIcon: ({ focused }) => (
                 <Icon
-
                   name="user-alt"
                   size={tabProps.ICONSIZE}
                   color={focused ? tabProps.ACTIVE : tabProps.INACTIVE}
