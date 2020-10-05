@@ -20,6 +20,10 @@ import { IncomeService } from "../services/IncomeService";
 import { connect } from "react-redux";
 import * as action from "../Action/ActionLogin";
 import * as actionPopup from "../Action/ActionPopup";
+import VisibilityIcon from '@material-ui/icons/Visibility';
+import * as color from '../Color';
+import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
+import I18n from "../i18n/i18n"
 
 class Login extends Component<props, state> {
   constructor(props: any) {
@@ -27,6 +31,7 @@ class Login extends Component<props, state> {
     this.state = {
       user: "",
       password: "",
+      showPass: false,
     };
   }
 
@@ -48,15 +53,26 @@ class Login extends Component<props, state> {
   checkLogin = () => {
     var user = this.state.user;
     var password = this.state.password;
-    let getJwtToken = UserService.login(user, password).then((infoLogin) => {
-      if (infoLogin.jwt === undefined) {
-        actionPopup.showMessage("User or password is incorrect!");
-      } else {
-        UserService.setJWT(infoLogin.jwt).then((res) => {
-          Actions.home();
-        });
-      }
-    });
+    if(!user) {
+      actionPopup.showMessage(I18n.t('error.numberPhone.phoneBlank'));
+    }
+    else if(!password) {
+      actionPopup.showMessage(I18n.t('error.password.passwordBlank'));
+    }else {
+      let getJwtToken = UserService.login(user, password).then((infoLogin) => {
+        if (!infoLogin.jwt) {
+          actionPopup.showMessage(I18n.t('error.numberPhone.loginIncorrect'));
+        } else {
+          UserService.setJWT(infoLogin.jwt).then((res) => {
+            Actions.home();
+          });
+        }
+      });
+    }
+    
+
+
+    
   };
 
   render() {
@@ -71,32 +87,43 @@ class Login extends Component<props, state> {
         <View style={[myStyle.flex4, myStyle.login]}>
           <View style={[]}>
             <TextInput
+            autoFocus={true}
               value={this.state.user}
               style={[myStyle.inputLogin]}
               selectionColor="red"
-              placeholder={"Mobile"}
+              placeholder={I18n.t('screens.login.mobileInputPlaceholder')}
               keyboardType={"number-pad"}
-              maxLength={15}
+              maxLength={11}
               onChangeText={(text) => {
                 this.setState({ user: text });
               }}
             />
           </View>
 
-          <View>
+          <View style={[myStyle.frInputPass]}>
             <TextInput
               value={this.state.password}
-              style={[myStyle.inputLogin]}
-              placeholder={"Password"}
-              secureTextEntry={true}
-              keyboardType={"number-pad"}
-              maxLength={60}
+              style={[myStyle.inputPass]}
+              placeholder={I18n.t("screens.login.passwordInputPlaceholder")}
+              secureTextEntry={!this.state.showPass}
+              maxLength={32}
+              onSubmitEditing={this.checkLogin}
               onChangeText={(text) => {
                 this.setState({
                   password: text,
                 });
               }}
             />
+            <TouchableOpacity style={[myStyle.iconEyePass]}
+              onPress={(event) => {
+                this.setState({ showPass: !this.state.showPass })
+              }}
+            >
+              <VisibilityIcon
+                style={(this.state.showPass) ? { fill: color.primary } : { display: "none" }}
+              ></VisibilityIcon>
+              <VisibilityOffIcon style={(this.state.showPass) ? { display: "none" } : { fill: color.inactive }} ></VisibilityOffIcon>
+            </TouchableOpacity>
           </View>
 
           <View style={[myStyle.frFotgotPassword]}>
@@ -108,7 +135,7 @@ class Login extends Component<props, state> {
                   Actions.enterPhone();
                 }}
               >
-                Forgot password?
+                {I18n.t('screens.login.forgetPasswordText')}
               </Text>
             </TouchableOpacity>
           </View>
@@ -119,7 +146,7 @@ class Login extends Component<props, state> {
               activeOpacity={0.7}
               onPress={this.checkLogin}
             >
-              <Text style={[myStyle.textButton]}>Login</Text>
+              <Text style={[myStyle.textButton]}>{I18n.t('screens.login.loginButtonText')}</Text>
             </TouchableOpacity>
           </View>
 
@@ -127,7 +154,7 @@ class Login extends Component<props, state> {
             style={[myStyle.row, { marginTop: 10, justifyContent: "center" }]}
           >
             <Text style={[{ marginRight: 10, color: "white" }]}>
-              You haven't account?
+              {I18n.t('screens.login.haventAccount')}
             </Text>
             <TouchableOpacity
               onPress={(event) => {
@@ -135,7 +162,7 @@ class Login extends Component<props, state> {
                 Actions.enterPhone();
               }}
             >
-              <Text style={[{ color: "#F8C400" }]}>Create new account</Text>
+              <Text style={[{ color: "#F8C400" }]}>{I18n.t('screens.login.createAccount')}</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -153,6 +180,7 @@ type props = {
 type state = {
   user: any;
   password: any;
+  showPass: boolean
 };
 
 function mapDispatchProps(dispatch: any, props: any) {

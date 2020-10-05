@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-import Separator from './Separator'
 import { Colors } from 'react-native/Libraries/NewAppScreen';
 
 
@@ -29,28 +28,16 @@ export default class PopupConfirm extends React.Component<Props, {}>{
                             style={(this.props.hideBtnCancel) ? styles.buttonCancel : {display: 'none'}}
                             onPress={() => this.props.buttonCancel()}
                         >
-                            <Text style = {{color:"black"}} >Cancel</Text>
+                            <Text style = {{color:"black"}}>{this.props.textButtonLeft}</Text>
                         </TouchableOpacity>
 
                         <TouchableOpacity
                             style={styles.buttonOK}
                             onPress={() => this.props.buttonOK()}
                         >
-                            <Text>OK</Text>
+                            <Text>{this.props.textButtonRight}</Text>
                         </TouchableOpacity>
 
-
-
-
-                        {/* {this.props.hideBtnCancel ? null : <Button color = {"#f2c73a"} title='Cancel' onPress={() => this.props.buttonCancel()}></Button>}
-                        <Text style={{ marginHorizontal: 5 }}></Text>
-                        <Button
-                            color = {"#f2c73a"}
-                            title='OK' onPress={() => {
-                            
-                            this.props.buttonOK()
-                        }
-                        }></Button> */}
                     </View>
 
                 </View>
@@ -148,7 +135,8 @@ type Props = {
     hideBtnCancel: boolean,
     title: String,
     message: String
-
+    textButtonLeft: string,
+    textButtonRight: string
 }
 
 

@@ -3,8 +3,9 @@ import { IConfig } from "./IConfig";
 const localConfig: IConfig = {
   api: {
     lendingAPI: "http://localhost:4001",
-    userAPI: "http://localhost:4000",
-    domain: 'http://localhost:19006'
+    userAPI: "http://localhost:4001",
+    domain: 'http://localhost:19006',
+    timeLimit : 100,
   },
 };
 
@@ -12,7 +13,8 @@ const devConfig: IConfig = {
   api: {
     lendingAPI: "https://devapilending.afivn.com",
     userAPI: "https://devapilending.afivn.com",
-    domain: 'https://lending-31b52.web.app'
+    domain: 'https://lending-31b52.web.app',
+    timeLimit : 100,
   },
 };
 
@@ -20,7 +22,8 @@ const stagingConfig: IConfig = {
   api: {
     lendingAPI: "https://devapilending.afivn.com",
     userAPI: "https://devapilending.afivn.com",
-    domain: 'https://lending-31b52.web.app'
+    domain: 'https://lending-31b52.web.app',
+    timeLimit : 100,
   },
 };
 
@@ -28,7 +31,8 @@ const prodConfig: IConfig = {
   api: {
     lendingAPI: "https://devapilending.afivn.com",
     userAPI: "https://devapilending.afivn.com",
-    domain: 'https://lending-31b52.web.app'
+    domain: 'https://lending-31b52.web.app',
+    timeLimit : 100,
   },
 };
 

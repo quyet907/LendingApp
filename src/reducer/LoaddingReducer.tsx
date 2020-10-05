@@ -1,15 +1,15 @@
 const initLoadding = {
-    showLoad  : false,
+    valueLoad: 0,
 }
 
-const LoadingReducer = (state: any= initLoadding, action: any)=>{
-    switch (action.type){
-        case "ON_LOAD" : {
-            return {...state, showLoad : action.payload}
+const LoadingReducer = (state: any = initLoadding, action: any) => {
+    switch (action.type) {
+        case "ON_LOAD": {
+            return { ...state, valueLoad: action.payload }
         }
 
-        default : {
-            return {...state}
+        default: {
+            return { ...state }
         }
     }
 }

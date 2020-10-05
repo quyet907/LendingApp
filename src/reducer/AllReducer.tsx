@@ -1,20 +1,31 @@
 const initAll = {
-    reload: true
+    reload: true,
+    reloadPageHome : true,
+    
 }
 
-const all = (state: any, action: any) => {
+const all = (state: any = initAll, action: any) => {
     switch (action.type) {
         case "RELOAD": {
-            let getValueReload = !state.reload
+            state.reload = !state.reload;
             return {
-                ...state,
-
+                ...state
+            }
+        }
+        case "RELOADPAGEHOME": {
+            state.reloadPageHome = !state.reloadPageHome;
+            return {
+                ...state
             }
         }
 
-
-        default : {
-            return {...state}
+        case "SETCONFIG" : {
+            let getState = {...state};
+            getState.config = action.payload
+            return {...getState}
+        }
+        default: {
+            return { ...state }
         }
     }
 }

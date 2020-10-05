@@ -10,7 +10,7 @@ import * as action from "../Action/ActionLogin"
 import PopupConfirm from '../components/PopupConfirm';
 
 import * as actionPopup from "../Action/ActionPopup"
-
+import I18n from '../i18n/i18n';
 
 class ConfirmOTP extends Component<props, state> {
     constructor(props: any) {
@@ -30,8 +30,8 @@ class ConfirmOTP extends Component<props, state> {
     checkOTP() {
 
         UserService.verifyOTP(this.state.getCodeOTP, this.props.NumeberPhone).then((res) => {
-            if(res == null) {
-                if(this.props.typeAction == "login"){
+            if (res == null) {
+                if (this.props.typeAction == "login") {
                     Actions.home()
                 }
                 else {
@@ -39,7 +39,7 @@ class ConfirmOTP extends Component<props, state> {
                     Actions.password();
                 }
             }
-            else{
+            else {
                 actionPopup.showMessage(res);
             }
         })
@@ -50,7 +50,7 @@ class ConfirmOTP extends Component<props, state> {
 
     render() {
         return (
-            <KeyboardAvoidingView style={[myStyle.container,myStyle.fullCeter, { alignItems: "center" }]}>
+            <KeyboardAvoidingView style={[myStyle.container, myStyle.fullCeter, { alignItems: "center" }]}>
 
                 <View style={[]}>
                     <View style={[myStyle.frLogo]}>
@@ -61,7 +61,7 @@ class ConfirmOTP extends Component<props, state> {
                                 alignItems: "center",
                             }]}
                         >
-                            <Text style={[myStyle.headerSignUp]}>Enter OTP code</Text>
+                            <Text style={[myStyle.headerSignUp]}>{I18n.t('screens.enterOTP.enterOTPTitle')}</Text>
                         </View>
                     </View>
                 </View>
@@ -71,15 +71,17 @@ class ConfirmOTP extends Component<props, state> {
 
                     <View style={[]}>
                         <TextInput
+                            autoFocus={true}
                             style={[myStyle.inputLogin, { marginTop: 30 }]}
                             selectionColor='red'
-                            placeholder={"Enter OTP"}
+                            placeholder={I18n.t('screens.enterOTP.enterOTPInputPlaceholder')}
                             keyboardType='numeric'
                             // keyboardType={'numeric'}
                             value={this.state.getCodeOTP}
-                            onChange={(event) => {
+                            onSubmitEditing={() => this.checkOTP()}
+                            onChangeText={(text) => {
                                 this.setState({
-                                    getCodeOTP: event.target.value
+                                    getCodeOTP: text
                                 })
 
                             }}
@@ -94,18 +96,18 @@ class ConfirmOTP extends Component<props, state> {
                             }}
                         >
                             <Text style={[myStyle.textButton]}>
-                                Confirm
+                                {I18n.t('screens.enterOTP.confirmButtonText')}
                             </Text>
                         </TouchableOpacity>
 
                     </View>
 
                     <View style={[myStyle.row, { marginTop: 10, justifyContent: "center" }]}>
-                        <Text style={[{ marginRight: 5, color: "white" }]}>Do you have OTP?</Text>
+                        <Text style={[{ marginRight: 5, color: "white" }]}>{I18n.t('screens.enterOTP.dontGetOTPCode')}</Text>
                         <TouchableOpacity
                             onPress={Actions.enterPhone}
                         >
-                            <Text style={[myStyle.colorWhite, , { color: "#F8C400" }]}>Enter my phone again</Text>
+                            <Text style={[myStyle.colorWhite, , { color: "#F8C400" }]}>{I18n.t('screens.enterOTP.enterPhoneAgain')}</Text>
                         </TouchableOpacity>
                     </View>
 
