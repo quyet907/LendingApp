@@ -19,7 +19,7 @@ import { ActivityIndicator } from 'react-native-paper';
 
 class Profile extends React.Component<Props, State> {
     thisUser = this.props.route.params.thisUser;
-    avtDefault = 'https://i.picsum.photos/id/199/1000/500.jpg?hmac=FK68A1s1J9x0AXSbNfbsgWwUe80fJDlvGRQ5J0IvMAU';
+    avtDefault = '';
 
     constructor(props: any) {
         super(props)
@@ -118,9 +118,9 @@ class Profile extends React.Component<Props, State> {
                 </View>
                 <ScrollView style={{ backgroundColor: Color.background_primary, position: 'relative' }}>
 
-                    <View style={{ height: 170, display: 'flex', justifyContent: 'center', position: 'relative' }}>
+                    <View style={{ height: 170, display: 'flex', justifyContent: 'center', position: 'relative', backgroundColor: Color.background }}>
                         <ImageBackground source={{ uri: this.state.avtURL }} style={styles.image}>
-                            <View style={{ position: 'absolute', top: 95 }}>
+                            <View style={{ position: 'absolute', top: 95, backgroundColor: Color.background, borderRadius: 100 }}>
                                 <Image
                                     style={styles.tinyLogo}
                                     source={{ uri: this.state.avtURL }}
@@ -187,7 +187,7 @@ class Profile extends React.Component<Props, State> {
                                     }}
                                     value={this.state.identityCard}
                                     maxLength={15}
-                                    // keyboardType={'number-pad'}
+                                    keyboardType={'number-pad'}
                                     placeholder={I18n.t('screens.editProfile.idNumberPlaceholder')}
                                 />
                             </View>
