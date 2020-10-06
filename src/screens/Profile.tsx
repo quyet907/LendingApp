@@ -187,7 +187,7 @@ class Profile extends React.Component<Props, State> {
                                     }}
                                     value={this.state.identityCard}
                                     maxLength={15}
-                                    // keyboardType={'number-pad'}
+                                    keyboardType={'number-pad'}
                                     placeholder={I18n.t('screens.editProfile.idNumberPlaceholder')}
                                 />
                             </View>
