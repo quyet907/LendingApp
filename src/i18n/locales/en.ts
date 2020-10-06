@@ -155,11 +155,6 @@ export default {
             "minuteAgo": "minute ago",
             "hourAgo": "hour ago",
             "dayAgo": "day ago"
-
-
-            
-
-
         },
         myBid: {
             tabName: {

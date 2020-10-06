@@ -31,17 +31,10 @@ const MyTransitionSpec = {
 
 const scenes = Actions.create(
   <Scene key="root" duration={4}>
-<<<<<<< HEAD
-    <Scene key="home" component={PageHome} hideNavBar={true} />
-    <Scene key="login" component={Login} hideNavBar={true} />
-    
-    <Scene key="enterPhone" component={EnterYourPhone} hideNavBar={true}/>
-=======
     {/* <Scene key= "infoBank" component={InfoBank} hideNavBar={true} /> */}
     <Scene key="login" component={Login} hideNavBar={true} />
     <Scene key="home" component={PageHome} hideNavBar={true}/>
     <Scene key="enterPhone" component={EnterYourPhone} hideNavBar={true} />
->>>>>>> lending_app_v2
     <Scene key="confirmOTP" component={ConfirmOTP} hideNavBar={true} />
     <Scene key="password" component={SetPassWord} hideNavBar={true} />
     <Scene key="bid" component={Bid} hideNavBar={true} />
