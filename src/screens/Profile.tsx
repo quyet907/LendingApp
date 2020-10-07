@@ -13,6 +13,7 @@ import * as action from "../Action/ActionLogin";
 import { connect } from 'react-redux';
 import * as actionPopup from "../Action/ActionPopup";
 import I18n from '../i18n/i18n'
+import { ActivityIndicator } from 'react-native-paper';
 
 
 
@@ -30,6 +31,7 @@ class Profile extends React.Component<Props, State> {
             frontIdCard: '',
             backIdCard: '',
             nameDefault: I18n.t('screens.editProfile.namePlaceholder'),
+            uploading: false,
         }
     }
 
@@ -74,13 +76,17 @@ class Profile extends React.Component<Props, State> {
 
 
         if (!result.cancelled) {
-            console.log(result);
-            this.uploadImage(result.uri, asideIdCard)
-                .then(url => {
-                    if (asideIdCard === 'front') this.setState({ frontIdCard: url })
-                    else if (asideIdCard === 'back') this.setState({ backIdCard: url })
-                    else this.setState({ avtURL: url })
-                })
+            // console.log(result);
+            this.setState({ uploading: true })
+            const image = await this.uploadImage(result.uri, asideIdCard)
+
+            if (asideIdCard === 'front') this.setState({ frontIdCard: image })
+            else if (asideIdCard === 'back') this.setState({ backIdCard: image })
+            else this.setState({ avtURL: image })
+
+            this.setState({ uploading: false })
+
+
             // this.uploadImage(result.uri)
             //     .then(url => console.log(url))
             // console.log(typeof result.type);
@@ -98,162 +104,172 @@ class Profile extends React.Component<Props, State> {
             return url
         }
 
+
+
     }
 
 
     render() {
         return (
-            <ScrollView style={{ backgroundColor: Color.background_primary }}>
-                <View style={{ height: 170, display: 'flex', justifyContent: 'center', position: 'relative' }}>
-                    <ImageBackground source={{ uri: this.state.avtURL }} style={styles.image}>
-                        <View style={{ position: 'absolute', top: 95 }}>
-                            <Image
-                                style={styles.tinyLogo}
-                                source={{ uri: this.state.avtURL }}
-                            />
-                            <TouchableOpacity
-                                style={{ padding: 10, position: 'absolute', right: 5, bottom: 5, borderRadius: 50, backgroundColor: Color.primary }}
-                                onPress={() => this.pickImage('avt')}
-                            >
-                                <FontAwesome5 name={"camera"} size={15} color={'#000'} />
-                            </TouchableOpacity>
-                        </View>
-
-
-                    </ImageBackground>
-
+            <View>
+                <View style={{ flex: 1, width: '100%', height: '100%', position: 'absolute', zIndex: 2, backgroundColor: 'rgba(0,0,0,0.5)', justifyContent: "center", alignItems: 'center', display: this.state.uploading ? undefined : 'none' }}>
+                    <ActivityIndicator size="large" color={Color.primary} />
+                    <Text style={{ paddingVertical: 20, color: Color.primary, fontSize: 15, fontWeight: '500' }}>Uploading...</Text>
                 </View>
+                <ScrollView style={{ backgroundColor: Color.background_primary, position: 'relative' }}>
 
-                <View style={{ marginTop: 70, justifyContent: 'center', alignItems: 'center' }}>
-                    <Text style={{ color: '#fff', fontSize: 20, fontWeight: '600' }}>{this.state.name ? this.state.name : this.state.nameDefault}</Text>
-                </View>
+                    <View style={{ height: 170, display: 'flex', justifyContent: 'center', position: 'relative' }}>
+                        <ImageBackground source={{ uri: this.state.avtURL }} style={styles.image}>
+                            <View style={{ position: 'absolute', top: 95 }}>
+                                <Image
+                                    style={styles.tinyLogo}
+                                    source={{ uri: this.state.avtURL }}
+                                />
+                                <TouchableOpacity
+                                    style={{ padding: 10, position: 'absolute', right: 5, bottom: 5, borderRadius: 50, backgroundColor: Color.primary }}
+                                    onPress={() => this.pickImage('avt')}
+                                >
+                                    <FontAwesome5 name={"camera"} size={15} color={'#000'} />
+                                </TouchableOpacity>
+                            </View>
 
-                <View style={{ marginTop: 30, paddingHorizontal: 27 }}>
-                    <View style={styles.info}>
-                        <View>
-                            <Text style={styles.title}>{I18n.t('screens.editProfile.nameLabel')}</Text>
-                        </View>
-                        <View style={{ flex: 1 }}>
-                            <TextInput
-                                style={styles.input}
-                                onChangeText={text => this.setState({ name: text })}
-                                value={this.state.name}
-                                maxLength={35}
-                                placeholder={I18n.t('screens.editProfile.namePlaceholder')}
-                            />
-                        </View>
+
+                        </ImageBackground>
+
                     </View>
 
-
-
-                    <View style={styles.info}>
-                        <View>
-                            <Text style={styles.title}>{I18n.t('screens.editProfile.addressLabel')}</Text>
-                        </View>
-                        <View style={{ flex: 1 }}>
-                            <TextInput
-                                style={styles.input}
-                                onChangeText={text => this.setState({ address: { ...this.state.address, address: text } })}
-                                value={this.state.address.address || ''}
-                                maxLength={35}
-                                placeholder={I18n.t('screens.editProfile.addressPlaceholder')}
-                            />
-                        </View>
+                    <View style={{ marginTop: 70, justifyContent: 'center', alignItems: 'center' }}>
+                        <Text style={{ color: '#fff', fontSize: 20, fontWeight: '600' }}>{this.state.name ? this.state.name : this.state.nameDefault}</Text>
                     </View>
 
-                    <View style={styles.info}>
-                        <View>
-                            <Text style={styles.title}>{I18n.t('screens.editProfile.identityNumberLabel')}</Text>
+                    <View style={{ marginTop: 30, paddingHorizontal: 27 }}>
+                        <View style={styles.info}>
+                            <View>
+                                <Text style={styles.title}>{I18n.t('screens.editProfile.nameLabel')}</Text>
+                            </View>
+                            <View style={{ flex: 1 }}>
+                                <TextInput
+                                    style={styles.input}
+                                    onChangeText={text => this.setState({ name: text })}
+                                    value={this.state.name}
+                                    maxLength={35}
+                                    placeholder={I18n.t('screens.editProfile.namePlaceholder')}
+                                />
+                            </View>
                         </View>
-                        <View style={{ flex: 1 }}>
-                            <TextInput
-                                style={styles.input}
-                                onChangeText={text => {
-                                    this.setState({ identityCard: text })
-                                }}
-                                value={this.state.identityCard}
-                                maxLength={15}
-                                keyboardType={'number-pad'}
-                                placeholder={I18n.t('screens.editProfile.idNumberPlaceholder')}
-                            />
-                        </View>
-                    </View>
 
-                    <View style={styles.info}>
-                        <View>
-                            <Text style={styles.title}>{I18n.t('screens.editProfile.frontIdCardLabel')}</Text>
+
+
+                        <View style={styles.info}>
+                            <View>
+                                <Text style={styles.title}>{I18n.t('screens.editProfile.addressLabel')}</Text>
+                            </View>
+                            <View style={{ flex: 1 }}>
+                                <TextInput
+                                    style={styles.input}
+                                    onChangeText={text => this.setState({ address: { ...this.state.address, address: text } })}
+                                    value={this.state.address.address || ''}
+                                    maxLength={35}
+                                    placeholder={I18n.t('screens.editProfile.addressPlaceholder')}
+                                />
+                            </View>
                         </View>
-                        <View style={{ flex: 1, alignItems: 'flex-end', paddingLeft: 30 }}>
-                            <TouchableOpacity
-                                onPress={() => this.pickImage('front')}
-                                style={{ flexDirection: 'row' }}
-                            >
-                                <View style={{ width: 30, height: "100%", paddingRight: 10 }}>
-                                    <Image
-                                        style={styles.imageIdCard}
-                                        source={{ uri: this.state.frontIdCard }}
-                                    />
-                                </View>
-                                <Text style={{ color: Color.primary, fontWeight: '500', fontSize: 16, textTransform: 'capitalize' }}>
-                                    {this.state.frontIdCard ? I18n.t('screens.editProfile.editButton') : I18n.t('screens.editProfile.addPhotoButton') } 
+
+                        <View style={styles.info}>
+                            <View>
+                                <Text style={styles.title}>{I18n.t('screens.editProfile.identityNumberLabel')}</Text>
+                            </View>
+                            <View style={{ flex: 1 }}>
+                                <TextInput
+                                    style={styles.input}
+                                    onChangeText={text => {
+                                        this.setState({ identityCard: text })
+                                    }}
+                                    value={this.state.identityCard}
+                                    maxLength={15}
+                                    keyboardType={'number-pad'}
+                                    placeholder={I18n.t('screens.editProfile.idNumberPlaceholder')}
+                                />
+                            </View>
+                        </View>
+
+                        <View style={styles.info}>
+                            <View>
+                                <Text style={styles.title}>{I18n.t('screens.editProfile.frontIdCardLabel')}</Text>
+                            </View>
+                            <View style={{ flex: 1, alignItems: 'flex-end', paddingLeft: 30 }}>
+                                <TouchableOpacity
+                                    onPress={() => this.pickImage('front')}
+                                    style={{ flexDirection: 'row' }}
+                                >
+                                    <View style={{ width: 30, height: "100%", paddingRight: 10 }}>
+                                        <Image
+                                            style={styles.imageIdCard}
+                                            source={{ uri: this.state.frontIdCard }}
+                                        />
+                                    </View>
+                                    <Text style={{ color: Color.primary, fontWeight: '500', fontSize: 16, textTransform: 'capitalize' }}>
+                                        {this.state.frontIdCard ? I18n.t('screens.editProfile.editButton') : I18n.t('screens.editProfile.addPhotoButton')}
                                     </Text>
-                            </TouchableOpacity>
+                                </TouchableOpacity>
+                            </View>
                         </View>
+
+
+                        <View style={styles.info}>
+                            <View>
+                                <Text style={styles.title}>{I18n.t('screens.editProfile.backIdCardLabel')}</Text>
+                            </View>
+                            <View style={{ flex: 1, alignItems: 'flex-end', paddingLeft: 30 }}>
+                                <TouchableOpacity
+                                    onPress={() => this.pickImage('back')}
+                                    style={{ flexDirection: 'row' }}
+                                >
+                                    <View style={{ width: 30, height: "100%", paddingRight: 10 }}>
+                                        <Image
+                                            style={styles.imageIdCard}
+                                            source={{ uri: this.state.backIdCard }}
+                                        />
+                                    </View>
+                                    <Text style={{ color: Color.primary, fontWeight: '500', fontSize: 16 }}>{this.state.backIdCard ? 'Edit' : 'Add photo'} </Text>
+                                </TouchableOpacity>
+                            </View>
+                        </View>
+
+
+
                     </View>
 
 
-                    <View style={styles.info}>
-                        <View>
-                            <Text style={styles.title}>{I18n.t('screens.editProfile.backIdCardLabel')}</Text>
-                        </View>
-                        <View style={{ flex: 1, alignItems: 'flex-end', paddingLeft: 30 }}>
+                    <View style={{ paddingHorizontal: 25, marginTop: 10, marginBottom: 50 }}>
+
+                        <View style={[myStyle.frbuttonLogin]}>
                             <TouchableOpacity
-                                onPress={() => this.pickImage('back')}
-                                style={{ flexDirection: 'row' }}
+                                style={[myStyle.buttonLogin]}
+                                activeOpacity={0.7}
+                                onPress={this.updateInfo}
                             >
-                                <View style={{ width: 30, height: "100%", paddingRight: 10 }}>
-                                    <Image
-                                        style={styles.imageIdCard}
-                                        source={{ uri: this.state.backIdCard }}
-                                    />
-                                </View>
-                                <Text style={{ color: Color.primary, fontWeight: '500', fontSize: 16 }}>{this.state.backIdCard ? 'Edit' : 'Add photo'} </Text>
+                                <Text style={[myStyle.textButton]}>{I18n.t('screens.editProfile.updateButton')}</Text>
                             </TouchableOpacity>
                         </View>
+
                     </View>
 
 
 
-                </View>
 
-
-                <View style={{ paddingHorizontal: 25, marginTop: 10, marginBottom: 50 }}>
-
-                    <View style={[myStyle.frbuttonLogin]}>
-                        <TouchableOpacity
-                            style={[myStyle.buttonLogin]}
-                            activeOpacity={0.7}
-                            onPress={this.updateInfo}
-                        >
-                            <Text style={[myStyle.textButton]}>{I18n.t('screens.editProfile.updateButton')}</Text>
-                        </TouchableOpacity>
-                    </View>
-
-                </View>
-
-
-
-
-            </ScrollView>
+                </ScrollView>
+            </View>
 
         )
     }
 
     updateInfo = () => {
+        // this.validationInfo()
         if (this.validationInfo()) {
             let imgIdentityCards = [this.state.frontIdCard, this.state.backIdCard];
-            console.log(this.state.avtURL);
-            
+            // console.log(this.state.avtURL);
+
             let user: User = {
                 avatar: this.state.avtURL,
                 fullName: this.state.name,
@@ -263,12 +279,10 @@ class Profile extends React.Component<Props, State> {
             }
             UserService.updateInfoUser(user)
                 .then(res => {
-                    console.log(res.data)
+                    // console.log(res.data)
                     actionPopup.showMessage(I18n.t('success.updateProfile'));
                 })
 
-        } else {
-            actionPopup.showMessage(I18n.t('error.profile.fillOutAll'));
         }
 
 
@@ -287,7 +301,33 @@ class Profile extends React.Component<Props, State> {
             identityCard = this.state.identityCard,
             frontIdCard = this.state.frontIdCard,
             backIdCard = this.state.backIdCard;
-        return (fullName && address && identityCard && frontIdCard && backIdCard) ? true : false
+        if (!fullName) {
+            actionPopup.showMessage(I18n.t('error.profile.emptyName'));
+            return false
+        }
+        if (!address) {
+            actionPopup.showMessage(I18n.t('error.profile.emptyAddress'));
+            return false
+        }
+        if (this.state.identityCard.length <= 0) {
+            // console.log(identityCard + "heelo");
+            
+            actionPopup.showMessage(I18n.t('error.profile.emptyIdNumber'));
+            return false
+        }
+        if (!frontIdCard) {
+            actionPopup.showMessage(I18n.t('error.profile.emptyFrontIdCard'));
+            return false
+        }
+        if (!backIdCard) {
+            actionPopup.showMessage(I18n.t('error.profile.emptyBackIdCard'));
+            return false
+        } if (!/^\d+$/.test(identityCard)) {
+            actionPopup.showMessage(I18n.t('error.profile.malformedIdNumber'));
+            return false
+        }
+        return true
+
     }
 
 }
@@ -359,6 +399,7 @@ type State = {
     nameDefault: string,
     frontIdCard: string,
     backIdCard: string,
+    uploading: boolean
 }
 
 

@@ -40,7 +40,12 @@ export default {
             "giftcodeBlank": "Please enter giftcode!"
         },
         profile: {
-            "fillOutAll": "Please fill out all the information!"
+            "emptyName": "Please enter your name!",
+            "emptyAddress": "Please enter your address!",
+            "emptyIdNumber": "Please enter your ID number!",
+            "emptyFrontIdCard": "Please enter your front Id Card!",
+            "emptyBackIdCard": "Please enter your back Id Card!",
+            "malformedIdNumber": "Malformed ID Number!"
         }
     },
     screens: {
