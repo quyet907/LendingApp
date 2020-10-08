@@ -1,4 +1,6 @@
-export default {
+import { Locale } from "./Locale"
+
+const en: Locale = {
     success: {
         "updateProfile": "Update successful!"
     },
@@ -203,3 +205,5 @@ export default {
         }
     }
 }
+
+export default en;
