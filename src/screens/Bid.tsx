@@ -15,17 +15,18 @@ import { BaseUser } from '@Core/model/user/BaseUser';
 import I18n from "../i18n/i18n";
 import { User } from '@StockAfiCore/model/user/User';
 import { UserService } from '../services/UserService';
+import { ScrollView } from 'react-native-gesture-handler';
 
 // pageBid.render();
 var timeahihi;
 var bidProductId = "";
 class Bid extends Component<props, state>{
-       constructor(props: any) {
+    constructor(props: any) {
         super(props)
         this.state = {
             bidProduct: {},
             timeBid: 10,
-            me : {}
+            me: {}
 
         }
 
@@ -64,7 +65,7 @@ class Bid extends Component<props, state>{
 
         });
     }
-    
+
 
 
     componentDidMount() {
@@ -75,8 +76,8 @@ class Bid extends Component<props, state>{
         })
 
         UserService.getMe().then((getMe) => {
-            this.setState({me : (getMe) ? getMe : {}})
-        }) 
+            this.setState({ me: (getMe) ? getMe : {} })
+        })
 
         timeahihi = setInterval(
             () => {
@@ -90,8 +91,8 @@ class Bid extends Component<props, state>{
 
 
 
-     renderDataBid(bidProduct: BidProduct) {
-        
+    renderDataBid(bidProduct: BidProduct) {
+
         this.setState({
             bidProduct: bidProduct
         })
@@ -111,51 +112,53 @@ class Bid extends Component<props, state>{
                         <Text>X</Text>
                     </TouchableOpacity>
                 </View> */}
-                <View style={[{ alignItems: "center" }]}>
+                <ScrollView>
+                    <View style={[{ alignItems: "center" }]}>
 
-                    <Carousel
-                        layout={'tinder'}
-                        style={[]}
-                        data={this.state?.bidProduct?.product?.thumbImagesUrl}
+                        <Carousel
+                            layout={'tinder'}
+                            style={[]}
+                            data={this.state?.bidProduct?.product?.thumbImagesUrl}
 
-                        renderItem={(item: any) => {
-                            return (
-                                <View style={[myStyle.frImgProdcurBid, { height: 300 }]}>
-                                    <Image
-                                        style={[myStyle.imgProductBid]}
-                                        source={{ uri: `${item.item}` }}
-                                    />
-                                </View>
-                            )
-                        }}
-                        sliderWidth={window.innerWidth}
-                        itemWidth={window.innerWidth}
-                    />
+                            renderItem={(item: any) => {
+                                return (
+                                    <View style={[myStyle.frImgProdcurBid, { height: 300 }]}>
+                                        <Image
+                                            style={[myStyle.imgProductBid]}
+                                            source={{ uri: `${item.item}` }}
+                                        />
+                                    </View>
+                                )
+                            }}
+                            sliderWidth={window.innerWidth}
+                            itemWidth={window.innerWidth}
+                        />
 
-                    <View style={[myStyle.frPriceAndTimePageBid]}>
-                        <View style={[myStyle.childFrPriceAndTimePageBid]}>
-                            <Text style={{ color: color.warning, fontWeight: "bold", fontSize: 20, }}>{BidService.changeTextTime(this.state.timeBid)}</Text>
-                            <Text style={{ color: color.inactive, textTransform: 'capitalize' }}>{BidService.changeTextStatus(this.state.timeBid)}</Text>
-                        </View>
-                        <View style={[myStyle.childFrPriceAndTimePageBid]}>
-                            <Text style={{ color: color.text_primary, fontWeight: "bold", fontSize: 20, }}>
-                                {MyFormat.roundingMoney(BidService.getPriceBidProduct(this.state.bidProduct))}</Text>
-                            <Text style={{ color: color.inactive, textDecorationLine : "line-through" }}>{MyFormat.roundingMoney(this.state.bidProduct.startPrice||0)}</Text>
+                        <View style={[myStyle.frPriceAndTimePageBid]}>
+                            <View style={[myStyle.childFrPriceAndTimePageBid]}>
+                                <Text style={{ color: color.warning, fontWeight: "bold", fontSize: 20, }}>{BidService.changeTextTime(this.state.timeBid)}</Text>
+                                <Text style={{ color: color.inactive, textTransform: 'capitalize' }}>{BidService.changeTextStatus(this.state.timeBid)}</Text>
+                            </View>
+                            <View style={[myStyle.childFrPriceAndTimePageBid]}>
+                                <Text style={{ color: color.text_primary, fontWeight: "bold", fontSize: 20, }}>
+                                    {MyFormat.roundingMoney(BidService.getPriceBidProduct(this.state.bidProduct))}</Text>
+                                <Text style={{ color: color.inactive, textDecorationLine: "line-through" }}>{MyFormat.roundingMoney(this.state.bidProduct.startPrice || 0)}</Text>
+                            </View>
                         </View>
                     </View>
-                </View>
 
-                <View style={[myStyle.nameProductPageBid]}>
-                    <Text style={{ fontSize: 20, color: color.text, fontWeight: "500" }}>{`${BidService.getNameBidProduct(this.state.bidProduct)}`}</Text>
-                </View>
+                    <View style={[myStyle.nameProductPageBid]}>
+                        <Text style={{ fontSize: 20, color: color.text, fontWeight: "500" }}>{`${BidService.getNameBidProduct(this.state.bidProduct)}`}</Text>
+                    </View>
 
 
-                <View style={[myStyle.frListBidder]}>
-                    <Text style={[myStyle.headerBidder]}>{I18n.t('screens.bidDetail.bidderTitle')}</Text>
-                    <ListBidder
-                        bidders={this.state?.bidProduct?.listHistoryBid || []}
-                    ></ListBidder>
-                </View>
+                    <View style={[myStyle.frListBidder]}>
+                        <Text style={[myStyle.headerBidder]}>{I18n.t('screens.bidDetail.bidderTitle')}</Text>
+                        <ListBidder
+                            bidders={this.state?.bidProduct?.listHistoryBid || []}
+                        ></ListBidder>
+                    </View>
+                </ScrollView>
 
                 <View
                     style={[myStyle.frButtonBid]}
@@ -163,15 +166,15 @@ class Bid extends Component<props, state>{
                     <TouchableOpacity
                         style={BidService.checkButton(this.state.bidProduct, this.state.me) ? [myStyle.buttonBid] : [myStyle.buttonBid, myStyle.ButtonBidDisabled]}
                         onPress={(event) => {
-                            if(BidService.getTimeCountBid(this.state.bidProduct) < 0){
-                                BidService.receiveReward(bidProductId).then((bidProduct : BidProduct)=>{
-                                    if(bidProduct){
+                            if (BidService.getTimeCountBid(this.state.bidProduct) < 0) {
+                                BidService.receiveReward(bidProductId).then((bidProduct: BidProduct) => {
+                                    if (bidProduct) {
                                         this.setState({
-                                            bidProduct : bidProduct
+                                            bidProduct: bidProduct
                                         })
                                     }
                                 })
-                            }else {
+                            } else {
                                 BidService.BidAction(bidProductId);
                             }
                         }}
@@ -196,7 +199,7 @@ type props = {
 type state = {
     bidProduct: BidProduct
     timeBid: number,
-    me : BaseUser
+    me: BaseUser
 }
 
 export default function (props: any) {

@@ -142,6 +142,8 @@ const en: Locale = {
             "bidderTitle": "Bidder",
             "finish": "Finish",
             "bidWith": "Bid with",
+            "revice" : "Received at",
+            "receiveReward" : "Receive reward"
         },
         listBidding: {
             tabName: {
