@@ -134,7 +134,7 @@ class Lending extends React.Component<Props, State> {
                 value={this.state.initialValue.toString()}
                 keyboardType={"number-pad"}
                 style={styles.inputCoin}
-
+                autoFocus={false}
                 onChangeText={(text) => {
                   this.setState(
                     {
