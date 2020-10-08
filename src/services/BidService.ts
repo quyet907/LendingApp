@@ -87,13 +87,10 @@ export class BidService {
     }
 
     public static getTimeCountBid(bidProduct: BidProduct): number {
-        let calcTime: number = 0;
+        let calcTime: number = actionAll.getConfig().timeBid;
         if (bidProduct.latestBidAt) {
             calcTime = BidService.calcTime(bidProduct.latestBidAt)
-
-        } else if (bidProduct.startBidAt) {
-            calcTime = BidService.calcTime(bidProduct.startBidAt)
-        }
+        } 
         return calcTime;
     }
 
@@ -143,8 +140,27 @@ export class BidService {
     //     return `Bid with ${MyFormat.roundingMoney(getStepPrice) } COIN`
     // }
 
+    public static getTimeCounComming(bidProduct: BidProduct): number {
+        let calcTime: number = actionAll.getConfig().timeBid;
+        if (bidProduct.startBidAt) {
+            calcTime = BidService.calcTime(bidProduct.startBidAt)
+        } 
+        return calcTime;
+    }
+
+    public static getTimeCalc(bidProduct: BidProduct): number {
+        let calcTime: number = actionAll.getConfig().timeBid;
+        if (bidProduct.startBidAt) {
+            calcTime = BidService.calcTime(bidProduct.startBidAt)
+        } 
+        if(bidProduct.latestBidAt){
+            calcTime = BidService.calcTime(bidProduct.latestBidAt)
+        }
+        return calcTime;
+    }
+
     public static checkComming(bidProduct: BidProduct): boolean {
-        let getTimeCount = BidService.getTimeCountBid(bidProduct);
+        let getTimeCount = BidService.getTimeCounComming(bidProduct);
         return (getTimeCount > actionAll.getConfig().timeBid)
     }
 
@@ -217,7 +233,7 @@ export class BidService {
 
     //check biddig and revreceive reward
     public static checkButtonBid(bidProduct: BidProduct): boolean {
-        let getTime = BidService.getTimeCountBid(bidProduct);
+        let getTime = BidService.getTimeCalc(bidProduct);
         if (getTime < 0) {
             return true;
         }
@@ -229,20 +245,20 @@ export class BidService {
 
     public static changTextButtonBid(bidProduct: BidProduct, user: BaseUser): string {
         let getStepPrice = bidProduct.stepPrice || 0
-        let getTime = BidService.getTimeCountBid(bidProduct);
+        let getTime = BidService.getTimeCalc(bidProduct);
         if (getTime < 0) {
             if (user && user._id && bidProduct) {
                 if (user._id == bidProduct.latestBidUserId) {
-                    return (bidProduct.receivedAt) ? `${I18n.t('screens.editProfile.editButton')} ${MyFormat.formatDate(bidProduct.receivedAt)}` : "Nhận thưởng"
+                    return (bidProduct.receivedAt) ? `${I18n.t('screens.bidDetail.revice')} ${MyFormat.formatDate(bidProduct.receivedAt)}` : I18n.t('screens.bidDetail.receiveReward')
                 }
-                return I18n.t('screens.bitDetail.finish')
+                return I18n.t('screens.bidDetail.finish')
             }
-            return I18n.t('screens.bitDetail.finish')/// không tìm thấy thông tin
+            return I18n.t('screens.bidDetail.finish')/// không tìm thấy thông tin
         }
         if (getTime > actionAll.getConfig().timeBid) {
             return I18n.t('screens.listBidding.upcoming');
         }
-        return `${I18n.t('screens.bidDetail.bidWith')} ${MyFormat.roundingMoney(getStepPrice)} COIN`;
+        return `${I18n.t('screens.bidDetail.bidWith')} ${MyFormat.roundingMoney(getStepPrice)} ${I18n.t('screens.lending.coinInputLabel')}`;
     }
 
 

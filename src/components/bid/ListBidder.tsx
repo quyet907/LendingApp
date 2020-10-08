@@ -16,7 +16,7 @@ export default class ListBidder extends Component<props, state> {
     }
     render() {
         return (
-            <ScrollView style={[]}>
+            <View style={[]}>
                 <FlatList
                     data={this.props.bidders}
                     extraData = {this.props}
@@ -32,7 +32,7 @@ export default class ListBidder extends Component<props, state> {
                     }}
                     keyExtractor={(item) => item._id != undefined ? item._id : "null"}
                 />
-            </ScrollView>
+            </View>
         )
     }
 }

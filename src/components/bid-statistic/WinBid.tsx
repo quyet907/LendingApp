@@ -67,7 +67,7 @@ class WinBid extends React.Component<Props, State> {
 
     getDataToState() {
         BidStatisticService.getWinStatistic().then((bidStatistics: BidStatistic[]) => {
-            if (bidStatistics.length > 0) {
+            if (bidStatistics?.length > 0) {
                 const bid = bidStatistics.filter(bidStatistic => bidStatistic.bidStatus == BidStatus.win);
                 this.setState({
                     winBidList: bid
