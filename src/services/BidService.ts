@@ -6,7 +6,6 @@ import { BidProduct } from "@StockAfiModel/bid/BidProduct";
 import { MyFormat } from "../Helper/MyFormat";
 import * as actionAll from "../Action/ActionAll"
 import { UserService } from "./UserService";
-import { isBuffer } from "util";
 import { BaseUser } from "@Core/model/user/BaseUser";
 import I18n from '../i18n/i18n'
 export class BidService {
@@ -250,7 +249,7 @@ export class BidService {
         if (getTime < 0) {
             if (user && user._id && bidProduct) {
                 if (user._id == bidProduct.latestBidUserId) {
-                    return (bidProduct.receivedAt) ? `${I18n.t('screens.bidDetail.revice')} ${MyFormat.formatDate(bidProduct.receivedAt)}` : I18n.t('screens.bidDetail.receiveReward')
+                    return (bidProduct.receivedAt) ? `${I18n.t('screens.bidDetail.receive')} ${MyFormat.formatDate(bidProduct.receivedAt)}` : I18n.t('screens.bidDetail.receiveReward')
                 }
                 return I18n.t('screens.bidDetail.finish')
             }
@@ -259,7 +258,7 @@ export class BidService {
         if (getTime > actionAll.getConfig().timeBid) {
             return I18n.t('screens.listBidding.upcoming');
         }
-        return `${I18n.t('screens.bidDetail.bidWith')} ${MyFormat.roundingMoney(getStepPrice)} ${I18n.t('screens.lending.coinInputLabel')}`;
+        return `${I18n.t('screens.bidDetail.bidWith')} ${MyFormat.roundingMoney(getStepPrice)} ${I18n.t('system.money')}`;
     }
 
 

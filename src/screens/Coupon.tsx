@@ -42,6 +42,7 @@ export default class Giftcode extends React.Component<Props, State>{
                             <TextInput
                                 // style={{ flex: 1, borderColor: 'gray', borderBottomWidth: 3, color: '#fff' }}
                                 style={styles.inputLogin}
+                                autoFocus={false}
                                 defaultValue={this.state.code}
                                 onSubmitEditing={() => this.check()}
                                 onChangeText={(text) => {

@@ -20,7 +20,10 @@ import Bid from "./src/screens/Bid";
 import { config } from "./src/config/Config";
 import { ConfigService } from "./src/services/ConfigService";
 import InfoBank from "./src/screens/InfoBank";
+import i18n from './src/i18n/i18n';
+// import * as Localization from 'expo-localization';
 
+i18n.locale = "vi";
 
 
 const MyTransitionSpec = {
