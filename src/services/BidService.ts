@@ -235,9 +235,9 @@ export class BidService {
                 if (user._id == bidProduct.latestBidUserId) {
                     return (bidProduct.receivedAt) ? `${I18n.t('screens.editProfile.editButton')} ${MyFormat.formatDate(bidProduct.receivedAt)}` : "Nhận thưởng"
                 }
-                return I18n.t('screens.bitDetail.finish')
+                return I18n.t('screens.bidDetail.finish')
             }
-            return I18n.t('screens.bitDetail.finish')/// không tìm thấy thông tin
+            return I18n.t('screens.bidDetail.finish')/// không tìm thấy thông tin
         }
         if (getTime > actionAll.getConfig().timeBid) {
             return I18n.t('screens.listBidding.upcoming');
