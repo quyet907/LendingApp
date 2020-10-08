@@ -5,6 +5,7 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import * as color from '../../Color'
 import { MyFormat } from '../../Helper/MyFormat';
 import { ReferralService } from '../../services/ReferralService';
+import I18n from "../../i18n/i18n"
 const timeIcon = <Icon name="access-time" size={12} color='#868685' />;
 export default class HistoryDetail extends React.Component<Props, {}>{
     constructor(props: any) {
@@ -14,26 +15,26 @@ export default class HistoryDetail extends React.Component<Props, {}>{
         return (
             <View >
                 <View style={styles.container}>
-                <View style={{marginRight: 15}}>
-                        <FontAwesome5 name='user-circle' size={35} color={color.success}/>
+                    <View style={{ marginRight: 15 }}>
+                        <FontAwesome5 name='user-circle' size={35} color={color.success} />
                     </View>
 
-                    <View style={{justifyContent: 'space-between', height: "100%" }}>
+                    <View style={{ justifyContent: 'space-between', height: "100%" }}>
                         <Text style={styles.title}>{this.props.title}</Text>
                         <View style={{ flexDirection: 'row', alignItems: 'center', flex: 1 }}>
                             {timeIcon}<Text style={styles.time}>{this.props.time}</Text>
                         </View>
                     </View>
-                    <View style={{alignItems: 'flex-end', justifyContent: 'space-evenly', height: '100%', flex: 1 , paddingTop: 3}}>
+                    <View style={{ alignItems: 'flex-end', justifyContent: 'space-evenly', height: '100%', flex: 1, paddingTop: 3 }}>
                         <Text style={styles.time}>{this.props.typeLabel}</Text>
                         <View style={{ flexDirection: 'row', alignItems: 'center', flex: 1 }}>
                             <Text style={this.props.type ? styles.coinGreen : styles.coinRed}>
-                                {this.props.type && this.props.typeLabel != 'AMOUNT' ? '+' : (this.props.typeLabel == 'AMOUNT' ? '' : '-')}{MyFormat.roundingMoney(ReferralService.calcMoneyReferral(1))} COIN</Text>
+                                {this.props.type && this.props.typeLabel != 'AMOUNT' ? '+' : (this.props.typeLabel == 'AMOUNT' ? '' : '-')}{MyFormat.roundingMoney(ReferralService.calcMoneyReferral(1))} {I18n.t('system.money')}</Text>
                         </View>
                     </View>
 
                 </View>
-                
+
             </View>
         )
     }

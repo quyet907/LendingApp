@@ -1,6 +1,9 @@
 import { Locale } from "./Locale";
 
 const vi: Locale = {
+    system: {
+        money: "XU",
+    },
     success: {
         updateProfile: "Update successful!",
     },
@@ -63,7 +66,7 @@ const vi: Locale = {
             bankBranchPlaceHolder: "Enter bank branch",
         },
         editProfile: {
-            nameLabel: "Name",
+            nameLabel: "Nam",
             addressLabel: "Address",
             identityNumberLabel: "Identity Number",
             frontIdCardLabel: "Front ID Card",
@@ -101,16 +104,16 @@ const vi: Locale = {
         },
         lending: {
             lendingTabName: "Cho vay",
-            lendingTitle: "CHO ",
+            lendingTitle: "CHO VAY ",
             chooseTitle: "Chọn gói",
             walletTitle: "Ví",
-            coinInputLabel: "XU",
             allButton: "TẤT CẢ",
             lendButton: "CHO VAY",
             lendingPackage: {
                 minInvest: "Tối thiểu",
                 interestRate: "Lãi suất",
                 matureIn: "Đến hạn",
+                days: "d",
             },
             lendingHistories: {
                 amount: "SỐ TIỀN",
@@ -140,6 +143,8 @@ const vi: Locale = {
             bidderTitle: "Người đấu giá",
             finish: "Finish",
             bidWith: "Bid with",
+            receive : "Received at",
+            receiveReward : "Receive reward"
         },
         listBidding: {
             winner: "Winner",

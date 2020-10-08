@@ -1,4 +1,7 @@
 export interface Locale{
+    system: {
+        money: string,
+    },
     success: {
         updateProfile: string
     },
@@ -75,13 +78,14 @@ export interface Locale{
             lendingTitle: string,
             chooseTitle:string,
             walletTitle: string,
-            coinInputLabel: string,
+        
             allButton: string,
             lendButton: string,
             lendingPackage: {
                 minInvest: string,
                 interestRate: string,
                 matureIn: string,
+                days: string,
             },
             lendingHistories: {
                 amount: string,
@@ -140,6 +144,8 @@ export interface Locale{
             bidderTitle: string,
             finish: string,
             bidWith: string,
+            receive: string,
+            receiveReward : string
         },
         listBidding: {
             tabName: {

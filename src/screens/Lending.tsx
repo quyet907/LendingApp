@@ -62,7 +62,6 @@ class Lending extends React.Component<Props, State> {
               style={{
                 flexDirection: "row",
                 justifyContent: "center",
-                marginBottom: 7,
               }}
             >
               <Text style={styles.textLabel}>{I18n.t('screens.lending.chooseTitle')}</Text>
@@ -70,7 +69,7 @@ class Lending extends React.Component<Props, State> {
 
             <ScrollView
               horizontal
-              contentContainerStyle={{ justifyContent: "space-between", width: "100%" }}
+              contentContainerStyle={{ justifyContent: "space-between", flex: 1, alignItems: 'center'}}
             >
               {this.state.packages.map((item: LendingPackage) =>
                 item._id == this.state.packageID ? (
@@ -117,7 +116,7 @@ class Lending extends React.Component<Props, State> {
               }}
             >
               <Text style={styles.textLabel}>
-                {I18n.t('screens.lending.walletTitle')}: {MyFormat.roundingMoney(this.state.wallet)} COIN
+                {I18n.t('screens.lending.walletTitle')}: {MyFormat.roundingMoney(this.state.wallet)} {I18n.t('system.money')}
               </Text>
             </View>
 
@@ -128,7 +127,7 @@ class Lending extends React.Component<Props, State> {
               }}
             >
               <View style={styles.lblCoin}>
-                <Text style={styles.copyText}>{I18n.t('screens.lending.coinInputLabel')}</Text>
+                <Text style={styles.copyText}>{I18n.t('system.money')}</Text>
               </View>
               <TextInput
                 value={this.state.initialValue.toString()}
@@ -144,12 +143,16 @@ class Lending extends React.Component<Props, State> {
                   );
                 }}
               />
-              <TouchableOpacity
-                style={styles.btnAll}
-                onPress={() => this.allCoin()}
-              >
-                <Text style={styles.copyText}>{I18n.t('screens.lending.allButton')}</Text>
-              </TouchableOpacity>
+
+              <View style={styles.lblAll}>
+                <TouchableOpacity
+                  // style={styles.lblCoin}
+                  onPress={() => this.allCoin()}
+                >
+                  <Text style={styles.copyText}>{I18n.t('screens.lending.allButton')}</Text>
+                </TouchableOpacity>
+              </View>
+
             </View>
 
             <View
@@ -235,7 +238,7 @@ class Lending extends React.Component<Props, State> {
             this.setState({ confirmModal: false });
           }}
           title="Confirm"
-          message= {I18n.t('popup.message.confirmLending')}
+          message={I18n.t('popup.message.confirmLending')}
         />
       </View>
     );
@@ -249,9 +252,9 @@ class Lending extends React.Component<Props, State> {
           if (pagingLendingPackages.rows.length > 0) {
             this.setState({
               packages: pagingLendingPackages.rows,
-              packageID: type === "first" ? pagingLendingPackages.rows[0]._id : this.state.packageID,
-              minInvestment: type === "first" ? pagingLendingPackages.rows[0].minInvestment || 0 : this.state.minInvestment,
-              initialValue: type === "first" ? pagingLendingPackages.rows[0].minInvestment || 0 : this.state.initialValue
+              packageID: type === "first" ? pagingLendingPackages.rows[1]._id : this.state.packageID,
+              minInvestment: type === "first" ? pagingLendingPackages.rows[1].minInvestment || 0 : this.state.minInvestment,
+              initialValue: type === "first" ? pagingLendingPackages.rows[1].minInvestment || 0 : this.state.initialValue
               // maxInvestment: pagingLendingPackages.rows[0].maxInvestment || 0,
             }, () => this.enableButtonInvest())
           }
@@ -298,7 +301,7 @@ class Lending extends React.Component<Props, State> {
       this.setState({ myInvest: res.rows.reverse() });
     });
   };
-  
+
 
   getDaysLeft = (endAt: Date | undefined): number => {
     const currentDate: Date = new Date();
@@ -439,12 +442,10 @@ const styles = StyleSheet.create({
     display: "none",
   },
   btnAll: {
-    flex: 1,
-    flexGrow: 1,
+
     backgroundColor: color.primary,
     borderTopRightRadius: 3,
     borderBottomRightRadius: 3,
-    paddingHorizontal: 18,
     height: "100%",
     alignItems: "center",
     justifyContent: "center",
@@ -457,11 +458,19 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   lblCoin: {
-    flexGrow: 1,
+    flexBasis: "20%",
     backgroundColor: color.primary,
     borderTopLeftRadius: 3,
     borderBottomLeftRadius: 3,
-    paddingHorizontal: 12,
+    height: "100%",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  lblAll: {
+    flexBasis: "25%",
+    backgroundColor: color.primary,
+    borderTopRightRadius: 3,
+    borderBottomRightRadius: 3,
     height: "100%",
     alignItems: "center",
     justifyContent: "center",

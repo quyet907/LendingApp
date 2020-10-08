@@ -4,6 +4,7 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import * as color from '../../Color'
 import { MyFormat } from '../../Helper/MyFormat';
+import I18n from '../../i18n/i18n'
 const timeIcon = <MaterialIcons name="access-time" size={12} color={color.inactive} />;
 export default class HistoryLendingDetail extends React.Component<Props, {}>{
     constructor(props: any) {
@@ -13,21 +14,21 @@ export default class HistoryLendingDetail extends React.Component<Props, {}>{
         return (
             <View >
                 <View style={styles.container}>
-                    <View style={{marginRight: 15}}>
-                        <FontAwesome5 name='money-bill-alt' size={35} color={color.success}/>
+                    <View style={{ marginRight: 15 }}>
+                        <FontAwesome5 name='money-bill-alt' size={35} color={color.success} />
                     </View>
 
-                    <View style={{justifyContent: 'space-between', height: '100%' }}>
+                    <View style={{ justifyContent: 'space-between', height: '100%' }}>
                         <Text style={styles.title}>{this.props.title}</Text>
                         <View style={{ flexDirection: 'row', alignItems: 'center', flex: 1 }}>
                             {timeIcon}<Text style={styles.time}>{this.props.time}</Text>
                         </View>
                     </View>
-                    <View style={{alignItems: 'flex-end', justifyContent: 'space-evenly', height: '100%', flex: 1 , paddingTop: 3}}>
+                    <View style={{ alignItems: 'flex-end', justifyContent: 'space-evenly', height: '100%', flex: 1, paddingTop: 3 }}>
                         <Text style={styles.time}>{this.props.typeLabel}</Text>
                         <View style={{ flexDirection: 'row', alignItems: 'center', flex: 1 }}>
                             <Text style={this.props.type ? styles.coinGreen : styles.coinRed}>
-                               {MyFormat.roundingMoney(this.props.coin)} COIN</Text>
+                                {MyFormat.roundingMoney(this.props.coin)} {I18n.t('system.money')}</Text>
                         </View>
                     </View>
 

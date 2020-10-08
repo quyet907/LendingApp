@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, Image, ColorPropType, StyleSheet } from "react-native"
-import myStyle from "../../style";
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import { View, Text, StyleSheet } from "react-native"
 
 import * as color from '../../Color'
 import { TouchableOpacity } from 'react-native-gesture-handler';
@@ -33,10 +31,10 @@ class HistoryInterest extends Component<props, state> {
                         <FontAwesome5 name='coins' size={35} color={color.success} />
                     </View>
 
-                    <View style={{ justifyContent: 'space-between', height: '100%', flex: 1  }}>
+                    <View style={{ justifyContent: 'space-between', height: '100%', flex: 1 }}>
                         <Text style={styles.title}>
-                            <FontAwesome5 name='caret-up' size={16} color={color.success} style={{ paddingTop: 4 }} /> {MyFormat.roundingMoney(this.props.profits)} COIN
-                            </Text>
+                            <FontAwesome5 name='caret-up' size={16} color={color.success} style={{ paddingTop: 4 }} /> {MyFormat.roundingMoney(this.props.profits)} {I18n.t('screens.lending.walletTitle')}
+                        </Text>
                         <View style={{ flexDirection: 'row', alignItems: 'center', flex: 1 }}>
                             {timeIcon}<Text style={styles.time}>{this.props.createAt}</Text>
                         </View>
