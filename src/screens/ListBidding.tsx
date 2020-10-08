@@ -91,7 +91,7 @@ class ListBidding extends Component<Props, state> {
           contentContainerStyle={myStyle.ListBidProduct}
           refreshing = {true}
           renderItem={({ item }) => {
-            if (BidService.getTimeCountBid(item) >= 0) {
+            if (BidService.getTimeCalc(item) >= 0) {
 
               return (
                 <TouchableOpacity

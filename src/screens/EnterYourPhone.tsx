@@ -39,7 +39,9 @@ class EnterYourPhone extends Component<props, state> {
                     }
                     else {
                         UserService.sendOTP(this.state.numberPhone).then((res) => {
-                            Actions.confirmOTP()
+                            if(res){
+                                Actions.confirmOTP()
+                            }
                         })
                     }
                 }

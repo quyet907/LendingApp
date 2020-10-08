@@ -85,7 +85,6 @@ export default class Giftcode extends React.Component<Props, State>{
                     actionPopup.showMessage(`You got ${userCoupon.coupon.prize} points!`)
                 }
                 const getHistories = this.state.couponHistories;
-                console.log(userCoupon);
                 if(userCoupon)getHistories.push(userCoupon);
                 this.setState({
                     couponHistories: getHistories

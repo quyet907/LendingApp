@@ -46,7 +46,6 @@ class Profile extends React.Component<Props, State> {
                 //alert('Sorry, we need camera roll permissions to make this work!');
             }
         })
-        // console.log(this.thisUser);
 
         UserService.getMe().then(res => {
             if (res) {

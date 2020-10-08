@@ -59,7 +59,6 @@ class HistoryInterest extends Component<props, state> {
                                 })
                                 LendingService.getConfirmReceived(this.props._id)
                                     .then((res) => {
-                                        //   console.log(this.props._id);
                                         this.props.onReload()
                                     })
                             }}

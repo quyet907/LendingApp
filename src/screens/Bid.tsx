@@ -82,7 +82,7 @@ class Bid extends Component<props, state>{
         timeahihi = setInterval(
             () => {
                 this.setState({
-                    timeBid: BidService.getTimeCountBid(this.state.bidProduct),
+                    timeBid: BidService.getTimeCalc(this.state.bidProduct),
                 })
             },
             500
@@ -166,7 +166,7 @@ class Bid extends Component<props, state>{
                     <TouchableOpacity
                         style={BidService.checkButton(this.state.bidProduct, this.state.me) ? [myStyle.buttonBid] : [myStyle.buttonBid, myStyle.ButtonBidDisabled]}
                         onPress={(event) => {
-                            if (BidService.getTimeCountBid(this.state.bidProduct) < 0) {
+                            if (BidService.getTimeCalc(this.state.bidProduct) < 0) {
                                 BidService.receiveReward(bidProductId).then((bidProduct: BidProduct) => {
                                     if (bidProduct) {
                                         this.setState({

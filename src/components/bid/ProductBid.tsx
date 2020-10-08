@@ -55,7 +55,7 @@ export default class ProductBid extends Component<Props, state> {
 
                             <View style={[myStyle.frStatusAndTime]}>
                                 <View>
-                                    <Text style={[myStyle.timeProductBid]}>{BidService.changeTextTime(BidService.getTimeCounComming(this.props.bidProduct))}</Text>
+                                    <Text style={[myStyle.timeProductBid]}>{BidService.changeTextTime(BidService.getTimeCalc(this.props.bidProduct))}</Text>
                                 </View>
                             </View>
                             <View>

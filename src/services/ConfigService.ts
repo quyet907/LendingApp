@@ -11,8 +11,8 @@ export class ConfigService{
                 action.setConfig(res.data);
             })
             .catch((err : any )=>{
-                console.error(err);
-                return "fuck errr";
+                
+                return  null;
             })
         })
     }

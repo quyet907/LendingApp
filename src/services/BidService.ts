@@ -86,13 +86,7 @@ export class BidService {
         })
     }
 
-    public static getTimeCountBid(bidProduct: BidProduct): number {
-        let calcTime: number = actionAll.getConfig().timeBid;
-        if (bidProduct.latestBidAt) {
-            calcTime = BidService.calcTime(bidProduct.latestBidAt)
-        } 
-        return calcTime;
-    }
+    
 
     public static getImgFirtBidProduct(bidProduct: BidProduct): string {
         if (bidProduct.product && bidProduct.product.thumbImagesUrl)
@@ -110,7 +104,6 @@ export class BidService {
         if (bidProduct.product && bidProduct.product.name)
             return bidProduct.product.name
         return "Product of Afi"
-
     }
 
     public static getNameUserWin(bidProduct: BidProduct): string {
@@ -120,73 +113,6 @@ export class BidService {
         return I18n.t('screens.listBidding.noOneHasWon')
     }
 
-
-
-    public static calcTime(Time: Date | undefined): number {
-        if (Time) {
-            Time = new Date(Time);
-            let Calc: number = (Time.getTime() + actionAll.getConfig().timeBid * 1000) - (new Date().getTime());
-            return Math.round(Calc / 1000);
-        }
-        return 0;
-    }
-
-    public static checkBidding(Time: number): boolean {
-        return Time <= actionAll.getConfig().timeBid && Time >= 0 ? true : false;
-    }
-
-    // public static changeTextButton(bidProduct: BidProduct): string {
-    //     let getStepPrice = bidProduct.stepPrice ||0
-    //     return `Bid with ${MyFormat.roundingMoney(getStepPrice) } COIN`
-    // }
-
-    public static getTimeCounComming(bidProduct: BidProduct): number {
-        let calcTime: number = actionAll.getConfig().timeBid;
-        if (bidProduct.startBidAt) {
-            calcTime = BidService.calcTime(bidProduct.startBidAt)
-        } 
-        return calcTime;
-    }
-
-    public static getTimeCalc(bidProduct: BidProduct): number {
-        let calcTime: number = actionAll.getConfig().timeBid;
-        if (bidProduct.startBidAt) {
-            calcTime = BidService.calcTime(bidProduct.startBidAt)
-        } 
-        if(bidProduct.latestBidAt){
-            calcTime = BidService.calcTime(bidProduct.latestBidAt)
-        }
-        return calcTime;
-    }
-
-    public static checkComming(bidProduct: BidProduct): boolean {
-        let getTimeCount = BidService.getTimeCounComming(bidProduct);
-        return (getTimeCount > actionAll.getConfig().timeBid)
-    }
-
-
-
-    public static changeTextTime(calcTime: number): string {
-        if (calcTime < 0) {
-            return I18n.t('screens.bidDetail.finish')
-        }
-        if (calcTime > actionAll.getConfig().timeBid) {
-            return `${BidService.getTimeStart(calcTime)}`
-        }
-        return `${calcTime}S`;
-    }
-
-
-    public static changeTextStatus(calcTime: number): string {
-
-        if (calcTime < 0) {
-            return `${BidService.getTimeFinsh(Math.abs(calcTime))}`
-        }
-        if (calcTime > actionAll.getConfig().timeBid) {
-            return I18n.t('screens.listBidding.upcoming')
-        }
-        return I18n.t('screens.listBidding.happening');
-    }
 
     public static getTimeStart(calcTime: number): string {
         calcTime -= actionAll.getConfig().timeBid;
@@ -210,6 +136,31 @@ export class BidService {
         return `${dayBeautifull}:${hourBeautifull}:${minuteBeautifull}:${secondBeautifull}`;
 
     }
+
+    public static calcTime(Time: Date | undefined): number {
+        if (Time) {
+            Time = new Date(Time);
+            let Calc: number = (Time.getTime() + actionAll.getConfig().timeBid * 1000) - (new Date().getTime());
+            return Math.round(Calc / 1000);
+        }
+        return 0;
+    }
+
+    public static checkBidding(Time: number): boolean {
+        return Time <= actionAll.getConfig().timeBid && Time >= 0 ? true : false;
+    }
+
+    public static changeTextStatus(calcTime: number): string {
+
+        if (calcTime < 0) {
+            return `${BidService.getTimeFinsh(Math.abs(calcTime))}`
+        }
+        if (calcTime > actionAll.getConfig().timeBid) {
+            return I18n.t('screens.listBidding.upcoming')
+        }
+        return I18n.t('screens.listBidding.happening');
+    }
+
     public static beautifullTime(time: number): string {
         return time.toString().length == 1 ? `0${time}` : time.toString()
     }
@@ -230,6 +181,56 @@ export class BidService {
         }
         return "getTimeFinish() error"
     }
+
+
+
+
+
+
+
+    public static getTimeCalc(bidProduct: BidProduct): number {
+        let calcTime: number = actionAll.getConfig().timeBid;
+        if (bidProduct.startBidAt) {
+            calcTime = BidService.calcTime(bidProduct.startBidAt)
+            if(!bidProduct.latestBidAt && calcTime < actionAll.getConfig().timeBid) calcTime = actionAll.getConfig().timeBid;
+        } 
+        if(bidProduct.latestBidAt){
+            calcTime = BidService.calcTime(bidProduct.latestBidAt)
+        }
+        return calcTime;
+    }
+
+    public static getTimeCalcLastBid(bidProduct: BidProduct): number {
+        let calcTime: number = actionAll.getConfig().timeBid;
+        if(bidProduct.latestBidAt){
+            calcTime = BidService.calcTime(bidProduct.latestBidAt)
+        }
+        return calcTime;
+    }
+    
+
+    public static checkComming(bidProduct: BidProduct): boolean {
+        let getTimeCount = BidService.getTimeCalc(bidProduct);
+        return (getTimeCount > actionAll.getConfig().timeBid)
+    }
+
+
+
+
+    public static changeTextTime(calcTime: number): string {
+        if (calcTime < 0) {
+            return I18n.t('screens.bidDetail.finish')
+        }
+        if (calcTime > actionAll.getConfig().timeBid) {
+            return `${BidService.getTimeStart(calcTime)}`
+        }
+        return `${calcTime}S`;
+    }
+
+
+    
+
+
 
     //check biddig and revreceive reward
     public static checkButtonBid(bidProduct: BidProduct): boolean {
@@ -273,7 +274,7 @@ export class BidService {
     }
 
     public static checkButton(bidProduct : BidProduct, user: BaseUser) : boolean {
-        let getTime = BidService.getTimeCountBid(bidProduct);
+        let getTime = BidService.getTimeCalc(bidProduct);
         if(getTime > actionAll.getConfig().timeBid){
             return false;
         }

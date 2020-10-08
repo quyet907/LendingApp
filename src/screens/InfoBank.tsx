@@ -31,7 +31,6 @@ export default class InfoBank extends React.Component<Props, State> {
 
     async getInfoBank() {
         let infoBank: BankUser[] = await UserService.getInfoBank();
-        console.log(infoBank);
         if (infoBank.length > 0) {
             this.setState({ infoBank: infoBank[0] })
         }
@@ -70,7 +69,6 @@ export default class InfoBank extends React.Component<Props, State> {
                             <TextInput
                                 style={styles.input}
                                 onChangeText={(text) => {
-                                    console.log(this.state.infoBank)
                                     this.setState({ infoBank: { ...this.state.infoBank, bankName: text } })
                                 }}
                                 value={this.state.infoBank.bankName}

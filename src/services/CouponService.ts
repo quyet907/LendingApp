@@ -25,7 +25,7 @@ export class CouponService {
                 url: `${config.api.lendingAPI}/userCoupon/getListCode`,
             })
                 .then(res => { return res.data })
-                .catch(err => console.log(err))
+                .catch(err => null)
         );
     }
 }
