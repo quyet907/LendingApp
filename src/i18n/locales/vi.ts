@@ -56,29 +56,29 @@ const vi: Locale = {
     },
     screens: {
         bankInfo: {
-            bankInfoTitle: "BANK INFORMATION",
-            bankNameLabel: "Bank Name",
-            bankNumberLabel: "Number Bank",
-            bankBranchLabel: "Branch",
+            bankInfoTitle: "TÀI KHOẢN NGÂN HÀNG",
+            bankNameLabel: "Tên ngân hàng",
+            bankNumberLabel: "Số tài khoản",
+            bankBranchLabel: "Chi nhánh",
 
             bankNamePlaceHolder: "Enter bank name",
             bankNumberPlaceHolder: "Enter bank number",
             bankBranchPlaceHolder: "Enter bank branch",
         },
         editProfile: {
-            nameLabel: "Nam",
-            addressLabel: "Address",
-            identityNumberLabel: "Identity Number",
-            frontIdCardLabel: "Front ID Card",
-            backIdCardLabel: "Back ID Card",
+            nameLabel: "Họ tên",
+            addressLabel: "Địa chỉ",
+            identityNumberLabel: "Số CMND",
+            frontIdCardLabel: "CMND mặt trước",
+            backIdCardLabel: "CMND mặt sau",
 
             //Place Holder
-            namePlaceholder: "Enter your name",
-            addressPlaceholder: "Enter your address",
-            idNumberPlaceholder: "Enter ID Number",
+            namePlaceholder: "Nhập họ tên",
+            addressPlaceholder: "Nhập địa chỉ",
+            idNumberPlaceholder: "Nhập số CMND",
 
             //Button
-            updateButton: "UPDATE",
+            updateButton: "CẬP NHẬT",
             editButton: "Edit",
             addPhotoButton: "Add Photo",
         },
@@ -137,7 +137,7 @@ const vi: Locale = {
             bidHistories: "Đấu giá của tôi",
             coupon: "Quà tặng",
             logout: "Đăng xuất",
-            bankInfo: "Bank Info",
+            bankInfo: "Tài khoản ngân hàng",
         },
         bidDetail: {
             bidderTitle: "Người đấu giá",
