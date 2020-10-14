@@ -13,7 +13,6 @@ class UploadService {
       .ref(`/${pathFolder}/${fileName}`)
       .put(file)
       .then((value: any) => {
-        console.log(value);
         return storage
           .ref(pathFolder)
           .child(fileName)

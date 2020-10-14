@@ -30,7 +30,7 @@ export class LendingService {
         .then((res) => {
           return res.data;
         })
-        .catch((err) => console.log(err))
+        .catch((err) => null)
     );
   }
 
@@ -56,7 +56,7 @@ export class LendingService {
         .then((res) => {
           return res.data;
         })
-        .catch((err) => console.log(err))
+        .catch((err) => null)
     );
     //throw new Error("this function is not implement");
   }
@@ -70,7 +70,7 @@ export class LendingService {
         .then((res) => {
           return res.data;
         })
-        .catch((err) => console.log(err))
+        .catch((err) => null)
     );
   }
 

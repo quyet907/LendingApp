@@ -83,8 +83,8 @@ export class UserService {
 
 
     public static getJWT = (): Promise<string | null> => {
-        return AsyncStorage.getItem('jwt').then(jwt => { console.log("jwt"); return (jwt) ? jwt : "" })
-            .catch(err => { console.log("lỗi"); return null });
+        return AsyncStorage.getItem('jwt').then(jwt => {  return (jwt) ? jwt : "" })
+            .catch(err => { ; return null });
     }
 
 
@@ -236,7 +236,7 @@ export class UserService {
                 method: "GET",
                 url: `${config.api.lendingAPI}/user_bank`,
             }).then(res => { return res ? res.data : [] })
-                .catch(err => console.error(err))
+                .catch(err => null)
         })
     }
 
