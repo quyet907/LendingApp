@@ -16,6 +16,7 @@ import Coupon from "./Coupon";
 import Profile from "./Profile";
 import InfoBank from "./InfoBank";
 import { Route } from "react-router";
+import I18n from '../i18n/i18n'
 const Stack = createStackNavigator();
 
 export default class LogoutScreen extends Component<Props, State> {
@@ -29,7 +30,7 @@ export default class LogoutScreen extends Component<Props, State> {
                 <Stack.Screen name={ScreenName.Profile} component={Logout} options={{ headerShown: false }} />
                 <Stack.Screen name={ScreenName.EditProfile} component={Profile}
                     options={{
-                        title: 'Edit Profile',
+                        title: I18n.t('screens.profile.profileTabName'),
                         headerTintColor: '#fff',
                         headerStyle: {
                             backgroundColor: color.background
@@ -38,7 +39,7 @@ export default class LogoutScreen extends Component<Props, State> {
                 />
                 <Stack.Screen name={ScreenName.ListBid} component={BidStack}
                     options={{
-                        title: 'Bid',
+                        title: I18n.t('screens.profile.bid'),
                         headerTintColor: '#fff',
                         headerStyle: {
                             backgroundColor: color.background
@@ -47,7 +48,7 @@ export default class LogoutScreen extends Component<Props, State> {
                 />
                 <Stack.Screen name={ScreenName.infoBank} component={InfoBank}
                     options={{
-                        title: 'Bid',
+                        title: I18n.t('screens.profile.bankInfo'),
                         headerTintColor: '#fff',
                         headerStyle: {
                             backgroundColor: color.background
@@ -56,7 +57,7 @@ export default class LogoutScreen extends Component<Props, State> {
                 />
                 <Stack.Screen name={ScreenName.BidStatistic} component={HistoryBidScreen}
                     options={{
-                        title: 'Bid Statistic',
+                        title: I18n.t('screens.profile.bidHistories'),
                         headerTintColor: '#fff',
                         headerStyle: {
                             backgroundColor: color.background
@@ -76,7 +77,7 @@ export default class LogoutScreen extends Component<Props, State> {
                 />
                 <Stack.Screen name={ScreenName.Coupon} component={Coupon}
                     options={{
-                        title: 'Giftcode',
+                        title: I18n.t('screens.profile.coupon'),
                         headerTintColor: '#fff',
                         headerStyle: {
                             backgroundColor: color.background

@@ -79,8 +79,8 @@ const vi: Locale = {
 
             //Button
             updateButton: "CẬP NHẬT",
-            editButton: "Edit",
-            addPhotoButton: "Add Photo",
+            editButton: "Sửa",
+            addPhotoButton: "Thêm ảnh",
         },
         dashboard: {
             dashboardTabName: "Bảng điều khiển",
@@ -124,6 +124,7 @@ const vi: Locale = {
             refTitle: "GIỚI THIỆU",
             introText: "Hãy sử dụng tính năng Giới thiệu bạn bè để tăng số tiền trong tài khoản. Mỗi lượt Giới thiệu sẽ mang lại 100.000 vào tài khoản và nhận Hoa hồng suốt đời.",
             copyButton: "Sao chép",
+            copyNotification: "Đã sao chép!",
             totalRefTitle: "Tổng",
             rewardRefTitle: "Thưởng",
             refHistories: {

@@ -114,19 +114,19 @@ class Referral extends React.Component<Props, State> {
     copyToClipboard = () => {
         Clipboard.setString(this.getLinkRef())
         showMessage({
-            message: "Copied!",
+            message: I18n.t('screens.referral.copyNotification'),
             type: "success",
             hideOnPress: true,
-            // backgroundColor: "purple", // background color
+            backgroundColor: color.background_primary, // background color
             color: "#fff",
-            duration: 500
+            duration: 300
         });
     }
 
 
     getTime = (date: Date | undefined): String => {
         if (date !== undefined) return date.toString().substring(0, 10)
-        else return 'null'
+        else return 'undefined'
     }
 
     getLinkRef = () => {

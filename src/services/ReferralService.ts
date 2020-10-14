@@ -16,6 +16,7 @@ export class ReferralService {
         .then((res) => {
           return res.data;
         })
+        .catch((err) => [])
     );
     //throw new Error("this function is not implement");
   }

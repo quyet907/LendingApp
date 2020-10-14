@@ -111,13 +111,13 @@ class Profile extends React.Component<Props, State> {
     render() {
         return (
             <ScrollView>
-            <View>
-                <View style={{ flex: 1, width: '100%', height: '100%', position: 'absolute', zIndex: 2, backgroundColor: 'rgba(0,0,0,0.5)', justifyContent: "center", alignItems: 'center', display: this.state.uploading ? undefined : 'none' }}>
-                    <ActivityIndicator size="large" color={Color.primary} />
-                    <Text style={{ paddingVertical: 20, color: Color.primary, fontSize: 15, fontWeight: '500' }}>Uploading...</Text>
-                </View>
-                <View style={{ backgroundColor: Color.background_primary, position: 'relative' }}>
-                   
+                <View>
+                    <View style={{ flex: 1, width: '100%', height: '100%', position: 'absolute', zIndex: 2, backgroundColor: 'rgba(0,0,0,0.5)', justifyContent: "center", alignItems: 'center', display: this.state.uploading ? undefined : 'none' }}>
+                        <ActivityIndicator size="large" color={Color.primary} />
+                        <Text style={{ paddingVertical: 20, color: Color.primary, fontSize: 15, fontWeight: '500' }}>Uploading...</Text>
+                    </View>
+                    <View style={{ backgroundColor: Color.background_primary, position: 'relative' }}>
+
                         <View style={{ height: 170, display: 'flex', justifyContent: 'center', position: 'relative' }}>
                             <ImageBackground source={{ uri: this.state.avtURL }} style={styles.image}>
                                 <View style={{ position: 'absolute', top: 95 }}>
@@ -231,7 +231,7 @@ class Profile extends React.Component<Props, State> {
                                                 source={{ uri: this.state.backIdCard }}
                                             />
                                         </View>
-                                        <Text style={{ color: Color.primary, fontWeight: '500', fontSize: 16 }}>{this.state.backIdCard ? 'Edit' : 'Add photo'} </Text>
+                                        <Text style={{ color: Color.primary, fontWeight: '500', fontSize: 16 }}>{this.state.backIdCard ? I18n.t('screens.editProfile.editButton') : I18n.t('screens.editProfile.addPhotoButton')} </Text>
                                     </TouchableOpacity>
                                 </View>
                             </View>
@@ -257,9 +257,9 @@ class Profile extends React.Component<Props, State> {
 
 
 
-                   
+
+                    </View>
                 </View>
-            </View>
             </ScrollView>
 
         )

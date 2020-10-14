@@ -97,6 +97,7 @@ const en: Locale = {
             refTitle: "REFERRAL",
             introText: "The Lending game referral program is a great way to read the word of this great service and to earn even more money with your friend! Refer friends and receive 1000 COIN of their earnings for life!",
             copyButton: "Copy",
+            copyNotification: "Copied!",
             totalRefTitle: "Total",
             rewardRefTitle: "Reward",
             refHistories: {
