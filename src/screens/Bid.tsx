@@ -106,13 +106,14 @@ class Bid extends Component<props, state>{
 
     confirmReceiveBid() {
         console.log("kokokokokokokko")
-        // BidService.receiveReward(bidProductId).then((bidProduct: BidProduct) => {
-        //     if (bidProduct) {
-        //         this.setState({
-        //             bidProduct: bidProduct
-        //         })
-        //     }
-        // })
+        BidService.receiveReward(bidProductId).then((bidProduct: BidProduct) => {
+            if (bidProduct) {
+                actionPopup.showMessage("Bạn sẽ nhận được phần thưởng trong 24h với thông tin Ngân hàng đã đăng ký, Moị thắc mắc liên hệ: 0932154777")
+                this.setState({
+                    bidProduct: bidProduct
+                })
+            }
+        })
     }
 
 

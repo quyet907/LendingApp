@@ -136,11 +136,8 @@ export class BidService {
     }
 
     public static calcTime(Time: Date | undefined): number {
-        console.log(actionAll.getConfig().deviation);
         let getDateNow = new Date();
-        console.log(getDateNow);
         getDateNow.setTime(getDateNow.getTime() + actionAll.getConfig().deviation);
-        console.log(getDateNow);
         if (Time) {
             Time = new Date(Time);
             let Calc: number = (Time.getTime() + actionAll.getConfig().timeBid * 1000) - (getDateNow.getTime());
