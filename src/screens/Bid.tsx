@@ -17,6 +17,7 @@ import { User } from '@StockAfiCore/model/user/User';
 import { UserService } from '../services/UserService';
 import { ScrollView } from 'react-native-gesture-handler';
 import * as actionPopup from "../Action/ActionPopup"
+// import PopupConfirm from 'src/components/PopupConfirm';
 // import PopupShow from 'src/components/PopupShow';
 // import PopupConfirm from 'src/components/PopupConfirm';
 
@@ -186,13 +187,9 @@ class Bid extends Component<props, state>{
                         style={BidService.checkButton(this.state.bidProduct, this.state.me) ? [myStyle.buttonBid] : [myStyle.buttonBid, myStyle.ButtonBidDisabled]}
                         onPress={(event) => {
                             if (BidService.getTimeCalc(this.state.bidProduct) < 0) {
-
                                 this.setState({
                                     showConfirm : true
                                 })
-
-
-
 
                             } else {
                                 BidService.BidAction(bidProductId);
@@ -206,8 +203,8 @@ class Bid extends Component<props, state>{
                         </Text>
                     </TouchableOpacity>
                 </View>
-{/* 
-                <PopupConfirm
+
+                {/* <PopupConfirm
                     confirmModal={this.state.showConfirm}
                     hideBtnCancel={true}
                     textButtonLeft={I18n.t('popup.yesNo.no')}
