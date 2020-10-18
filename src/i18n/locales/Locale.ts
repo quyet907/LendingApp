@@ -96,6 +96,7 @@ export interface Locale{
             refTitle: string,
             introText: string,
             copyButton: string,
+            copyNotification: string,
             totalRefTitle: string,
             rewardRefTitle: string,
             refHistories: {

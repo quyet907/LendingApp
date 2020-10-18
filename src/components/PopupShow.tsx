@@ -38,7 +38,7 @@ class PopupShow extends React.Component<Props, {}>{
                             onPress={() => {
                                 // this.props.onShowPopup(false);
                                 action.setShowPopup(false); 
-                                // this.props.onResult(true);
+                                this.props.onResult(true);
                             }}
                         >
                             <Text>OK</Text>

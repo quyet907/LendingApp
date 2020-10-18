@@ -33,7 +33,7 @@ class HistoryInterest extends Component<props, state> {
 
                     <View style={{ justifyContent: 'space-between', height: '100%', flex: 1 }}>
                         <Text style={styles.title}>
-                            <FontAwesome5 name='caret-up' size={16} color={color.success} style={{ paddingTop: 4 }} /> {MyFormat.roundingMoney(this.props.profits)} {I18n.t('screens.lending.walletTitle')}
+                            <FontAwesome5 name='caret-up' size={16} color={color.success} style={{ paddingTop: 4 }} /> {MyFormat.roundingMoney(this.props.profits)} {I18n.t('system.money')}
                         </Text>
                         <View style={{ flexDirection: 'row', alignItems: 'center', flex: 1 }}>
                             {timeIcon}<Text style={styles.time}>{this.props.createAt}</Text>

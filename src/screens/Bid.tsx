@@ -16,6 +16,10 @@ import I18n from "../i18n/i18n";
 import { User } from '@StockAfiCore/model/user/User';
 import { UserService } from '../services/UserService';
 import { ScrollView } from 'react-native-gesture-handler';
+import * as actionPopup from "../Action/ActionPopup"
+// import PopupShow from 'src/components/PopupShow';
+// import PopupConfirm from 'src/components/PopupConfirm';
+
 
 // pageBid.render();
 var timeahihi;
@@ -26,7 +30,9 @@ class Bid extends Component<props, state>{
         this.state = {
             bidProduct: {},
             timeBid: 10,
-            me: {}
+            me: {},
+            showConfirm: true
+
 
         }
 
@@ -98,11 +104,23 @@ class Bid extends Component<props, state>{
         })
     }
 
+    confirmReceiveBid() {
+        console.log("kokokokokokokko")
+        // BidService.receiveReward(bidProductId).then((bidProduct: BidProduct) => {
+        //     if (bidProduct) {
+        //         this.setState({
+        //             bidProduct: bidProduct
+        //         })
+        //     }
+        // })
+    }
+
 
 
     render() {
         return (
             <View style={[myStyle.containerLight]}>
+
                 {/* <View style={[myStyle.btnCloseBid]}>
                     <TouchableOpacity style={[]}
                         onPress={() => {
@@ -167,13 +185,14 @@ class Bid extends Component<props, state>{
                         style={BidService.checkButton(this.state.bidProduct, this.state.me) ? [myStyle.buttonBid] : [myStyle.buttonBid, myStyle.ButtonBidDisabled]}
                         onPress={(event) => {
                             if (BidService.getTimeCalc(this.state.bidProduct) < 0) {
-                                BidService.receiveReward(bidProductId).then((bidProduct: BidProduct) => {
-                                    if (bidProduct) {
-                                        this.setState({
-                                            bidProduct: bidProduct
-                                        })
-                                    }
+
+                                this.setState({
+                                    showConfirm : true
                                 })
+
+
+
+
                             } else {
                                 BidService.BidAction(bidProductId);
                             }
@@ -186,6 +205,22 @@ class Bid extends Component<props, state>{
                         </Text>
                     </TouchableOpacity>
                 </View>
+{/* 
+                <PopupConfirm
+                    confirmModal={this.state.showConfirm}
+                    hideBtnCancel={true}
+                    textButtonLeft={I18n.t('popup.yesNo.no')}
+                    textButtonRight={I18n.t('popup.yesNo.yes')}
+                    buttonOK={() => {
+                        this.confirmReceiveBid()
+                        this.setState({ showConfirm: false });
+                    }}
+                    buttonCancel={() => {
+                        this.setState({ showConfirm: false });
+                    }}
+                    title="Confirm"
+                    message={"Khi nhận thưởng, giá tiền còn lại sẽ được trừ vào số tiền trong Ví. Bạn có chắc chắn muốn nhận thưởng ngay bây giờ ?"}
+                /> */}
 
             </View>
         )
@@ -199,7 +234,8 @@ type props = {
 type state = {
     bidProduct: BidProduct
     timeBid: number,
-    me: BaseUser
+    me: BaseUser,
+    showConfirm: boolean
 }
 
 export default function (props: any) {

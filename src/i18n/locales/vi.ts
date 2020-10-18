@@ -56,31 +56,31 @@ const vi: Locale = {
     },
     screens: {
         bankInfo: {
-            bankInfoTitle: "BANK INFORMATION",
-            bankNameLabel: "Bank Name",
-            bankNumberLabel: "Number Bank",
-            bankBranchLabel: "Branch",
+            bankInfoTitle: "TÀI KHOẢN NGÂN HÀNG",
+            bankNameLabel: "Tên ngân hàng",
+            bankNumberLabel: "Số tài khoản",
+            bankBranchLabel: "Chi nhánh",
 
             bankNamePlaceHolder: "Enter bank name",
             bankNumberPlaceHolder: "Enter bank number",
             bankBranchPlaceHolder: "Enter bank branch",
         },
         editProfile: {
-            nameLabel: "Nam",
-            addressLabel: "Address",
-            identityNumberLabel: "Identity Number",
-            frontIdCardLabel: "Front ID Card",
-            backIdCardLabel: "Back ID Card",
+            nameLabel: "Họ tên",
+            addressLabel: "Địa chỉ",
+            identityNumberLabel: "Số CMND",
+            frontIdCardLabel: "CMND mặt trước",
+            backIdCardLabel: "CMND mặt sau",
 
             //Place Holder
-            namePlaceholder: "Enter your name",
-            addressPlaceholder: "Enter your address",
-            idNumberPlaceholder: "Enter ID Number",
+            namePlaceholder: "Nhập họ tên",
+            addressPlaceholder: "Nhập địa chỉ",
+            idNumberPlaceholder: "Nhập số CMND",
 
             //Button
-            updateButton: "UPDATE",
-            editButton: "Edit",
-            addPhotoButton: "Add Photo",
+            updateButton: "CẬP NHẬT",
+            editButton: "Sửa",
+            addPhotoButton: "Thêm ảnh",
         },
         dashboard: {
             dashboardTabName: "Bảng điều khiển",
@@ -124,6 +124,7 @@ const vi: Locale = {
             refTitle: "GIỚI THIỆU",
             introText: "Hãy sử dụng tính năng Giới thiệu bạn bè để tăng số tiền trong tài khoản. Mỗi lượt Giới thiệu sẽ mang lại 100.000 vào tài khoản và nhận Hoa hồng suốt đời.",
             copyButton: "Sao chép",
+            copyNotification: "Đã sao chép!",
             totalRefTitle: "Tổng",
             rewardRefTitle: "Thưởng",
             refHistories: {
@@ -137,7 +138,7 @@ const vi: Locale = {
             bidHistories: "Đấu giá của tôi",
             coupon: "Quà tặng",
             logout: "Đăng xuất",
-            bankInfo: "Bank Info",
+            bankInfo: "Tài khoản ngân hàng",
         },
         bidDetail: {
             bidderTitle: "Người đấu giá",
