@@ -21,9 +21,6 @@ export default class PopupConfirm extends React.Component<Props, {}>{
                         <Text style={{ color: 'white', alignItems: "center" }}>{this.props.message}</Text>
                     </View>
                     <View style={{ flexDirection: 'row', justifyContent: 'center', flex: 1, alignItems: 'center' }}>
-
-
-
                         <TouchableOpacity
                             style={(this.props.hideBtnCancel) ? styles.buttonCancel : {display: 'none'}}
                             onPress={() => this.props.buttonCancel()}

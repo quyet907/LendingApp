@@ -5,7 +5,7 @@ const vi: Locale = {
         money: "XU",
     },
     success: {
-        updateProfile: "Update successful!",
+        updateProfile: "Cập nhật thành công!",
     },
     popup: {
         yesNo: {
@@ -13,21 +13,28 @@ const vi: Locale = {
             no: "KHÔNG"
         },
         message: {
-            confirmLending: "Bạn chắc chắn muốn cho vay?"
-        }
+            confirmLending: "Bạn chắc chắn muốn cho vay?",
+            receiveAfter24h: "Bạn sẽ nhận được phần thưởng trong 24h với thông tin Ngân hàng đã đăng ký, Moị thắc mắc liên hệ: 0932154777",
+            deduction: "Khi nhận thưởng, giá tiền còn lại sẽ được trừ vào số tiền trong Ví. Bạn có chắc chắn muốn nhận thưởng ngay bây giờ ?"
+        },
+        uploading: {
+            text: "Đang tải lên"
+        },
+
+
 
     },
     error: {
         profile: {
-            emptyName: "Please enter your name!",
-            emptyAddress: "Please enter your address!",
-            emptyIdNumber: "Please enter your ID number!",
-            emptyFrontIdCard: "Please enter your front Id Card!",
-            emptyBackIdCard: "Please enter your back Id Card!",
-            malformedIdNumber: "Malformed ID Number!"
+            emptyName: "Vui lòng nhập họ tên!",
+            emptyAddress: "Vui lòng nhập địa chỉ!",
+            emptyIdNumber: "Vui lòng nhập số CMND!",
+            emptyFrontIdCard: "Vui lòng cập nhật CMND mặt trước!",
+            emptyBackIdCard: "Vui lòng cập nhật CMND mặt sau!",
+            malformedIdNumber: "Số CMND không đúng định dạng!"
         },
         OTP: {
-            insuccessOTP: "OTP không thành công",
+            insuccessOTP: "Xác nhận OTP không thành công",
             errServer: "Lỗi server",
         },
         numberPhone: {
@@ -61,9 +68,9 @@ const vi: Locale = {
             bankNumberLabel: "Số tài khoản",
             bankBranchLabel: "Chi nhánh",
 
-            bankNamePlaceHolder: "Enter bank name",
-            bankNumberPlaceHolder: "Enter bank number",
-            bankBranchPlaceHolder: "Enter bank branch",
+            bankNamePlaceHolder: "Nhập tên ngân hàng",
+            bankNumberPlaceHolder: "Nhập số tài khoản",
+            bankBranchPlaceHolder: "Nhập chi nhánh",
         },
         editProfile: {
             nameLabel: "Họ tên",
@@ -142,10 +149,10 @@ const vi: Locale = {
         },
         bidDetail: {
             bidderTitle: "Người đấu giá",
-            finish: "Finish",
-            bidWith: "Bid with",
-            receive : "Received at",
-            receiveReward : "Receive reward"
+            finish: "Kết thúc",
+            bidWith: "Đặt cược với",
+            receive : "Đã nhận lúc",
+            receiveReward : "Nhận thưởng"
         },
         listBidding: {
             winner: "Winner",
@@ -158,7 +165,7 @@ const vi: Locale = {
             hourAgo: "hour ago",
             dayAgo: "day ago",
             tabName: {
-                doingTabName: "Đang tham gia",
+                doingTabName: "Đang diễn ra",
                 comingTabName: "SẮP TỚI",
             }
         },

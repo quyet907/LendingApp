@@ -102,9 +102,6 @@ class Profile extends React.Component<Props, State> {
             const url = await uploadService.upload("idCards", `${this.thisUser.username}-${asideIdCard}IdCard`, blob);
             return url
         }
-
-
-
     }
 
 
@@ -114,10 +111,11 @@ class Profile extends React.Component<Props, State> {
 
                 <View style={{ flex: 1, width: '100%', height: '100%', position: 'absolute', top: 0, left: 0, zIndex: 2, backgroundColor: 'rgba(0,0,0,0.5)', justifyContent: "center", alignItems: 'center', display: this.state.uploading ? undefined : 'none' }}>
                     <ActivityIndicator size="large" color={Color.primary} />
-                    <Text style={{ paddingVertical: 20, color: Color.primary, fontSize: 15, fontWeight: '500' }}>Uploading</Text>
+                    <Text style={{ paddingVertical: 20, color: Color.primary, fontSize: 15, fontWeight: '500' }}>
+                        {I18n.t('popup.uploading.text')}
+                    </Text>
                 </View>
                 <ScrollView >
-
                     <View style={{ backgroundColor: Color.background_primary, position: 'relative' }}>
 
                         <View style={{ height: 170, display: 'flex', justifyContent: 'center', position: 'relative' }}>
@@ -274,28 +272,20 @@ class Profile extends React.Component<Props, State> {
             // console.log(this.state.avtURL);
 
             let user: User = {
-                avatar: this.state.avtURL,
                 fullName: this.state.name,
                 address: { ...this.state.address },
                 identityCard: this.state.identityCard,
                 imgIdentityCards: imgIdentityCards
             }
+            if (this.state.avtURL !== this.avtDefault) user.avatar = this.state.avtURL
+
             UserService.updateInfoUser(user)
                 .then(res => {
                     // console.log(res.data)
                     actionPopup.showMessage(I18n.t('success.updateProfile'));
                 })
-
         }
-
-
-
-
-
         // console.log(user);
-
-
-
     }
 
     validationInfo = (): boolean => {

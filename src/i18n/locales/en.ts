@@ -13,7 +13,12 @@ const en: Locale = {
             no: "NO"
         },
         message: {
-            confirmLending: "Are you sure want to lending?"
+            confirmLending: "Are you sure want to lending?",
+            receiveAfter24h: "Bạn sẽ nhận được phần thưởng trong 24h với thông tin Ngân hàng đã đăng ký, Moị thắc mắc liên hệ: 0932154777",
+            deduction: "Khi nhận thưởng, giá tiền còn lại sẽ được trừ vào số tiền trong Ví. Bạn có chắc chắn muốn nhận thưởng ngay bây giờ ?",
+        },
+        uploading: {
+            text: "Uploading"
         }
 
     },
