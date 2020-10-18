@@ -35,8 +35,6 @@ class Home extends Component<Props, State> {
 
   componentDidMount() {
     this.getData();
-
-
   };
 
   componentWillReceiveProps(nextProps: Props) {

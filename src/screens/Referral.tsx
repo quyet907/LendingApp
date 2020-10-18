@@ -33,14 +33,18 @@ class Referral extends React.Component<Props, State> {
         }
     }
 
-    getDataReferal() {
-        ReferralService.getReferral().then(res => {
-            this.setState({ myReferral: res.rows })
-        })
+    getDataReferal = () => {
+        ReferralService.getMe()
+            .then(infoMe => {
+                this.setState({ myID: infoMe._id || "undefined" })
+            })
+            .catch(err => this.setState({ myID: "undefined" }))
 
-        ReferralService.getMe().then(res => {
-            this.setState({ myID: (res) ?  res._id || "null" : "null" })
-        })
+        ReferralService.getReferral()
+            .then(res => {
+                this.setState({ myReferral: res.rows })
+            })
+            .catch(err => this.setState({ myReferral: [] }))
     }
 
 
@@ -79,7 +83,7 @@ class Referral extends React.Component<Props, State> {
 
 
                     <View style={styles.refAbout}>
-                        <View style={{ flexDirection: 'row' , paddingRight: 10}}>
+                        <View style={{ flexDirection: 'row', paddingRight: 10 }}>
                             <View style={styles.containerIcon}>
                                 <FontAwesome5 name='user-friends' size={35} color='#00C4F8' />
                             </View>
@@ -89,13 +93,13 @@ class Referral extends React.Component<Props, State> {
                             </View>
                         </View>
 
-                        <View style={{ flexDirection: 'row' , paddingLeft: 10}}>
+                        <View style={{ flexDirection: 'row', paddingLeft: 10 }}>
                             <View style={styles.containerIcon}>
                                 <FontAwesome5 name='coins' size={35} color={color.primary} />
                             </View>
                             <View style={styles.subContainer}>
                                 <Text style={{ color: color.inactive, fontSize: 12 }}>{I18n.t('screens.referral.rewardRefTitle')}</Text>
-                                <Text style={styles.amount}>{MyFormat.roundingMoney(ReferralService.calcMoneyReferral(this.state.myReferral.length))} </Text>
+                                <Text style={styles.amount}>{MyFormat.roundingMoney(this.state.myReferral.length)} </Text>
                             </View>
                         </View>
                     </View>

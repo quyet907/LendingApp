@@ -20,6 +20,7 @@ export default class Giftcode extends React.Component<Props, State>{
 
     componentDidMount() {
         this.getDataToState()
+       
     }
     render() {
         return (
@@ -40,11 +41,7 @@ export default class Giftcode extends React.Component<Props, State>{
 
                         <View style={{ height: 40, width: '100%', marginTop: 40 }}>
                             <TextInput
-                                // style={{ flex: 1, borderColor: 'gray', borderBottomWidth: 3, color: '#fff' }}
                                 style={styles.inputLogin}
-                                autoFocus={false}
-                                defaultValue={this.state.code}
-                                onSubmitEditing={() => this.check()}
                                 onChangeText={(text) => {
                                     this.setState({
                                         code: text
@@ -64,7 +61,6 @@ export default class Giftcode extends React.Component<Props, State>{
                             <TouchableOpacity
                                 style={styles.btnSubmit}
                                 activeOpacity={0.7}
-
                                 onPress={this.check}
                             >
                                 <Text style={[myStyle.textButton]}>{I18n.t('screens.coupon.submitButton')}</Text>
@@ -86,7 +82,7 @@ export default class Giftcode extends React.Component<Props, State>{
                     actionPopup.showMessage(`You got ${userCoupon.coupon.prize} points!`)
                 }
                 const getHistories = this.state.couponHistories;
-                if(userCoupon)getHistories.push(userCoupon);
+                if (userCoupon) getHistories.push(userCoupon);
                 this.setState({
                     couponHistories: getHistories
                 })
