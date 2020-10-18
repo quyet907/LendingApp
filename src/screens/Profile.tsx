@@ -13,6 +13,7 @@ import * as action from "../Action/ActionLogin";
 import { connect } from 'react-redux';
 import * as actionPopup from "../Action/ActionPopup";
 import I18n from '../i18n/i18n'
+// import { ActivityIndicator } from 'react-native-paper';
 
 
 
