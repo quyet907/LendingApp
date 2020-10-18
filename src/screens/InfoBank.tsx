@@ -50,10 +50,8 @@ export default class InfoBank extends React.Component<Props, State> {
 
     render() {
         return (
-            <View style={{ backgroundColor: Color.background_primary, flex: 1, alignItems: 'center', justifyContent: "center" }}>
+            <View style={{ backgroundColor: Color.background_primary, flex: 1, justifyContent: "center" }}>
                 {/* <View style={{ height: 170, display: 'flex', justifyContent: 'center', position: 'relative' }}>
-
-
                 </View> */}
 
                 <View style={{ marginTop: 70, justifyContent: 'center', alignItems: 'center' }}>
@@ -65,7 +63,7 @@ export default class InfoBank extends React.Component<Props, State> {
                         <View>
                             <Text style={styles.title}>{I18n.t('screens.bankInfo.bankNameLabel')}</Text>
                         </View>
-                        <View style={{ flex: 1 }}>
+                        <View style={{ flex: 1, }}>
                             <TextInput
                                 style={styles.input}
                                 onChangeText={(text) => {
@@ -201,7 +199,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         paddingVertical: 20,
         borderBottomColor: 'rgba(153,153,153, 0.4)  ',
-        borderBottomWidth: 1
+        borderBottomWidth: 1,
     },
     title: {
         textTransform: 'uppercase',

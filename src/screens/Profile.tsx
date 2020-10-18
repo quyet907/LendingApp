@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ScrollView, StyleSheet, Text, TextInput, View, Image, ImageBackground, TouchableOpacity, Platform } from 'react-native';
+import { ScrollView, StyleSheet, Text, TextInput, View, Image, ImageBackground, TouchableOpacity, Platform, ActivityIndicator } from 'react-native';
 import * as Color from '../Color'
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import myStyle from '../style'
@@ -110,12 +110,14 @@ class Profile extends React.Component<Props, State> {
 
     render() {
         return (
-            <ScrollView>
-                <View>
-                    <View style={{ flex: 1, width: '100%', height: '100%', position: 'absolute', zIndex: 2, backgroundColor: 'rgba(0,0,0,0.5)', justifyContent: "center", alignItems: 'center', display: this.state.uploading ? undefined : 'none' }}>
-                        {/* <ActivityIndicator size="large" color={Color.primary} /> */}
-                        <Text style={{ paddingVertical: 20, color: Color.primary, fontSize: 15, fontWeight: '500' }}>Uploading...</Text>
-                    </View>
+            <View style={{ backgroundColor: Color.background_primary, flex: 1 }}>
+
+                <View style={{ flex: 1, width: '100%', height: '100%', position: 'absolute', top: 0, left: 0, zIndex: 2, backgroundColor: 'rgba(0,0,0,0.5)', justifyContent: "center", alignItems: 'center', display: this.state.uploading ? undefined : 'none' }}>
+                    <ActivityIndicator size="large" color={Color.primary} />
+                    <Text style={{ paddingVertical: 20, color: Color.primary, fontSize: 15, fontWeight: '500' }}>Uploading</Text>
+                </View>
+                <ScrollView >
+
                     <View style={{ backgroundColor: Color.background_primary, position: 'relative' }}>
 
                         <View style={{ height: 170, display: 'flex', justifyContent: 'center', position: 'relative' }}>
@@ -259,8 +261,8 @@ class Profile extends React.Component<Props, State> {
 
 
                     </View>
-                </View>
-            </ScrollView>
+                </ScrollView>
+            </View>
 
         )
     }
