@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { View, ActivityIndicator , StyleSheet} from 'react-native'
 import myStyle from "../style"
 import  { connect} from "react-redux"
-import { ProgressBar, Colors } from 'react-native-paper';
+// import { ProgressBar, Colors } from 'react-native-paper';
 import * as color from "../Color"
 class Loadding extends Component <Props , state>{
     constructor(props: any){
@@ -18,7 +18,7 @@ class Loadding extends Component <Props , state>{
         return (
             
             <View style={[(this.props.valueLoad>0) ? styles.frameLoadding : {display: "none"}]}>
-                <ProgressBar color={color.primary} indeterminate />
+                {/* <ProgressBar color={color.primary} indeterminate /> */}
                 {/* <View style={styles.background}></View>
                 <View style={myStyle.fullCeter}>
                 <ActivityIndicator size="large" color="#00ff00" />

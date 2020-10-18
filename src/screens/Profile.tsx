@@ -13,7 +13,7 @@ import * as action from "../Action/ActionLogin";
 import { connect } from 'react-redux';
 import * as actionPopup from "../Action/ActionPopup";
 import I18n from '../i18n/i18n'
-import { ActivityIndicator } from 'react-native-paper';
+// import { ActivityIndicator } from 'react-native-paper';
 
 
 
@@ -113,7 +113,7 @@ class Profile extends React.Component<Props, State> {
             <ScrollView>
             <View>
                 <View style={{ flex: 1, width: '100%', height: '100%', position: 'absolute', zIndex: 2, backgroundColor: 'rgba(0,0,0,0.5)', justifyContent: "center", alignItems: 'center', display: this.state.uploading ? undefined : 'none' }}>
-                    <ActivityIndicator size="large" color={Color.primary} />
+                    {/* <ActivityIndicator size="large" color={Color.primary} /> */}
                     <Text style={{ paddingVertical: 20, color: Color.primary, fontSize: 15, fontWeight: '500' }}>Uploading...</Text>
                 </View>
                 <View style={{ backgroundColor: Color.background_primary, position: 'relative' }}>
