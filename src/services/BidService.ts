@@ -119,7 +119,6 @@ export class BidService {
         const hours = minutes * 60;
         const day = hours * 24;
 
-
         let getDay = Math.floor(calcTime / day);
         calcTime = calcTime % day;
         let getHours = Math.floor(calcTime / hours);
@@ -137,9 +136,14 @@ export class BidService {
     }
 
     public static calcTime(Time: Date | undefined): number {
+        console.log(actionAll.getConfig().deviation);
+        let getDateNow = new Date();
+        console.log(getDateNow);
+        getDateNow.setTime(getDateNow.getTime() + actionAll.getConfig().deviation);
+        console.log(getDateNow);
         if (Time) {
             Time = new Date(Time);
-            let Calc: number = (Time.getTime() + actionAll.getConfig().timeBid * 1000) - (new Date().getTime());
+            let Calc: number = (Time.getTime() + actionAll.getConfig().timeBid * 1000) - (getDateNow.getTime());
             return Math.round(Calc / 1000);
         }
         return 0;
