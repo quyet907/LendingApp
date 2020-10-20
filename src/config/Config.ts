@@ -29,9 +29,9 @@ const stagingConfig: IConfig = {
 
 const prodConfig: IConfig = {
   api: {
-    lendingAPI: "https://devapilending.afivn.com",
-    userAPI: "https://devapilending.afivn.com",
-    domain: 'https://lending-31b52.web.app',
+    lendingAPI: "https://api.biddiii.com",
+    userAPI: "https://api.biddiii.com",
+    domain: 'https://biddiii.com',
     timeLimit : 100,
   },
 };
