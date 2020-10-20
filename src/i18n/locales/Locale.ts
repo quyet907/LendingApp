@@ -12,7 +12,13 @@ export interface Locale{
         },
         message: {
             confirmLending: string,
+            receiveAfter24h: string,
+            deduction: string
+        },
+        uploading: {
+            text: string
         }
+
 
     },
     error: {

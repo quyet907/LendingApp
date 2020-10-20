@@ -30,7 +30,7 @@ class PopupShow extends React.Component<Props, {}>{
                                 this.props.onResult(false);
                             }}
                         >
-                            <Text style = {{color:"black"}} >Cancel</Text>
+                            <Text style = {{color:"black"}}>Cancel</Text>
                         </TouchableOpacity>
 
                         <TouchableOpacity
@@ -142,7 +142,6 @@ type Props = {
     typeConfirm : boolean,
     onShowPopup(show : boolean) : void,
     onResult(result : boolean) : void
-
 }
 
 function mapStateToProps(state : any){

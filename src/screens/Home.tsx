@@ -35,12 +35,10 @@ class Home extends Component<Props, State> {
 
   componentDidMount() {
     this.getData();
-    
-
   };
 
   componentWillReceiveProps(nextProps: Props) {
-    if(this.props.confirmReload != nextProps.confirmReload || nextProps.isFocused){
+    if (this.props.confirmReload != nextProps.confirmReload || nextProps.isFocused) {
       this.getData();
     }
   }
@@ -48,7 +46,7 @@ class Home extends Component<Props, State> {
 
 
 
-  async getData() {
+  getData = async () => {
     let getDataFinance: Finance = await IncomeService.getFinance()
 
     let getDataChart: any = await IncomeService.getListCharIncome()
@@ -81,7 +79,7 @@ class Home extends Component<Props, State> {
             ></ListStatisticalBasic>
           </View>
 
-          <View style={{paddingTop: 10}}>
+          <View style={{ paddingTop: 10 }}>
 
             <ListHistoryInterest
               data={this.state.dataProfit} />
@@ -97,8 +95,8 @@ class Home extends Component<Props, State> {
 
 type Props = {
   isFocused: boolean,
-  Finance : Finance,
-  confirmReload : boolean,
+  Finance: Finance,
+  confirmReload: boolean,
 
 };
 type State = {
@@ -116,7 +114,7 @@ const home = function (props: Props) {
 
 const mapStateToProps = (state: any, Props: any) => {
   return {
-      confirmReload : state.Allreducer.reloadPageHome
+    confirmReload: state.Allreducer.reloadPageHome
   }
 }
 

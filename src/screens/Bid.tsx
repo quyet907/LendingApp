@@ -17,6 +17,8 @@ import { User } from '@StockAfiCore/model/user/User';
 import { UserService } from '../services/UserService';
 import { ScrollView } from 'react-native-gesture-handler';
 import * as actionPopup from "../Action/ActionPopup"
+import PopupConfirm from '../components/PopupConfirm';
+import PopupShow from 'src/components/PopupShow';
 // import PopupShow from 'src/components/PopupShow';
 // import PopupConfirm from 'src/components/PopupConfirm';
 
@@ -31,7 +33,7 @@ class Bid extends Component<props, state>{
             bidProduct: {},
             timeBid: 10,
             me: {},
-            showConfirm: true
+            showConfirm: false
 
 
         }
@@ -98,21 +100,20 @@ class Bid extends Component<props, state>{
 
 
     renderDataBid(bidProduct: BidProduct) {
-
         this.setState({
             bidProduct: bidProduct
         })
     }
 
     confirmReceiveBid() {
-        console.log("kokokokokokokko")
-        // BidService.receiveReward(bidProductId).then((bidProduct: BidProduct) => {
-        //     if (bidProduct) {
-        //         this.setState({
-        //             bidProduct: bidProduct
-        //         })
-        //     }
-        // })
+        BidService.receiveReward(bidProductId).then((bidProduct: BidProduct) => {
+            if (bidProduct) {
+                actionPopup.showMessage(I18n.t('popup.message.receiveAfter24h'))
+                this.setState({
+                    bidProduct: bidProduct,
+                })
+            }
+        })
     }
 
 
@@ -185,14 +186,9 @@ class Bid extends Component<props, state>{
                         style={BidService.checkButton(this.state.bidProduct, this.state.me) ? [myStyle.buttonBid] : [myStyle.buttonBid, myStyle.ButtonBidDisabled]}
                         onPress={(event) => {
                             if (BidService.getTimeCalc(this.state.bidProduct) < 0) {
-
                                 this.setState({
                                     showConfirm : true
                                 })
-
-
-
-
                             } else {
                                 BidService.BidAction(bidProductId);
                             }
@@ -205,7 +201,7 @@ class Bid extends Component<props, state>{
                         </Text>
                     </TouchableOpacity>
                 </View>
-{/* 
+
                 <PopupConfirm
                     confirmModal={this.state.showConfirm}
                     hideBtnCancel={true}
@@ -219,8 +215,9 @@ class Bid extends Component<props, state>{
                         this.setState({ showConfirm: false });
                     }}
                     title="Confirm"
-                    message={"Khi nhận thưởng, giá tiền còn lại sẽ được trừ vào số tiền trong Ví. Bạn có chắc chắn muốn nhận thưởng ngay bây giờ ?"}
-                /> */}
+                    message={I18n.t("popup.message.deduction")}
+                />
+          
 
             </View>
         )
