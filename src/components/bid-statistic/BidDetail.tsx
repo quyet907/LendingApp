@@ -1,116 +1,150 @@
-import * as React from 'react';
-import { View, StyleSheet, Text, Image, ImageProps } from 'react-native';
-import Icon from 'react-native-vector-icons/MaterialIcons';
-import * as color from '../../Color'
-import { MyFormat } from '../../Helper/MyFormat';
-const timeIcon = <Icon name="access-time" size={13} color='#868685' />;
-export default class BidDetail extends React.Component<Props, {}>{
-    constructor(props: any) {
-        super(props)
-    }
-    render() {
-        return (
-            <View >
-                <View style={styles.container}>
-                    <View style={styles.subContainer}>
-                        <Image style={styles.img} source={{ uri: this.props.imgURL }} />
-                    </View>
+import * as React from "react";
+import { View, StyleSheet, Text, Image, ImageProps } from "react-native";
+import Icon from "react-native-vector-icons/MaterialIcons";
+import * as color from "../../Color";
+import { MyFormat } from "../../Helper/MyFormat";
+const timeIcon = <Icon name="access-time" size={13} color="#868685" />;
+export default class BidDetail extends React.Component<Props, {}> {
+  constructor(props: any) {
+    super(props);
+  }
+  render() {
+    return (
+      <View>
+        {this.props.receivedAt != null && (
+          <View style={styles.disable}>
+            <Text style={styles.disableText}>Đã nhận </Text>
+          </View>
+        )}
+        <View style={styles.container}>
+          <View style={styles.subContainer}>
+            <Image style={styles.img} source={{ uri: this.props.imgURL }} />
+          </View>
 
-                    <View style={styles.subContainer2}>
-                        <Text style={[{ fontSize: 16, fontWeight: "600" }, styles.fontWhiteColor]}>{this.props.name}</Text>
-                        <View style={{ flexDirection: 'row', flex: 1, justifyContent: 'space-between' }}>
-
-                            <View style={{ justifyContent: 'space-around', paddingTop: 5 }}>
-                                <Text style={{ color: color.inactive }}>{this.props.bidAt}</Text>
-                                <Text style={[styles.times, styles.fontWhiteColor]}>{`${this.props.bidClick} clicks`}</Text>
-                            </View>
-                            <View style={{ justifyContent: 'flex-end', alignItems: 'flex-end' }}>
-                                <Text style={{ color: color.inactive, textDecorationLine: 'line-through' }}>{MyFormat.roundingMoney(this.props.startPrice)}</Text>
-                                <Text style={[styles.price]}>{MyFormat.roundingMoney(this.props.endPrice)}</Text>
-                            </View>
-
-                        </View>
-
-                    </View>
-
-                </View>
-
+          <View style={styles.subContainer2}>
+            <Text
+              style={[
+                { fontSize: 16, fontWeight: "600" },
+                styles.fontWhiteColor,
+              ]}
+            >
+              {this.props.name}
+            </Text>
+            <View
+              style={{
+                flexDirection: "row",
+                flex: 1,
+                justifyContent: "space-between",
+              }}
+            >
+              <View style={{ justifyContent: "space-around", paddingTop: 5 }}>
+                <Text style={{ color: color.inactive }}>
+                  {this.props.bidAt}
+                </Text>
+                <Text
+                  style={[styles.times, styles.fontWhiteColor]}
+                >{`${this.props.bidClick} lần đặt`}</Text>
+              </View>
+              <View
+                style={{ justifyContent: "flex-end", alignItems: "flex-end" }}
+              >
+                <Text
+                  style={{
+                    color: color.inactive,
+                    textDecorationLine: "line-through",
+                  }}
+                >
+                  {MyFormat.roundingMoney(this.props.startPrice)}
+                </Text>
+                <Text style={[styles.price]}>
+                  {MyFormat.roundingMoney(this.props.endPrice)}
+                </Text>
+              </View>
             </View>
-        )
-    }
+          </View>
+        </View>
+      </View>
+    );
+  }
 }
 
 type Props = {
-    imgURL: string;
-    name: string,
-    bidAt: string;
-    bidClick: number;
-    startPrice: number;
-    endPrice: number;
-
-}
+  imgURL: string;
+  name: string;
+  bidAt: string;
+  bidClick: number;
+  startPrice: number;
+  endPrice: number;
+  receivedAt?: Date;
+};
 
 const styles = StyleSheet.create({
-    container: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        flex: 1,
-        padding: 15,
-        paddingVertical: 10,
+  container: {
+    flexDirection: "row",
+    alignItems: "center",
+    flex: 1,
+    padding: 15,
+    paddingVertical: 10,
 
-        shadowColor: "#333",
-        shadowOffset: {
-            width: 0,
-            height: 3,
-        },
-        shadowOpacity: 0.30,
-        shadowRadius: 4.65,
-        elevation: 2,
-
-
-        marginBottom: 14,
-        borderRadius: 5,
-        backgroundColor: color.background
+    shadowColor: "#333",
+    shadowOffset: {
+      width: 0,
+      height: 3,
     },
+    shadowOpacity: 0.3,
+    shadowRadius: 4.65,
+    elevation: 2,
 
-    subContainer: {
-        flexBasis: 80,
-        marginRight: 6,
+    marginBottom: 14,
+    borderRadius: 5,
+    backgroundColor: color.background,
+  },
+  disable: {
+    backgroundColor: "rgba(0, 0, 0, 0.7)",
+    position: "absolute",
+    height: "100%",
+    width: "100%",
+    zIndex: 100,
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  disableText: {
+    color: color.primary,
+  },
 
-    },
-    subContainer2: {
-        flex: 1,
-        height: '100%',
-        justifyContent: 'space-between'
-    },
-    logo: {
-        width: 35,
-        height: 35,
-        resizeMode: 'contain',
-        marginRight: 10,
+  subContainer: {
+    flexBasis: 80,
+    marginRight: 6,
+  },
+  subContainer2: {
+    flex: 1,
+    height: "100%",
+    justifyContent: "space-between",
+  },
+  logo: {
+    width: 35,
+    height: 35,
+    resizeMode: "contain",
+    marginRight: 10,
+  },
 
-    },
-
-
-    img: {
-        width: 70,
-        height: 70,
-        borderRadius: 5,
-        resizeMode: 'cover'
-    },
-    price: {
-        fontSize: 18,
-        fontWeight: "600",
-        color: color.primary
-    },
-    times: {
-        fontSize: 16,
-        fontWeight: '600'
-    },
-    fontWhiteColor: {
-        color: 'white'
-    }
-
-
-})
-
+  img: {
+    width: 70,
+    height: 70,
+    borderRadius: 5,
+    resizeMode: "cover",
+  },
+  price: {
+    fontSize: 18,
+    fontWeight: "600",
+    color: color.primary,
+  },
+  times: {
+    fontSize: 16,
+    fontWeight: "600",
+  },
+  fontWhiteColor: {
+    color: "white",
+  },
+});

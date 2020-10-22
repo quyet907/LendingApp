@@ -10,7 +10,7 @@ export default class LogoLogin extends Component {
                 >
                     <Image
                         style={[myStyle.logoImg]}
-                        source={require("../icons/log.png")}
+                        source={require("../icons/.icon.png")}
                     />
                 </View>
             </View>

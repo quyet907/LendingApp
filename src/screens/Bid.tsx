@@ -217,8 +217,6 @@ class Bid extends Component<props, state>{
                     title="Confirm"
                     message={I18n.t("popup.message.deduction")}
                 />
-          
-
             </View>
         )
     }

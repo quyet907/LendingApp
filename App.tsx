@@ -56,7 +56,7 @@ const tabProps = {
 export default class App extends React.Component<Props, {}> {
   constructor(props: any) {
     super(props);
-    // console.log(`env is ${process.env.EXPO_NODE_ENV}`)
+    console.log(`env is ${process.env.EXPO_NODE_ENV}`)
   }
   componentDidMount(){
     ConfigService.getConfig();

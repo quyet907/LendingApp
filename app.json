@@ -4,7 +4,7 @@
     "slug": "App",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./src/icons/.icon.png",
+    "icon": "./src/icons/.icon.jpg",
     "splash": {
       "image": "./src/icons/splash.png",
       "resizeMode": "contain",
@@ -20,7 +20,7 @@
       "supportsTablet": true
     },
     "web": {
-      "favicon": "./src/icons/.icon.png"
+      "favicon": "./src/icons/.icon.jpg"
     },
     "description": ""
   }

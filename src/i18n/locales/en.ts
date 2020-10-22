@@ -2,7 +2,7 @@ import { Locale } from "./Locale"
 
 const en: Locale = {
     system: {
-        money: "COIN",
+        money: "xu",
     },
     success: {
         updateProfile: "Update successful!"
@@ -160,7 +160,7 @@ const en: Locale = {
                 comingTabName: "COMING",
             },
             winner: "Winner",
-            noOneHasWon: "No one has won yet",
+            noOneHasWon: "Đang diễn ra",
             upcoming: "Upcoming",
             happening: "Happening",
 

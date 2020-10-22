@@ -102,7 +102,7 @@ export class BidService {
     public static getNameBidProduct(bidProduct: BidProduct): string {
         if (bidProduct.product && bidProduct.product.name)
             return bidProduct.product.name
-        return "Product of Afi"
+        return "Loading ..."
     }
 
     public static getNameUserWin(bidProduct: BidProduct): string {
@@ -224,7 +224,7 @@ export class BidService {
         if (calcTime > actionAll.getConfig().timeBid) {
             return `${BidService.getTimeStart(calcTime)}`
         }
-        return `${calcTime}S`;
+        return `${calcTime}s`;
     }
 
 

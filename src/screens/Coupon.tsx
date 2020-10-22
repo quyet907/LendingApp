@@ -79,7 +79,7 @@ export default class Giftcode extends React.Component<Props, State>{
         if (this.state.code) {
             CouponService.postCoupon(this.state.code).then((userCoupon: UserCoupon) => {
                 if (userCoupon && userCoupon.coupon && userCoupon.coupon.prize) {
-                    actionPopup.showMessage(`You got ${userCoupon.coupon.prize} points!`)
+                    actionPopup.showMessage(`Bạn nhận được ${userCoupon.coupon.prize} xu!`)
                 }
                 const getHistories = this.state.couponHistories;
                 if (userCoupon) getHistories.push(userCoupon);

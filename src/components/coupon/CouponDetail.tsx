@@ -28,7 +28,7 @@ export default class CouponDetail extends React.Component<Props, {}>{
                         <Text style={styles.time}>{this.props.typeLabel}</Text>
                         <View style={{ flexDirection: 'row', alignItems: 'center', flex: 1 }}>
                             <Text style={this.props.type ? styles.coinGreen : styles.coinRed}>
-                                {this.props.type && this.props.typeLabel == 'PRIZE' ? '+' : (this.props.typeLabel != 'PRIZE' ? '' : '-')}{MyFormat.roundingMoney(this.props.coin)} COIN</Text>
+                                {this.props.type && this.props.typeLabel == 'PRIZE' ? '+' : (this.props.typeLabel != 'PRIZE' ? '' : '-')}{MyFormat.roundingMoney(this.props.coin)} xu</Text>
                         </View>
                     </View>
 

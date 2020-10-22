@@ -26,14 +26,14 @@ const dataChart: any = {
 
 
         },
-        {
-            label: "",
-            data: [],
-            fill: true,
-            backgroundColor: "rgba(229, 2, 110,0.2)",
-            borderColor: color.secondary
+        // {
+        //     label: "",
+        //     data: [],
+        //     fill: true,
+        //     backgroundColor: "rgba(229, 2, 110,0.2)",
+        //     borderColor: color.secondary
 
-        }
+        // }
     ]
 }
 
@@ -46,14 +46,14 @@ export default class ChartHome extends Component<props, state> {
     }
 
     componentWillReceiveProps(nextProps: props) {
-        dataChart.datasets[2].data = IncomeService.createDataChart(nextProps.dataChart.all);
-        dataChart.datasets[1].data = IncomeService.createDataChart(nextProps.dataChart.lending);
+        // dataChart.datasets[2].data = IncomeService.createDataChart(nextProps.dataChart.all);
         dataChart.datasets[0].data = IncomeService.createDataChart(nextProps.dataChart.referal);
+        dataChart.datasets[1].data = IncomeService.createDataChart(nextProps.dataChart.lending);
 
         dataChart.labels = IncomeService.getDayDataChar(nextProps.dataChart.all);
-        dataChart.datasets[0].label = I18n.t("screens.dashboard.chart.totalAmount");
+        // dataChart.datasets[0].label = I18n.t("screens.dashboard.chart.totalAmount");
+        dataChart.datasets[0].label = I18n.t("screens.dashboard.chart.referralAmount");
         dataChart.datasets[1].label = I18n.t("screens.dashboard.chart.lendingAmount");
-        dataChart.datasets[2].label = I18n.t("screens.dashboard.chart.referralAmount");
     }
 
     render() {

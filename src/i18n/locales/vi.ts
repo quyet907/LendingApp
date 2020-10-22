@@ -14,8 +14,8 @@ const vi: Locale = {
         },
         message: {
             confirmLending: "Bạn chắc chắn muốn cho vay?",
-            receiveAfter24h: "Bạn sẽ nhận được phần thưởng trong 24h với thông tin Ngân hàng đã đăng ký, Moị thắc mắc liên hệ: 0932154777",
-            deduction: "Khi nhận thưởng, giá tiền còn lại sẽ được trừ vào số tiền trong Ví. Bạn có chắc chắn muốn nhận thưởng ngay bây giờ ?"
+            receiveAfter24h: "Bạn sẽ nhận được phần thưởng trong 24h với thông tin ngân hàng đã đăng ký, mọi thắc mắc liên hệ: 0932659605.",
+            deduction: "Khi nhận thưởng, giá tiền còn lại sẽ được trừ vào số tiền trong ví. Bạn có chắc chắn muốn nhận thưởng ngay bây giờ không?"
         },
         uploading: {
             text: "Đang tải lên"
@@ -129,7 +129,7 @@ const vi: Locale = {
         referral: {
             refTabName: "Giới thiệu",
             refTitle: "GIỚI THIỆU",
-            introText: "Hãy sử dụng tính năng Giới thiệu bạn bè để tăng số tiền trong tài khoản. Mỗi lượt Giới thiệu sẽ mang lại 100.000 vào tài khoản và nhận Hoa hồng suốt đời.",
+            introText: "Hãy sử dụng tính năng Giới thiệu bạn bè để tăng số tiền trong tài khoản. Mỗi lượt Giới thiệu sẽ mang lại 50.000 vào tài khoản và nhận Hoa hồng suốt đời.",
             copyButton: "Sao chép",
             copyNotification: "Đã sao chép!",
             totalRefTitle: "Tổng",
@@ -156,14 +156,14 @@ const vi: Locale = {
         },
         listBidding: {
             winner: "Winner",
-            noOneHasWon: "No one has won yet",
-            upcoming: "Upcoming",
-            happening: "Happening",
+            noOneHasWon: "Đang diễn ra",
+            upcoming: "Sắp diễn ra",
+            happening: "Đang diễn ra",
 
-            fewSecondsAgo: "Few seconds ago",
-            minuteAgo: "minute ago",
-            hourAgo: "hour ago",
-            dayAgo: "day ago",
+            fewSecondsAgo: "vài giây trước",
+            minuteAgo: "vài phút trước",
+            hourAgo: "vài giờ trước",
+            dayAgo: "vài ngày trước",
             tabName: {
                 doingTabName: "Đang diễn ra",
                 comingTabName: "SẮP TỚI",

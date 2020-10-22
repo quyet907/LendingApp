@@ -38,6 +38,7 @@ class WinBid extends React.Component<Props, State> {
                     <FlatList
                         data={this.state.winBidList}
                         renderItem={({ item }) => {
+                            console.log(item)
                             return (
                                 <TouchableOpacity
                                     onPress={() => this.props.navigation.navigate(ScreenName.BidProduct, {
@@ -51,6 +52,7 @@ class WinBid extends React.Component<Props, State> {
                                         bidClick={item.bidCount || 99999}
                                         startPrice={item.bidProduct?.startPrice || 0}
                                         endPrice={item.bidProduct?.endPrice || 0}
+                                        receivedAt={item.bidProduct?.receivedAt}
                                     />
                                 </TouchableOpacity>
                             )
