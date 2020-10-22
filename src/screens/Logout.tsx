@@ -52,7 +52,7 @@ class Logout extends Component<Props, State> {
           <View style={[styles.containerAvt]}>
             <Image
               style={[styles.imgAvt]}
-              source={{ uri: this.state.avtURL }}
+              source={{ uri: this.state.avtURL || "https://banner2.cleanpng.com/20181231/fta/kisspng-computer-icons-user-profile-portable-network-graph-circle-svg-png-icon-free-download-5-4714-onli-5c2a3809d6e8e6.1821006915462707298803.jpg" }}
             />
           </View>
           <View style={{ justifyContent: "space-around", height: "100%" }}>
@@ -234,7 +234,7 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     width: 55,
     height: 55,
-    borderWidth: 2,
+    borderWidth: 0,
     borderColor: Color.primary,
     justifyContent: "center",
     alignItems: "center",

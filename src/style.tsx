@@ -319,7 +319,8 @@ export default StyleSheet.create({
     frNameandDetailProductBid : {
         alignItems: "flex-start",
         padding : 20,
-        overflow : "hidden"
+        overflow : "hidden",
+
     },
     priceProductBid: {
         fontWeight: "bold",
@@ -375,9 +376,14 @@ export default StyleSheet.create({
         flex : 1
     },
     nameProductPageBid : {
-        padding : 20,
         margin : 5,
+        marginTop:10,
+        marginBottom:10,
         borderRadius: color.borderRadius,
+        display: "flex",
+        flexDirection:"row",
+        textAlign:"center"
+
     },
     bidderItem  :{
         flexDirection : "row",
@@ -398,17 +404,18 @@ export default StyleSheet.create({
         borderRadius : color.borderRadius
     },
     headerBidder : {
-        fontSize : 20,
+        fontSize : 16,
         fontWeight : "500",
         color : color.text,
-        paddingBottom : 10
+        paddingBottom : 10,
     },
     frListBidder : {
         backgroundColor : color.background,
         paddingHorizontal : 10,
         paddingVertical : 10,
         flex  : 1,
-        borderRadius: color.borderRadius
+        borderRadius: color.borderRadius,
+        marginTop:20
     },
     frButtonBid : {
         backgroundColor : color.background_primary,

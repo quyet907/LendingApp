@@ -59,16 +59,20 @@ export default class ProductBid extends Component<Props, state> {
                                 </View>
                             </View>
                             <View>
-                                <Text style={[myStyle.priceProductBid]}>{MyFormat.roundingMoney(BidService.getPriceBidProduct(this.props.bidProduct))}</Text>
+                                <Text style={[myStyle.priceProductBid]}>{MyFormat.roundingMoney(BidService.getPriceBidProduct(this.props.bidProduct))} xu</Text>
                             </View>
                         </View>
                     </View>
                 </View>
-                <View>
-                    <View style={[myStyle.frNameandDetailProductBid]}>
+                <View style={{display: "flex", flexDirection:"row", alignItems:"center"}}>
+                    <View   style={[myStyle.frNameandDetailProductBid, {flex:2}]}>
                         <Text style={[myStyle.nameProductBid]}>{BidService.getNameBidProduct(this.props.bidProduct)}</Text>
                         <Text style={{ color: color.inactive, textTransform:'capitalize' }}>{BidService.getNameUserWin(this.props.bidProduct)}</Text>
                     </View>
+                    <View style={[{flex:1}]}>
+                        <Text style={[{color: color.primary}]}>{this.props.bidProduct.stepPrice} xu/lượt</Text>
+                    </View>
+                    
                 </View>
             </View>
         );
