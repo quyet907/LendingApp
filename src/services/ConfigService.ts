@@ -6,7 +6,7 @@ export class ConfigService {
         return getAxios().then((axios: any) => {
             return axios({
                 method: "GET",
-                url: `${config.api.lendingAPI}/configAPI`
+                url: `${config.api.lendingAPI}/public/user/configAPI`
             }).then((res: any) => {
                 console.log(res.data.timeServer)
                 let getDateService: Date = new Date(res.data.timeServer);
