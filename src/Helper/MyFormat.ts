@@ -1,4 +1,4 @@
-import Home from "../screens/Home"
+import moment from 'moment'
 
 export class MyFormat {
     public static testComponet() {
@@ -39,7 +39,10 @@ export class MyFormat {
     }
 
     public static getTime = (date: Date | undefined): string => {
-        if (date !== undefined) return date.toString().substring(0, 10);
-        else return "null";
+        if (date !== undefined){
+            return moment(date).format('DD/MM/yyy');
+            // return date.toString().substring(0, 10);
+        } 
+        else return "";
     };
 }
