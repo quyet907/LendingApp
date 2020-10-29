@@ -255,7 +255,7 @@ class Bid extends Component<props, state> {
                 this.state.bidProduct.stepPrice
                   ? "/" +
                     Math.round(
-                      this.state.bidProduct.startPrice /
+                      this.state.remainAmountMoney /
                         this.state.bidProduct.stepPrice
                     ) +
                     " lần"
