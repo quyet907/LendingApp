@@ -205,15 +205,35 @@ class Bid extends Component<props, state> {
           </View>
 
           <View style={[myStyle.nameProductPageBid]}>
-            <Text
+            <View
               style={{
-                fontSize: 16,
+                display: "flex",
+                direction: "column",
                 textAlign: "center",
-                color: color.text,
-                fontWeight: "500",
-                flex: 1,
+                alignItems: "center",
+                flex: 2,
               }}
-            >{`${BidService.getNameBidProduct(this.state.bidProduct)}`}</Text>
+            >
+              <Text
+                style={{
+                  fontSize: 16,
+                  textAlign: "center",
+                  color: color.text,
+                  fontWeight: "500",
+                  flex: 1,
+                }}
+              >{`${BidService.getNameBidProduct(this.state.bidProduct)}`}</Text>
+
+              <Text
+                style={{
+                  fontSize: 12,
+                  textAlign: "center",
+                  color: color.text,
+                  fontWeight: "500",
+                  flex: 1,
+                }}
+              >{`${this.state.bidProduct.product?.desc}`}</Text>
+            </View>
             <View style={{ flex: 1, display: "flex", flexDirection: "column" }}>
               <Text style={{ color: color.primary, textAlign: "center" }}>
                 {MyFormat.roundingMoney(100)} xu/lượt
@@ -229,8 +249,17 @@ class Bid extends Component<props, state> {
                 {MyFormat.roundingMoney(this.state.remainAmountMoney)} xu
               </Text>
               <Text style={{ color: "#fff", textAlign: "center" }}>
-                {" "}
-                {countBid} lần
+                {countBid}
+                {this.state.bidProduct &&
+                this.state.bidProduct.startPrice &&
+                this.state.bidProduct.stepPrice
+                  ? "/" +
+                    Math.round(
+                      this.state.bidProduct.startPrice /
+                        this.state.bidProduct.stepPrice
+                    ) +
+                    " lần"
+                  : " lần"}
               </Text>
             </View>
           </View>
@@ -258,10 +287,12 @@ class Bid extends Component<props, state> {
                   showConfirm: true,
                 });
               } else {
-                BidService.BidAction(bidProductId).then(_ => {
-                    this.setState({
-                        remainAmountMoney: this.state.remainAmountMoney - (this.state.bidProduct?.stepPrice || 0)
-                    })
+                BidService.BidAction(bidProductId).then((_) => {
+                  this.setState({
+                    remainAmountMoney:
+                      this.state.remainAmountMoney -
+                      (this.state.bidProduct?.stepPrice || 0),
+                  });
                 });
               }
             }}
