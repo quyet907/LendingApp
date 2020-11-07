@@ -1,9 +1,18 @@
-import React from "react";
-import { StyleSheet, Image, View, Text, AsyncStorage } from "react-native";
+import React, { useCallback, useRef, useState } from "react";
+import {
+  StyleSheet,
+  Image,
+  View,
+  Text,
+  AsyncStorage,
+  Dimensions,
+} from "react-native";
 import AppIntroSlider from "react-native-app-intro-slider";
 import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
 import DoneIcon from "@material-ui/icons/Done";
 import * as color from "../Color";
+import { ListItemText } from "@material-ui/core";
+import _ from "lodash";
 
 const styles = StyleSheet.create({
   buttonCircle: {
@@ -67,6 +76,18 @@ const slides: Slide[] = [
   },
 ];
 export default function AppTutorial(props: Props) {
+  const [isEndOfSlide, setIsEndOfSlide] = useState(false);
+  const { width, height } = Dimensions.get("window");
+  let slider = useRef();
+
+  const debounceOnChangePage = useCallback(
+    _.debounce((page: number) => {
+      console.log(page);
+      if (slider) slider.goToSlide(page);
+    }, 300),
+    []
+  );
+
   const _renderNextButton = () => {
     return (
       <View style={[styles.buttonCircle, { backgroundColor: "#0162CB" }]}>
@@ -94,10 +115,22 @@ export default function AppTutorial(props: Props) {
       }}
       data={slides}
       renderDoneButton={_renderDoneButton}
-      renderNextButton={_renderNextButton}
+      renderNextButton={isEndOfSlide ? _renderDoneButton : _renderNextButton}
       onDone={() => {
         AsyncStorage.setItem("isShowIntro", "true", () => {});
         props.onDone();
+      }}
+      onSlideChange={(a, b) => {
+        console.log(`${a} ${b}`);
+        // if (index == slides.length - 1) setIsEndOfSlide(true);
+      }}
+      onScroll={(event) => {
+        const { x } = event.nativeEvent.contentOffset;
+        const indexOfNextScreen = Math.floor(x / width);
+        debounceOnChangePage(indexOfNextScreen);
+      }}
+      ref={(ref) => {
+        if (ref) slider = ref;
       }}
     />
   );
