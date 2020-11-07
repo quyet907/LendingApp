@@ -14,7 +14,7 @@ const vi: Locale = {
         },
         message: {
             confirmLending: "Bạn chắc chắn muốn cho vay?",
-            receiveAfter24h: "Bạn sẽ nhận được phần thưởng trong 24h với thông tin ngân hàng đã đăng ký, mọi thắc mắc liên hệ: 0932659605.",
+            receiveAfter24h: "Bạn sẽ nhận được phần thưởng trong 24h với thông tin ngân hàng đã đăng ký, mọi thắc mắc liên hệ: 0974798791.",
             deduction: "Khi nhận thưởng, giá tiền còn lại sẽ được trừ vào số tiền trong ví. Bạn có chắc chắn muốn nhận thưởng ngay bây giờ không?"
         },
         uploading: {
