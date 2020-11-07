@@ -1,5 +1,12 @@
 import * as React from "react";
-import { View, StyleSheet, RefreshControl, AppRegistry, Text } from "react-native";
+import {
+  View,
+  StyleSheet,
+  RefreshControl,
+  AppRegistry,
+  Text,
+  AsyncStorage,
+} from "react-native";
 
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NativeRouter, Route, Link } from "react-router-native";
@@ -20,11 +27,11 @@ import Bid from "./src/screens/Bid";
 import { config } from "./src/config/Config";
 import { ConfigService } from "./src/services/ConfigService";
 import InfoBank from "./src/screens/InfoBank";
-import i18n from './src/i18n/i18n';
+import i18n from "./src/i18n/i18n";
+import AppTutorial from "./src/screens/AppTutorial";
 // import * as Localization from 'expo-localization';
 
 i18n.locale = "vi";
-
 
 const MyTransitionSpec = {
   duration: 1000,
@@ -36,7 +43,7 @@ const scenes = Actions.create(
   <Scene key="root" duration={4}>
     {/* <Scene key= "infoBank" component={InfoBank} hideNavBar={true} /> */}
     <Scene key="login" component={Login} hideNavBar={true} />
-    <Scene key="home" component={PageHome} hideNavBar={true}/>
+    <Scene key="home" component={PageHome} hideNavBar={true} />
     <Scene key="enterPhone" component={EnterYourPhone} hideNavBar={true} />
     <Scene key="confirmOTP" component={ConfirmOTP} hideNavBar={true} />
     <Scene key="password" component={SetPassWord} hideNavBar={true} />
@@ -53,23 +60,36 @@ const tabProps = {
   BackgroundColor: "#202833",
 };
 
-export default class App extends React.Component<Props, {}> {
+export default class App extends React.Component<Props, State> {
   constructor(props: any) {
     super(props);
-    console.log(`env is ${process.env.EXPO_NODE_ENV}`)
+    console.log(`env is ${process.env.EXPO_NODE_ENV}`);
+    this.state = {
+      isShowIntro: true,
+    };
   }
-  componentDidMount(){
+  componentDidMount() {
     ConfigService.getConfig();
+    AsyncStorage.getItem("isShowIntro").then((value) => {
+      if(value){
+        console.log(`get isshowintro ${value}`)
+        this.setState({ isShowIntro: false });
+      }
+    });
   }
   render() {
-
-    return (
+    return this.state.isShowIntro ? (
+      <AppTutorial
+        onDone={() => {
+          AsyncStorage.setItem("isShowIntro", "true", () => {});
+          this.setState({ isShowIntro: false });
+        }}
+      ></AppTutorial>
+    ) : (
       <Provider store={store}>
-
         <PopupShow></PopupShow>
         <Loadding></Loadding>
         <Router scenes={scenes} />
-        
       </Provider>
     );
   }
@@ -86,29 +106,29 @@ const styles = StyleSheet.create({
   },
 
   header: {
-    fontSize: 20
+    fontSize: 20,
   },
   nav: {
     flexDirection: "row",
-    justifyContent: "space-around"
+    justifyContent: "space-around",
   },
   navItem: {
     flex: 1,
     alignItems: "center",
-    padding: 10
+    padding: 10,
   },
   subNavItem: {
-    padding: 5
+    padding: 5,
   },
   topic: {
     textAlign: "center",
-    fontSize: 15
-  }
+    fontSize: 15,
+  },
 });
 
-
-
-
+type State = {
+  isShowIntro: boolean;
+};
 
 // const App = () => (
 //   <NativeRouter>

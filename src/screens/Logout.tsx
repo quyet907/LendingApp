@@ -15,20 +15,23 @@ import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 import * as Color from "../Color";
 import { ScreenName } from "./ScreenName";
 import I18n from "../i18n/i18n";
-import { BaseUserWithJwt } from '@Core/model/user/BaseUser';
+import { BaseUserWithJwt } from "@Core/model/user/BaseUser";
 import { useIsFocused } from "@react-navigation/native";
-
+import AppTutorialScreen from "./AppTutorialScreen";
+import AppTutorial from "./AppTutorial";
 
 const sizeIcon = 20;
 
 class Logout extends Component<Props, State> {
-  avtDefault = 'https://i.picsum.photos/id/199/1000/500.jpg?hmac=FK68A1s1J9x0AXSbNfbsgWwUe80fJDlvGRQ5J0IvMAU';
+  avtDefault =
+    "https://i.picsum.photos/id/199/1000/500.jpg?hmac=FK68A1s1J9x0AXSbNfbsgWwUe80fJDlvGRQ5J0IvMAU";
   constructor(props: any) {
     super(props);
     this.state = {
       thisUser: {},
-      avtURL: ''
-    }
+      avtURL: "",
+      isDisplayTutorial: false,
+    };
   }
 
   componentWillReceiveProps(prev: Props) {
@@ -38,117 +41,175 @@ class Logout extends Component<Props, State> {
   }
 
   componentDidMount() {
-    this.getDataToState()
+    this.getDataToState();
   }
 
   render() {
-    return (
+    return this.state.isDisplayTutorial ? (
+      <AppTutorial
+        onDone={() => {
+          this.setState({ isDisplayTutorial: false });
+        }}
+      ></AppTutorial>
+    ) : (
       <View style={[myStyle.container]}>
         <View style={[styles.header]}>
-          <Text style={[styles.contentHeader]}>{I18n.t('screens.profile.profileTitle')}</Text>
+          <Text style={[styles.contentHeader]}>
+            {I18n.t("screens.profile.profileTitle")}
+          </Text>
         </View>
 
         <View style={[myStyle.row, styles.layoutAccout]}>
           <View style={[styles.containerAvt]}>
             <Image
               style={[styles.imgAvt]}
-              source={{ uri: this.state.avtURL || "https://banner2.cleanpng.com/20181231/fta/kisspng-computer-icons-user-profile-portable-network-graph-circle-svg-png-icon-free-download-5-4714-onli-5c2a3809d6e8e6.1821006915462707298803.jpg" }}
+              source={{
+                uri:
+                  this.state.avtURL ||
+                  "https://banner2.cleanpng.com/20181231/fta/kisspng-computer-icons-user-profile-portable-network-graph-circle-svg-png-icon-free-download-5-4714-onli-5c2a3809d6e8e6.1821006915462707298803.jpg",
+              }}
             />
           </View>
           <View style={{ justifyContent: "space-around", height: "100%" }}>
-            <Text style={[styles.contentAccount]}>{this.state.thisUser.username}</Text>
+            <Text style={[styles.contentAccount]}>
+              {this.state.thisUser.username}
+            </Text>
           </View>
         </View>
 
         <View style={{ marginTop: 12 }}>
-
           <TouchableOpacity
             style={[myStyle.row, styles.layoutFeature]}
-            onPress={() => this.props.navigation.navigate(ScreenName.EditProfile, {
-              thisUser: this.state.thisUser
-            })}
-
+            onPress={() =>
+              this.props.navigation.navigate(ScreenName.EditProfile, {
+                thisUser: this.state.thisUser,
+              })
+            }
           >
             <View style={styles.containerIcon}>
-              <FontAwesome5 name={"gift"} size={sizeIcon} color={Color.primary} />
+              <FontAwesome5
+                name={"gift"}
+                size={sizeIcon}
+                color={Color.primary}
+              />
             </View>
 
-            <Text style={[styles.contentFuture]}>{I18n.t('screens.profile.profileTabName')}</Text>
+            <Text style={[styles.contentFuture]}>
+              {I18n.t("screens.profile.profileTabName")}
+            </Text>
           </TouchableOpacity>
 
           <TouchableOpacity
             style={[myStyle.row, styles.layoutFeature]}
             onPress={() => this.props.navigation.navigate(ScreenName.infoBank)}
-
           >
             <View style={styles.containerIcon}>
-              <FontAwesome5 name={"gift"} size={sizeIcon} color={Color.primary} />
+              <FontAwesome5
+                name={"gift"}
+                size={sizeIcon}
+                color={Color.primary}
+              />
             </View>
 
-            <Text style={[styles.contentFuture]}>{I18n.t('screens.profile.bankInfo')}</Text>
+            <Text style={[styles.contentFuture]}>
+              {I18n.t("screens.profile.bankInfo")}
+            </Text>
           </TouchableOpacity>
 
           <TouchableOpacity
             style={[myStyle.row, styles.layoutFeature]}
             onPress={() => this.props.navigation.navigate(ScreenName.ListBid)}
-
           >
             <View style={styles.containerIcon}>
-              <FontAwesome5 name={"users"} size={sizeIcon} color={Color.primary} />
+              <FontAwesome5
+                name={"users"}
+                size={sizeIcon}
+                color={Color.primary}
+              />
             </View>
 
-            <Text style={[styles.contentFuture]}>{I18n.t('screens.profile.bid')}</Text>
+            <Text style={[styles.contentFuture]}>
+              {I18n.t("screens.profile.bid")}
+            </Text>
           </TouchableOpacity>
 
-          <TouchableOpacity style={[myStyle.row, styles.layoutFeature]}
-            onPress={() => this.props.navigation.navigate(ScreenName.BidStatistic)}>
+          <TouchableOpacity
+            style={[myStyle.row, styles.layoutFeature]}
+            onPress={() =>
+              this.props.navigation.navigate(ScreenName.BidStatistic)
+            }
+          >
             <View style={styles.containerIcon}>
-              <FontAwesome5 name={"history"} size={sizeIcon} color={Color.primary} />
+              <FontAwesome5
+                name={"history"}
+                size={sizeIcon}
+                color={Color.primary}
+              />
             </View>
-            <Text style={[styles.contentFuture]}>{I18n.t('screens.profile.bidHistories')}</Text>
+            <Text style={[styles.contentFuture]}>
+              {I18n.t("screens.profile.bidHistories")}
+            </Text>
           </TouchableOpacity>
 
           <TouchableOpacity
             style={[myStyle.row, styles.layoutFeature]}
             onPress={() => this.props.navigation.navigate(ScreenName.Coupon)}
-
           >
             <View style={styles.containerIcon}>
-              <FontAwesome5 name={"gift"} size={sizeIcon} color={Color.primary} />
+              <FontAwesome5
+                name={"gift"}
+                size={sizeIcon}
+                color={Color.primary}
+              />
             </View>
 
-            <Text style={[styles.contentFuture]}>{I18n.t('screens.profile.coupon')}</Text>
+            <Text style={[styles.contentFuture]}>
+              {I18n.t("screens.profile.coupon")}
+            </Text>
           </TouchableOpacity>
-
-
-
-
-        </View>
-
-        <View style={{ marginTop: 12 }}>
-
-
 
           <TouchableOpacity
             style={[myStyle.row, styles.layoutFeature]}
             onPress={() => {
-              UserService.setJWT("").then(res => {
-                Actions.home()
-              })
+              this.setState({ isDisplayTutorial: true });
             }}
           >
             <View style={styles.containerIcon}>
-              <FontAwesome name={"sign-out"} size={sizeIcon} color={Color.primary} />
+              <FontAwesome5
+                name={"gift"}
+                size={sizeIcon}
+                color={Color.primary}
+              />
             </View>
-            <Text style={[styles.contentFuture]}>{I18n.t('screens.profile.logout')}</Text>
 
+            <Text style={[styles.contentFuture]}>Hướng dẫn</Text>
           </TouchableOpacity>
+        </View>
 
+        <View style={{ marginTop: 12 }}>
+          <TouchableOpacity
+            style={[myStyle.row, styles.layoutFeature]}
+            onPress={() => {
+              UserService.setJWT("").then((res) => {
+                Actions.home();
+              });
+            }}
+          >
+            <View style={styles.containerIcon}>
+              <FontAwesome
+                name={"sign-out"}
+                size={sizeIcon}
+                color={Color.primary}
+              />
+            </View>
+            <Text style={[styles.contentFuture]}>
+              {I18n.t("screens.profile.logout")}
+            </Text>
+          </TouchableOpacity>
 
           {/* <TouchableOpacity style={[styles.buttonLogout]}>
             <Text style={[styles.contentButtonLogout]}>Logout</Text>
           </TouchableOpacity> */}
-
         </View>
       </View>
     );
@@ -160,14 +221,13 @@ class Logout extends Component<Props, State> {
         if (res.username != null) {
           this.setState({
             thisUser: res,
-            avtURL: res.avatar || ''
+            avtURL: res.avatar || "",
           });
         }
       }
     });
-  }
+  };
 }
-
 
 const styles = StyleSheet.create({
   header: {
@@ -208,10 +268,10 @@ const styles = StyleSheet.create({
     color: "white",
     paddingLeft: 17,
     fontSize: 16,
-    fontWeight: 'bold'
+    fontWeight: "bold",
   },
   contentFuture: {
-    textTransform: 'capitalize',
+    textTransform: "capitalize",
     color: "white",
     // paddingLeft: 17,
     fontSize: 16,
@@ -246,19 +306,19 @@ const styles = StyleSheet.create({
     borderRadius: 50,
   },
   containerIcon: {
-    width: 37
+    width: 37,
   },
 });
 
-
 type Props = {
-  navigation: any,
-  isFocused: boolean
+  navigation: any;
+  isFocused: boolean;
 };
 
 type State = {
-  thisUser: BaseUserWithJwt,
-  avtURL: string,
+  thisUser: BaseUserWithJwt;
+  avtURL: string;
+  isDisplayTutorial: boolean;
 };
 
 export default function (props: Props) {
