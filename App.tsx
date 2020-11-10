@@ -84,6 +84,7 @@ export default class App extends React.Component<Props, State> {
           AsyncStorage.setItem("isShowIntro", "true", () => {});
           this.setState({ isShowIntro: false });
         }}
+        isFullHeight={true}
       ></AppTutorial>
     ) : (
       <Provider store={store}>

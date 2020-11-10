@@ -50,6 +50,7 @@ class Logout extends Component<Props, State> {
         onDone={() => {
           this.setState({ isDisplayTutorial: false });
         }}
+        isFullHeight={false}
       ></AppTutorial>
     ) : (
       <View style={[myStyle.container]}>

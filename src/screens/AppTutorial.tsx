@@ -104,11 +104,12 @@ export default function AppTutorial(props: Props) {
   };
   return (
     <AppIntroSlider
+    style={{ height: "100%" }}
       renderItem={({ item }: any) => {
         return (
-          <View style={{}}>
+          <View style={{backgroundColor:"#1F2837"}}>
             <Text>{item.title}</Text>
-            <Image style={{ height: "100vh" }} source={item.image} />
+            <Image resizeMode="contain" style={{ height: props.isFullHeight ?"100vh":"calc(100vh - 48px)" }} source={item.image} />
             <Text>{item.text}</Text>
           </View>
         );
@@ -138,6 +139,7 @@ export default function AppTutorial(props: Props) {
 
 type Props = {
   onDone(): void;
+  isFullHeight?: boolean;
 };
 
 type Slide = {
