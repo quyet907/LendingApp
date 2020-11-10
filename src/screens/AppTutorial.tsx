@@ -127,7 +127,7 @@ export default function AppTutorial(props: Props) {
       }}
       onScroll={(event) => {
         const { x } = event.nativeEvent.contentOffset;
-        const indexOfNextScreen = Math.floor(x / width);
+        const indexOfNextScreen = Math.floor(x / (width-50));
         debounceOnChangePage(indexOfNextScreen);
       }}
       ref={(ref) => {
