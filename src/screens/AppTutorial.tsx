@@ -133,7 +133,7 @@ export default function AppTutorial(props: Props) {
       }}
       onScroll={(event) => {
         const { x } = event.nativeEvent.contentOffset;
-        const currentWidth = width < 500 ? width : 500;
+        const currentWidth = width;
         const indexOfNextScreen = Math.floor(x / (currentWidth - 50));
         debounceOnChangePage(indexOfNextScreen);
       }}
