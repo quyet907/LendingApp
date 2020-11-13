@@ -10,7 +10,7 @@ import { MyFormat } from "../Helper/MyFormat";
 import { ScreenName } from "./ScreenName";
 import { firebase } from "../config/FirebaseConfig";
 import { useIsFocused } from "@react-navigation/native";
-
+import { Status } from "../share/base-ale/model/BaseModel";
 
 var autoReload: any;
 var getThis: any;
@@ -73,11 +73,11 @@ class ListBidding extends Component<Props, state> {
 
   getListBidding() {
     BidService.getListBidding().then((bidProducts: BidProduct[]) => {
+      bidProducts = bidProducts.filter(bidProduct => bidProduct.product?.status==Status.actived)
       this.setState({
         biddings: bidProducts,
         reload: !this.state.reload
       })
-
     })
   }
 
