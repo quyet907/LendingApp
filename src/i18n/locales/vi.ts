@@ -160,10 +160,10 @@ const vi: Locale = {
             upcoming: "Sắp diễn ra",
             happening: "Đang diễn ra",
 
-            fewSecondsAgo: "vài giây trước",
-            minuteAgo: "vài phút trước",
-            hourAgo: "vài giờ trước",
-            dayAgo: "vài ngày trước",
+            fewSecondsAgo: "giây trước",
+            minuteAgo: "phút trước",
+            hourAgo: "giờ trước",
+            dayAgo: "ngày trước",
             tabName: {
                 doingTabName: "Đang diễn ra",
                 comingTabName: "SẮP TỚI",
