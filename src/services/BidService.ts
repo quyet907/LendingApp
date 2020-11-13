@@ -199,7 +199,7 @@ export class BidService {
         }
         const remainTime = bidProduct && bidProduct.endBidAt ? (new Date(bidProduct.endBidAt).getTime() - new Date().getTime())/1000: 1000;
         if(remainTime<0)
-            calcTime=0;
+            calcTime=remainTime;
         return calcTime;
     }
 

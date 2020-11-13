@@ -160,7 +160,7 @@ const vi: Locale = {
             upcoming: "Sắp diễn ra",
             happening: "Đang diễn ra",
 
-            fewSecondsAgo: "giây trước",
+            fewSecondsAgo: "vài giây trước",
             minuteAgo: "phút trước",
             hourAgo: "giờ trước",
             dayAgo: "ngày trước",
