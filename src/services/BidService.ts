@@ -197,6 +197,9 @@ export class BidService {
         if(bidProduct.latestBidAt){
             calcTime = BidService.calcTime(bidProduct.latestBidAt)
         }
+        const remainTime = bidProduct && bidProduct.endBidAt ? (new Date(bidProduct.endBidAt).getTime() - new Date().getTime())/1000: 1000;
+        if(remainTime<0)
+            calcTime=0;
         return calcTime;
     }
 
@@ -247,6 +250,7 @@ export class BidService {
     public static changTextButtonBid(bidProduct: BidProduct, user: BaseUser): string {
         let getStepPrice = bidProduct.stepPrice || 0
         let getTime = BidService.getTimeCalc(bidProduct);
+        const remainTime = bidProduct && bidProduct.endBidAt ? (new Date(bidProduct.endBidAt).getTime() - new Date().getTime())/1000: 1000;
         if (getTime < 0) {
             if (user && user._id && bidProduct) {
                 if (user._id == bidProduct.latestBidUserId) {
@@ -255,6 +259,9 @@ export class BidService {
                 return I18n.t('screens.bidDetail.finish')
             }
             return I18n.t('screens.bidDetail.finish')/// không tìm thấy thông tin
+        }
+        if(remainTime<0){
+            return I18n.t('screens.bidDetail.finish')
         }
         if (getTime > actionAll.getConfig().timeBid) {
             return I18n.t('screens.listBidding.upcoming');
@@ -278,7 +285,9 @@ export class BidService {
         if(getTime > actionAll.getConfig().timeBid){
             return false;
         }
-        if(getTime < 0){
+        const remainTime = bidProduct && bidProduct.endBidAt ? (new Date(bidProduct.endBidAt).getTime() - new Date().getTime())/1000: 1000;
+
+        if(getTime < 0 || remainTime<0){
             return (BidService.checkMeWin(bidProduct, user) && !BidService.checkReceive(bidProduct))
         }
         return true;

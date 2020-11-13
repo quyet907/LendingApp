@@ -21,6 +21,8 @@ import PopupConfirm from "../components/PopupConfirm";
 import PopupShow from "src/components/PopupShow";
 import Finance from "src/reducer/FinanceReducer";
 import { IncomeService } from "../services/IncomeService";
+import moment from "moment";
+
 // import PopupShow from 'src/components/PopupShow';
 // import PopupConfirm from 'src/components/PopupConfirm';
 
@@ -33,6 +35,7 @@ class Bid extends Component<props, state> {
     this.state = {
       bidProduct: {},
       timeBid: 10,
+      remainTime: 100,
       me: {},
       showConfirm: false,
       remainAmountMoney: 0,
@@ -101,10 +104,12 @@ class Bid extends Component<props, state> {
     });
 
     timeahihi = setInterval(() => {
+      const remainTime = this.state.bidProduct && this.state.bidProduct.endBidAt ? Math.round((new Date(this.state.bidProduct.endBidAt).getTime() - new Date().getTime())/1000) : 1000;
       this.setState({
         timeBid: BidService.getTimeCalc(this.state.bidProduct),
+        remainTime: remainTime
       });
-    }, 500);
+    }, 1000);
   }
 
   renderDataBid(bidProduct: BidProduct) {
@@ -125,7 +130,6 @@ class Bid extends Component<props, state> {
   }
 
   render() {
-    console.log(this.state.bidProduct.listHistoryBid);
     const countBid =
       this.state.bidProduct.listHistoryBid?.filter(
         (item) => item.user?._id === this.state.me._id
@@ -163,20 +167,34 @@ class Bid extends Component<props, state> {
 
             <View style={[myStyle.frPriceAndTimePageBid]}>
               <View style={[myStyle.childFrPriceAndTimePageBid]}>
-                <Text
+                <View
                   style={{
-                    color: color.warning,
-                    fontWeight: "bold",
-                    fontSize: 20,
+                    alignItems: "center",
+                    justifyContent: "center",
+                    flex: 1,
                   }}
                 >
-                  {BidService.changeTextTime(this.state.timeBid)}
-                </Text>
-                <Text
-                  style={{ color: color.inactive, textTransform: "capitalize" }}
-                >
-                  {BidService.changeTextStatus(this.state.timeBid)}
-                </Text>
+                  <Text
+                    style={{
+                      color: color.warning,
+                      fontWeight: "bold",
+                      fontSize: 20,
+                    }}
+                  >
+                    {BidService.changeTextTime(this.state.timeBid)}
+                  </Text>
+                  <Text
+                    style={{
+                      color: color.inactive,
+                      textTransform: "capitalize",
+                    }}
+                  >
+                    {BidService.changeTextStatus(this.state.timeBid)}
+                  </Text>
+                </View>
+                {this.state.bidProduct.endBidAt && <View>
+                  <Text style={{color:color.warning, fontSize:10, marginTop: 5}}>Kết thúc: {moment(this.state.bidProduct.endBidAt).format('hh:mm DD/MM')} {this.state.remainTime < 60 && this.state.remainTime > 0 ? ` (${this.state.remainTime}s)`:  ""}</Text>
+                </View>}
               </View>
               <View style={[myStyle.childFrPriceAndTimePageBid]}>
                 <Text
@@ -236,7 +254,8 @@ class Bid extends Component<props, state> {
             </View>
             <View style={{ flex: 1, display: "flex", flexDirection: "column" }}>
               <Text style={{ color: color.primary, textAlign: "center" }}>
-                {MyFormat.roundingMoney(100)} xu/lượt
+                {MyFormat.roundingMoney(this.state.bidProduct.stepPrice || 100)}{" "}
+                xu/lượt
               </Text>
               <Text
                 style={{
@@ -336,6 +355,7 @@ type props = {
 type state = {
   bidProduct: BidProduct;
   timeBid: number;
+  remainTime: number;
   me: BaseUser;
   showConfirm: boolean;
   remainAmountMoney: number;

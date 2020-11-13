@@ -278,12 +278,13 @@ export default StyleSheet.create({
     },
     frImgProdcurBid: {
         height: 200,
-        overflow : "hidden"
+        overflow : "hidden",
+         backgroundColor: "#1F2837" 
     },
     imgProductBid: {
         height: "100%",
         borderRadius: color.borderRadius,
-        resizeMode :"cover",
+        resizeMode :"contain",
     },
     frPriceAndTime: {
         flexDirection: "row",
