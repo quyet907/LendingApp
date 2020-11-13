@@ -104,12 +104,18 @@ export default function AppTutorial(props: Props) {
   };
   return (
     <AppIntroSlider
-    style={{ height: "100%" }}
+      style={{ height: "100%" }}
       renderItem={({ item }: any) => {
         return (
-          <View style={{backgroundColor:"#1F2837"}}>
+          <View style={{ backgroundColor: "#1F2837" }}>
             <Text>{item.title}</Text>
-            <Image resizeMode="contain" style={{ height: props.isFullHeight ?"100vh":"calc(100vh - 48px)" }} source={item.image} />
+            <Image
+              resizeMode="contain"
+              style={{
+                height: props.isFullHeight ? "100vh" : "calc(100vh - 48px)",
+              }}
+              source={item.image}
+            />
             <Text>{item.text}</Text>
           </View>
         );
@@ -127,7 +133,8 @@ export default function AppTutorial(props: Props) {
       }}
       onScroll={(event) => {
         const { x } = event.nativeEvent.contentOffset;
-        const indexOfNextScreen = Math.floor(x / (width-50));
+        const currentWidth = width < 500 ? width : 500;
+        const indexOfNextScreen = Math.floor(x / (currentWidth - 50));
         debounceOnChangePage(indexOfNextScreen);
       }}
       ref={(ref) => {

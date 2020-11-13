@@ -6,6 +6,7 @@ import {
   Text,
   StyleSheet,
   Image,
+  Linking
 } from "react-native";
 import myStyle from "../style";
 import { UserService } from "../services/UserService";
@@ -184,6 +185,23 @@ class Logout extends Component<Props, State> {
             </View>
 
             <Text style={[styles.contentFuture]}>Hướng dẫn</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={[myStyle.row, styles.layoutFeature]}
+            onPress={() => {
+              Linking.openURL('https://www.facebook.com/biddiii');
+            }}
+          >
+            <View style={styles.containerIcon}>
+              <FontAwesome5
+                name={"gift"}
+                size={sizeIcon}
+                color={Color.primary}
+              />
+            </View>
+
+            <Text style={[styles.contentFuture]}>Liên hệ</Text>
           </TouchableOpacity>
         </View>
 
