@@ -9,6 +9,7 @@ import { BidProduct } from "@StockAfiCore/model/bid/BidProduct";
 import { ScreenName } from "./ScreenName";
 import { config } from "../config/Config";
 import { useIsFocused } from "@react-navigation/native";
+import { ListItemText } from "@material-ui/core";
 
 var autoReload: any;
  class ListBidComming extends Component<Props, state> {
@@ -59,10 +60,15 @@ var autoReload: any;
 
 
   render() {
+    const bidProducts = this.state.bidCommings.sort((a,b) => {
+      const timeOne = a.startBidAt?new Date(a.startBidAt).getTime():0;
+      const timeTwo = b.startBidAt?new Date(b.startBidAt).getTime():0;
+      return timeOne - timeTwo;
+    })
     return (
       <View style={myStyle.containerLight}>
         <FlatList
-          data={this.state.bidCommings}
+          data={bidProducts}
           extraData = {this.state.reload}
           contentContainerStyle={myStyle.ListBidProduct}
           renderItem={({ item }) => {
