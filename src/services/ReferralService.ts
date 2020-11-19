@@ -11,7 +11,7 @@ export class ReferralService {
     return getAxios().then((axios) =>
       axios({
         method: "GET",
-        url: `${config.api.lendingAPI}/referal?page=1&pageSize=30`,
+        url: `${config.api.lendingAPI}/referal?page=1&pageSize=3000`,
       })
         .then((res) => {
           return res.data;
