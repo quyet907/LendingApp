@@ -1,7 +1,7 @@
 import React from "react";
 import { GestureResponderEvent, StyleSheet } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
-import { Text } from "react-native-svg";
+import { Text } from "react-native";
 import * as color from "../../Color";
 
 export function Button(props: Props) {
@@ -24,8 +24,15 @@ export function Button(props: Props) {
   };
 
   return (
-    <TouchableOpacity style={getStyleButton()} onPress={props.onPress}>
-      <Text>{props.children}</Text>
+    <TouchableOpacity
+      style={
+        props.fullWidth
+          ? getStyleButton()
+          : [getStyleButton(), styles.fullWidth]
+      }
+      onPress={props.onPress}
+    >
+      <Text style={{ textAlign: "center" }}>{props.children}</Text>
     </TouchableOpacity>
   );
 }
@@ -42,7 +49,9 @@ const styles = StyleSheet.create({
     paddingRight: 20,
     borderRadius: 4,
     fontFamily: "sans-serif",
+    minWidth: 100,
   },
+  fullWidth: { width: "100%" },
   buttonPrimary: {
     backgroundColor: color.primary,
     color: color.dark,
@@ -66,5 +75,6 @@ type Props = {
   color?: "primary" | "secondary" | "success" | "warning" | "alert";
   variant?: "container" | "outline";
   size?: "small" | "medium" | "large";
+  fullWidth?: boolean;
   onPress?(event: GestureResponderEvent): void;
 };

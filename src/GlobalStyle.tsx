@@ -21,6 +21,9 @@ export const globalStyles = StyleSheet.create({
     fontSize: 14,
     fontWeight: "400",
   },
+  textLight: {
+    color: "#fff",
+  },
   button: {
     textTransform: "none",
     fontSize: 14,

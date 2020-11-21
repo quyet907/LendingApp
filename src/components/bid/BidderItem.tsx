@@ -17,13 +17,6 @@ export default class BidderItem extends Component <props , state> {
         return (
             <View style = {this.props.firstBidder==this.props.bidder._id ?[myStyle.lastBidderItem] : [myStyle.bidderItem]}>
                 <View>
-                    {/* <Image
-                        style={[myStyle.avtBidder]}
-                        source={
-                            { uri: "https://ds1.static.rtbf.be/article/image/370x208/f/1/5/8cedb6d8a46047b5725a91c8a33f6c6574bafb8c.jpg" }
-                        }
-                    /> */}
-                    {/* <EmojiEmotionsIcon style={this.props.firstBidder == this.props.bidder._id ? {fill :color.primary} : {fill :color.background_primary} }></EmojiEmotionsIcon> */}
                     <Icon name = "chess-queen" size = {12} color = {this.props.firstBidder == this.props.bidder._id ? color.primary :  color.background_primary}></Icon>
                 </View>
                 <View style={{flex : 1, paddingHorizontal : 10}}>

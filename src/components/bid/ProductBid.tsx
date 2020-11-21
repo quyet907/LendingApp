@@ -15,30 +15,6 @@ export default class ProductBid extends Component<Props, state> {
         };
     }
 
-    // onListenFirebase() {
-    //     let seft = this;
-    //     let fireStoreFirebase = firebase.firestore();
-    //     let getBidProductFirebase = fireStoreFirebase.collection("bidProduct").doc(this.props.bidProduct._id);
-    //     getBidProductFirebase.onSnapshot({
-    //         includeMetadataChanges : true
-    //     }, (doc)=>{
-    //          if(doc.data()){
-    //             let getDataDoc:any =  doc.data(); 
-    //             let duplicateProduct = seft.props.bidProduct;
-    //             if(getDataDoc.endPrice){
-    //                 duplicateProduct.endPrice = getDataDoc.endPrice;
-    //             }
-    //             if(getDataDoc.latestBidAt){
-    //                 duplicateProduct.latestBidAt = new Date(getDataDoc.latestBidAt.seconds * 1000);
-    //             }   
-    //             seft.props.onChangeBid(duplicateProduct);
-    //          }
-    //     })
-    // }
-
-    
-
-
     render() {
         return (
 
