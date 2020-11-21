@@ -29,6 +29,8 @@ import { ConfigService } from "./src/services/ConfigService";
 import InfoBank from "./src/screens/InfoBank";
 import i18n from "./src/i18n/i18n";
 import AppTutorial from "./src/screens/AppTutorial";
+import Popup from "./src/components/common/Popup";
+import PopupGoToFanpage from "./src/components/PopupGoToFanpage";
 // import * as Localization from 'expo-localization';
 
 i18n.locale = "vi";
@@ -66,13 +68,14 @@ export default class App extends React.Component<Props, State> {
     console.log(`env is ${process.env.EXPO_NODE_ENV}`);
     this.state = {
       isShowIntro: true,
+      isShowNoti: true
     };
   }
   componentDidMount() {
     ConfigService.getConfig();
     AsyncStorage.getItem("isShowIntro").then((value) => {
-      if(value){
-        console.log(`get isshowintro ${value}`)
+      if (value) {
+        console.log(`get isshowintro ${value}`);
         this.setState({ isShowIntro: false });
       }
     });
@@ -88,6 +91,10 @@ export default class App extends React.Component<Props, State> {
       ></AppTutorial>
     ) : (
       <Provider store={store}>
+        <PopupGoToFanpage
+          isDisplay={this.state.isShowNoti}
+          onClose={() => {this.setState({isShowNoti: false})}}
+        ></PopupGoToFanpage>
         <PopupShow></PopupShow>
         <Loadding></Loadding>
         <Router scenes={scenes} />
@@ -129,6 +136,7 @@ const styles = StyleSheet.create({
 
 type State = {
   isShowIntro: boolean;
+  isShowNoti: boolean
 };
 
 // const App = () => (

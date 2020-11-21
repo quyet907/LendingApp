@@ -1,4 +1,4 @@
-export const primary = "#f6c400";
+export const primary = "#F6C400";
 export const background_primary = "#12151c";
 export const success = "#2ecc71";
 export const warning = "#e5026e";
@@ -7,8 +7,9 @@ export const background = "#181f29";
 export const secondary = "#e5026e";
 export const inactive = "#646b75";
 export const text  = "#ffffff";
-export const text_primary = "#f6c400"
-
+export const text_primary = "#f6c400";
+export const white = "#fff"
+export const dark = "#000"
 
 // export const background_primary = "#fafafd";
 // export const background = "#ffffff";
