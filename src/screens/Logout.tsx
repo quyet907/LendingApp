@@ -210,7 +210,7 @@ class Logout extends Component<Props, State> {
           <TouchableOpacity
             style={[myStyle.row, styles.layoutFeature]}
             onPress={() => {
-              Linking.openURL('https://m.me/106388164626050?ref=lien_he');
+              window.open('https://m.me/106388164626050?ref=lien_he', "_blank");
             }}
           >
             <View style={styles.containerIcon}>

@@ -74,7 +74,7 @@ export class BidService {
         return getAxios().then((axios) => {
             return axios({
                 method: "GET",
-                url: `${config.api.lendingAPI}/bid_product/histories?pageSize=200&sort=-createdAt`,
+                url: `${config.api.lendingAPI}/bid_product/histories?pageSize=200&sort=-latestBidAt`,
             })
                 .then((res) => {
                     return res.data.rows;
