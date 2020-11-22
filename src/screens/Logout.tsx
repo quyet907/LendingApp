@@ -210,7 +210,7 @@ class Logout extends Component<Props, State> {
           <TouchableOpacity
             style={[myStyle.row, styles.layoutFeature]}
             onPress={() => {
-              Linking.openURL('https://www.facebook.com/biddiii');
+              Linking.openURL('https://m.me/106388164626050?ref=lien_he');
             }}
           >
             <View style={styles.containerIcon}>

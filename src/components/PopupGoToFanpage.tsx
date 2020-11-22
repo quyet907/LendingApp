@@ -5,7 +5,7 @@ import { globalStyles } from "../GlobalStyle";
 import Popup from "./common/Popup";
 import { Button } from "../components/common/Button";
 
-const url = "https://m.me/109427487614454?ref=lan_dau_vao_app";
+const url = "https://m.me/106388164626050?ref=lan_dau_vao_app";
 export default function PopupGoToFanpage(props: Props) {
   return (
     <Popup isDisplay={props.isDisplay} onClose={props.onClose}>
