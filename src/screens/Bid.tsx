@@ -226,8 +226,7 @@ class Bid extends Component<props, state> {
             <View
               style={{
                 display: "flex",
-                direction: "column",
-                textAlign: "center",
+                flexDirection:"column",
                 alignItems: "center",
                 flex: 2,
               }}
@@ -296,7 +295,7 @@ class Bid extends Component<props, state> {
         <View style={[myStyle.frButtonBid]}>
           <TouchableOpacity
             style={
-              BidService.checkButton(this.state.bidProduct, this.state.me)
+              this.state.bidProduct._id !=null && BidService.checkButton(this.state.bidProduct, this.state.me)
                 ? [myStyle.buttonBid]
                 : [myStyle.buttonBid, myStyle.ButtonBidDisabled]
             }
@@ -316,7 +315,7 @@ class Bid extends Component<props, state> {
               }
             }}
             disabled={
-              !BidService.checkButton(this.state.bidProduct, this.state.me)
+              !this.state.bidProduct._id  && !BidService.checkButton(this.state.bidProduct, this.state.me)
             }
           >
             <Text style={[myStyle.btnSmall]}>

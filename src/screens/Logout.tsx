@@ -155,6 +155,23 @@ class Logout extends Component<Props, State> {
 
           <TouchableOpacity
             style={[myStyle.row, styles.layoutFeature]}
+            onPress={() => this.props.navigation.navigate(ScreenName.bidHistory)}
+          >
+            <View style={styles.containerIcon}>
+              <FontAwesome5
+                name={"gift"}
+                size={sizeIcon}
+                color={Color.primary}
+              />
+            </View>
+
+            <Text style={[styles.contentFuture]}>
+              Lịch sử đấu giá
+            </Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={[myStyle.row, styles.layoutFeature]}
             onPress={() => this.props.navigation.navigate(ScreenName.Coupon)}
           >
             <View style={styles.containerIcon}>
@@ -169,6 +186,9 @@ class Logout extends Component<Props, State> {
               {I18n.t("screens.profile.coupon")}
             </Text>
           </TouchableOpacity>
+
+          
+
 
           <TouchableOpacity
             style={[myStyle.row, styles.layoutFeature]}

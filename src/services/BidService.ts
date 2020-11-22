@@ -70,6 +70,22 @@ export class BidService {
         })
     }
 
+    public static getListBidHistory(): Promise<BidProduct[]> {
+        return getAxios().then((axios) => {
+            return axios({
+                method: "GET",
+                url: `${config.api.lendingAPI}/bid_product/histories?pageSize=200&sort=-createdAt`,
+            })
+                .then((res) => {
+                    return res.data.rows;
+                })
+                .catch((err) => {
+                    return err;
+                })
+        })
+    }
+
+
     public static getListBidding(): Promise<BidProduct[]> {
         return getAxios().then((axios) => {
             return axios({
@@ -281,6 +297,8 @@ export class BidService {
     }
 
     public static checkButton(bidProduct : BidProduct, user: BaseUser) : boolean {
+        if(!bidProduct || !user)
+            return false;
         let getTime = BidService.getTimeCalc(bidProduct);
         if(getTime > actionAll.getConfig().timeBid){
             return false;
