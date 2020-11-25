@@ -366,7 +366,6 @@ class Bid extends Component<props, state> {
                     remainAmountMoney:
                       this.state.remainAmountMoney -
                       (this.state.bidProduct?.stepPrice || 0),
-                      remainTimeBid: this.state.remainTimeBid -1
                   });
                 });
               }
