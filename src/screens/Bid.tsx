@@ -22,6 +22,7 @@ import PopupShow from "src/components/PopupShow";
 import Finance from "src/reducer/FinanceReducer";
 import { IncomeService } from "../services/IncomeService";
 import moment from "moment";
+import { time } from "console";
 
 // import PopupShow from 'src/components/PopupShow';
 // import PopupConfirm from 'src/components/PopupConfirm';
@@ -39,6 +40,7 @@ class Bid extends Component<props, state> {
       me: {},
       showConfirm: false,
       remainAmountMoney: 0,
+      remainTimeBid: 0
     };
 
     bidProductId = this.props.route.params.bidProductId;
@@ -87,34 +89,50 @@ class Bid extends Component<props, state> {
   }
 
   componentDidMount() {
-    BidService.getBidInfo(bidProductId).then((bidProduct: BidProduct) => {
-      bidProduct.listHistoryBid?.reverse();
-      this.renderDataBid(bidProduct);
-      this.listenOnChange();
-    });
-
     UserService.getMe().then((getMe) => {
       this.setState({ me: getMe ? getMe : {} });
-    });
 
-    IncomeService.getFinance().then((finance) => {
-      this.setState({
-        remainAmountMoney: finance.remainAmount || 0,
+      BidService.getBidInfo(bidProductId).then((bidProduct: BidProduct) => {
+        bidProduct.listHistoryBid?.reverse();
+        this.renderDataBid(bidProduct);
+        this.listenOnChange();
       });
+  
+      IncomeService.getFinance().then((finance) => {
+        this.setState({
+          remainAmountMoney: finance.remainAmount || 0,
+        });
+      });
+  
+      timeahihi = setInterval(() => {
+        const remainTime =
+          this.state.bidProduct && this.state.bidProduct.endBidAt
+            ? Math.round(
+                (new Date(this.state.bidProduct.endBidAt).getTime() -
+                  new Date().getTime()) /
+                  1000
+              )
+            : 1000;
+        this.setState({
+          timeBid: BidService.getTimeCalc(this.state.bidProduct),
+          remainTime: remainTime,
+        });
+      }, 1000);
     });
-
-    timeahihi = setInterval(() => {
-      const remainTime = this.state.bidProduct && this.state.bidProduct.endBidAt ? Math.round((new Date(this.state.bidProduct.endBidAt).getTime() - new Date().getTime())/1000) : 1000;
-      this.setState({
-        timeBid: BidService.getTimeCalc(this.state.bidProduct),
-        remainTime: remainTime
-      });
-    }, 1000);
+    
   }
 
   renderDataBid(bidProduct: BidProduct) {
+    let remainTimeBid = bidProduct.maxTimeBid || 100000;
+    let timeBid = 0;
+    bidProduct.listHistoryBid?.forEach(item => {
+      if(item.userId === this.state.me.id) timeBid++;
+    })
+    remainTimeBid = remainTimeBid - timeBid;
+    if(remainTimeBid<0) remainTimeBid = 0;
     this.setState({
       bidProduct: bidProduct,
+      remainTimeBid: remainTimeBid
     });
   }
 
@@ -192,9 +210,25 @@ class Bid extends Component<props, state> {
                     {BidService.changeTextStatus(this.state.timeBid)}
                   </Text>
                 </View>
-                {this.state.bidProduct.endBidAt && <View>
-                  <Text style={{color:color.warning, fontSize:10, marginTop: 5}}>Kết thúc: {moment(this.state.bidProduct.endBidAt).format('hh:mm DD/MM')} {this.state.remainTime < 60 && this.state.remainTime > 0 ? ` (${this.state.remainTime}s)`:  ""}</Text>
-                </View>}
+                {this.state.bidProduct.endBidAt && (
+                  <View>
+                    <Text
+                      style={{
+                        color: color.warning,
+                        fontSize: 10,
+                        marginTop: 5,
+                      }}
+                    >
+                      Kết thúc:{" "}
+                      {moment(this.state.bidProduct.endBidAt).format(
+                        "hh:mm DD/MM"
+                      )}{" "}
+                      {this.state.remainTime < 60 && this.state.remainTime > 0
+                        ? ` (${this.state.remainTime}s)`
+                        : ""}
+                    </Text>
+                  </View>
+                )}
               </View>
               <View style={[myStyle.childFrPriceAndTimePageBid]}>
                 <Text
@@ -226,9 +260,10 @@ class Bid extends Component<props, state> {
             <View
               style={{
                 display: "flex",
-                flexDirection:"column",
+                flexDirection: "column",
                 alignItems: "center",
-                flex: 2,
+                justifyContent:"center",
+                flex: 1,
               }}
             >
               <Text
@@ -256,6 +291,22 @@ class Bid extends Component<props, state> {
                 {MyFormat.roundingMoney(this.state.bidProduct.stepPrice || 100)}{" "}
                 xu/lượt
               </Text>
+              {this.state.bidProduct.maxTimeBid && <Text style={{ color: color.primary, textAlign: "center", fontSize:12 }}>
+                  Lựơt chơi: {MyFormat.roundingMoney(
+                    this.state.remainTimeBid
+                  )}/{MyFormat.roundingMoney(
+                    this.state.bidProduct.maxTimeBid || 10000
+                  )}{" "} lần
+                </Text>
+                }
+                <Text
+                  style={{
+                    color: "#fff",
+                    textAlign: "center",
+                    marginTop: 5,
+                    marginBottom: 5,
+                  }}
+                ></Text>
               <Text
                 style={{
                   color: "#fff",
@@ -264,7 +315,7 @@ class Bid extends Component<props, state> {
                   marginBottom: 5,
                 }}
               >
-                {MyFormat.roundingMoney(this.state.remainAmountMoney)} xu
+              {MyFormat.roundingMoney(this.state.remainAmountMoney)} xu
               </Text>
               <Text style={{ color: "#fff", textAlign: "center" }}>
                 {countBid}
@@ -295,27 +346,34 @@ class Bid extends Component<props, state> {
         <View style={[myStyle.frButtonBid]}>
           <TouchableOpacity
             style={
-              this.state.bidProduct._id !=null && BidService.checkButton(this.state.bidProduct, this.state.me)
+              this.state.bidProduct._id != null &&
+              BidService.checkButton(this.state.bidProduct, this.state.me)
                 ? [myStyle.buttonBid]
                 : [myStyle.buttonBid, myStyle.ButtonBidDisabled]
             }
             onPress={(event) => {
               if (BidService.getTimeCalc(this.state.bidProduct) < 0) {
+                
                 this.setState({
                   showConfirm: true,
                 });
               } else {
+                if(this.state.remainTimeBid<=0){
+                  actionPopup.showMessage(`Mỗi tài khoản, trong phiên này chỉ được đấu giá ${this.state.bidProduct.maxTimeBid} lần. Bạn đã hết lượt chơi cho phiên đấu giá này.`);
+                }else
                 BidService.BidAction(bidProductId).then((_) => {
                   this.setState({
                     remainAmountMoney:
                       this.state.remainAmountMoney -
                       (this.state.bidProduct?.stepPrice || 0),
+                      remainTimeBid: this.state.remainTimeBid -1
                   });
                 });
               }
             }}
             disabled={
-              !this.state.bidProduct._id  && !BidService.checkButton(this.state.bidProduct, this.state.me)
+              !this.state.bidProduct._id &&
+              !BidService.checkButton(this.state.bidProduct, this.state.me)
             }
           >
             <Text style={[myStyle.btnSmall]}>
@@ -358,6 +416,7 @@ type state = {
   me: BaseUser;
   showConfirm: boolean;
   remainAmountMoney: number;
+  remainTimeBid: number;
 };
 
 export default function (props: any) {
