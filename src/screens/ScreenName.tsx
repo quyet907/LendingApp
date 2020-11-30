@@ -10,7 +10,8 @@ const CouponHistories = 'Coupon Histories';
 const EditProfile = 'EditProfile';
 const infoBank = 'InfoBank';
 const tutorial = 'Tutorial';
+const QAs = 'QAs';
 
 export const ScreenName = {
-    Profile, ListBid, BidProduct, BidStatistic,bidHistory, Coupon, CouponHistories, EditProfile, infoBank, tutorial
+    Profile, ListBid, BidProduct, BidStatistic,bidHistory, Coupon, CouponHistories, EditProfile, infoBank, tutorial, QAs
 }

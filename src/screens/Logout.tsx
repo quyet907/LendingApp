@@ -210,7 +210,8 @@ class Logout extends Component<Props, State> {
           <TouchableOpacity
             style={[myStyle.row, styles.layoutFeature]}
             onPress={() => {
-              window.open('https://m.me/106388164626050?ref=lien_he', "_blank");
+              // window.open('https://m.me/106388164626050?ref=lien_he', "_blank");
+              this.props.navigation.navigate(ScreenName.QAs)
             }}
           >
             <View style={styles.containerIcon}>
@@ -221,7 +222,7 @@ class Logout extends Component<Props, State> {
               />
             </View>
 
-            <Text style={[styles.contentFuture]}>Liên hệ</Text>
+            <Text style={[styles.contentFuture]}>Hỗ trợ</Text>
           </TouchableOpacity>
         </View>
 

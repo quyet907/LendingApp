@@ -18,6 +18,7 @@ import InfoBank from "./InfoBank";
 import { Route } from "react-router";
 import I18n from "../i18n/i18n";
 import ListHistoryBid from "./ListHistoryBid";
+import QuestionAndAnswerPage from "./QuestionAndAnswerPage";
 const Stack = createStackNavigator();
 
 export default class LogoutScreen extends Component<Props, State> {
@@ -105,6 +106,17 @@ export default class LogoutScreen extends Component<Props, State> {
           component={ListHistoryBid}
           options={{
             title: "Lịch sử đấu giá",
+            headerTintColor: "#fff",
+            headerStyle: {
+              backgroundColor: color.background,
+            },
+          }}
+        />
+        <Stack.Screen
+          name={ScreenName.QAs}
+          component={QuestionAndAnswerPage}
+          options={{
+            title: "Hỗ trợ",
             headerTintColor: "#fff",
             headerStyle: {
               backgroundColor: color.background,

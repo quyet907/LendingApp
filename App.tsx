@@ -68,7 +68,7 @@ export default class App extends React.Component<Props, State> {
     console.log(`env is ${process.env.EXPO_NODE_ENV}`);
     this.state = {
       isShowIntro: true,
-      isShowNoti: true
+      isShowNoti: false
     };
   }
   componentDidMount() {
