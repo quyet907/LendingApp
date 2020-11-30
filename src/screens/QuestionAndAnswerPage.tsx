@@ -28,7 +28,7 @@ export default function QuestionAndAnswerPage() {
       />
       <Button
         onPress={() => {
-          window.open("https://m.me/106388164626050?ref=lien_he", "_blank");
+          window.open("https://m.me/109427487614454?ref=lien_he", "_blank");
         }}
       >
         Chat hỗ trợ
