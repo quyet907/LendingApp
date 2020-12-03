@@ -20,7 +20,11 @@ export default function QuestionAndAnswerPage() {
           return (
             <View style={styles.item}>
               <Text style={styles.question}>{item.question}</Text>
-              <Text style={styles.answer}>{item.answer}</Text>
+              <View>
+                {item.answer.split("{enter}").map((p) => {
+                  return <Text style={styles.answer}>{p}</Text>;
+                })}
+              </View>
             </View>
           );
         }}
