@@ -123,7 +123,7 @@ export class BidService {
 
     public static getNameUserWin(bidProduct: BidProduct): string {
         if (bidProduct.latestBidUser && bidProduct.latestBidUser.username) {
-            return `${I18n.t('screens.listBidding.winner')}: ${bidProduct.latestBidUser.username}`
+            return `${I18n.t('screens.listBidding.winner')}: ${bidProduct.latestBidUser.username.length>3?`${bidProduct.latestBidUser.username.substring(0,bidProduct.latestBidUser.username.length-3)}***`:``}`
         }
         return I18n.t('screens.listBidding.noOneHasWon')
     }
