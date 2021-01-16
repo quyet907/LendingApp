@@ -6,7 +6,7 @@ import {
   Text,
   StyleSheet,
   Image,
-  Linking
+  Linking,
 } from "react-native";
 import myStyle from "../style";
 import { UserService } from "../services/UserService";
@@ -20,6 +20,8 @@ import { BaseUserWithJwt } from "@Core/model/user/BaseUser";
 import { useIsFocused } from "@react-navigation/native";
 import AppTutorialScreen from "./AppTutorialScreen";
 import AppTutorial from "./AppTutorial";
+import { User } from "@StockAfiCore/model/user/User";
+import { color } from "react-native-reanimated";
 
 const sizeIcon = 20;
 
@@ -75,6 +77,14 @@ class Logout extends Component<Props, State> {
           <View style={{ justifyContent: "space-around", height: "100%" }}>
             <Text style={[styles.contentAccount]}>
               {this.state.thisUser.username}
+            </Text>
+            <Text
+              style={[
+                styles.contentAccount,
+                { fontSize: 14, color:Color.primary, fontWeight: "300" },
+              ]}
+            >
+              Lượt chơi trả phí: {this.state.thisUser.paidTimeBid || 0}
             </Text>
           </View>
         </View>
@@ -155,7 +165,9 @@ class Logout extends Component<Props, State> {
 
           <TouchableOpacity
             style={[myStyle.row, styles.layoutFeature]}
-            onPress={() => this.props.navigation.navigate(ScreenName.bidHistory)}
+            onPress={() =>
+              this.props.navigation.navigate(ScreenName.bidHistory)
+            }
           >
             <View style={styles.containerIcon}>
               <FontAwesome5
@@ -165,9 +177,7 @@ class Logout extends Component<Props, State> {
               />
             </View>
 
-            <Text style={[styles.contentFuture]}>
-              Lịch sử đấu giá
-            </Text>
+            <Text style={[styles.contentFuture]}>Lịch sử đấu giá</Text>
           </TouchableOpacity>
 
           <TouchableOpacity
@@ -186,9 +196,6 @@ class Logout extends Component<Props, State> {
               {I18n.t("screens.profile.coupon")}
             </Text>
           </TouchableOpacity>
-
-          
-
 
           <TouchableOpacity
             style={[myStyle.row, styles.layoutFeature]}
@@ -211,7 +218,7 @@ class Logout extends Component<Props, State> {
             style={[myStyle.row, styles.layoutFeature]}
             onPress={() => {
               // window.open('https://m.me/106388164626050?ref=lien_he', "_blank");
-              this.props.navigation.navigate(ScreenName.QAs)
+              this.props.navigation.navigate(ScreenName.QAs);
             }}
           >
             <View style={styles.containerIcon}>
@@ -356,7 +363,7 @@ type Props = {
 };
 
 type State = {
-  thisUser: BaseUserWithJwt;
+  thisUser: User;
   avtURL: string;
   isDisplayTutorial: boolean;
 };

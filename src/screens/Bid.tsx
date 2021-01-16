@@ -39,8 +39,10 @@ class Bid extends Component<props, state> {
       remainTime: 100,
       me: {},
       showConfirm: false,
+      isShowConfirmPaid: false,
+      isShowExhauseTimeBid: false,
       remainAmountMoney: 0,
-      remainTimeBid: 0
+      remainTimeBid: 0,
     };
 
     bidProductId = this.props.route.params.bidProductId;
@@ -97,13 +99,13 @@ class Bid extends Component<props, state> {
         this.renderDataBid(bidProduct);
         this.listenOnChange();
       });
-  
+
       IncomeService.getFinance().then((finance) => {
         this.setState({
           remainAmountMoney: finance.remainAmount || 0,
         });
       });
-  
+
       timeahihi = setInterval(() => {
         const remainTime =
           this.state.bidProduct && this.state.bidProduct.endBidAt
@@ -119,20 +121,19 @@ class Bid extends Component<props, state> {
         });
       }, 1000);
     });
-    
   }
 
   renderDataBid(bidProduct: BidProduct) {
     let remainTimeBid = bidProduct.maxTimeBid || 100000;
     let timeBid = 0;
-    bidProduct.listHistoryBid?.forEach(item => {
-      if(item.userId === this.state.me.id) timeBid++;
-    })
+    bidProduct.listHistoryBid?.forEach((item) => {
+      if (item.userId === this.state.me.id) timeBid++;
+    });
     remainTimeBid = remainTimeBid - timeBid;
-    if(remainTimeBid<0) remainTimeBid = 0;
+    if (remainTimeBid < 0) remainTimeBid = 0;
     this.setState({
       bidProduct: bidProduct,
-      remainTimeBid: remainTimeBid
+      remainTimeBid: remainTimeBid,
     });
   }
 
@@ -262,7 +263,7 @@ class Bid extends Component<props, state> {
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
-                justifyContent:"center",
+                justifyContent: "center",
                 flex: 1,
               }}
             >
@@ -291,22 +292,29 @@ class Bid extends Component<props, state> {
                 {MyFormat.roundingMoney(this.state.bidProduct.stepPrice || 100)}{" "}
                 xu/lượt
               </Text>
-              {this.state.bidProduct.maxTimeBid && <Text style={{ color: color.primary, textAlign: "center", fontSize:12 }}>
-                  Lựơt chơi: {MyFormat.roundingMoney(
-                    this.state.remainTimeBid
-                  )}/{MyFormat.roundingMoney(
-                    this.state.bidProduct.maxTimeBid || 10000
-                  )}{" "} lần
-                </Text>
-                }
+              {this.state.bidProduct.maxTimeBid && (
                 <Text
                   style={{
-                    color: "#fff",
+                    color: color.primary,
                     textAlign: "center",
-                    marginTop: 5,
-                    marginBottom: 5,
+                    fontSize: 12,
                   }}
-                ></Text>
+                >
+                  Lựơt chơi: {MyFormat.roundingMoney(this.state.remainTimeBid)}/
+                  {MyFormat.roundingMoney(
+                    this.state.bidProduct.maxTimeBid || 10000
+                  )}{" "}
+                  lần
+                </Text>
+              )}
+              <Text
+                style={{
+                  color: "#fff",
+                  textAlign: "center",
+                  marginTop: 5,
+                  marginBottom: 5,
+                }}
+              ></Text>
               <Text
                 style={{
                   color: "#fff",
@@ -315,7 +323,7 @@ class Bid extends Component<props, state> {
                   marginBottom: 5,
                 }}
               >
-              {MyFormat.roundingMoney(this.state.remainAmountMoney)} xu
+                {MyFormat.roundingMoney(this.state.remainAmountMoney)} xu
               </Text>
               <Text style={{ color: "#fff", textAlign: "center" }}>
                 {countBid}
@@ -353,21 +361,38 @@ class Bid extends Component<props, state> {
             }
             onPress={(event) => {
               if (BidService.getTimeCalc(this.state.bidProduct) < 0) {
-                
                 this.setState({
                   showConfirm: true,
                 });
               } else {
-                if(this.state.remainTimeBid<=0){
-                  actionPopup.showMessage(`Mỗi tài khoản, trong phiên này chỉ được đấu giá ${this.state.bidProduct.maxTimeBid} lần. Bạn đã hết lượt chơi cho phiên đấu giá này.`);
-                }else
-                BidService.BidAction(bidProductId).then((_) => {
-                  this.setState({
-                    remainAmountMoney:
-                      this.state.remainAmountMoney -
-                      (this.state.bidProduct?.stepPrice || 0),
-                  });
-                });
+                if (this.state.remainTimeBid <= 0) {
+                  actionPopup.showMessage(
+                    `Mỗi tài khoản, trong phiên này chỉ được đấu giá ${this.state.bidProduct.maxTimeBid} lần. Bạn đã hết lượt chơi cho phiên đấu giá này.`
+                  );
+                } else
+                  BidService.BidAction(bidProductId)
+                    .then((resp) => {
+                      console.log(resp);
+                      this.setState({
+                        remainAmountMoney:
+                          this.state.remainAmountMoney -
+                          (this.state.bidProduct?.stepPrice || 0),
+                      });
+                    })
+                    .catch((e) => {
+                      if (e.response.status == 405) {
+                        console.log(e.response?.data?.type);
+                        if (e.response && e.response.data && e.response.data.type && e.response.data.type == "pending") {
+                          this.setState({
+                            isShowConfirmPaid: true,
+                          });
+                        } else {
+                          this.setState({
+                            isShowExhauseTimeBid: true,
+                          });
+                        }
+                      }
+                    });
               }
             }}
             disabled={
@@ -399,6 +424,42 @@ class Bid extends Component<props, state> {
           title="Confirm"
           message={I18n.t("popup.message.deduction")}
         />
+
+        <PopupConfirm
+          confirmModal={this.state.isShowConfirmPaid}
+          hideBtnCancel={true}
+          textButtonLeft={I18n.t("popup.yesNo.no")}
+          textButtonRight={I18n.t("popup.yesNo.yes")}
+          buttonOK={() => {
+            BidService.BidAction(bidProductId, true).then((value) => {
+              this.setState({ isShowConfirmPaid: false });
+            });
+          }}
+          buttonCancel={() => {
+            this.setState({ isShowConfirmPaid: false });
+          }}
+          title="Confirm"
+          message={`Bạn đã sử dụng hết lượt đấu giá miễn phí trong ngày. Tuy nhiên tài khoản của bạn còn ${this.state.me.paidTimeBid} lượt chơi đã mua. Nếu tham gia, bạn sẽ bị trừ đi ${this.state.bidProduct.feeTimeBid} lượt. Bạn có muốn tham gia lượt chơi này không?`}
+        />
+
+        <PopupConfirm
+          confirmModal={this.state.isShowExhauseTimeBid}
+          hideBtnCancel={true}
+          textButtonLeft={"Không tham gia"}
+          textButtonRight={"Mua thêm lượt"}
+          buttonOK={() => {
+            window.open(
+              "https://m.me/106388164626050?ref=mua_them_luot",
+              "_blank"
+            );
+            this.setState({ isShowExhauseTimeBid: false });
+          }}
+          buttonCancel={() => {
+            this.setState({ isShowExhauseTimeBid: false });
+          }}
+          title="Confirm"
+          message={`Bạn đã hết số lần tham gia đấu giá. Mỗi tài khoản mỗi ngày chỉ có thể tham gia 3 phiên miễn phí. Bạn có thể mua thêm số lượt chơi để tham gia phiên đấu giá này.`}
+        />
       </View>
     );
   }
@@ -412,8 +473,10 @@ type state = {
   bidProduct: BidProduct;
   timeBid: number;
   remainTime: number;
-  me: BaseUser;
+  me: User;
   showConfirm: boolean;
+  isShowConfirmPaid: boolean;
+  isShowExhauseTimeBid: boolean;
   remainAmountMoney: number;
   remainTimeBid: number;
 };

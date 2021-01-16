@@ -58,21 +58,25 @@ const styles = StyleSheet.create({
     buttonOK: {
         backgroundColor: "#F0B90B",
         height: 40,
-        width: 100,
+        minWidth: 100,
         margin : 10,
+        paddingLeft:10,
+        paddingRight: 10,
         justifyContent: "center",
         alignItems: "center",
-        borderRadius : 10,
+        borderRadius : 5,
     },
 
     buttonCancel: {
         backgroundColor: "white",
         height: 40,
-        width: 100,
+        minWidth: 100,
         margin : 10,
+        paddingLeft:10,
+        paddingRight: 10,
         justifyContent: "center",
         alignItems: "center",
-        borderRadius : 10,
+        borderRadius : 5,
     },
 
     textContent: {
@@ -109,7 +113,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#181f29',
         width: '80%',
         // height: 155,
-        borderRadius : 10,
+        borderRadius : 5,
         flexDirection: 'column',
         padding: 15,
 

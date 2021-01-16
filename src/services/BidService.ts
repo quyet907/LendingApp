@@ -23,18 +23,16 @@ export class BidService {
                 .catch((err) => err)
         );
     }
-    public static BidAction(id: string): Promise<BidProduct> {
+    public static BidAction(id: string, isForce?: boolean): Promise<BidProduct> {
         return getAxios().then((axios) => {
             return axios({
                 method: "POST",
                 url: `${config.api.lendingAPI}/bid_product/bid`,
-                data: { bid_productId: id }
+                data: { bid_productId: id,
+                isForce: isForce?isForce:false }
             })
                 .then((res) => {
                     return res.data
-                })
-                .catch(err => {
-                    return err;
                 })
         })
     }

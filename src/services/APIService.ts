@@ -51,6 +51,8 @@ axios.interceptors.response.use(
                 action.showMessage(I18n.t('error.server.processError'))
             }
         }
+        console.log(err);
+		return Promise.reject(err);
     }
 )
 export const getAxios = async () => {
