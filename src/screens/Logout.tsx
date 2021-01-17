@@ -10,6 +10,8 @@ import {
 } from "react-native";
 import myStyle from "../style";
 import { UserService } from "../services/UserService";
+import { BidProductHistoryService } from "../services/BidProductHistoryService";
+
 import { Actions } from "react-native-router-flux";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
@@ -34,6 +36,7 @@ class Logout extends Component<Props, State> {
       thisUser: {},
       avtURL: "",
       isDisplayTutorial: false,
+      timeBidToday: 3,
     };
   }
 
@@ -81,10 +84,18 @@ class Logout extends Component<Props, State> {
             <Text
               style={[
                 styles.contentAccount,
-                { fontSize: 14, color:Color.primary, fontWeight: "300" },
+                { marginTop:5,fontSize: 10, color: Color.primary, fontWeight: "300" },
               ]}
             >
               Lượt chơi trả phí: {this.state.thisUser.paidTimeBid || 0}
+            </Text>
+            <Text
+              style={[
+                styles.contentAccount,
+                { fontSize: 10, color: Color.primary, fontWeight: "300" },
+              ]}
+            >
+              Lượt chơi miễn phí hôm nay: {(this.state.timeBidToday || 3)-3}/3
             </Text>
           </View>
         </View>
@@ -266,9 +277,12 @@ class Logout extends Component<Props, State> {
     UserService.getMe().then((res) => {
       if (res != null) {
         if (res.username != null) {
-          this.setState({
-            thisUser: res,
-            avtURL: res.avatar || "",
+          BidProductHistoryService.getTimeBidToday().then((timeBidToday) => {
+            this.setState({
+              thisUser: res,
+              avtURL: res.avatar || "",
+              timeBidToday,
+            });
           });
         }
       }
@@ -366,6 +380,7 @@ type State = {
   thisUser: User;
   avtURL: string;
   isDisplayTutorial: boolean;
+  timeBidToday: number;
 };
 
 export default function (props: Props) {

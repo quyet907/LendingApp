@@ -20,4 +20,15 @@ export class BidProductHistoryService {
             })
         })
     }
+    public static async  getTimeBidToday( ): Promise<number>{
+        return getAxios().then((axios) =>{
+           return axios({
+                method : "GET",
+                url : `${config.api.lendingAPI}/bid_history/time-bid-today`
+            }).
+            then(res =>{
+                return res.data;
+            })
+        })
+    }
 }
