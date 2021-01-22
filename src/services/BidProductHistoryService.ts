@@ -31,4 +31,15 @@ export class BidProductHistoryService {
             })
         })
     }
+    public static async isBidded(bidProductId:string ): Promise<boolean>{
+        return getAxios().then((axios) =>{
+           return axios({
+                method : "GET",
+                url : `${config.api.lendingAPI}/bid_history/is-bidded/${bidProductId}`
+            }).
+            then(res =>{
+                return res.data;
+            })
+        })
+    }
 }

@@ -95,7 +95,7 @@ class Logout extends Component<Props, State> {
                 { fontSize: 10, color: Color.primary, fontWeight: "300" },
               ]}
             >
-              Lượt chơi miễn phí hôm nay: {(this.state.timeBidToday || 3)-3}/3
+              Lượt chơi miễn phí hôm nay: {Math.max(0, 3-(this.state.timeBidToday))}/3
             </Text>
           </View>
         </View>

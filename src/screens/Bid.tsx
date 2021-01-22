@@ -23,6 +23,8 @@ import Finance from "src/reducer/FinanceReducer";
 import { IncomeService } from "../services/IncomeService";
 import moment from "moment";
 import { time } from "console";
+import { BidProductHistoryService } from "../services/BidProductHistoryService";
+import { ScreenName } from "./ScreenName";
 
 // import PopupShow from 'src/components/PopupShow';
 // import PopupConfirm from 'src/components/PopupConfirm';
@@ -41,6 +43,9 @@ class Bid extends Component<props, state> {
       showConfirm: false,
       isShowConfirmPaid: false,
       isShowExhauseTimeBid: false,
+      isShowNotificationWhenPaidSession: false,
+      isForcePaidBid: false,
+      timeBidToday: 3,
       remainAmountMoney: 0,
       remainTimeBid: 0,
     };
@@ -98,6 +103,17 @@ class Bid extends Component<props, state> {
         bidProduct.listHistoryBid?.reverse();
         this.renderDataBid(bidProduct);
         this.listenOnChange();
+        BidProductHistoryService.isBidded(bidProductId).then((isBidded) => {
+          BidProductHistoryService.getTimeBidToday().then((timeBidToday) => {
+            this.setState({
+              isShowNotificationWhenPaidSession:
+                !isBidded &&
+                (bidProduct.feeTimeBid!=null && bidProduct.feeTimeBid > 0) 
+                && BidService.getTimeCalc(this.state.bidProduct)>0,
+              timeBidToday: timeBidToday,
+            });
+          });
+        });
       });
 
       IncomeService.getFinance().then((finance) => {
@@ -370,7 +386,7 @@ class Bid extends Component<props, state> {
                     `Mỗi tài khoản, trong phiên này chỉ được đấu giá ${this.state.bidProduct.maxTimeBid} lần. Bạn đã hết lượt chơi cho phiên đấu giá này.`
                   );
                 } else
-                  BidService.BidAction(bidProductId)
+                  BidService.BidAction(bidProductId, this.state.isForcePaidBid)
                     .then((resp) => {
                       console.log(resp);
                       this.setState({
@@ -382,7 +398,12 @@ class Bid extends Component<props, state> {
                     .catch((e) => {
                       if (e.response.status == 405) {
                         console.log(e.response?.data?.type);
-                        if (e.response && e.response.data && e.response.data.type && e.response.data.type == "pending") {
+                        if (
+                          e.response &&
+                          e.response.data &&
+                          e.response.data.type &&
+                          e.response.data.type == "pending"
+                        ) {
                           this.setState({
                             isShowConfirmPaid: true,
                           });
@@ -426,23 +447,6 @@ class Bid extends Component<props, state> {
         />
 
         <PopupConfirm
-          confirmModal={this.state.isShowConfirmPaid}
-          hideBtnCancel={true}
-          textButtonLeft={I18n.t("popup.yesNo.no")}
-          textButtonRight={I18n.t("popup.yesNo.yes")}
-          buttonOK={() => {
-            BidService.BidAction(bidProductId, true).then((value) => {
-              this.setState({ isShowConfirmPaid: false });
-            });
-          }}
-          buttonCancel={() => {
-            this.setState({ isShowConfirmPaid: false });
-          }}
-          title="Confirm"
-          message={`Bạn đã sử dụng hết lượt đấu giá miễn phí trong ngày. Tuy nhiên tài khoản của bạn còn ${this.state.me.paidTimeBid} lượt chơi đã mua. Nếu tham gia, bạn sẽ bị trừ đi ${this.state.bidProduct.feeTimeBid} lượt. Bạn có muốn tham gia lượt chơi này không?`}
-        />
-
-        <PopupConfirm
           confirmModal={this.state.isShowExhauseTimeBid}
           hideBtnCancel={true}
           textButtonLeft={"Không tham gia"}
@@ -460,6 +464,31 @@ class Bid extends Component<props, state> {
           title="Confirm"
           message={`Bạn đã hết số lần tham gia đấu giá. Mỗi tài khoản mỗi ngày chỉ có thể tham gia 3 phiên miễn phí. Bạn có thể mua thêm số lượt chơi để tham gia phiên đấu giá này.`}
         />
+
+        {/* popup noti */}
+        <PopupConfirm
+          confirmModal={this.state.isShowNotificationWhenPaidSession}
+          hideBtnCancel={true}
+          textButtonLeft={"Không tham gia"}
+          textButtonRight={"Tham gia"}
+          buttonOK={() => {
+            this.setState({
+              isShowNotificationWhenPaidSession: false,
+              isForcePaidBid: true,
+            });
+          }}
+          buttonCancel={() => {
+            this.props.navigation.navigate(ScreenName.ListBid);
+            this.setState({ isShowNotificationWhenPaidSession: false });
+          }}
+          title="Phiên đấu giá trả phí"
+          message={`Lượt chơi miễn phí trong ngày ${Math.max(
+            0,
+            3 - this.state.timeBidToday
+          )}/3.\nLượt chơi trả phí ${
+            this.state.me.paidTimeBid || 0
+          } \n\nKhi tham gia phiên đấu giá này, bạn sẽ bị trừ đi một lượt chơi. Bạn có muốn tham gia phiên đấu giá này không?`}
+        />
       </View>
     );
   }
@@ -467,6 +496,7 @@ class Bid extends Component<props, state> {
 
 type props = {
   route: any;
+  navigation: any;
 };
 
 type state = {
@@ -477,6 +507,10 @@ type state = {
   showConfirm: boolean;
   isShowConfirmPaid: boolean;
   isShowExhauseTimeBid: boolean;
+  isShowNotificationWhenPaidSession: boolean;
+  // force bid will sub paid time bid
+  isForcePaidBid: boolean;
+  timeBidToday: number;
   remainAmountMoney: number;
   remainTimeBid: number;
 };
